@@ -8,7 +8,6 @@ import accountReducer, { AccountState } from '../modules/account/redux/accountRe
 import authReducer, { AuthState } from '../modules/auth/redux/authReducer';
 import commonReducer, { CommonState } from '../modules/common/redux/reducer';
 import intlReducer, { IntlState } from '../modules/intl/redux/reducer';
-import accommodationReducer, { AccommodationState } from '../modules/accommodation/redux/accommodationReducer';
 
 export const clearStoreAfterLogout = createAction('clearStoreAfterLogout')();
 
@@ -25,7 +24,6 @@ export interface AppState {
   common: CommonState;
   auth: AuthState;
   account: AccountState;
-  accommodation: AccommodationState;
 }
 
 export default (history: History) => {
@@ -35,7 +33,6 @@ export default (history: History) => {
     common: commonReducer,
     auth: authReducer,
     account: accountReducer,
-    accommodation: accommodationReducer,
   });
 
   return persistReducer(
