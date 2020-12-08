@@ -22,7 +22,7 @@ const FadeInImg = styled.img`
 
 interface IProgressiveImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-const ProgressiveImage: React.FunctionComponent<IProgressiveImageProps> = props => {
+const ProgressiveImage: React.FunctionComponent<IProgressiveImageProps> = (props) => {
   return (
     <RPI src={props.src || DEFAULT_LINK_PHOTO} placeholder="">
       {(src: string, loading: boolean) =>
