@@ -1,11 +1,17 @@
 import React from 'react';
-import { Hello } from './Hello';
-import { Info } from './Info';
 
-export const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello />
-    <Info />
+// export const App = () => (
+//   <div>
+//     <h1>Welcome to Meteor!</h1>
+//   </div>
+// );
+
+const App: React.FC = () => {
+  return <div>
+    <h1>
+      Welcome to Meteor!
+    </h1>
   </div>
-);
+}
+
+export default App;
