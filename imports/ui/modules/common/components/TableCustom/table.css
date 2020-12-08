@@ -1,0 +1,6 @@
+.custom-table-row:hover > td {
+  background: #E6F6FE;
+}
+.custom-table-cell {
+  background: white;
+}

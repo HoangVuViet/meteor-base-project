@@ -1,0 +1,56 @@
+@import '../../../../../scss/colors.module.scss';
+.card-setting {
+  &.card-near-by {
+    margin-bottom: 24px;
+    .arrow-circle-icon {
+      transition: 300ms linear all;
+      circle {
+        fill: $WHITE;
+      }
+    }
+    &.near-by-approval {
+      box-shadow: none;
+    }
+  }
+}
+.bed-type-wrapper {
+  &.near-by-item {
+    padding: 0;
+    .near-by-header {
+      color: $GREY;
+      margin: 26px 0;
+    }
+    svg {
+      cursor: pointer;
+    }
+    .add-btn {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      p {
+        margin: 0;
+      }
+      .delete-icon {
+        cursor: pointer;
+        line,
+        path,
+        rect {
+          stroke: $GREY_600;
+        }
+      }
+      .add-text {
+        color: $BLUE_500;
+      }
+      .delete-text {
+        color: $GREY_600;
+      }
+    }
+    .near-by-field {
+      display: flex;
+      margin-left: 30px;
+    }
+    .distance-field {
+      display: flex;
+    }
+  }
+}

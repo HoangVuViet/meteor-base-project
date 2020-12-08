@@ -1,0 +1,15 @@
+.avatar-wrapper {
+    .image-avatar {
+        .edit-avatar {
+            display: none;
+        }
+
+        &:hover {
+            opacity: 0.7;
+
+            .edit-avatar {
+                display: block;
+            }
+        }
+    }
+}

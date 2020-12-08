@@ -1,0 +1,31 @@
+@import '../../../scss/colors.module.scss';
+// tabs menu
+.menu-tab-item {
+  padding: 16px 20px;
+  border-bottom: solid 4px transparent;
+  color: $GREY_600;
+  text-decoration: none;
+  text-align: center;
+  &.active-item {
+    color: $BLUE_400;
+    border-bottom: solid 4px $BLUE_400;
+  }
+  &:hover {
+    border-bottom: solid 4px $BLUE_400;
+    .MuiTypography-gutterBottom {
+      color: $BLUE_400;
+    }
+  }
+}
+// approval header
+.hotel-wrapper {
+  &.approval-header {
+    margin-bottom: 0;
+  }
+}
+.header-approval-wrapper {
+  margin-bottom: 20px;
+  .title-header {
+    color: $GREY;
+  }
+}

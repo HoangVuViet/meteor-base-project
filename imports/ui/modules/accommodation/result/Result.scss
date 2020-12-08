@@ -1,0 +1,19 @@
+@import '../../../scss/colors.module.scss';
+.header-tab-container {
+  margin-bottom: 24px;
+  &.MuiPaper-outlined {
+    border: none;
+    border-bottom: 1px solid $GREY_400;
+  }
+  &.MuiPaper-root {
+    background: transparent;
+    border-radius: 0;
+  }
+  .title-header {
+    width: 100%;
+    span {
+      color: $GREY;
+      margin-bottom: 0;
+    }
+  }
+}
