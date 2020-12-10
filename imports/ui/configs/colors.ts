@@ -1,6 +1,6 @@
 import { CA_ID, MT_ID } from '../constants';
-// import * as _colors from '../scss/_colors.module.scss';
-// import * as _colorsSomething from '../scss/_colors.something.module.scss';
+import * as _colors from '../scss/colors.module.scss';
+import * as _colorsSomething from '../scss/colors.something.module.scss';
 
 export const {
   TEAL,
