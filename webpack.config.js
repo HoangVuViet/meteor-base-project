@@ -13,7 +13,7 @@ module.exports = {
       module: {
           rules: [
   
-              { test: /\.tsx?$/, loader: "ts-loader" }, 
+              { test: /\.ts?$/, loader: "ts-loader" }, 
   
               { test: /\.scss$/, use: [ 
                   { loader: "style-loader" },  // to inject the result into the DOM as a style block

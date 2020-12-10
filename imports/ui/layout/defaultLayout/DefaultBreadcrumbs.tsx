@@ -21,7 +21,7 @@ import { comparePathName, getCurrentRoute, getListRoutesContain } from '../utils
 
 interface Props {}
 
-const DefaultBreadcrumbs: React.FC<Props> = props => {
+const DefaultBreadcrumbs: React.FC<Props> = (props) => {
   const intl = useIntl();
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
   const history = useHistory();
@@ -43,7 +43,7 @@ const DefaultBreadcrumbs: React.FC<Props> = props => {
     (value: some): any => {
       let check = false;
       state &&
-        Object.entries(state).forEach(v => {
+        Object.entries(state).forEach((v) => {
           if (comparePathName(v[0], value.path)) {
             check = state && state[`${v[0]}`];
           }

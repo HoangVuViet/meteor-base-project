@@ -5,14 +5,14 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { GREY_300, GREY_700 } from '../../configs/colors';
 import { some } from '../../constants';
+import { RoutesTabType } from '../../models/permission';
+import { ButtonRow } from '../../modules/accommodation/info/DefaultAside';
 import { Row } from '../../modules/common/components/elements';
 import { RawLink } from '../../modules/common/components/Link';
 import { AppState } from '../../redux/reducers';
 import { ReactComponent as ArrowIcon } from '../../svg/ic_arrow_right.svg';
 import { ASIDE_MIN_WIDTH } from '../constants';
 import { getListRoutesActivate, hasPermission } from '../utils';
-import { RoutesTabType } from '../../models/permission';
-import { ButtonRow } from '../../modules/accommodation/info/DefaultAside';
 import DefaultLeftAsideItemsIcon from './DefaultLeftAsideItemsIcon';
 
 const mapStateToProps = (state: AppState) => {

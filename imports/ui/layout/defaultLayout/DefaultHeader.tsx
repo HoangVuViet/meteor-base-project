@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'typesafe-actions';
 import { GREY_300, PRIMARY } from '../../configs/colors';
+import { ROUTES } from '../../configs/routes';
 import Badge from '../../modules/account/component/Badge';
 import { Row } from '../../modules/common/components/elements';
+import { goToAction } from '../../modules/common/redux/reducer';
 import { AppState } from '../../redux/reducers';
 import { ReactComponent as LogoVNTravel } from '../../svg/ic_myTourWhiteLogo.svg';
 import { HEADER_HEIGHT } from '../constants';
-import { ROUTES } from '../../configs/routes';
-import { goToAction } from '../../modules/common/redux/reducer';
 
 const mapStateToProps = (state: AppState) => {
   return { router: state.router };
@@ -21,7 +21,7 @@ interface Props extends ReturnType<typeof mapStateToProps> {
   noSticky?: boolean;
 }
 
-const DefaultHeader: React.FunctionComponent<Props> = props => {
+const DefaultHeader: React.FunctionComponent<Props> = (props) => {
   const { noSticky, dispatch } = props;
   return (
     <AppBar
