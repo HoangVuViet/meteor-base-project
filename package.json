@@ -16,6 +16,8 @@
     "@types/react-helmet": "^6.1.0",
     "@types/react-redux": "^7.1.11",
     "@types/react-router": "^5.1.8",
+    "@types/react-slick": "^0.23.4",
+    "@types/voca": "^1.4.0",
     "aphrodite": "^2.4.0",
     "connected-react-router": "^6.8.0",
     "css-modules-typescript-loader": "^4.0.1",
@@ -62,6 +64,7 @@
     "@types/mocha": "^8.0.3",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@types/react-infinite-scroller": "^1.2.1",
     "@types/styled-components": "^5.1.4",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
@@ -84,5 +87,12 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "staticAssets": {
+    "exportAbsolutePaths": true,
+    "pathPrefix": "static/",
+    "extensions": [
+      "png, svg"
+    ]
   }
 }

@@ -8,8 +8,8 @@ import { BLUE_50, GREY_100, GREY_500 } from '../../../configs/colors';
 import { some } from '../../../constants';
 import { HEADER_HEIGHT } from '../../../layout/constants';
 import { AppState } from '../../../redux/reducers';
-import iconFlagEn from '../../../svg/flag_en.svg';
-import iconFlagVi from '../../../svg/flag_vi.svg';
+// import iconFlagEn from '../../../../../public/svg/flag_en.svg';
+// import iconFlagVi from '../../../svg/flag_vi.svg';
 import { Col } from '../../common/components/elements';
 import { setLocale } from '../redux/reducer';
 
@@ -27,8 +27,8 @@ const Tip = styled.div`
 `;
 
 const DATA = [
-  { src: iconFlagVi, value: 'vi', label: 'Tiếng Việt' },
-  { src: iconFlagEn, value: 'en-US', label: 'English' },
+  { src: '../../../../../public/svg/flag_en.svg', value: 'vi', label: 'Tiếng Việt' },
+  { src: '../../../../../public/svg/flag_vi.svg', value: 'en-US', label: 'English' },
 ];
 
 function mapStateToProps(state: AppState) {
@@ -40,10 +40,10 @@ function mapStateToProps(state: AppState) {
 interface Props extends ReturnType<typeof mapStateToProps> {
   dispatch: Dispatch;
 }
-const LanguageSelect: React.FC<Props> = props => {
+const LanguageSelect: React.FC<Props> = (props) => {
   const { dispatch, locale } = props;
   const [open, setOpen] = React.useState(false);
-  const [flag, setFlag] = React.useState<some>(DATA.find(one => one.value === locale) || DATA[0]);
+  const [flag, setFlag] = React.useState<some>(DATA.find((one) => one.value === locale) || DATA[0]);
 
   const onBlur = React.useCallback((e: React.FocusEvent<HTMLDivElement>) => {
     if (e.relatedTarget instanceof Element) {

@@ -4,27 +4,22 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { FormattedMessage } from 'react-intl';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 // import { useSnackbar } from 'notistack';
 import { BLUE, GREY_300, PRIMARY, SECONDARY, WHITE } from '../../../configs/colors';
 import { some } from '../../../constants';
 import { HEADER_HEIGHT } from '../../../layout/constants';
-import { ReactComponent as IconBellBlack } from '../../../svg/ic_notification.svg';
+import { AppState } from '../../../redux/reducers';
 import { Row } from '../../common/components/elements';
 import LoadingIcon from '../../common/components/LoadingIcon';
 import { fakeNotification, fakeNotificationDialog } from '../constant';
 import NotificationCard from './NotificationCard';
 import NotificationDialog from './NotificationDialog';
-import { AppState } from '../../../redux/reducers';
-// import { fetchThunk } from '../../common/redux/thunk';
-// import { API_PATHS } from '../../../configs/API';
-// import { sendTokenToServer } from '../../auth/redux/authThunks';
-// import { messaging } from '../../../service/firebase';
 
 interface Props {}
 
-const NotificationDropdown: React.FunctionComponent<Props> = props => {
+const NotificationDropdown: React.FunctionComponent<Props> = () => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
   // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [data, setData] = React.useState<some | undefined>(undefined);
@@ -83,7 +78,7 @@ const NotificationDropdown: React.FunctionComponent<Props> = props => {
           setFocus(!isFocus);
         }}
       >
-        <IconBellBlack />
+        <img src="../../../../../public/svg/ic_notification.svg"></img>
         {data && data.numberNotiUnread > 0 && (
           <span
             style={{

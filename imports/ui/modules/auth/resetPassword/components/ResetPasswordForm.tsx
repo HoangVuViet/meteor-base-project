@@ -7,8 +7,6 @@ import voca from 'voca';
 import * as yup from 'yup';
 import { BLUE_500 } from '../../../../configs/colors';
 import { ROUTES } from '../../../../configs/routes';
-import { ReactComponent as EyeClose } from '../../../../svg/ic_eye_close.svg';
-import { ReactComponent as EyeOpen } from '../../../../svg/ic_eye_open.svg';
 import { Col, Row } from '../../../common/components/elements';
 import FormControlTextField from '../../../common/components/FormControlTextField';
 import Link from '../../../common/components/Link';
@@ -21,7 +19,7 @@ export interface Props {
   isSetPassword?: boolean;
 }
 
-const ResetPasswordForm: React.FunctionComponent<Props> = props => {
+const ResetPasswordForm: React.FunctionComponent<Props> = (props) => {
   const { onChangePassword, loading, isSetPassword } = props;
   const [showPassword, setShowPassword] = React.useState(false);
   const intl = useIntl();
@@ -43,7 +41,7 @@ const ResetPasswordForm: React.FunctionComponent<Props> = props => {
 
   const formik = useFormik({
     initialValues: defaultChangePasswordData,
-    onSubmit: values => onChangePassword(values),
+    onSubmit: (values) => onChangePassword(values),
     validationSchema: storeSchema,
   });
 
@@ -59,7 +57,7 @@ const ResetPasswordForm: React.FunctionComponent<Props> = props => {
           label={<FormattedMessage id={isSetPassword ? 'password' : 'newPassword'} />}
           placeholder={intl.formatMessage({ id: 'enterPassword' })}
           value={formik.values.password}
-          onChange={e => formik.setFieldValue('password', voca.latinise(e.target.value))}
+          onChange={(e) => formik.setFieldValue('password', voca.latinise(e.target.value))}
           type={showPassword ? 'text' : 'password'}
           inputProps={{
             maxLength: 20,
@@ -70,7 +68,11 @@ const ResetPasswordForm: React.FunctionComponent<Props> = props => {
           }
           endAdornment={
             <IconButton size="small" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <EyeOpen /> : <EyeClose />}
+              {showPassword ? (
+                <img src="../../../../../../public/svg/ic_eye_open.svg"></img>
+              ) : (
+                <img src="../../../../../../public/svg/ic_eye_close.svg"></img>
+              )}
             </IconButton>
           }
         />

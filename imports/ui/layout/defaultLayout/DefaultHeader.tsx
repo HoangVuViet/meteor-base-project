@@ -10,7 +10,6 @@ import Badge from '../../modules/account/component/Badge';
 import { Row } from '../../modules/common/components/elements';
 import { goToAction } from '../../modules/common/redux/reducer';
 import { AppState } from '../../redux/reducers';
-import { ReactComponent as LogoVNTravel } from '../../svg/ic_myTourWhiteLogo.svg';
 import { HEADER_HEIGHT } from '../constants';
 
 const mapStateToProps = (state: AppState) => {
@@ -40,7 +39,7 @@ const DefaultHeader: React.FunctionComponent<Props> = (props) => {
           disableTouchRipple
           onClick={() => dispatch(goToAction({ pathname: ROUTES.homeDashboard }))}
         >
-          <LogoVNTravel />
+          <img src="../../../../public/svg/ic_myTourWhiteLogo.svg"></img>
         </ButtonBase>
         <Row
           style={{

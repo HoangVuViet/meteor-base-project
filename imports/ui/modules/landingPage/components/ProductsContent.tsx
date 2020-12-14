@@ -11,12 +11,6 @@ import 'slick-carousel/slick/slick.css';
 import { BLACK, GREY_900, RED, WHITE, WHITE_50 } from '../../../configs/colors';
 import { ROUTES } from '../../../configs/routes';
 import { some } from '../../../constants';
-import { ReactComponent as FlightIcon } from '../../../svg/landingPage/ic_airPlaneIcon.svg';
-import { ReactComponent as CorporateIcon } from '../../../svg/landingPage/ic_briefcaseIcon.svg';
-import { ReactComponent as HotelIcon } from '../../../svg/landingPage/ic_buildingIcon.svg';
-import { ReactComponent as TransportIcon } from '../../../svg/landingPage/ic_busIcon.svg';
-import { ReactComponent as CoinIcon } from '../../../svg/landingPage/ic_moneyIcon.svg';
-import { ReactComponent as WalkingIcon } from '../../../svg/landingPage/ic_walkingIcon.svg';
 import { Col, Row } from '../../common/components/elements';
 import Link from '../../common/components/Link';
 
@@ -60,38 +54,43 @@ const ArrowBack = ({ Icon, className, style, onClick }: some) => {
   );
 };
 
-export const TypographyCustom = withStyles(theme => ({
+export const TypographyCustom = withStyles(() => ({
   root: {
     fontFamily: 'unset',
   },
 }))(Typography);
-const ProductsContent: React.FC<Props> = props => {
+const ProductsContent: React.FC<Props> = (props) => {
   const { style } = props;
   const [chooseButton, setChooseButton] = React.useState(0);
   const listButton = [
     {
       text: 'IDS_HMS_HOTEL',
-      icon: <HotelIcon />,
+      icon: <img src="../../../../../public/svg/landingPage/ic_buildingIcon.svg"></img>,
     },
     {
       text: 'landingPage.flight',
-      icon: <FlightIcon />,
+      icon: <img src="../../../../../public/svg/landingPage/ic_airPlaneIcon.svg"></img>,
     },
     {
       text: 'landingPage.myExperience',
-      icon: <WalkingIcon fill={WHITE_50} stroke={WHITE_50} />,
+      icon: (
+        <img
+          style={{ fill: WHITE_50, stroke: WHITE_50 }}
+          src="../../../../../public/svg/landingPage/ic_walkingIcon.svg"
+        ></img>
+      ),
     },
     {
       text: 'landingPage.transport',
-      icon: <TransportIcon />,
+      icon: <img src="../../../../../public/svg/landingPage/ic_busIcon.svg"></img>,
     },
     {
       text: 'landingPage.loyaltyPoint',
-      icon: <CoinIcon />,
+      icon: <img src="../../../../../public/svg/landingPage/ic_moneyIcon.svg"></img>,
     },
     {
       text: 'landingPage.corporate',
-      icon: <CorporateIcon />,
+      icon: <img src="../../../../../public/svg/landingPage/ic_briefcaseIcon.svg"></img>,
     },
   ];
   const pictureStep = [

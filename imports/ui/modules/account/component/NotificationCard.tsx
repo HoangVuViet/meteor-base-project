@@ -5,8 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import { GREY_100, GREY_300 } from '../../../configs/colors';
 import { some } from '../../../constants';
-import { ReactComponent as IconEmail } from '../../../svg/email.svg';
-import { ReactComponent as IconEmailOpen } from '../../../svg/email_open.svg';
 import { RawLink } from '../../common/components/Link';
 
 const Line = styled.div`
@@ -57,7 +55,11 @@ const NotificationCard: React.FunctionComponent<Props> = (props) => {
             justifyContent: 'center',
           }}
         >
-          {data.read ? <IconEmailOpen /> : <IconEmail />}
+          {data.read ? (
+            <img src="../../../../../public/svg/email_open.svg"></img>
+          ) : (
+            <img src="../../../../../public/svg/email.svg"></img>
+          )}
         </div>
         <div
           style={{

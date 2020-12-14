@@ -1,9 +1,6 @@
 /* eslint-disable react/require-default-props */
 import * as React from 'react';
 import { BLUE_400 } from '../../../configs/colors';
-import { ReactComponent as BlueKey } from '../../../svg/ic_blueKey.svg';
-import { ReactComponent as LogoVNTravel } from '../../../svg/ic_logoBanner.svg';
-import { ReactComponent as RegisterIcon } from '../../../svg/ic_register.svg';
 import { Col } from '../../common/components/elements';
 
 // const Wrapper = styled.div`
@@ -30,9 +27,13 @@ const Banner = (props: Props) => {
         padding: 32,
       }}
     >
-      <LogoVNTravel />
+      <img src="../../../../../public/svg/ic_logoBanner.svg"></img>
       <Col style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {isRegister ? <RegisterIcon /> : <BlueKey />}
+        {isRegister ? (
+          <img src="../../../../../public/svg/ic_register.svg"></img>
+        ) : (
+          <img src="../../../../../public/svg/ic_blueKey.svg"></img>
+        )}
       </Col>
     </Col>
   );

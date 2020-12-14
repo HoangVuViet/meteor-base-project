@@ -10,12 +10,12 @@ import { ROUTES } from '../../../configs/routes';
 import { HEADER_HEIGHT } from '../../../layout/constants';
 import Link from '../../../modules/common/components/Link';
 import { AppState } from '../../../redux/reducers';
-import { ReactComponent as IconAvatar } from '../../../svg/ic_avatar.svg';
+// import { ReactComponent as IconAvatar } from '../../../../../public/ic_avatar.svg';
 import { logout } from '../../auth/redux/authThunks';
 import { Col } from '../../common/components/elements';
 import ChangePasswordDialog from '../../auth/changePassword/pages/ChangePasswordDialog';
 
-export const ButtonCS = withStyles(theme => ({
+export const ButtonCS = withStyles((theme) => ({
   root: {
     width: '100%',
     justifyContent: 'flex-start',
@@ -34,7 +34,7 @@ interface Props extends ReturnType<typeof mapStateToProps> {
   dispatch: ThunkDispatch<AppState, null, Action<string>>;
 }
 
-const UserInfoDropdown: React.FunctionComponent<Props> = props => {
+const UserInfoDropdown: React.FunctionComponent<Props> = (props) => {
   const { dispatch, userData } = props;
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
@@ -91,14 +91,23 @@ const UserInfoDropdown: React.FunctionComponent<Props> = props => {
                 alt=""
               />
             ) : (
-              <IconAvatar
+              <img
+                src="../../../../../public/ic_avatar.svg"
                 style={{
                   borderRadius: '50%',
                   height: '40px',
                   width: '40px',
                   objectFit: 'cover',
                 }}
-              />
+              ></img>
+              // <IconAvatar
+              //   style={{
+              //     borderRadius: '50%',
+              //     height: '40px',
+              //     width: '40px',
+              //     objectFit: 'cover',
+              //   }}
+              // />
             )}
             {/* <ArrowDropDownIcon
               style={{
@@ -138,11 +147,6 @@ const UserInfoDropdown: React.FunctionComponent<Props> = props => {
                     </Typography>
                   </ButtonCS>
                 </Link>
-                {/* <ButtonCS>
-                  <Typography variant="body2">
-                    <FormattedMessage id="accManagement.createAndManageMember" />
-                  </Typography>
-                </ButtonCS> */}
                 <ButtonCS onClick={() => setOpenDialog(true)}>
                   <Typography variant="body2">
                     <FormattedMessage id="changePassword" />

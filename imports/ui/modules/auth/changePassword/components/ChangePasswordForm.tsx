@@ -4,9 +4,9 @@ import { useFormik } from 'formik';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import * as yup from 'yup';
+// import { ReactComponent as EyeCloseIcon } from '../../../../../../public/svg/ic_eye_close.svg';
 import { PRIMARY } from '../../../../configs/colors';
-import { ReactComponent as EyeCloseIcon } from '../../../../svg/ic_eye_close.svg';
-import { ReactComponent as EyeOpenIcon } from '../../../../svg/ic_eye_open.svg';
+// import { ReactComponent as EyeOpenIcon } from '../../../../svg/ic_eye_open.svg';
 import { Col, Row } from '../../../common/components/elements';
 import FormControlTextField from '../../../common/components/FormControlTextField';
 import LoadingButton from '../../../common/components/LoadingButton';
@@ -17,7 +17,7 @@ interface Props {
   setOpen(data: boolean): void;
   loading: boolean;
 }
-const ChangePasswordForm: React.FC<Props> = props => {
+const ChangePasswordForm: React.FC<Props> = (props) => {
   const { onChangePassword, setOpen, loading } = props;
   const intl = useIntl();
 
@@ -51,7 +51,7 @@ const ChangePasswordForm: React.FC<Props> = props => {
   });
   const formik = useFormik({
     initialValues: defaultChangePass,
-    onSubmit: values => {
+    onSubmit: (values) => {
       onChangePassword(values);
     },
     validationSchema: storeSchema,
@@ -102,12 +102,13 @@ const ChangePasswordForm: React.FC<Props> = props => {
                   size="small"
                 >
                   {hidePassword.currentPassword ? (
-                    <EyeOpenIcon
+                    <img
+                      src="../../../../../../public/svg/ic_eye_open.svg"
                       className="svgFillAll"
                       style={{ stroke: PRIMARY, fill: PRIMARY }}
-                    />
+                    ></img>
                   ) : (
-                    <EyeCloseIcon />
+                    <img src="../../../../../../public/svg/ic_eye_close.svg"></img>
                   )}
                 </IconButton>
               </InputAdornment>
@@ -143,12 +144,13 @@ const ChangePasswordForm: React.FC<Props> = props => {
                   size="small"
                 >
                   {hidePassword.password ? (
-                    <EyeOpenIcon
+                    <img
+                      src="../../../../../../public/svg/ic_eye_open.svg"
                       className="svgFillAll"
                       style={{ stroke: PRIMARY, fill: PRIMARY }}
-                    />
+                    ></img>
                   ) : (
-                    <EyeCloseIcon />
+                    <img src="../../../../../../public/svg/ic_eye_close.svg"></img>
                   )}
                 </IconButton>
               </InputAdornment>

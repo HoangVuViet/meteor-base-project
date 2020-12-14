@@ -2,8 +2,6 @@ import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { ROUTES } from '../../../../configs/routes';
-import { ReactComponent as SuccessIcon } from '../../../../svg/ic_successIcon.svg';
-import { ReactComponent as VNTravelColorLogo } from '../../../../svg/ic_VNTravelColorLogo.svg';
 import { Col, PageContainer } from '../../../common/components/elements';
 import Link from '../../../common/components/Link';
 import LoadingButton from '../../../common/components/LoadingButton';
@@ -11,7 +9,7 @@ import LoadingButton from '../../../common/components/LoadingButton';
 const RegisterSuccess = () => {
   return (
     <PageContainer>
-      <VNTravelColorLogo />
+      <img src="../../../../../../public/svg/ic_VNTravelColorLogo.svg"></img>
       <Paper
         style={{
           border: '0.5px solid #BDBDBD',
@@ -24,7 +22,10 @@ const RegisterSuccess = () => {
         }}
       >
         <Col style={{ alignItems: 'center', flex: 1 }}>
-          <SuccessIcon style={{ marginBottom: 32 }} />
+          <img
+            src="../../../../../../public/svg/ic_successIcon.svg"
+            style={{ marginBottom: 32 }}
+          ></img>
           <Typography
             variant="body2"
             style={{

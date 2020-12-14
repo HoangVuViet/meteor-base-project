@@ -2,10 +2,6 @@ import TrendingFlatIcon from '@material-ui/icons/TrendingFlat';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { some } from '../../../constants';
-import ClockIcon from '../../../svg/landingPage/ic_clock.svg';
-import FormIcon from '../../../svg/landingPage/ic_form.svg';
-import MatchingIcon from '../../../svg/landingPage/ic_matching.svg';
-import PresentIcon from '../../../svg/landingPage/ic_present.svg';
 import { Col, Row } from '../../common/components/elements';
 import { TypographyCustom } from './ProductsContent';
 
@@ -13,25 +9,25 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const StepContent: React.FC<Props> = props => {
+const StepContent: React.FC<Props> = (props) => {
   const step = [
     {
-      icon: MatchingIcon,
+      icon: <img src="../../../../../public/svg/landingPage/ic_matching.svg"></img>,
       title: 'landingPage.signUpWithAnyHotel',
       content: 'landingPage.signUpWithAnyHotelContent',
     },
     {
-      icon: FormIcon,
+      icon: <img src="../../../../../public/svg/landingPage/ic_form.svg"></img>,
       title: 'landingPage.easyToUse',
       content: 'landingPage.easyToUseContent',
     },
     {
-      icon: ClockIcon,
+      icon: <img src="../../../../../public/svg/landingPage/ic_clock.svg"></img>,
       title: 'landingPage.stepByStep',
       content: 'landingPage.stepByStepContent',
     },
     {
-      icon: PresentIcon,
+      icon: <img src="../../../../../public/svg/landingPage/ic_present.svg"></img>,
       title: 'landingPage.specialDiscount',
       content: 'landingPage.specialDiscountContent',
     },

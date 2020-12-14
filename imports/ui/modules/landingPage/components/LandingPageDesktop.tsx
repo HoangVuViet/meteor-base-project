@@ -3,7 +3,6 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { BLUE, GREY_100, RED, WHITE, WHITE_50 } from '../../../configs/colors';
 import { ROUTES } from '../../../configs/routes';
-import { ReactComponent as LogoMyTour } from '../../../svg/ic_VNTravelWhiteLogo.svg';
 import { Col, Row } from '../../common/components/elements';
 import Link, { RawLink } from '../../common/components/Link';
 import ProductsContent, { TypographyCustom } from './ProductsContent';
@@ -28,7 +27,7 @@ const LandingPageDesktop = () => {
         >
           <Row style={{ width: '100%' }}>
             <div style={{ flex: 1 }}>
-              <LogoMyTour />
+              <img src="../../../../../public/svg/ic_VNTravelWhiteLogo.svg"></img>
             </div>
             <Typography variant="body1" style={{ color: GREY_100, marginRight: 20 }}>
               <FormattedMessage id="landingPage.whyPartnerWithMT" />
