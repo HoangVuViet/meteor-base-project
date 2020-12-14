@@ -11,7 +11,7 @@ const DefaultHelmet = () => {
   const { location } = history;
   const { pathname } = location;
   const getTitle2 = React.useMemo(() => {
-    return flatRoutes(ROUTES_TAB).find(v => v.path?.includes(pathname))?.name || null;
+    return flatRoutes(ROUTES_TAB).find((v) => v.path?.includes(pathname))?.name || null;
   }, [pathname]);
 
   return (
