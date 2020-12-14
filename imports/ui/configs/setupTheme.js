@@ -1,3 +1,4 @@
+import { some } from '../constants';
 import { createMuiTheme, darken, fade } from '@material-ui/core/styles';
 import DefaultTheme from 'react-dates/lib/theme/DefaultTheme';
 import aphroditeInterface from 'react-with-styles-interface-aphrodite';
@@ -30,22 +31,22 @@ ThemedStyleSheet.registerTheme({
         borderColor_active: PRIMARY,
         borderColor_hover: PRIMARY,
       },
-      selectedSpan: {
-        backgroundColor: fade(PRIMARY, 0.2),
-        backgroundColor_active: fade(PRIMARY, 0.2),
-        backgroundColor_hover: fade(PRIMARY, 0.2),
-        borderColor: fade(PRIMARY, 0.2),
-        borderColor_active: fade(PRIMARY, 0.2),
-        borderColor_hover: fade(PRIMARY, 0.2),
-      },
-      hoveredSpan: {
-        backgroundColor: fade(PRIMARY, 0.2),
-        backgroundColor_active: fade(PRIMARY, 0.2),
-        backgroundColor_hover: fade(PRIMARY, 0.2),
-        borderColor: fade(PRIMARY, 0.2),
-        borderColor_active: fade(PRIMARY, 0.2),
-        borderColor_hover: fade(PRIMARY, 0.2),
-      },
+      // selectedSpan: {
+      //   backgroundColor: fade(PRIMARY, 0.2),
+      //   backgroundColor_active: fade(PRIMARY, 0.2),
+      //   backgroundColor_hover: fade(PRIMARY, 0.2),
+      //   borderColor: fade(PRIMARY, 0.2),
+      //   borderColor_active: fade(PRIMARY, 0.2),
+      //   borderColor_hover: fade(PRIMARY, 0.2),
+      // },
+      // hoveredSpan: {
+      //   backgroundColor: fade(PRIMARY, 0.2),
+      //   backgroundColor_active: fade(PRIMARY, 0.2),
+      //   backgroundColor_hover: fade(PRIMARY, 0.2),
+      //   borderColor: fade(PRIMARY, 0.2),
+      //   borderColor_active: fade(PRIMARY, 0.2),
+      //   borderColor_hover: fade(PRIMARY, 0.2),
+      // },
     },
   },
 });
@@ -81,24 +82,24 @@ const typography = {
 };
 
 export const MUI_THEME = createMuiTheme({
-  palette: {
-    primary: {
-      light: fade(PRIMARY, 0.9),
-      main: PRIMARY,
-      dark: darken(PRIMARY, 0.1),
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      light: fade(SECONDARY, 0.9),
-      main: SECONDARY,
-      dark: darken(SECONDARY, 0.1),
-      contrastText: '#ffffff',
-    },
-    text: {
-      primary: GREY,
-      secondary: fade(GREY, 0.6),
-    },
-  },
+  // palette: {
+  //   primary: {
+  //     light: fade(PRIMARY, 0.9),
+  //     main: PRIMARY,
+  //     dark: darken(PRIMARY, 0.1),
+  //     contrastText: '#ffffff',
+  //   },
+  //   secondary: {
+  //     light: fade(SECONDARY, 0.9),
+  //     main: SECONDARY,
+  //     dark: darken(SECONDARY, 0.1),
+  //     contrastText: '#ffffff',
+  //   },
+  //   text: {
+  //     primary: GREY,
+  //     secondary: fade(GREY, 0.6),
+  //   },
+  // },
   typography,
   overrides: {
     MuiPaper: {

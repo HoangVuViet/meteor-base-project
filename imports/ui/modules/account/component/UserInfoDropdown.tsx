@@ -10,10 +10,10 @@ import { ROUTES } from '../../../configs/routes';
 import { HEADER_HEIGHT } from '../../../layout/constants';
 import Link from '../../../modules/common/components/Link';
 import { AppState } from '../../../redux/reducers';
+import ChangePasswordDialog from '../../auth/changePassword/pages/ChangePasswordDialog';
 // import { ReactComponent as IconAvatar } from '../../../../../public/ic_avatar.svg';
 import { logout } from '../../auth/redux/authThunks';
 import { Col } from '../../common/components/elements';
-import ChangePasswordDialog from '../../auth/changePassword/pages/ChangePasswordDialog';
 
 export const ButtonCS = withStyles((theme) => ({
   root: {
@@ -92,7 +92,7 @@ const UserInfoDropdown: React.FunctionComponent<Props> = (props) => {
               />
             ) : (
               <img
-                src="../../../../../public/ic_avatar.svg"
+                src="../../../../../svg/ic_avatar.svg"
                 style={{
                   borderRadius: '50%',
                   height: '40px',

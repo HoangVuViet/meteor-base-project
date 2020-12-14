@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-
+import logo from '../../../../../public/svg/notFound.svg';
 interface INotFoundBoxProps {}
 
 const NotFoundBox: React.FunctionComponent<INotFoundBoxProps> = () => {

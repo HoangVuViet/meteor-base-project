@@ -39,7 +39,7 @@ const DefaultHeader: React.FunctionComponent<Props> = (props) => {
           disableTouchRipple
           onClick={() => dispatch(goToAction({ pathname: ROUTES.homeDashboard }))}
         >
-          <img src="../../../../public/svg/ic_myTourWhiteLogo.svg"></img>
+          <img src="../../../../svg/ic_myTourWhiteLogo.svg"></img>
         </ButtonBase>
         <Row
           style={{

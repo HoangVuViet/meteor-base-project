@@ -65,32 +65,32 @@ const ProductsContent: React.FC<Props> = (props) => {
   const listButton = [
     {
       text: 'IDS_HMS_HOTEL',
-      icon: <img src="../../../../../public/svg/landingPage/ic_buildingIcon.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_buildingIcon.svg"></img>,
     },
     {
       text: 'landingPage.flight',
-      icon: <img src="../../../../../public/svg/landingPage/ic_airPlaneIcon.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_airPlaneIcon.svg"></img>,
     },
     {
       text: 'landingPage.myExperience',
       icon: (
         <img
           style={{ fill: WHITE_50, stroke: WHITE_50 }}
-          src="../../../../../public/svg/landingPage/ic_walkingIcon.svg"
+          src="../../../../../svg/landingPage/ic_walkingIcon.svg"
         ></img>
       ),
     },
     {
       text: 'landingPage.transport',
-      icon: <img src="../../../../../public/svg/landingPage/ic_busIcon.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_busIcon.svg"></img>,
     },
     {
       text: 'landingPage.loyaltyPoint',
-      icon: <img src="../../../../../public/svg/landingPage/ic_moneyIcon.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_moneyIcon.svg"></img>,
     },
     {
       text: 'landingPage.corporate',
-      icon: <img src="../../../../../public/svg/landingPage/ic_briefcaseIcon.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_briefcaseIcon.svg"></img>,
     },
   ];
   const pictureStep = [

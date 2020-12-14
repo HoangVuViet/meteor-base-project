@@ -56,9 +56,9 @@ const NotificationCard: React.FunctionComponent<Props> = (props) => {
           }}
         >
           {data.read ? (
-            <img src="../../../../../public/svg/email_open.svg"></img>
+            <img src="../../../../../svg/email_open.svg"></img>
           ) : (
-            <img src="../../../../../public/svg/email.svg"></img>
+            <img src="../../../../../svg/email.svg"></img>
           )}
         </div>
         <div

@@ -27,7 +27,7 @@ const LandingPageDesktop = () => {
         >
           <Row style={{ width: '100%' }}>
             <div style={{ flex: 1 }}>
-              <img src="../../../../../public/svg/ic_VNTravelWhiteLogo.svg"></img>
+              <img src="../../../../../svg/ic_VNTravelWhiteLogo.svg"></img>
             </div>
             <Typography variant="body1" style={{ color: GREY_100, marginRight: 20 }}>
               <FormattedMessage id="landingPage.whyPartnerWithMT" />

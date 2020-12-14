@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Switch } from 'react-router';
+import { Switch, Route } from 'react-router';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { ROUTES, URL_PATH } from './configs/routes';
@@ -20,6 +20,8 @@ import LandingPage from './modules/landingPage/pages/LandingPage';
 import { AppState } from './redux/reducers';
 
 function mapStateToProps(state: AppState) {
+  console.log(state);
+
   return {
     router: state.router,
     auth: state.auth,
@@ -40,7 +42,7 @@ const App: React.FC<Props> = (props) => {
     <React.Fragment>
       <NetworkProblemDialog />
       <AuthProblemDialog />
-      <React.Suspense fallback={<LoadingIcon />}>
+      {/* <React.Suspense fallback={<LoadingIcon />}>
         <Switch location={router.location}>
           <RedirectRoute auth={auth.auth} path={ROUTES.forgotPass} component={ForgotPassword} />
           <RedirectRoute auth={auth.auth} path={ROUTES.register} component={Register} />
@@ -48,14 +50,11 @@ const App: React.FC<Props> = (props) => {
           <RedirectRoute auth={auth.auth} path={ROUTES.login} component={Login} />
           <RedirectRoute auth={auth.auth} path={ROUTES.setPassword} component={SetPassword} />
           <RedirectRoute auth={auth.auth} path={ROUTES.landingPage} component={LandingPage} />
-          {/* <ProtectedRoute
-            auth={auth.auth}
-            path={ROUTES.managerHotels.result}
-            component={HotelLayout}
-          /> */}
           <ProtectedRoute auth={auth.auth} path={URL_PATH} component={DefaultLayout} />
         </Switch>
-      </React.Suspense>
+        <ProtectedRoute auth={auth.auth} path={URL_PATH} component={DefaultLayout} />
+      </React.Suspense> */}
+      <Route path={URL_PATH} component={DefaultLayout} />
     </React.Fragment>
   );
 };

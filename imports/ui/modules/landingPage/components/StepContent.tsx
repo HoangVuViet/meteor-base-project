@@ -12,22 +12,22 @@ interface Props {
 const StepContent: React.FC<Props> = (props) => {
   const step = [
     {
-      icon: <img src="../../../../../public/svg/landingPage/ic_matching.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_matching.svg"></img>,
       title: 'landingPage.signUpWithAnyHotel',
       content: 'landingPage.signUpWithAnyHotelContent',
     },
     {
-      icon: <img src="../../../../../public/svg/landingPage/ic_form.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_form.svg"></img>,
       title: 'landingPage.easyToUse',
       content: 'landingPage.easyToUseContent',
     },
     {
-      icon: <img src="../../../../../public/svg/landingPage/ic_clock.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_clock.svg"></img>,
       title: 'landingPage.stepByStep',
       content: 'landingPage.stepByStepContent',
     },
     {
-      icon: <img src="../../../../../public/svg/landingPage/ic_present.svg"></img>,
+      icon: <img src="../../../../../svg/landingPage/ic_present.svg"></img>,
       title: 'landingPage.specialDiscount',
       content: 'landingPage.specialDiscountContent',
     },

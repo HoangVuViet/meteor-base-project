@@ -19,8 +19,8 @@ const DefaultFooter: React.FC<Props> = () => {
       </Typography>
       {/* <IconFacebook style={{ margin: '0px 8px' }} />
       <IconGoogle style={{ margin: '0px 8px' }} /> */}
-      <img src="../../../../public/svg/facebook.svg"></img>
-      <img src="../../../../public/svg/google_plus.svg"></img>
+      <img src="../../../../svg/facebook.svg"></img>
+      <img src="../../../../svg/google_plus.svg"></img>
     </Row>
   );
 };

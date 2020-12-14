@@ -27,8 +27,8 @@ const Tip = styled.div`
 `;
 
 const DATA = [
-  { src: '../../../../../public/svg/flag_en.svg', value: 'vi', label: 'Tiếng Việt' },
-  { src: '../../../../../public/svg/flag_vi.svg', value: 'en-US', label: 'English' },
+  { src: '../../../../../svg/flag_en.svg', value: 'vi', label: 'Tiếng Việt' },
+  { src: '../../../../../svg/flag_vi.svg', value: 'en-US', label: 'English' },
 ];
 
 function mapStateToProps(state: AppState) {
