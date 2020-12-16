@@ -33,16 +33,17 @@ export const ROUTES = {
   landingPage: '/landing-page',
   notFound: '/404',
   homeDashboard: '/',
-}
+};
 
 export const ROUTES_TAB: RoutesTabType[] = [
   {
     name: 'homeDashboard',
     isModule: true,
     path: ROUTES.homeDashboard,
+    exact: true,
     component: HelloWorld,
-    disableBreadcrumb: true,
     hidden: true,
+    disableBreadcrumb: true,
   },
   {
     name: 'notFound404',
@@ -52,7 +53,6 @@ export const ROUTES_TAB: RoutesTabType[] = [
     disableBreadcrumb: true,
     hidden: true,
   },
-
 ];
 
 export const ROUTES_ALL: RoutesTabType[] = [...ROUTES_TAB];

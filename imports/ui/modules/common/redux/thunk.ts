@@ -15,12 +15,12 @@ export function fetchThunk(
   fallbackResponse?: some, // if given, will not retry at all and return this
   getBlob = false, // if given, response will return blob type instead of json data
 ): ThunkAction<Promise<some>, AppState, null, Action<string>> {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     while (true) {
       const controller = new AbortController();
       const { signal } = controller;
 
-      const AppHash = Buffer.from(
+      const AppHash = global.Buffer.from(
         sha256(`${new Date().getTime() / 1000 - ((new Date().getTime() / 1000) % 300)}:${APP_KEY}`),
         'hex',
       ).toString('base64');

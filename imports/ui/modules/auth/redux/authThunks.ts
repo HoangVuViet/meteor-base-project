@@ -12,7 +12,7 @@ import { AppState, clearStoreAfterLogout } from '../../../redux/reducers';
 import { setUserData } from '../../account/redux/accountReducer';
 import { ACCESS_TOKEN } from '../../auth/constants';
 import { fetchThunk } from '../../common/redux/thunk';
-import { inAction, out, setAuthenticating, setValidatingToken, setRole } from './authReducer';
+import { inAction, out, setAuthenticating, setRole, setValidatingToken } from './authReducer';
 
 export interface ILoginData {
   email: string;
@@ -73,7 +73,7 @@ export function authIn(
   userData: some,
   skipSaga: boolean = false,
 ): ThunkAction<void, AppState, null, Action<string>> {
-  return (dispatch, getState) => {
+  return (dispatch: any, getState: any) => {
     const state = getState();
     dispatch(setUserData(userData));
     if (!state.auth.auth) {
@@ -112,7 +112,7 @@ export function authIn(
 export function validateAccessToken(
   periodic = false,
 ): ThunkAction<void, AppState, null, Action<string>> {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     let prevAccessToken = get(ACCESS_TOKEN);
     let first = true;
     const fn = async (force = false) => {
@@ -157,7 +157,7 @@ export function validateAccessToken(
 export function login(
   data: ILoginData,
 ): ThunkAction<Promise<some>, AppState, null, Action<string>> {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     dispatch(setAuthenticating(true));
     try {
       const json = await dispatch(fetchThunk(API_PATHS.login, 'post', JSON.stringify(data)));
@@ -174,7 +174,7 @@ export function login(
 }
 
 export function logout(): ThunkAction<void, AppState, null, Action<string>> {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     dispatch(fetchThunk(API_PATHS.logout, 'delete'));
     remove(ACCESS_TOKEN);
     batch(() => {
@@ -188,7 +188,7 @@ export function logout(): ThunkAction<void, AppState, null, Action<string>> {
 }
 
 export function getRoleUser(): ThunkAction<void, AppState, null, Action<string>> {
-  return async dispatch => {
+  return async (dispatch: any) => {
     const json = await dispatch(fetchThunk(`${API_PATHS.getRoleUser}`, 'get'));
     if (json?.code === SUCCESS_CODE) {
       dispatch(setRole(json?.data?.items || []));

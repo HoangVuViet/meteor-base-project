@@ -25,7 +25,7 @@ interface Props extends ReturnType<typeof mapStateToProps> {
   dispatch: ThunkDispatch<AppState, null, Action<string>>;
 }
 
-const DefaultLayout: React.FunctionComponent<Props> = (props) => {
+const DefaultLayout: React.FunctionComponent<Props> = (props: Props) => {
   const { userData } = props;
   const location = useLocation();
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -53,8 +53,8 @@ const DefaultLayout: React.FunctionComponent<Props> = (props) => {
           <React.Suspense fallback={<LoadingIcon />}>
             <Switch location={location}>
               {listRoutes
-                .filter((v) => v.component)
-                .map((route, index) => (
+                .filter((v: any) => v.component)
+                .map((route: any, index: any) => (
                   <Route
                     key={index}
                     exact={route.exact}
