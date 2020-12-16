@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { RoutesTabType, ServiceType } from '../models/permission';
 import NotFoundBox from '../modules/common/components/NotFoundBox';
+import { HelloWorld } from './../HelloWorld';
 
 export const URL_PATH = '/';
 function buildRoutePath(moduleName: ServiceType, path: string) {
@@ -36,6 +37,14 @@ export const ROUTES = {
 
 export const ROUTES_TAB: RoutesTabType[] = [
   {
+    name: 'homeDashboard',
+    isModule: true,
+    path: ROUTES.homeDashboard,
+    component: HelloWorld,
+    disableBreadcrumb: true,
+    hidden: true,
+  },
+  {
     name: 'notFound404',
     isModule: true,
     path: ROUTES.notFound,
@@ -43,6 +52,7 @@ export const ROUTES_TAB: RoutesTabType[] = [
     disableBreadcrumb: true,
     hidden: true,
   },
+
 ];
 
 export const ROUTES_ALL: RoutesTabType[] = [...ROUTES_TAB];

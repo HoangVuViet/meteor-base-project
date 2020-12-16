@@ -3,7 +3,6 @@ import { Button } from '@material-ui/core';
 import { TablePaginationActionsProps } from '@material-ui/core/TablePagination/TablePaginationActions';
 import React from 'react';
 import { GREY_100, GREY_300, GREY_500 } from '../../../../configs/colors';
-import { ReactComponent as IconArrow } from '../../../../svg/ic_arrow_back.svg';
 
 function TablePaginationActionsCustom(props: TablePaginationActionsProps) {
   const { count, page, rowsPerPage, onChangePage } = props;
@@ -31,7 +30,11 @@ function TablePaginationActionsCustom(props: TablePaginationActionsProps) {
         disabled={page === 0}
         aria-label="previous page"
       >
-        <IconArrow className="svgFillAll" style={{ stroke: page === 0 ? GREY_300 : GREY_500 }} />
+        <img
+          src="../../../../svg/ic_arrow_back.svg"
+          className="svgFillAll"
+          style={{ stroke: page === 0 ? GREY_300 : GREY_500 }}
+        ></img>
       </Button>
       <Button
         style={{
@@ -45,13 +48,15 @@ function TablePaginationActionsCustom(props: TablePaginationActionsProps) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        <IconArrow
+        <img
+          src="../../../../svg/ic_arrow_back.svg"
           className="svgFillAll"
           style={{
             stroke: page >= Math.ceil(count / rowsPerPage) - 1 ? GREY_300 : GREY_500,
             transform: 'rotate(180deg)',
-          }}
-        />
+          }}{{stroke: page === 0 ? GREY_300 : GREY_500 }} 
+        ></img>
+
       </Button>
     </>
   );

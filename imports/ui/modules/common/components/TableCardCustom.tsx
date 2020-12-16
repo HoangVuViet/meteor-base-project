@@ -13,7 +13,6 @@ import {
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { GREY, GREY_100, GREY_300 } from '../../../configs/colors';
-import { ReactComponent as IconBox } from '../../../svg/ic_nodata.svg';
 import { Col, Row } from './elements';
 import LoadingIcon from './LoadingIcon';
 import { useStylePagination } from './TableCustom';
@@ -65,9 +64,9 @@ interface Props<T extends Object> extends WithStyles<typeof styles> {
   renderItem: (col: T, index: number) => React.ReactNode;
 }
 
-const TableCardCustom: <T extends Object>(
-  prop: Props<T>,
-) => React.ReactElement<Props<T>> = props => {
+const TableCardCustom: <T extends Object>(prop: Props<T>) => React.ReactElement<Props<T>> = (
+  props,
+) => {
   const { paginationProps, loading, dataSource, renderItem, style, styleTable } = props;
   const intl = useIntl();
   const classesPagination = useStylePagination();
@@ -102,7 +101,7 @@ const TableCardCustom: <T extends Object>(
                     margin: '12px',
                   }}
                 >
-                  <IconBox />
+                  <img src="../../../svg/ic_nodata.svg"></img>
                 </IconButton>
                 <Typography variant="body2" color="textSecondary">
                   <FormattedMessage id="noData" />

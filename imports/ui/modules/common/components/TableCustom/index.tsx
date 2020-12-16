@@ -26,7 +26,6 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { BLUE_200, GREEN_50, GREY_100, WHITE } from '../../../../configs/colors';
 import { some } from '../../../../constants';
-import { ReactComponent as IconBox } from '../../../../svg/ic_nodata.svg';
 import { Col, Row } from '../elements';
 import LoadingIcon from '../LoadingIcon';
 import './table.css';
@@ -262,7 +261,7 @@ interface Props {
   noHeaderColumns?: boolean | false;
 }
 
-const TableCustom: React.FC<Props> = props => {
+const TableCustom: React.FC<Props> = (props) => {
   const {
     id,
     className,
@@ -313,9 +312,9 @@ const TableCustom: React.FC<Props> = props => {
               styleHeader: { textAlign: 'center' },
               style: { textAlign: 'center' },
             } as Column,
-            ...columns.filter(v => !v.hidden),
+            ...columns.filter((v) => !v.hidden),
           ]
-        : [...columns.filter(v => !v.hidden)]
+        : [...columns.filter((v) => !v.hidden)]
       : [];
   }, [columns, fixIndexColumn, noColumnIndex]);
 
@@ -349,7 +348,7 @@ const TableCustom: React.FC<Props> = props => {
       if (col.fixed) {
         let isLast = false;
         const columnsTmp = col.fixed === 'left' ? [...getColumn].reverse() : [...getColumn];
-        const lastEle = columnsTmp.find(v => v.fixed === col.fixed);
+        const lastEle = columnsTmp.find((v) => v.fixed === col.fixed);
         if (lastEle?.title === col.title) {
           isLast = true;
         }
@@ -426,7 +425,7 @@ const TableCustom: React.FC<Props> = props => {
                           height: '250px',
                         }}
                       >
-                        <IconBox />
+                        <img src="../../../svg/ic_nodata.svg"></img>
                       </IconButton>
                       <Typography variant="body2" color="textSecondary">
                         <FormattedMessage id="noData" />
