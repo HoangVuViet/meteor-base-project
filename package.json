@@ -15,6 +15,7 @@
     "@material-ui/styles": "^4.11.2",
     "@types/history": "^4.7.6",
     "@types/js-cookie": "^2.2.6",
+    "@types/node": "^12.12.41",
     "@types/node-sass": "^4.11.1",
     "@types/react-dates": "^21.8.1",
     "@types/react-helmet": "^6.1.0",

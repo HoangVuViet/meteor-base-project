@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Redirect, Route, Switch, useLocation } from 'react-router';
 import { Action } from 'redux';
@@ -25,7 +25,7 @@ interface Props extends ReturnType<typeof mapStateToProps> {
   dispatch: ThunkDispatch<AppState, null, Action<string>>;
 }
 
-const DefaultLayout: React.FunctionComponent<Props> = (props: Props) => {
+const DefaultLayout: React.FunctionComponent<Props> = (props: any) => {
   const { userData } = props;
   const location = useLocation();
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
@@ -34,7 +34,7 @@ const DefaultLayout: React.FunctionComponent<Props> = (props: Props) => {
     return getListRoutesActivate(flatRoutes(ROUTES_TAB), userData?.roleGroup?.role);
   }, [userData]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getRoleUser());
   }, [dispatch]);
 
