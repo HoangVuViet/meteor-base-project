@@ -1,6 +1,6 @@
 import * as React from 'react';
 import LanguageSelect from '../../intl/components/LanguageSelect';
-import MapDisplay from '../../intl/components/MapDisplay';
+import MapDisplay from '../../intl/components/TopBarDisplay';
 
 interface Props {}
 
