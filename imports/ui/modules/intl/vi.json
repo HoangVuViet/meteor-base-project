@@ -184,6 +184,14 @@
   "IDS_HMS_HOTEL_STOP": "Tạm dừng",
   "IDS_HMS_HOTEL_CLOSE": "Đóng cửa",
 
-  "homeDashboard": "Tổng quan"
+  "homeDashboard": "Tổng quan",
+  "display" : "Hiển thị",
+  "mapPM2.5Display" : "Hiển thị bản đồ PM 2.5",
+  "mapNO2Display" : "Hiển thị bản đồ NO2",
+  "mapTempDisplay" : "Hiển thị bản đồ nhiệt độ",
+  "provincePMValue" : "Chỉ số PM 2.5 của các tỉnh thành"
+
+
+
 
 }

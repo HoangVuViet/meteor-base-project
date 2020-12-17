@@ -1,7 +1,6 @@
 import * as React from 'react';
 import LanguageSelect from '../../intl/components/LanguageSelect';
-import UserInfoDropdown from './UserInfoDropdown';
-import NotificationDropdown from './NotificationDropdown';
+import MapDisplay from '../../intl/components/MapDisplay';
 
 interface Props {}
 
@@ -18,6 +17,7 @@ const Badge: React.FunctionComponent<Props> = (props) => {
         position: 'relative',
       }}
     >
+      <MapDisplay />
       <LanguageSelect />
       {/* <NotificationDropdown /> */}
       {/* <UserInfoDropdown /> */}

@@ -48,7 +48,7 @@ const DefaultHeader: React.FunctionComponent<Props> = (props) => {
             justifyContent: 'center',
           }}
         />
-        <Row style={{ flex: 1, justifyContent: 'flex-end', marginRight: 24 }}>
+        <Row style={{ justifyContent: 'flex-start', marginRight: 40 }}>
           <Badge />
         </Row>
       </Row>
