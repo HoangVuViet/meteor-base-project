@@ -1,16 +1,21 @@
-import { ButtonBase, withStyles } from '@material-ui/core';
+import { ButtonBase, makeStyles, withStyles } from '@material-ui/core';
 import * as React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { connect } from 'react-redux';
+import styles from '../../../../public/jss/material-dashboard-react/components/sidebarStyle.js';
 import { GREEN } from '../../configs/colors';
-import { ROUTES_TAB } from '../../configs/routes';
+import { ROUTES, ROUTES_TAB } from '../../configs/routes';
 import { RoutesTabType } from '../../models/permission';
+import { Row } from '../../modules/common/components/elements';
 import { AppState } from '../../redux/reducers';
 import '../../scss/svg.scss';
+import classNames from 'classnames';
 import { ASIDE_ITEM_HEIGHT, ASIDE_MIN_WIDTH, ASIDE_WIDTH, HEADER_HEIGHT } from '../constants';
 import { getListRoutesContain } from '../utils';
 import DefaultAsideItems from './DefaultAsideItems';
+import MenuIcon from '@material-ui/icons/Menu';
+const useStyles = makeStyles(styles as any);
 
 export const ButtonRow = withStyles((theme) => ({
   root: {
@@ -35,12 +40,15 @@ interface Props extends ReturnType<typeof mapStateToProps> {
 }
 
 const DefaultAside: React.FunctionComponent<Props> = (props) => {
+  const classes = useStyles();
   const { router, open, onClose, userData } = props;
   const { pathname } = router.location;
   const [hoverOpen, setOpen] = React.useState(false);
   const getListRouterActive = React.useMemo(() => {
     return getListRoutesContain(ROUTES_TAB, router.location.pathname);
   }, [router.location.pathname]);
+
+  console.log(ROUTES_TAB);
 
   return (
     <>
@@ -75,13 +83,14 @@ const DefaultAside: React.FunctionComponent<Props> = (props) => {
           onClick={onClose}
         >
           {open || hoverOpen ? (
-            <img src="../../../../svg/ic_menu_back_arrow.svg"></img>
+            <Row>
+              <div style={{ marginRight: 30 }}>
+                <img src="../../../../svg/ic_myTourWhiteLogo.svg" alt="logo" />
+              </div>
+              <img src="../../../../svg/ic_menu_back_arrow.svg"></img>
+            </Row>
           ) : (
-            <img
-              src="../../../../svg/ic_menu.svg"
-              className="svgFillAll"
-              style={{ stroke: 'white', width: 24, height: 24 }}
-            ></img>
+            <MenuIcon style={{ width: 24, height: 24 }}></MenuIcon>
           )}
         </ButtonRow>
         <PerfectScrollbar
@@ -96,17 +105,16 @@ const DefaultAside: React.FunctionComponent<Props> = (props) => {
               marginBottom: 148,
             }}
           >
-            {userData &&
-              ROUTES_TAB.map((v: RoutesTabType, index: number) => (
-                <DefaultAsideItems
-                  key={index}
-                  userData={userData}
-                  open={open || hoverOpen}
-                  data={v}
-                  pathname={pathname}
-                  listRouterActive={getListRouterActive}
-                />
-              ))}
+            {ROUTES_TAB.map((v: RoutesTabType, index: number) => (
+              <DefaultAsideItems
+                key={index}
+                userData={userData}
+                open={open || hoverOpen}
+                data={v}
+                pathname={pathname}
+                listRouterActive={getListRouterActive}
+              />
+            ))}
           </div>
         </PerfectScrollbar>
       </div>

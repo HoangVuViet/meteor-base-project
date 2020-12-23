@@ -42,6 +42,13 @@ const DefaultLayout: React.FunctionComponent<Props> = (props) => {
 
   return (
     <PageWrapper style={{ background: GREY_100, flexDirection: 'row' }}>
+      <DefaultAside
+        open={openSideBar}
+        onClose={() => {
+          setOpenSideBar(!openSideBar);
+        }}
+      />
+
       <Col
         style={{
           flex: 1,

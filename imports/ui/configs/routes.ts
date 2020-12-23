@@ -16,21 +16,6 @@ export const ROUTES = {
   register: '/register',
   resetPassword: '/reset-password',
   setPassword: '/set-password',
-  accountInfo: {
-    // result: buildRoutePath('accountInfo', ''),
-    value: buildRoutePath('accountInfo', '/:tabIndex'),
-    generalInfo: buildRoutePath('accountInfo', '/general-info'),
-    hotelInfo: buildRoutePath('accountInfo', '/hotel-info'),
-    memberManagement: buildRoutePath('accountInfo', '/member-management'),
-    groupUsers: {
-      result: buildRoutePath('accountInfo', '/group-users'),
-      create: {
-        generalInfo: buildRoutePath('accountInfo', '/group-users/create/general-info'),
-        hotelInfo: buildRoutePath('accountInfo', '/group-users/create/hotel-info'),
-      },
-    },
-  },
-
   landingPage: '/landing-page',
   notFound: '/404',
   homeDashboard: '/',
