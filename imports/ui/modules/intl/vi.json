@@ -189,7 +189,10 @@
   "mapPM2.5Display" : "Hiển thị bản đồ PM 2.5",
   "mapNO2Display" : "Hiển thị bản đồ NO2",
   "mapTempDisplay" : "Hiển thị bản đồ nhiệt độ",
-  "provincePMValue" : "Chỉ số PM 2.5 của các tỉnh thành"
+  "provincePMValue" : "Chỉ số PM 2.5 của các tỉnh thành",
+  "chartDataEvaluation" : "Biểu đồ đánh giá dữ liệu",
+  "chart":"Biểu đồ",
+  "spaceStation":"Trạm quan sát"
 
 
 

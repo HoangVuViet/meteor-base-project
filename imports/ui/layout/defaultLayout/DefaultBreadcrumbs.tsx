@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Card, Typography } from '@material-ui/core';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { go } from 'connected-react-router';
 import queryString from 'query-string';
@@ -16,8 +16,7 @@ import { Row } from '../../modules/common/components/elements';
 import Link from '../../modules/common/components/Link';
 import { isHasPermission } from '../../modules/common/redux/reducer';
 import { AppState } from '../../redux/reducers';
-import { ReactComponent as IconHome } from '../../svg/ic_home.svg';
-import { comparePathName, getCurrentRoute, getListRoutesContain } from '../utils';
+import { getListRoutesContain } from '../utils';
 
 interface Props {}
 
@@ -41,21 +40,10 @@ const DefaultBreadcrumbs: React.FC<Props> = (props) => {
 
   const isBackAble = React.useCallback(
     (value: some): any => {
-      let check = false;
-      state &&
-        Object.entries(state).forEach((v) => {
-          if (comparePathName(v[0], value.path)) {
-            check = state && state[`${v[0]}`];
-          }
-        });
-      return check;
+      return state && state[`${value.path}`];
     },
     [state],
   );
-
-  const getCurrent = React.useMemo(() => {
-    return getCurrentRoute(pathname, ROUTES_TAB);
-  }, [pathname]);
 
   const getTitle = React.useMemo(() => {
     const currentPath = getList[0];
@@ -65,7 +53,7 @@ const DefaultBreadcrumbs: React.FC<Props> = (props) => {
     return null;
   }, [getList]);
 
-  if (!isActive || getCurrent?.disableBreadcrumb) {
+  if (!isActive) {
     return null;
   }
 
@@ -74,16 +62,19 @@ const DefaultBreadcrumbs: React.FC<Props> = (props) => {
       <Helmet>
         <title>{getTitle && intl.formatMessage({ id: getTitle })}</title>
       </Helmet>
-      <Row
+      <Card
         style={{
-          padding: '12px 24px',
+          boxShadow: '5px 5px 9px rgba(0, 0, 0, 0.05), -5px -5px 9px rgba(0, 0, 0, 0.05)',
+          padding: '10px 24px',
+          display: 'flex',
+          alignItems: 'center',
           borderRadius: 0,
         }}
       >
         <Typography variant="h5" style={{ marginRight: '24px' }}>
           {queryParams?.breadcrumbName ?? <FormattedMessage id={getTitle || ' '} />}
         </Typography>
-        <IconHome />
+        <img src="../../svg/ic_home.svg"></img>
         <FiberManualRecordIcon style={{ color: GREY_500, fontSize: 6, margin: '0 4px' }} />
         {getList.map((v: some, index: number) => (
           <Row key={index}>
@@ -137,7 +128,7 @@ const DefaultBreadcrumbs: React.FC<Props> = (props) => {
             )}
           </Row>
         ))}
-      </Row>
+      </Card>
     </>
   );
 };

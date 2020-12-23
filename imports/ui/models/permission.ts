@@ -1,15 +1,4 @@
-export type ServiceType =
-  | 'accountInfo'
-  | 'groupAccountInfo'
-  | 'managerUsers'
-  | 'managerHotels'
-  | 'createHotel'
-  | 'pricePackage'
-  | 'provider'
-  | 'marketing'
-  | 'review'
-  | 'saleChanel'
-  | 'generalSetting';
+export type ServiceType = 'chart' | 'groupAccountInfo';
 
 export type PermissionType =
   | 'view'

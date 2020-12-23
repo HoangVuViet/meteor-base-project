@@ -1,23 +1,24 @@
-import React from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { Redirect, Route, Switch, useLocation } from 'react-router';
+import { Container, useMediaQuery } from '@material-ui/core';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, useLocation } from 'react-router';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { GREY_100 } from '../../configs/colors';
-import { ROUTES, ROUTES_TAB } from '../../configs/routes';
-import { getRoleUser } from '../../modules/auth/redux/authThunks';
+import { ROUTES_TAB } from '../../configs/routes';
+import { MUI_THEME } from '../../configs/setupTheme';
 import { Col, PageWrapper } from '../../modules/common/components/elements';
 import LoadingIcon from '../../modules/common/components/LoadingIcon';
 import { AppState } from '../../redux/reducers';
 import { flatRoutes, getListRoutesActivate } from '../utils';
+import DefaultAside from './DefaultAside';
+import DefaultBreadcrumbs from './DefaultBreadcrumbs';
 import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
-import DefaultHelmet from './DefaultHelmet';
 
 const mapStateToProps = (state: AppState) => {
   return {
     userData: state.account.userData,
-    roleUser: state.auth.roleUser,
   };
 };
 
@@ -25,50 +26,60 @@ interface Props extends ReturnType<typeof mapStateToProps> {
   dispatch: ThunkDispatch<AppState, null, Action<string>>;
 }
 
-const DefaultLayout: React.FunctionComponent<Props> = (props: any) => {
-  const { userData } = props;
+const DefaultLayout: React.FunctionComponent<Props> = (props) => {
+  const { dispatch, userData } = props;
   const location = useLocation();
-  const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
-
-  const listRoutes = React.useMemo(() => {
-    return getListRoutesActivate(flatRoutes(ROUTES_TAB), userData?.roleGroup?.role);
-  }, [userData]);
+  const [openSideBar, setOpenSideBar] = React.useState(true);
+  const matches = useMediaQuery(MUI_THEME.breakpoints.up('md'));
 
   React.useEffect(() => {
-    dispatch(getRoleUser());
-  }, [dispatch]);
+    setOpenSideBar(matches);
+  }, [matches]);
+
+  const listRoutes = React.useMemo(() => {
+    return getListRoutesActivate(userData?.roleGroup?.role, flatRoutes(ROUTES_TAB));
+  }, [userData]);
 
   return (
-    <>
-      <PageWrapper style={{ background: GREY_100 }}>
-        <DefaultHelmet />
+    <PageWrapper style={{ background: GREY_100, flexDirection: 'row' }}>
+      <Col
+        style={{
+          flex: 1,
+          minHeight: '100vh',
+          overflow: 'hidden',
+        }}
+      >
         <DefaultHeader />
-        <Col
+        <DefaultBreadcrumbs />
+        <Container
           style={{
-            padding: '16px 24px',
+            paddingTop: 16,
+            maxWidth: 'none',
             flex: 1,
-            paddingLeft: 30,
+            padding: '16px 24px 24px 32px',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          <React.Suspense fallback={<LoadingIcon />}>
+          <React.Suspense fallback={<LoadingIcon style={{ marginTop: 240 }} />}>
             <Switch location={location}>
-              {listRoutes
-                .filter((v: any) => v.component)
-                .map((route: any, index: any) => (
-                  <Route
-                    key={index}
-                    exact={route.exact}
-                    path={route.path}
-                    component={route.component}
-                  />
-                ))}
-              <Redirect to={ROUTES.notFound} />
+              {listRoutes.map(
+                (route, index) =>
+                  route.component && (
+                    <Route
+                      key={index}
+                      exact={route.exact}
+                      path={route.path}
+                      component={route.component}
+                    />
+                  ),
+              )}
             </Switch>
           </React.Suspense>
-        </Col>
+        </Container>
         <DefaultFooter />
-      </PageWrapper>
-    </>
+      </Col>
+    </PageWrapper>
   );
 };
 

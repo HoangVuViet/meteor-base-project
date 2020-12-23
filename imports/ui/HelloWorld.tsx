@@ -1,4 +1,3 @@
-import { useTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 
@@ -11,12 +10,9 @@ export const HelloWorld = () => {
       <MapContainer
         center={[DEFAULT_LATITUDE, DEFAULT_LONGITUDE]}
         zoom={12}
-        style={{ width: '100%', height: '100vh' }}
+        style={{ width: 500, height: 500 }}
       >
-        <TileLayer
-          attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <TileLayer noWrap={true} url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       </MapContainer>
     </div>
   );

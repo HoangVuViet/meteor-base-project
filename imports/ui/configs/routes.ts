@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { RoutesTabType, ServiceType } from '../models/permission';
+import Chart from '../modules/chart/pages/Chart';
 import NotFoundBox from '../modules/common/components/NotFoundBox';
 import { HelloWorld } from './../HelloWorld';
 
@@ -33,6 +34,7 @@ export const ROUTES = {
   landingPage: '/landing-page',
   notFound: '/404',
   homeDashboard: '/',
+  chart: '/chart',
 };
 
 export const ROUTES_TAB: RoutesTabType[] = [
@@ -42,6 +44,15 @@ export const ROUTES_TAB: RoutesTabType[] = [
     path: ROUTES.homeDashboard,
     exact: true,
     component: HelloWorld,
+    hidden: true,
+    disableBreadcrumb: true,
+  },
+  {
+    name: 'chart',
+    isModule: true,
+    path: ROUTES.chart,
+    exact: true,
+    component: Chart,
     hidden: true,
     disableBreadcrumb: true,
   },

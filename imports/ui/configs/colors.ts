@@ -1,6 +1,6 @@
 import { CA_ID, MT_ID } from '../constants';
-import * as _colors from '../scss/colors.module.scss';
-import * as _colorsSomething from '../scss/colors.something.module.scss';
+import colors from '../scss/colors.module.scss';
+import colorsSomething from '../scss/colors.something.module.scss';
 
 export const {
   TEAL,
@@ -82,8 +82,8 @@ export const {
   CRAYOLA,
   CRAYOLA_100,
   LIGHT_CRAYOLA,
-} = CA_ID === MT_ID ? _colorsSomething : _colors;
+} = CA_ID === MT_ID ? colorsSomething : colors;
 
 export const BACK_GROUND = BLUE_50;
-export const PRIMARY = CA_ID === 17 ? BLUE_400 : BLUE_400;
-export const SECONDARY = CA_ID === 17 ? ORANGE : ORANGE;
+export const PRIMARY = BLUE_400;
+export const SECONDARY = ORANGE;

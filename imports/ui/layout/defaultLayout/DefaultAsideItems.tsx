@@ -1,33 +1,30 @@
-/* eslint-disable react/require-default-props */
 import { Collapse, Tooltip, Typography } from '@material-ui/core';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { GREY_300, GREY_700 } from '../../configs/colors';
+import { GREEN_300 } from '../../configs/colors';
 import { some } from '../../constants';
 import { RoutesTabType } from '../../models/permission';
-import { ButtonRow } from '../../modules/accommodation/info/DefaultAside';
 import { Row } from '../../modules/common/components/elements';
 import { RawLink } from '../../modules/common/components/Link';
 import { AppState } from '../../redux/reducers';
-import { ReactComponent as ArrowIcon } from '../../svg/ic_arrow_right.svg';
 import { ASIDE_MIN_WIDTH } from '../constants';
 import { getListRoutesActivate, hasPermission } from '../utils';
-import DefaultLeftAsideItemsIcon from './DefaultLeftAsideItemsIcon';
+import { ButtonRow } from './DefaultAside';
+import DefaultAsideItemsIcon from './DefaultAsideItemsIcon';
 
 const mapStateToProps = (state: AppState) => {
   return {
-    // eslint-disable-next-line react/require-default-props
     router: state.router,
   };
 };
 
 interface Props extends ReturnType<typeof mapStateToProps> {
   data: RoutesTabType;
-  pathname?: string;
+  userData: some;
+  pathname: string;
   open: boolean;
   listRouterActive: some[];
-  userData: some | undefined;
 }
 
 const DefaultAsideItems: React.FC<Props> = (props: Props) => {
@@ -35,14 +32,14 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
   const [openList, setOpen] = React.useState(false);
 
   const listRoutes = React.useMemo(() => {
-    return data?.subMenu ? getListRoutesActivate(data?.subMenu, userData?.roleGroup?.role) : [];
+    return data?.subMenu ? getListRoutesActivate(userData?.roleGroup?.role, data?.subMenu) : [];
   }, [data, userData]);
 
   const checkPermission = React.useMemo(() => {
     const listRole = userData?.roleGroup?.role;
     return data.isModule && !data.path
       ? listRoutes.length > 0
-      : hasPermission(data.listRole, listRole);
+      : hasPermission(listRole, data.listRole);
   }, [data.isModule, data.listRole, data.path, listRoutes.length, userData]);
 
   const checkIsActive = React.useMemo(() => {
@@ -79,12 +76,11 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
 
   React.useEffect(() => {
     setOpen(checkIsActive);
-  }, [checkIsActive, data.name, getOpenMenu, pathname]);
+  }, [checkIsActive, pathname]);
 
   if (data.hidden || !checkPermission) {
     return null;
   }
-
   return (
     <>
       {data.subMenu ? (
@@ -95,12 +91,12 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
           >
             <ButtonRow
               style={{
-                backgroundColor: openList ? GREY_300 : undefined,
+                backgroundColor: openList ? GREEN_300 : undefined,
               }}
               onClick={() => setOpen(!openList)}
             >
               <Row style={{ width: ASIDE_MIN_WIDTH, justifyContent: 'center' }}>
-                <DefaultLeftAsideItemsIcon open={getOpenMenu} name={data.name} />
+                <DefaultAsideItemsIcon open={getOpenMenu} name={data.name} />
               </Row>
               <Typography
                 variant="body2"
@@ -111,6 +107,7 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   width: 150,
+                  color: 'white',
                 }}
               >
                 {data.title ? (
@@ -119,18 +116,17 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
                   data.name && <FormattedMessage id={data.name} />
                 )}
               </Typography>
-              <ArrowIcon
-                className="svgFillAll"
+              <img
+                src="../../../../svg/ic_arrow_right.svg"
                 style={{
-                  stroke: GREY_700,
                   transition: 'all 300ms',
                   transform: openList ? 'rotate(90deg)' : 'rotate(0deg)',
                   cursor: 'pointer',
                 }}
-              />
+              ></img>
             </ButtonRow>
           </Tooltip>
-          <Collapse in={openList && open}>
+          <Collapse style={{ paddingLeft: 25 }} in={openList && open}>
             {listRoutes.map((v: RoutesTabType, index: number) => (
               <DefaultAsideItems
                 userData={userData}
@@ -138,7 +134,7 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
                 open={open}
                 listRouterActive={listRouterActive}
                 data={v}
-                pathname={v.directPath}
+                pathname={pathname}
                 router={router}
               />
             ))}
@@ -151,7 +147,7 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
         >
           <RawLink
             to={{
-              pathname: data.directPath,
+              pathname: data.path,
               state: {
                 ...router.location.state,
                 [`${data.path}`]: true,
@@ -161,11 +157,11 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
           >
             <ButtonRow
               style={{
-                backgroundColor: checkIsActive ? GREY_300 : undefined,
+                backgroundColor: checkIsActive ? GREEN_300 : undefined,
               }}
             >
               <Row style={{ width: ASIDE_MIN_WIDTH, justifyContent: 'center' }}>
-                <DefaultLeftAsideItemsIcon open={getOpenItem} name={data.name} />
+                <DefaultAsideItemsIcon open={getOpenItem} name={data.name} />
               </Row>
               <Typography
                 variant="body2"
@@ -176,6 +172,7 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap',
                   width: 150,
+                  color: 'white',
                 }}
               >
                 {data.title ? (

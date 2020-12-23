@@ -18,7 +18,7 @@ const Badge: React.FunctionComponent<Props> = (props) => {
       }}
     >
       <MapDisplay />
-      <LanguageSelect />
+      {/* <LanguageSelect /> */}
       {/* <NotificationDropdown /> */}
       {/* <UserInfoDropdown /> */}
     </div>
