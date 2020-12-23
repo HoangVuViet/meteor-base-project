@@ -1,4 +1,4 @@
-import { ButtonBase, makeStyles, withStyles } from '@material-ui/core';
+import { ButtonBase, Drawer, Hidden, makeStyles, withStyles } from '@material-ui/core';
 import * as React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -59,6 +59,7 @@ const DefaultAside: React.FunctionComponent<Props> = (props) => {
         }}
       />
       <div
+        className={classes.background}
         style={{
           width: open || hoverOpen ? ASIDE_WIDTH : ASIDE_MIN_WIDTH,
           overflow: 'hidden',
@@ -68,8 +69,7 @@ const DefaultAside: React.FunctionComponent<Props> = (props) => {
           left: 0,
           flexShrink: 0,
           // background: PRIMARY
-          background:
-            'linear-gradient(180deg, rgba(0,173,80,1) 0%,rgba(0,173,80,1) 60%, rgba(167,255,115,1) 100%)',
+          backgroundImage: 'url(../../../../images/sidebar-2.jpg)',
           zIndex: 1200,
         }}
       >
@@ -83,40 +83,22 @@ const DefaultAside: React.FunctionComponent<Props> = (props) => {
           onClick={onClose}
         >
           {open || hoverOpen ? (
-            <Row>
-              <div style={{ marginRight: 30 }}>
-                <img src="../../../../svg/ic_myTourWhiteLogo.svg" alt="logo" />
+            <Row className={classes.background}>
+              <div className={classes.logo}>
+                <Row className={classNames(classes.logoLink)}>
+                  <div>
+                    <img src="../../../../svg/ic_myTourWhiteLogo.svg" alt="logo" />
+                  </div>
+                  Logooo
+                </Row>
               </div>
-              <img src="../../../../svg/ic_menu_back_arrow.svg"></img>
             </Row>
           ) : (
-            <MenuIcon style={{ width: 24, height: 24 }}></MenuIcon>
+            <Row className={classes.background} style={{ alignItems: 'center' }}>
+              <MenuIcon className={classes.background}></MenuIcon>
+            </Row>
           )}
         </ButtonRow>
-        <PerfectScrollbar
-          onMouseEnter={() => {
-            setOpen(true);
-          }}
-          onMouseLeave={() => setOpen(false)}
-        >
-          <div
-            style={{
-              height: `calc(100%-64px)`,
-              marginBottom: 148,
-            }}
-          >
-            {ROUTES_TAB.map((v: RoutesTabType, index: number) => (
-              <DefaultAsideItems
-                key={index}
-                userData={userData}
-                open={open || hoverOpen}
-                data={v}
-                pathname={pathname}
-                listRouterActive={getListRouterActive}
-              />
-            ))}
-          </div>
-        </PerfectScrollbar>
       </div>
     </>
   );
