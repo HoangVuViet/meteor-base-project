@@ -192,7 +192,14 @@
   "provincePMValue" : "Chỉ số PM 2.5 của các tỉnh thành",
   "chartDataEvaluation" : "Biểu đồ đánh giá dữ liệu",
   "chart":"Biểu đồ",
-  "spaceStation":"Trạm quan sát"
+  "spaceStation":"Trạm quan sát",
+  "MOD":"MOD",
+  "MYD":"MYD",
+  "VIIRS":"VIIRS",
+  "data":"Dữ liệu",
+  "dataChoosing": "Lựa chọn các thông số cho biểu đồ",
+  "time":"Thời gian",
+  "radius":"bán kính"
 
 
 
