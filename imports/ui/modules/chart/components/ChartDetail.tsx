@@ -4,6 +4,7 @@ import { useFormikContext } from 'formik';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Row } from '../../common/components/elements';
+import SingleSelect from '../../common/components/SingleSelect';
 import { dataType, radiusValues, timeEvaluation } from '../utils';
 import ChatRadioGroup from './ChartRadioGroup';
 import { data } from './data';
@@ -44,6 +45,9 @@ const ChartDetail: React.FC = (props) => {
           leftLabel="time"
           leftLabelStyles={{ margin: '12px 6px 12px 16px' }}
         ></ChatRadioGroup>
+      </Row>
+      <Row>
+        <SingleSelect options={timeEvaluation} label="sadsf"></SingleSelect>
       </Row>
       <Row style={{ height: 500 }}>
         <ResponsiveScatterPlot

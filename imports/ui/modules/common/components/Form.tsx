@@ -17,7 +17,7 @@ export const useStylesForm = makeStyles((theme: Theme) =>
         borderRadius: '4px',
       },
       '&:invalid': {
-        color: fade(BLACK, 0.4),
+        color: 'black',
       },
       '& option': {
         color: theme.palette.text.primary,

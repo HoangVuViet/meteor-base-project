@@ -50,7 +50,7 @@ export const ListItemStyled = withStyles({
 
 export const SingleSelect: <T extends some>(
   prop: SelectProps<T>,
-) => React.ReactElement<SelectProps<T>> = props => {
+) => React.ReactElement<SelectProps<T>> = (props) => {
   const {
     options,
     valueKey,
@@ -98,13 +98,13 @@ export const SingleSelect: <T extends some>(
       if (multiple) {
         let tmp;
         if (isChecked(one)) {
-          tmp = value ? remove(value, v => v !== getValueKey(one)) : [];
+          tmp = value ? remove(value, (v) => v !== getValueKey(one)) : [];
         } else {
           tmp = value ? [...value, getValueKey(one)] : [getValueKey(one)];
         }
-        const hasAll = tmp.filter(v => v === undefined);
-        const noUndefinedValue = tmp.filter(v => v !== undefined);
-        const noUndefinedOptions = options.filter(v => getValueKey(v) !== undefined);
+        const hasAll = tmp.filter((v) => v === undefined);
+        const noUndefinedValue = tmp.filter((v) => v !== undefined);
+        const noUndefinedOptions = options.filter((v) => getValueKey(v) !== undefined);
         if (
           hasAll?.length > 0 ||
           (noUndefinedValue?.length === noUndefinedOptions?.length &&
@@ -129,12 +129,12 @@ export const SingleSelect: <T extends some>(
       }
       return value && value.length > 0
         ? options
-            .filter(v => value.includes(getValueKey(v)))
-            .map(v => getOptionLabel(v))
+            .filter((v) => value.includes(getValueKey(v)))
+            .map((v) => getOptionLabel(v))
             .join(', ')
         : '';
     }
-    const tmp = options?.find(one => getValueKey(one) === value);
+    const tmp = options?.find((one) => getValueKey(one) === value);
     return tmp && `${getOptionLabel(tmp)}`;
   }, [getOptionLabel, getValueKey, intl, multiple, options, value]);
 
@@ -214,7 +214,7 @@ export const SingleSelect: <T extends some>(
                           if (value?.length === options.length) {
                             onSelectOption && onSelectOption([]);
                           } else {
-                            onSelectOption && onSelectOption(options.map(v => getValueKey(v)));
+                            onSelectOption && onSelectOption(options.map((v) => getValueKey(v)));
                           }
                         }
                       }}
