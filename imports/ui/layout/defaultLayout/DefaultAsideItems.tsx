@@ -35,8 +35,6 @@ const DefaultAsideItems: React.FC<Props> = (props: Props) => {
     return data?.subMenu ? getListRoutesActivate(userData?.roleGroup?.role, data?.subMenu) : [];
   }, [data, userData]);
 
-  console.log(listRoutes);
-
   const checkPermission = React.useMemo(() => {
     const listRole = userData?.roleGroup?.role;
     return data.isModule && !data.path

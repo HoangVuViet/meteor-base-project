@@ -11,8 +11,6 @@ import NetworkProblemDialog from './modules/common/components/NetworkProblemDial
 import { AppState } from './redux/reducers';
 
 function mapStateToProps(state: AppState) {
-  console.log(state);
-
   return {
     router: state.router,
     auth: state.auth,

@@ -11,45 +11,67 @@ export const dataType = [
     id: 3,
     name: 'VIIRS',
   },
+  {
+    id: 4,
+    name: 'Landsat',
+  },
 ];
 
-export const radiusValues = [
+export const radiusMODValues = [
   {
-    name: '5',
+    id: 5,
   },
   {
-    name: '10',
+    id: 10,
   },
   {
-    name: '15',
+    id: 15,
   },
   {
-    name: '20',
+    id: 20,
   },
   {
-    name: '25',
+    id: 25,
+  },
+];
+
+export const radiusMYDValues = [
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  },
+  {
+    id: 4,
+  },
+  {
+    id: 5,
   },
 ];
 
 export const timeEvaluation = [
   {
-    name: '30',
+    id: 30,
     endor: 'm',
   },
   {
-    name: '1',
+    id: 1,
     endor: 'h',
   },
   {
-    name: '2',
+    id: 2,
     endor: 'h',
   },
   {
-    name: '3',
+    id: 3,
     endor: 'h',
   },
   {
-    name: '24',
+    id: 24,
     endor: 'h',
   },
 ];

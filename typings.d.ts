@@ -4,3 +4,10 @@ declare module '*.scss' {
 }
 
 declare module '*.svg';
+
+declare module '*.csv';
+
+declare var Assets: any;
+
+
+
