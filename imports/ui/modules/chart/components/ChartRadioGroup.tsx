@@ -1,5 +1,5 @@
 import { FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
-import { Field, useFormikContext } from 'formik';
+import { Field } from 'formik';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Row } from '../../common/components/elements';
@@ -14,9 +14,6 @@ interface Props {
 }
 const ChatRadioGroup: React.FC<Props> = (props) => {
   const { fieldName, dataList, leftLabel, leftLabelStyles, endor } = props;
-  const { values } = useFormikContext();
-
-  console.log(values);
 
   return (
     <>

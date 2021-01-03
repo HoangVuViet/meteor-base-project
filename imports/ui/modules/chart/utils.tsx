@@ -17,43 +17,42 @@ export const dataType = [
   },
 ];
 
-export const radiusMODValues = [
-  {
-    id: 5,
-  },
-  {
-    id: 10,
-  },
-  {
-    id: 15,
-  },
-  {
-    id: 20,
-  },
-  {
-    id: 25,
-  },
-];
+export const radiusMODValues = Array.from(Array(50).keys())
+  .filter((_el: any, index: number) => {
+    return index % 3 === 0 && index > 0;
+  })
+  .map((el: number, _index: number) => {
+    return { id: el };
+  });
 
-export const radiusMYDValues = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-];
+export const radiusMYDValues = Array.from(Array(50).keys())
+  .filter((_el: any, index: number) => {
+    return index % 3 === 0 && index > 0;
+  })
+  .map((el: number, _index: number) => {
+    return { id: el };
+  });
+export const radiusVIRValues = Array.from(Array(50).keys())
+  .filter((_el: any, index: number) => {
+    return index % 3 === 0 && index > 0;
+  })
+  .map((el: number, _index: number) => {
+    return { id: el };
+  });
+
+export const radiusLANDValues = Array.from(Array(50).keys())
+  .filter((_el: any, index: number) => {
+    return index % 3 === 0 && index > 0;
+  })
+  .map((el: number, _index: number) => {
+    return { id: el / 100 };
+  });
 
 export const timeEvaluation = [
+  {
+    id: 15,
+    endor: 'm',
+  },
   {
     id: 30,
     endor: 'm',
@@ -71,7 +70,27 @@ export const timeEvaluation = [
     endor: 'h',
   },
   {
+    id: 4,
+    endor: 'h',
+  },
+  ,
+  {
+    id: 12,
+    endor: 'h',
+  },
+  {
     id: 24,
     endor: 'h',
+  },
+];
+
+export const stationList = [
+  {
+    id: 1,
+    name: 'Aqua',
+  },
+  {
+    id: 2,
+    name: 'Terra',
   },
 ];
