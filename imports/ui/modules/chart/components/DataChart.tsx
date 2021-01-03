@@ -23,10 +23,7 @@ const DataChart: React.FC<Props> = (props) => {
     if (body.dataType === 'Landsat') {
       setURL(`${body?.dataType}_${body?.time}${body?.timeEndor}_${body?.radius}km_NghiaDo`);
     } else {
-      setURL(
-        `MODIS_Aqua_15m_03km_NghiaDo`,
-        // `${body?.dataType}_${body?.station}_${body?.time}${body?.timeEndor}_0${body?.radius}km_NghiaDo`,
-      );
+      setURL(`${body?.dataType}_Aqua_${body?.time}${body?.timeEndor}_0${body?.radius}km_NghiaDo`);
     }
   }, [body.dataType, body.time, body.radius, body.station]);
 
