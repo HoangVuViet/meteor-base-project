@@ -3,7 +3,6 @@ import { Field, useFormikContext } from 'formik';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Row } from '../../common/components/elements';
-import { TEAL } from '/imports/ui/configs/colors';
 import { some } from '/imports/ui/constants';
 
 interface Props {

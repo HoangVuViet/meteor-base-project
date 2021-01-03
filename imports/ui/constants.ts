@@ -27,3 +27,25 @@ export const MOBILE_WIDTH_NUM = 480;
 export const DESKTOP_WIDTH_NUM = 1375;
 
 export const ACCESS_TOKEN = 'ACCESS_TOKEN';
+
+const has = Object.prototype.hasOwnProperty;
+
+export const isEmpty = (prop: any) => {
+  return (
+    prop === null ||
+    prop === undefined ||
+    (has.call(prop, 'length') && prop.length === 0) ||
+    (prop.constructor === Object && Object.keys(prop).length === 0)
+  );
+};
+
+export const checkRole = (roleExpect: string, roleUser: any) => {
+  if (!roleUser || roleUser.length === 0) return false;
+  return roleUser.some((v: some) => v.description === roleExpect);
+};
+export interface ICheckBox extends some {
+  platformTypes: some[];
+  customerTypes: some[];
+  roomsTypes: some[];
+  amenitiesTypes: some[];
+}
