@@ -1,0 +1,5 @@
+Correlation Coefficient (R) : 0.895
+Root Mean Square Error (RMSE) : 0.211
+Relative Error (RE) : 27.867
+Mean Fractional Error (MFE) : 24.718
+Mean Fractional Bias (MFB) : 14.049

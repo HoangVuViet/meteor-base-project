@@ -19,7 +19,7 @@ const ChatRadioGroup: React.FC<Props> = (props) => {
   console.log(values);
 
   return (
-    <React.Fragment>
+    <>
       <Row>
         <Typography style={leftLabelStyles} variant="subtitle2" component="p">
           <FormattedMessage id={leftLabel} />
@@ -45,7 +45,9 @@ const ChatRadioGroup: React.FC<Props> = (props) => {
                         </Typography>
                       ) : (
                         <span>
-                          {elm?.name}&nbsp;{endor || elm?.endor}
+                          {elm?.name}
+                          &nbsp;
+                          {endor || elm?.endor}
                         </span>
                       )
                     }
@@ -56,7 +58,7 @@ const ChatRadioGroup: React.FC<Props> = (props) => {
           )}
         />
       </Row>
-    </React.Fragment>
+    </>
   );
 };
 export default ChatRadioGroup;

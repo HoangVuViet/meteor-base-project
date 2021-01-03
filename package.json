@@ -1,6 +1,7 @@
 {
   "name": "base-project",
-  "private": true,
+  "private": false,
+  "proxy": "http://localhost:3000",
   "scripts": {
     "start": "meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
@@ -36,9 +37,11 @@
     "@types/voca": "^1.4.0",
     "aphrodite": "^2.4.0",
     "assets": "^3.0.1",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
     "css-modules-typescript-loader": "^4.0.1",
+    "d3": "^6.3.1",
     "firebase": "^8.1.2",
     "formik": "^2.2.5",
     "history": "^4.10.1",
@@ -96,7 +99,6 @@
     "@typescript-eslint/parser": "^4.10.0",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
-    "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-meteor": "^0.4.0",
     "eslint-plugin-import": "^2.22.1",

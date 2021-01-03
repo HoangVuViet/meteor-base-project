@@ -49,3 +49,5 @@ export interface ICheckBox extends some {
   roomsTypes: some[];
   amenitiesTypes: some[];
 }
+
+export const URL_BASE = 'http://localhost:3000'

@@ -9,22 +9,23 @@ import { FieldSelectContent } from '../../common/components/FieldContent';
 import { dataType, radiusMODValues, radiusMYDValues, timeEvaluation } from '../utils';
 import { data } from './data';
 import { some } from '/imports/ui/constants';
-
-const ChartDetail: React.FC = () => {
+interface Props {
+  chartData: some[];
+}
+const ChartDetail: React.FC<Props> = (props) => {
+  const { chartData } = props;
   const { values, setFieldValue } = useFormikContext();
-
-  console.log(values);
 
   const getRadiusOption = (value?: string) => {
     if (value === 'MOD') return radiusMODValues;
     if (value === 'MYD') return radiusMYDValues;
   };
-
+  console.log(chartData);
   return (
-    <React.Fragment>
+    <>
       <Row>
         <Typography variant="body2" style={{ marginBottom: 16 }}>
-          <FormattedMessage id="dataChoosing"></FormattedMessage>
+          <FormattedMessage id="dataChoosing" />
         </Typography>
       </Row>
       <Row>
@@ -72,7 +73,7 @@ const ChartDetail: React.FC = () => {
                 )
               : []
           }
-          getOptionLabel={(value) => value.id + ' km'}
+          getOptionLabel={(value) => `${value.id} km`}
           onSelectOption={(value: number) => {
             setFieldValue('radius', value);
           }}
@@ -96,7 +97,7 @@ const ChartDetail: React.FC = () => {
             width: 'auto',
           }}
           options={timeEvaluation}
-          getOptionLabel={(value) => value.id + ' ' + value.endor}
+          getOptionLabel={(value) => `${value.id} ${value.endor}`}
           onSelectOption={(value: number) => {
             setFieldValue('time', value);
           }}
@@ -105,16 +106,20 @@ const ChartDetail: React.FC = () => {
       </Row>
       <Row style={{ height: 500 }}>
         <ResponsiveScatterPlot
-          data={data}
-          margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
+          data={[{
+            id: 'Biểu đồ đánh giá dữ liệu'
+            data: [...chartData],
+          }]}
+          margin={{
+            top: 60,
+            right: 140,
+            bottom: 70,
+            left: 90,
+          }}
           xScale={{ type: 'linear', min: 0, max: 'auto' }}
-          xFormat={function (e) {
-            return e + ' kg';
-          }}
+          xFormat={(e) => `${e}`}
           yScale={{ type: 'linear', min: 0, max: 'auto' }}
-          yFormat={function (e) {
-            return e + ' cm';
-          }}
+          yFormat={(e) => `${e}`}
           blendMode="multiply"
           axisTop={null}
           axisRight={null}
@@ -139,10 +144,10 @@ const ChartDetail: React.FC = () => {
           legends={[
             {
               anchor: 'bottom-right',
-              direction: 'column',
+              direction: 'row',
               justify: false,
-              translateX: 130,
-              translateY: 0,
+              translateX: 50,
+              translateY: 120,
               itemWidth: 100,
               itemHeight: 12,
               itemsSpacing: 5,
@@ -161,7 +166,7 @@ const ChartDetail: React.FC = () => {
           ]}
         />
       </Row>
-    </React.Fragment>
+    </>
   );
 };
 export default ChartDetail;
