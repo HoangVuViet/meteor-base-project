@@ -7,7 +7,6 @@ import { isEmpty } from 'voca';
 import { Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
 import { dataType, radiusMODValues, radiusMYDValues, timeEvaluation } from '../utils';
-import { data } from './data';
 import { some } from '/imports/ui/constants';
 interface Props {
   chartData: some[];
