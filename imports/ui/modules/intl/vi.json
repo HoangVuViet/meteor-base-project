@@ -120,7 +120,6 @@
   "IDS_HMS_generalAlbum": "Album ảnh chung",
   "IDS_HMS_albumPhotoNotes": "Album chưa có ảnh mong muốn. Bạn có thể tải thêm ảnh mới",
 
-
   "auth.enterName": "Nhập họ tên",
   "auth.doNotHaveAccount": "Bạn chưa có tài khoản?",
   "auth.signUpNow": "Đăng ký ngay tại đây",
@@ -185,23 +184,19 @@
   "IDS_HMS_HOTEL_CLOSE": "Đóng cửa",
 
   "homeDashboard": "Tổng quan",
-  "display" : "Hiển thị",
-  "mapPM2.5Display" : "Hiển thị bản đồ PM 2.5",
-  "mapNO2Display" : "Hiển thị bản đồ NO2",
-  "mapTempDisplay" : "Hiển thị bản đồ nhiệt độ",
-  "provincePMValue" : "Chỉ số PM 2.5 của các tỉnh thành",
-  "chartDataEvaluation" : "Biểu đồ đánh giá dữ liệu",
-  "chart":"Biểu đồ",
-  "spaceStation":"Trạm quan sát",
-  "MOD":"MOD",
-  "MYD":"MYD",
-  "VIIRS":"VIIRS",
-  "data":"Dữ liệu",
-  "dataChoosing": "Lựa chọn các thông số cho biểu đồ",
-  "time":"Thời gian",
-  "radius":"Bán kính"
-
-
-
-
+  "display": "Hiển thị",
+  "mapPM2.5Display": "Hiển thị bản đồ PM 2.5",
+  "mapNO2Display": "Hiển thị bản đồ NO2",
+  "mapTempDisplay": "Hiển thị bản đồ nhiệt độ",
+  "provincePMValue": "Chỉ số PM 2.5 của các tỉnh thành",
+  "chartDataEvaluation": "Biểu đồ đánh giá dữ liệu",
+  "chart": "Biểu đồ",
+  "spaceStation": "Trạm quan sát",
+  "MOD": "MOD",
+  "MYD": "MYD",
+  "VIIRS": "VIIRS",
+  "data": "Dữ liệu",
+  "dataChoosing": "Lựa chọn các thông số cho biểu đồ:",
+  "time": "Thời gian",
+  "radius": "Bán kính"
 }

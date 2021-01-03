@@ -22,15 +22,24 @@ interface Props {}
 const ChartDetail: React.FC<Props> = () => {
   const intl = useIntl();
   const { values, setFieldValue } = useFormikContext();
-  const [url, setURL] = React.useState<some[]>([]);
+  const [body, setBody] = React.useState<some>([]);
 
   const getRadiusOption = (value?: string) => {
-    if (value === 'MOD') return radiusMODValues;
+    if (value === 'MODIS') return radiusMODValues;
     if (value === 'MYD') return radiusMYDValues;
     if (value === 'VIIRS') return radiusVIRValues;
     if (value === 'Landsat') return radiusLANDValues;
   };
   console.log(values);
+  React.useEffect(() => {
+    setBody({
+      dataType: dataType.find((el: some) => el.id === (values as some).dataType)?.name,
+      station: stationList.find((el: some) => el.id === (values as some).station)?.name,
+      radius: (values as some).radius,
+      time: (values as some).time,
+      timeEndor: timeEvaluation.find((el: some) => el?.id === (values as some).time)?.endor,
+    });
+  }, [values]);
   return (
     <>
       <Row>
@@ -61,6 +70,12 @@ const ChartDetail: React.FC<Props> = () => {
           getOptionLabel={(value) => value.name}
           onSelectOption={(value: number) => {
             setFieldValue('dataType', value);
+            if ((values as some).radius) {
+              setFieldValue('radius', undefined);
+            }
+            if ((values as some).station) {
+              setFieldValue('station', undefined);
+            }
           }}
           placeholder={intl.formatMessage({ id: 'choose' })}
           disableError
@@ -151,10 +166,11 @@ const ChartDetail: React.FC<Props> = () => {
           }}
           placeholder={intl.formatMessage({ id: 'choose' })}
           disableError
+          // disabled={(values as some).dataType === 4}
         />
       </Row>
       <Row style={{ height: 500 }}>
-        <DataChart></DataChart>
+        <DataChart body={body}></DataChart>
       </Row>
     </>
   );

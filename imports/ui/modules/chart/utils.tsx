@@ -1,7 +1,7 @@
 export const dataType = [
   {
     id: 1,
-    name: 'MOD',
+    name: 'MODIS',
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ export const radiusLANDValues = Array.from(Array(50).keys())
     return index % 3 === 0 && index > 0;
   })
   .map((el: number, _index: number) => {
-    return { id: el / 100 };
+    return { id: (el / 100).toFixed(2) };
   });
 
 export const timeEvaluation = [
