@@ -1,7 +1,7 @@
 export const dataType = [
   {
     id: 1,
-    name: 'MODIS',
+    name: 'MOD',
   },
   {
     id: 2,
@@ -87,10 +87,22 @@ export const timeEvaluation = [
 export const stationList = [
   {
     id: 1,
-    name: 'Aqua',
+    name: 'Nghĩa Đô',
+    endor: 'NghiaDo',
   },
   {
     id: 2,
-    name: 'Terra',
+    name: 'Nha Trang',
+    endor: 'NhaTrang',
+  },
+  {
+    id: 3,
+    name: 'Bạc Liêu',
+    endor: 'BacLieu',
+  },
+  {
+    id: 4,
+    name: 'Sơn La',
+    endor: 'SonLa',
   },
 ];

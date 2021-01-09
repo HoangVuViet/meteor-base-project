@@ -25,7 +25,7 @@ const ChartDetail: React.FC<Props> = () => {
   const [body, setBody] = React.useState<some>([]);
 
   const getRadiusOption = (value?: string) => {
-    if (value === 'MODIS') return radiusMODValues;
+    if (value === 'MOD') return radiusMODValues;
     if (value === 'MYD') return radiusMYDValues;
     if (value === 'VIIRS') return radiusVIRValues;
     if (value === 'Landsat') return radiusLANDValues;
@@ -34,10 +34,10 @@ const ChartDetail: React.FC<Props> = () => {
   React.useEffect(() => {
     setBody({
       dataType: dataType.find((el: some) => el.id === (values as some).dataType)?.name,
-      station: stationList.find((el: some) => el.id === (values as some).station)?.name,
+      station: stationList.find((el: some) => el.id === (values as some).station)?.endor,
       radius: (values as some).radius,
       time: (values as some).time,
-      timeEndor: timeEvaluation.find((el: some) => el?.id === (values as some).time)?.endor,
+      timeEndor: timeEvaluation.find((el: some) => el?.id === (values as some)?.time)?.endor,
     });
   }, [values]);
   return (
@@ -116,7 +116,7 @@ const ChartDetail: React.FC<Props> = () => {
       </Row>
       <Row>
         <Typography
-          style={{ margin: '8px 10px 12px 16px', whiteSpace: 'nowrap' }}
+          style={{ margin: '8px 10px 0px 16px', whiteSpace: 'nowrap' }}
           variant="subtitle2"
           component="p"
         >
@@ -127,7 +127,7 @@ const ChartDetail: React.FC<Props> = () => {
           label={null}
           style={{
             width: 300,
-            margin: '16px 10px 12px 12px',
+            margin: '16px 10px 0px 12px',
           }}
           formControlStyle={{
             minWidth: 300,
@@ -142,7 +142,7 @@ const ChartDetail: React.FC<Props> = () => {
           disableError
         />
         <Typography
-          style={{ margin: '8px 10px 12px 12px', whiteSpace: 'nowrap' }}
+          style={{ margin: '8px 10px 0px 12px', whiteSpace: 'nowrap' }}
           variant="subtitle2"
           component="p"
         >
@@ -153,7 +153,7 @@ const ChartDetail: React.FC<Props> = () => {
           label={null}
           style={{
             width: 300,
-            margin: '16px 10px 12px 8px',
+            margin: '16px 10px 0px 8px',
           }}
           formControlStyle={{
             minWidth: 300,
@@ -169,9 +169,7 @@ const ChartDetail: React.FC<Props> = () => {
           // disabled={(values as some).dataType === 4}
         />
       </Row>
-      <Row style={{ height: 500 }}>
-        <DataChart body={body}></DataChart>
-      </Row>
+      <DataChart body={body}></DataChart>
     </>
   );
 };
