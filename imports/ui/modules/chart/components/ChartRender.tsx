@@ -65,6 +65,6 @@ const ChartRender: React.FC<Props> = (props) => {
     });
   });
 
-  return <canvas id="myChart" style={{ width: 700, height: 500 }} />;
+  return <canvas id="myChart" style={{ width: 750, height: 500 }} />;
 };
 export default ChartRender;

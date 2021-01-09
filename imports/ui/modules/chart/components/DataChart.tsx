@@ -61,17 +61,18 @@ const DataChart: React.FC<Props> = (props) => {
       !isEmpty(body.station) &&
       !isEmpty(chartData) ? (
         <Row style={{ marginTop: 15 }}>
-          <Col style={{ marginRight: 20, width: '72%' }}>
+          <Col style={{ marginRight: 20, width: 750 }}>
             <ChartRender chartData={chartData}></ChartRender>
           </Col>
           <Paper
             variant="outlined"
             style={{
-              marginTop: -300,
+              marginTop: -280,
               padding: '12px 16px',
               borderRadius: 12,
               background: '#f5f5f5',
               boxShadow: 'none',
+              width: 300,
             }}
           >
             <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
