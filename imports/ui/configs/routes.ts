@@ -2,8 +2,7 @@
 import { RoutesTabType, ServiceType } from '../models/permission';
 import Chart from '../modules/chart/pages/Chart';
 import NotFoundBox from '../modules/common/components/NotFoundBox';
-import { HelloWorld } from './../HelloWorld';
-
+import ArcMap from '../modules/map/pages/ArcMap';
 export const URL_PATH = '/';
 function buildRoutePath(moduleName: ServiceType, path: string) {
   return `/${moduleName}${path}`;
@@ -28,7 +27,7 @@ export const ROUTES_TAB: RoutesTabType[] = [
     isModule: true,
     path: ROUTES.homeDashboard,
     exact: true,
-    component: HelloWorld,
+    component: ArcMap,
     hidden: true,
     disableBreadcrumb: true,
   },
