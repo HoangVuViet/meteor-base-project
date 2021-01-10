@@ -29,7 +29,21 @@ const MyFeatureLayer = (props) => {
           Locator,
         ]) => {
           const myFeatureLayer = new FeatureLayer({
+            //   url: "http://113.175.118.161:6080/arcgis/rest/services/PM25_time/MapServer/0",
             url: props.featureLayerProperties.url,
+            opacity: 0.5,
+            timeInfo: {
+              startField: 'time', // name of the date field
+              interval: {
+                // set time interval to one day
+                unit: 'days',
+                value: 1,
+              },
+              fullTimeExtent: {
+                start: new Date(2017, 0, 1),
+                end: new Date(2017, 0, 10),
+              },
+            },
           });
 
           setMyFeatureLayer(myFeatureLayer);
