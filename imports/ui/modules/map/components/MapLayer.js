@@ -1,9 +1,24 @@
-import React, { useState, useEffect } from 'react';
 import { loadModules } from 'esri-loader';
+import React from 'react';
+import { Row } from '../../common/components/elements';
+import '../pages/styles';
+const styles = {
+  container: {
+    height: '100vh',
+    width: '100vw',
+  },
+  mapDiv: {
+    padding: 0,
+    margin: 0,
+    height: '100%',
+    width: '100%',
+  },
+};
 
-const MyFeatureLayer = (props) => {
-  const [myFeatureLayer, setMyFeatureLayer] = useState(null);
-  useEffect(() => {
+const BaseMap = (props) => {
+  const [state, setState] = React.useState({ status: 'loading' });
+
+  React.useEffect(() => {
     loadModules([
       'esri/Map',
       'esri/widgets/BasemapToggle',
@@ -15,63 +30,190 @@ const MyFeatureLayer = (props) => {
       'esri/layers/MapImageLayer',
       'esri/tasks/Locator',
       'dojo/domReady!',
-    ])
-      .then(
-        ([
-          Map,
-          BasemapToggle,
-          Legend,
-          FeatureLayer,
-          TimeSlider,
-          Search,
-          MapView,
-          MapImageLayer,
-          Locator,
-        ]) => {
-          const myFeatureLayer = new FeatureLayer({
-            //   url: "http://113.175.118.161:6080/arcgis/rest/services/PM25_time/MapServer/0",
-            url: props.featureLayerProperties.url,
-            opacity: 0.5,
-            timeInfo: {
-              startField: 'time', // name of the date field
-              interval: {
-                // set time interval to one day
-                unit: 'days',
-                value: 1,
+    ]).then(
+      ([
+        Map,
+        BasemapToggle,
+        Legend,
+        FeatureLayer,
+        TimeSlider,
+        Search,
+        MapView,
+        MapImageLayer,
+        Locator,
+      ]) => {
+        var layer = new MapImageLayer({
+          url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer',
+          opacity: 0.5,
+        });
+        var map = new Map({
+          basemap: 'streets',
+          layers: [layer],
+        });
+        const view = new MapView({
+          container: 'viewDiv',
+          map,
+          zoom: 5,
+          center: [107.590866, 16.463713],
+        });
+
+        var toggle = new BasemapToggle({
+          view: view,
+          nextBasemap: 'satellite',
+        });
+
+        var legend = new Legend({
+          view: view,
+          layerInfos: [
+            {
+              layer: layer,
+              opacity: 1.0,
+              title: 'Chỉ số PM 2.5',
+            },
+          ],
+        });
+
+        var searchWidget = new Search({
+          view: view,
+        });
+
+        view.ui.add(searchWidget, {
+          position: 'top-right',
+        });
+
+        view.ui.add(toggle, 'top-left');
+
+        view.ui.add(legend, 'bottom-right');
+        var featureLayer = new FeatureLayer({
+          //   url: "http://113.175.118.161:6080/arcgis/rest/services/PM25_time/MapServer/0",
+          url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer/0',
+          opacity: 0.5,
+          timeInfo: {
+            startField: 'time',
+            interval: {
+              unit: 'days',
+              value: 1,
+            },
+            fullTimeExtent: {
+              start: new Date(2017, 0, 1),
+              end: new Date(2017, 0, 10),
+            },
+          },
+        });
+
+        featureLayer.popupTemplate = {
+          content: [
+            {
+              type: 'fields',
+              fieldInfos: [
+                {
+                  fieldName: 'GRID_CODE',
+                  label: 'Chỉ số PM2.5',
+                  format: {
+                    places: 0,
+                    digitSeparator: true,
+                  },
+                },
+              ],
+            },
+          ],
+        };
+
+        const locatorTask = new Locator({
+          url: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer',
+        });
+
+        view.on('click', function (event) {
+          var lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
+          var lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
+
+          var params = {
+            location: event.mapPoint,
+          };
+
+          locatorTask
+            .locationToAddress(params)
+            .then(function (response) {
+              featureLayer.popupTemplate.title =
+                '<table><tr><th>Toạ độ địa lý: </th><td>[' +
+                lon +
+                ', ' +
+                lat +
+                ']</td></tr><tr><th>Địa điểm: </th><td>' +
+                response.address +
+                '</td></tr></table>';
+            })
+            .catch(function (error) {
+              featureLayer.popupTemplate.title = 'Không có địa danh nào cho vị trí này';
+            });
+        });
+
+        map.add(featureLayer);
+
+        var timeSlider = new TimeSlider({
+          container: 'timeSlider',
+          view: view,
+          mode: 'cumulative-from-start',
+          tickConfigs: [
+            {
+              mode: 'position',
+              values: [
+                new Date(2017, 0, 1),
+                new Date(2017, 0, 2),
+                new Date(2017, 0, 3),
+                new Date(2017, 0, 4),
+                new Date(2017, 0, 5),
+                new Date(2017, 0, 6),
+                new Date(2017, 0, 7),
+                new Date(2017, 0, 8),
+                new Date(2017, 0, 9),
+                new Date(2017, 0, 10),
+              ].map((date) => date.getTime()),
+              labelsVisible: true,
+              labelFormatFunction: (value) => {
+                const date = new Date(value);
+                return `${date.getDate() + '/1'}`;
               },
-              fullTimeExtent: {
-                start: new Date(2017, 0, 1),
-                end: new Date(2017, 0, 10),
+              tickCreatedFunction: (value, tickElement, labelElement) => {
+                tickElement.classList.add('custom-ticks');
+                labelElement.classList.add('custom-labels');
               },
             },
+          ],
+        });
+
+        featureLayer.when(function () {
+          timeSlider.fullTimeExtent = featureLayer.timeInfo.fullTimeExtent;
+          timeSlider.stops = {
+            interval: featureLayer.timeInfo.interval,
+          };
+        });
+        view.ui.add(timeSlider, 'bottom-left');
+
+        view.then(() => {
+          setState({
+            map,
+            view,
+            status: 'loaded',
           });
+        });
+      },
+    );
+  }, []);
 
-          setMyFeatureLayer(myFeatureLayer);
-          props.map.add(myFeatureLayer);
-        },
-      )
-      .catch((err) => console.error(err));
-
-    return function cleanup() {
-      props.map.remove(myFeatureLayer);
-    };
-  }, [props]);
-
+  renderMap = () => {
+    if (state.status === 'loading') {
+      return <div></div>;
+    }
+  };
   return (
-    <template name="map">
-      <main>
-        <section>
-          <div className="overlay">
-            <div id="viewDiv"></div>
-            <div id="timeSlider"></div>
-          </div>
-        </section>
-      </main>
-      <div className="scrollbar" id="style-1">
-        <div className="force-overflow"></div>
+    <Row style={{ height: 500 }}>
+      <div id="viewDiv" style={styles.mapDiv}>
+        {this.renderMap()}
       </div>
-    </template>
+      <div id="timeSlider"></div>
+    </Row>
   );
 };
 
-export default MyFeatureLayer;
+export default BaseMap;

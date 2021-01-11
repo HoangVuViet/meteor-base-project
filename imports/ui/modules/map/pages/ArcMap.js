@@ -3,24 +3,21 @@ import ReactDOM from 'react-dom';
 
 import { Map } from '@esri/react-arcgis';
 import MyFeatureLayer from '../components/MapLayer';
-import { Scene } from '@esri/react-arcgis/dist/esm/components/MapComposites';
-
+import './styles.css';
 const ArcMap = (props) => {
+  const [mapState, setMapState] = React.useState({ view: null, map: null });
+
+  const handleMapLoad = React.useCallback((map, view) => {
+    setMapState({ map, view });
+  }, []);
   return (
     <div style={{ height: 500 }}>
-      <Map
-        mapProperties={{ basemap: 'streets', ground: 'world-elevation' }}
-        viewProperties={{
-          center: [107.590866, 16.463713],
-          zoom: 5,
+      <MyFeatureLayer
+        featureLayerProperties={{
+          url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer',
         }}
-      >
-        <MyFeatureLayer
-          featureLayerProperties={{
-            url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer',
-          }}
-        ></MyFeatureLayer>
-      </Map>
+        mapState={mapState}
+      ></MyFeatureLayer>
     </div>
   );
 };
