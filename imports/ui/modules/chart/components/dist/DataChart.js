@@ -48,7 +48,7 @@ var DataChart = function (props) {
           : body === null || body === void 0
           ? void 0
           : body.radius;
-      console.log(radius);
+
       if (body.dataType === 'Landsat') {
         setURL(
           (body === null || body === void 0 ? void 0 : body.dataType) +

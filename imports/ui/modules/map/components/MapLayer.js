@@ -47,7 +47,7 @@ const BaseMap = (props) => {
           opacity: 0.5,
         });
         var map = new Map({
-          basemap: 'topo-vector',
+          basemap: 'streets',
           layers: [layer],
         });
         const view = new MapView({
@@ -133,6 +133,7 @@ const BaseMap = (props) => {
           locatorTask
             .locationToAddress(params)
             .then(function (response) {
+              console.log(response);
               featureLayer.popupTemplate.title =
                 '<table><tr><th>Toạ độ địa lý: </th><td>[' +
                 lon +

@@ -30,7 +30,6 @@ const ChartDetail: React.FC<Props> = () => {
     if (value === 'VIIRS') return radiusVIRValues;
     if (value === 'Landsat') return radiusLANDValues;
   };
-  console.log(values);
   React.useEffect(() => {
     setBody({
       dataType: dataType.find((el: some) => el.id === (values as some).dataType)?.name,

@@ -58,7 +58,7 @@ const DataChart: React.FC<Props> = (props) => {
       setLoadingData(true);
     }, 500);
   }, []);
-  console.log(chartData);
+
   return (
     <React.Fragment>
       {loadingData ? (

@@ -82,32 +82,6 @@ export function authIn(
   };
 }
 
-// export function sendTokenToServer(): ThunkAction<void, AppState, null, Action<string>> {
-//   return async (dispatch, getState) => {
-//     messaging
-//       .getToken()
-//       .then(async currentToken => {
-//         console.log(currentToken);
-//         if (currentToken) {
-//           await dispatch(
-//             fetchThunk(
-//               API_PATHS.registerFireBase,
-//               'post',
-//               JSON.stringify({
-//                 app: 'com.tripi.partner',
-//                 platform: 'WEB',
-//                 token: currentToken,
-//               }),
-//             ),
-//           );
-//         } else {
-//         }
-//       })
-//       .catch(err => {
-//         console.log('An error occurred while retrieving token. ', err);
-//       });
-//   };
-// }
 
 export function validateAccessToken(
   periodic = false,

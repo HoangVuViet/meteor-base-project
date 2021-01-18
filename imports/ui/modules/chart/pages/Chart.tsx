@@ -4,7 +4,7 @@ import ChartDetail from '../components/ChartDetail';
 interface Props {}
 const Chart: React.FC<Props> = () => {
   return (
-    <Formik initialValues={{}} onSubmit={() => console.log('Submitting')}>
+    <Formik initialValues={{}} onSubmit={() => {}}>
       {() => (
         <Form>
           <ChartDetail />
