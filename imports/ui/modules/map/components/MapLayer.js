@@ -43,7 +43,7 @@ const BaseMap = (props) => {
         Locator,
       ]) => {
         var layer = new MapImageLayer({
-          url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer',
+          url: props.featureLayerProperties.url,
           opacity: 0.5,
         });
         var map = new Map({
@@ -53,8 +53,8 @@ const BaseMap = (props) => {
         const view = new MapView({
           container: 'viewDiv',
           map,
-          zoom: 5,
-          center: [107.590866, 16.463713],
+          zoom: props.isLandsat ? 9 : 5,
+          center: props.isLandsat ? [105.83416, 21.027763] : [107.590866, 16.463713],
         });
 
         var toggle = new BasemapToggle({
@@ -85,8 +85,7 @@ const BaseMap = (props) => {
 
         view.ui.add(legend, 'bottom-right');
         var featureLayer = new FeatureLayer({
-          //   url: "http://113.175.118.161:6080/arcgis/rest/services/PM25_time/MapServer/0",
-          url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer/0',
+          url: props.featureLayerProperties.featureUrl,
           opacity: 0.5,
           timeInfo: {
             startField: 'time',
@@ -150,37 +149,40 @@ const BaseMap = (props) => {
 
         map.add(featureLayer);
 
-        var timeSlider = new TimeSlider({
-          container: 'timeSlider',
-          view: view,
-          mode: 'cumulative-from-start',
-          tickConfigs: [
-            {
-              mode: 'position',
-              values: [
-                new Date(2017, 0, 1),
-                new Date(2017, 0, 2),
-                new Date(2017, 0, 3),
-                new Date(2017, 0, 4),
-                new Date(2017, 0, 5),
-                new Date(2017, 0, 6),
-                new Date(2017, 0, 7),
-                new Date(2017, 0, 8),
-                new Date(2017, 0, 9),
-                new Date(2017, 0, 10),
-              ].map((date) => date.getTime()),
-              labelsVisible: true,
-              labelFormatFunction: (value) => {
-                const date = new Date(value);
-                return `${date.getDate() + '/1'}`;
-              },
-              tickCreatedFunction: (value, tickElement, labelElement) => {
-                tickElement.classList.add('custom-ticks');
-                labelElement.classList.add('custom-labels');
-              },
-            },
-          ],
-        });
+        var timeSlider = !props.isLandsat
+          ? new TimeSlider({
+              container: 'timeSlider',
+              view: view,
+              mode: 'cumulative-from-start',
+              loop: true,
+              tickConfigs: [
+                {
+                  mode: 'position',
+                  values: [
+                    new Date(2017, 0, 1),
+                    new Date(2017, 0, 2),
+                    new Date(2017, 0, 3),
+                    new Date(2017, 0, 4),
+                    new Date(2017, 0, 5),
+                    new Date(2017, 0, 6),
+                    new Date(2017, 0, 7),
+                    new Date(2017, 0, 8),
+                    new Date(2017, 0, 9),
+                    new Date(2017, 0, 10),
+                  ].map((date) => date.getTime()),
+                  labelsVisible: true,
+                  labelFormatFunction: (value) => {
+                    const date = new Date(value);
+                    return `${date.getDate() + '/1'}`;
+                  },
+                  tickCreatedFunction: (value, tickElement, labelElement) => {
+                    tickElement.classList.add('custom-ticks');
+                    labelElement.classList.add('custom-labels');
+                  },
+                },
+              ],
+            })
+          : null;
 
         featureLayer.when(function () {
           timeSlider.fullTimeExtent = featureLayer.timeInfo.fullTimeExtent;

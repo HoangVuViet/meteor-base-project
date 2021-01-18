@@ -188,7 +188,7 @@
   "mapPM2.5Display": "Hiển thị bản đồ PM 2.5",
   "mapNO2Display": "Hiển thị bản đồ NO2",
   "mapTempDisplay": "Hiển thị bản đồ nhiệt độ",
-  "provincePMValue": "Chỉ số PM 2.5 của các tỉnh thành",
+  "provincePMValue": "Hiển thị bản đồ PM 2.5 Landsat của Hà Nội",
   "chartDataEvaluation": "Biểu đồ đánh giá dữ liệu",
   "chart": "Biểu đồ",
   "spaceStation": "Trạm quan sát",
@@ -198,5 +198,7 @@
   "data": "Dữ liệu",
   "dataChoosing": "Lựa chọn các thông số cho biểu đồ:",
   "time": "Thời gian",
-  "radius": "Bán kính"
+  "radius": "Bán kính",
+  "pm25Map": "Bản đồ PM2.5",
+  "pm25Landsat": "PM2.5 Landsat Hà Nội"
 }

@@ -53,7 +53,10 @@ const MapDisplay: React.FC<Props> = (props) => {
           >
             <Col>
               <Row style={{ padding: '12px 12px' }}>
-                <Button style={{ width: 400 }}>
+                <Button
+                  style={{ width: 400 }}
+                  onClick={() => dispatch(goToAction({ pathname: ROUTES.pm25 }))}
+                >
                   <Typography variant="body2" color="primary">
                     <FormattedMessage id="mapPM2.5Display"></FormattedMessage>
                   </Typography>
@@ -77,7 +80,10 @@ const MapDisplay: React.FC<Props> = (props) => {
               </Row>
               <Divider></Divider>
               <Row style={{ padding: '16px 12px' }}>
-                <Button style={{ width: 400 }}>
+                <Button
+                  style={{ width: 400 }}
+                  onClick={() => dispatch(goToAction({ pathname: ROUTES.pm25Landsat }))}
+                >
                   <Typography variant="body2" color="primary">
                     <FormattedMessage id="provincePMValue"></FormattedMessage>
                   </Typography>
