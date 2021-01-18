@@ -47,7 +47,7 @@ const BaseMap = (props) => {
           opacity: 0.5,
         });
         var map = new Map({
-          basemap: 'streets',
+          basemap: 'topo-vector',
           layers: [layer],
         });
         const view = new MapView({
