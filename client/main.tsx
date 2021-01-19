@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import App from '../imports/ui/App';
 import '../imports/ui/index.scss';
-import { MUI_THEME, THEME } from '/imports/ui/configs/setupTheme';
+// import { MUI_THEME, THEME } from '/imports/ui/configs/setupTheme';
 import ConnectedIntlProvider from '/imports/ui/modules/intl/components/ConnectedIntlProvider';
 import configureStore, { history } from '/imports/ui/redux/configureStore';
 
@@ -23,13 +23,9 @@ Meteor.startup(() => {
       <ConnectedRouter history={history}>
         <PersistGate loading={null} persistor={persistor}>
           <ConnectedIntlProvider>
-            <ThemeProvider theme={THEME}>
-              <MuiThemeProvider theme={MUI_THEME}>
                 <SnackbarProvider maxSnack={3}>
                   <App />
                 </SnackbarProvider>
-              </MuiThemeProvider>
-            </ThemeProvider>
           </ConnectedIntlProvider>
         </PersistGate>
       </ConnectedRouter>

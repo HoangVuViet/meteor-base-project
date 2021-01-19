@@ -13,3 +13,11 @@
   left: 5%;
   right: 5%;
 }
+
+.esri-legend__layer-caption {
+  display: none;
+}
+/* .esri-legend {
+  background-color: #f3f3f3;
+} */
+
