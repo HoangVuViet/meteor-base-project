@@ -200,5 +200,6 @@
   "time": "Thời gian",
   "radius": "Bán kính",
   "pm25Map": "Bản đồ PM2.5",
-  "pm25Landsat": "PM2.5 Landsat Hà Nội"
+  "pm25Landsat": "PM2.5 Landsat Hà Nội",
+  "APOM": "APOM"
 }

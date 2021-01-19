@@ -2,16 +2,19 @@ import { ButtonBase, makeStyles, withStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
 import * as React from 'react';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { connect } from 'react-redux';
 import styles from '../../../../public/jss/material-dashboard-react/components/sidebarStyle.js';
 import { GREEN } from '../../configs/colors';
 import { ROUTES_TAB } from '../../configs/routes';
+import { RoutesTabType } from '../../models/permission.js';
 import { Row } from '../../modules/common/components/elements';
 import { AppState } from '../../redux/reducers';
 import '../../scss/svg.scss';
 import { ASIDE_ITEM_HEIGHT, ASIDE_MIN_WIDTH, ASIDE_WIDTH, HEADER_HEIGHT } from '../constants';
 import { getListRoutesContain } from '../utils';
+
 const useStyles = makeStyles(styles as any);
 
 export const ButtonRow = withStyles((theme) => ({
