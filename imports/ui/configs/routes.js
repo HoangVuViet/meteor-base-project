@@ -20,21 +20,14 @@ import BubbleChart from '@material-ui/icons/BubbleChart';
 import Dashboard from '@material-ui/icons/Dashboard';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import LocationOn from '@material-ui/icons/LocationOn';
-import Notifications from '@material-ui/icons/Notifications';
-import Person from '@material-ui/icons/Person';
-import TimelineIcon from '@material-ui/icons/Timeline';
-// core components/views for Admin layout
-import Icons from '../views/Icons/Icons';
-import Maps from '../views/Maps/Maps.js';
-import NotificationsPage from '../views/Notifications/Notifications.js';
-import TableList from '../views/TableList/TableList.js';
-import Typography from '../views/Typography/Typography.js';
-import ArcMap from '../modules/map/pages/ArcMapPM25';
-import Chart from '../modules/chart/pages/Chart';
-import ArcMapLandsat from '../modules/map/pages/ArcMapLandsat';
-import NotFoundBox from '../modules/common/components/NotFoundBox';
 import MapIcon from '@material-ui/icons/Map';
-
+import Notifications from '@material-ui/icons/Notifications';
+import TimelineIcon from '@material-ui/icons/Timeline';
+import Chart from '../modules/chart/pages/Chart';
+import HelloWorld from '../modules/chart/pages/HelloWorld';
+import NotFoundBox from '../modules/common/components/NotFoundBox';
+import ArcMapLandsat from '../modules/map/pages/ArcMapLandsat';
+import ArcMap from '../modules/map/pages/ArcMapPM25';
 export const ROUTES = {
   login: '/login',
   forgotPass: '/forgot-password',
@@ -84,28 +77,28 @@ const dashboardRoutes = [
     path: '/typography',
     name: 'Typography',
     icon: LibraryBooks,
-    component: Typography,
+    component: HelloWorld,
     layout: '/admin',
   },
   {
     path: '/icons',
     name: 'Icons',
     icon: BubbleChart,
-    component: Icons,
+    component: HelloWorld,
     layout: '/admin',
   },
   {
     path: '/maps',
     name: 'Maps',
     icon: LocationOn,
-    component: Maps,
+    component: HelloWorld,
     layout: '/admin',
   },
   {
     path: '/notifications',
     name: 'Notifications',
     icon: Notifications,
-    component: NotificationsPage,
+    component: HelloWorld,
     layout: '/admin',
   },
   {

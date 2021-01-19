@@ -201,5 +201,7 @@
   "radius": "Bán kính",
   "pm25Map": "Bản đồ PM2.5",
   "pm25Landsat": "PM2.5 Landsat Hà Nội",
-  "APOM": "APOM"
+  "APOM": "APOM",
+  "IDS_HMS_FEATURE_UN_SUPPORTED": "Tính năng đang được phát triển!",
+  "IDS_HMS_GO_TO_HOMEPAGE": "Quay về trang chủ"
 }
