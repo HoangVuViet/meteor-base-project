@@ -69,13 +69,13 @@ const DataChart: React.FC<Props> = (props) => {
           !isEmpty(body.station) &&
           chartData[0]?.x !== undefined ? (
             <Row style={{ marginTop: 15 }}>
-              <Col style={{ marginRight: 20, width: 750 }}>
+              <Col style={{ marginRight: 20, width: '70%' }}>
                 <ChartRender chartData={chartData}></ChartRender>
               </Col>
               <Paper
                 variant="outlined"
                 style={{
-                  marginTop: -280,
+
                   padding: '12px 16px',
                   borderRadius: 12,
                   background: '#f5f5f5',
@@ -83,20 +83,20 @@ const DataChart: React.FC<Props> = (props) => {
                   width: 300,
                 }}
               >
-                <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
-                  {textData[0]}
+                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                  <span>-</span>&nbsp;{textData[0]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
-                  {textData[1]}
+                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <span>-</span>&nbsp;{textData[1]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
-                  {textData[2]}
+                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <span>-</span>&nbsp;{textData[2]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
-                  {textData[3]}
+                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <span>-</span>&nbsp;{textData[3]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
-                  {textData[4]}
+                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <span>-</span>&nbsp;{textData[4]}
                 </Typography>
               </Paper>
             </Row>
