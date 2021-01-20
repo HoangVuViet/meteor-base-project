@@ -2,9 +2,7 @@ import { Button, Link, Typography } from '@material-ui/core';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { GREY_600 } from '../../../configs/colors';
-import { ROUTES } from '../../../configs/routes';
 import { Col } from '../../common/components/elements';
-
 
 const NotSupported = () => {
   return (
@@ -17,8 +15,8 @@ const NotSupported = () => {
       >
         <FormattedMessage id="IDS_HMS_FEATURE_UN_SUPPORTED" />
       </Typography>
-      <Link href='/admin/pm25Map'>
-        <Button variant="contained" color="secondary" style={{ height: 35 }} disableElevation>
+      <Link href="/admin/pm25Map">
+        <Button variant="contained" color="secondary" style={{ height: 35}} disableElevation>
           <img src="../../svg/ic_arrow_circle_small.svg" style={{ marginRight: 8 }}></img>
           <FormattedMessage id="IDS_HMS_GO_TO_HOMEPAGE" />
         </Button>
