@@ -45,7 +45,7 @@ export const ROUTES = {
 
 const dashboardRoutes = [
   {
-    name: 'Bản đồ PM2.5',
+    name: 'Bản đồ PM2.5 MODIS',
     isModule: true,
     path: ROUTES.pm25,
     exact: true,
@@ -75,32 +75,32 @@ const dashboardRoutes = [
   },
   {
     path: '/typography',
-    name: 'Typography',
+    name: 'Tìm kiếm, thống kê dữ liệu',
     icon: LibraryBooks,
     component: HelloWorld,
     layout: '/admin',
   },
-  {
-    path: '/icons',
-    name: 'Icons',
-    icon: BubbleChart,
-    component: HelloWorld,
-    layout: '/admin',
-  },
-  {
-    path: '/maps',
-    name: 'Maps',
-    icon: LocationOn,
-    component: HelloWorld,
-    layout: '/admin',
-  },
-  {
-    path: '/notifications',
-    name: 'Notifications',
-    icon: Notifications,
-    component: HelloWorld,
-    layout: '/admin',
-  },
+  // {
+  //   path: '/icons',
+  //   name: 'Icons',
+  //   icon: BubbleChart,
+  //   component: HelloWorld,
+  //   layout: '/admin',
+  // },
+  // {
+  //   path: '/maps',
+  //   name: 'Maps',
+  //   icon: LocationOn,
+  //   component: HelloWorld,
+  //   layout: '/admin',
+  // },
+  // {
+  //   path: '/notifications',
+  //   name: 'Notifications',
+  //   icon: Notifications,
+  //   component: HelloWorld,
+  //   layout: '/admin',
+  // },
   {
     name: 'notFound404',
     isModule: true,
