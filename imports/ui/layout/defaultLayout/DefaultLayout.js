@@ -70,8 +70,8 @@ export default function Admin({ ...rest }) {
       <Sidebar
         routes={routes}
         logoText={'APOM'}
-        logo="../../../../public/img/reactlogo.png"
-        image="../../../../public/img/sidebar-2.jpg"
+        logo="../../../../../../img/reactlogo.png"
+        image="../../../../../../img/sidebar-2.jpg"
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}
         color={color}

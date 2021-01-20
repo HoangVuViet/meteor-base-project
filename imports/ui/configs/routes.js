@@ -75,7 +75,7 @@ const dashboardRoutes = [
   },
   {
     path: '/typography',
-    name: 'Tìm kiếm, thống kê dữ liệu',
+    name: 'Tìm kiếm, thống kê',
     icon: LibraryBooks,
     component: HelloWorld,
     layout: '/admin',
