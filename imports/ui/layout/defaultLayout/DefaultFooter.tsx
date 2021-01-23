@@ -1,22 +1,25 @@
 import { Divider, Typography } from '@material-ui/core';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useSelector, shallowEqual } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { GREY_300 } from '../../configs/colors';
 import { Row } from '../../modules/common/components/elements';
-
 import { AppState } from '../../redux/reducers';
+import { ASIDE_WIDTH } from '../constants';
 
-interface Props { }
+interface Props {}
 
 const DefaultFooter: React.FC<Props> = () => {
   const intl = useIntl();
   const userData = useSelector((state: AppState) => state.account.userData, shallowEqual);
+
   return (
     <Row
       style={{
         background: 'white',
-        padding: '18px 30px',
+        padding: '2px 4px',
+        marginLeft: ASIDE_WIDTH,
+        marginTop: -20
       }}
     >
       <Typography variant="body2" color="textSecondary">
@@ -32,7 +35,7 @@ const DefaultFooter: React.FC<Props> = () => {
         <FormattedMessage
           id={
             userData?.type === 'general_manager' &&
-              (userData?.caInfo?.name === 'VuaNem' || userData?.caInfo?.name === 'HoangHa')
+            (userData?.caInfo?.name === 'VuaNem' || userData?.caInfo?.name === 'HoangHa')
               ? 'footer.hotlineNumberCA'
               : 'footer.hotlineNumber'
           }
@@ -49,7 +52,7 @@ const DefaultFooter: React.FC<Props> = () => {
           href={`mailto:${intl.formatMessage({
             id:
               userData?.type === 'general_manager' &&
-                (userData?.caInfo?.name === 'VuaNem' || userData?.caInfo?.name === 'HoangHa')
+              (userData?.caInfo?.name === 'VuaNem' || userData?.caInfo?.name === 'HoangHa')
                 ? 'footer.emailCA'
                 : 'footer.email',
           })}`}
@@ -58,7 +61,7 @@ const DefaultFooter: React.FC<Props> = () => {
           <FormattedMessage
             id={
               userData?.type === 'general_manager' &&
-                (userData?.caInfo?.name === 'VuaNem' || userData?.caInfo?.name === 'HoangHa')
+              (userData?.caInfo?.name === 'VuaNem' || userData?.caInfo?.name === 'HoangHa')
                 ? 'footer.emailCA'
                 : 'footer.email'
             }
@@ -70,8 +73,8 @@ const DefaultFooter: React.FC<Props> = () => {
         orientation="vertical"
         style={{ minHeight: '16px', margin: '0 12px', backgroundColor: GREY_300 }}
       />
-      <img src="../../../../../../svg/facebook.svg"  style={{ margin: '0px 8px' }}></img>
-      <img src="../../../../../../svg/google_plus.svg"  style={{ margin: '0px 8px' }}></img>
+      <img src="../../../../../../svg/facebook.svg" style={{ margin: '0px 8px' }}></img>
+      <img src="../../../../../../svg/google_plus.svg" style={{ margin: '0px 8px' }}></img>
     </Row>
   );
 };

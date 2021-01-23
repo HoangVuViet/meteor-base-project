@@ -22,12 +22,10 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../../../../redux/reducers';
-import Footer from '../../DefaultFooter';
+import { ASIDE_WIDTH } from '../../../constants';
 import styles from '../jss/material-dashboard-react/components/headerStyle.js';
 import { some } from '/imports/ui/constants';
 import { goToAction } from '/imports/ui/modules/common/redux/reducer';
-
-const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
   ...styles,
@@ -41,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    width: `calc(100% - ${ASIDE_WIDTH}px)`,
+    marginLeft: ASIDE_WIDTH,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -55,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   drawer: {
-    width: drawerWidth,
+    width: ASIDE_WIDTH,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: ASIDE_WIDTH,
   },
   drawerHeader: {
     display: 'flex',
@@ -76,8 +74,8 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
-    marginTop: 50,
+    marginLeft: -ASIDE_WIDTH,
+    marginTop: 60,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -89,12 +87,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft(props: any) {
-  const { routes } = props;
+  const { routes, open, setOpen } = props;
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
 
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,19 +100,6 @@ export default function PersistentDrawerLeft(props: any) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  const switchRoutes = (
-    <Switch>
-      {routes?.map((elm: some, index: number) => {
-        return (
-          <Fragment key={index}>
-            <Route path={elm?.layout + elm?.path} component={elm?.component} />;
-          </Fragment>
-        );
-      })}
-      <Redirect from="/admin" to="/admin/dashboard" />
-    </Switch>
-  );
 
   const getMenuIcon = (iconName: string) => {
     switch (iconName) {
@@ -129,6 +113,15 @@ export default function PersistentDrawerLeft(props: any) {
         return <LibraryBooks />;
     }
   };
+
+  const switchRoutes = (
+    <Switch>
+      {routes?.map((elm: some, index: number) => {
+        return <Route path={elm?.layout + elm?.path} component={elm?.component} key={index} />;
+      })}
+      <Redirect from="/admin" to="/admin/dashboard" />
+    </Switch>
+  );
 
   var links = (
     <List>
@@ -196,7 +189,6 @@ export default function PersistentDrawerLeft(props: any) {
         <div>
           <div>{switchRoutes}</div>
         </div>
-        <Footer />
       </main>
     </div>
   );

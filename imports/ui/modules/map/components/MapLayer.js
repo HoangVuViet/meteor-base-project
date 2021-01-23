@@ -241,7 +241,7 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: 570 }}>
+    <Row style={{ height: 590 }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>

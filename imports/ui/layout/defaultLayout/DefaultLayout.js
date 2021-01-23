@@ -1,19 +1,36 @@
 // @material-ui/core components
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from '../../configs/routes';
+import { ASIDE_WIDTH } from '../constants';
 import Sidebar from './components/Sidebar/Sidebar.tsx';
+import DefaultFooter from './DefaultFooter';
 
+const useStyles = makeStyles((theme) => ({
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -ASIDE_WIDTH,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
+}));
 
 export default function Admin({ ...rest }) {
-
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [color, setColor] = React.useState('blue');
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
   return (
     <div >
@@ -22,11 +39,16 @@ export default function Admin({ ...rest }) {
         logoText={'APOM'}
         logo="../../../../../../img/reactlogo.png"
         image="../../../../../../img/sidebar-2.jpg"
-        handleDrawerToggle={handleDrawerToggle}
-        open={mobileOpen}
-        color={color}
         {...rest}
+        open={open}
+        setOpen={setOpen}
       />
+      <div className={clsx(classes.content, {
+        [classes.contentShift]: open,
+      })}
+      >
+        <DefaultFooter />
+      </div>
     </div>
   );
 }
