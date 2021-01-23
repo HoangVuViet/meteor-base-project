@@ -36,19 +36,18 @@ export default function Header(props) {
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
+          <IconButton color="inherit" aria-label="open drawer" onClick={props.handleDrawerToggle}>
+            <Menu />
+          </IconButton>
           {/* Here we create navbar brand, based on route name */}
-          <Button color="transparent" href="#" className={classes.title} style={{ marginLeft: -16 }}>
+          <Button color="transparent" href="#" className={classes.title} style={{ marginLeft: -16 }} onClick={props.handleDrawerToggle}>
             {makeBrand()}
           </Button>
         </div>
         <Hidden smDown implementation="css">
           <AdminNavbarLinks />
         </Hidden>
-        <Hidden mdUp implementation="css">
-          <IconButton color="inherit" aria-label="open drawer" onClick={props.handleDrawerToggle}>
-            <Menu />
-          </IconButton>
-        </Hidden>
+
       </Toolbar>
     </AppBar>
   );

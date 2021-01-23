@@ -3,13 +3,7 @@ import React from 'react';
 import { Row } from '../../common/components/elements';
 import '../pages/styles';
 const styles = {
-  container: {
-    height: '120vh',
-    width: '120vw',
-  },
   mapDiv: {
-    padding: 0,
-    margin: 0,
     height: '100%',
     width: '100%',
   },
@@ -249,7 +243,7 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: 560, marginTop: -30 }}>
+    <Row style={{ height: 500 }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>

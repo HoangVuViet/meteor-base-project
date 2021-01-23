@@ -13,7 +13,7 @@ const useStyles = makeStyles(styles);
 export default function Footer(props) {
   const classes = useStyles();
   return (
-    <footer className={classes.footer} style={{ marginBottom: 20, marginTop: 20 }}>
+    <footer className={classes.footer} style={{ marginBottom: 4, marginTop: 4 }}>
       <div className={classes.container}>
         <div className={classes.left}>
           <List className={classes.list}>

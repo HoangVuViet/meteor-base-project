@@ -40,6 +40,7 @@
     "chart.js": "^2.9.4",
     "chartist": "^0.11.4",
     "classnames": "^2.2.6",
+    "clsx": "^1.1.1",
     "components": "^0.1.0",
     "connected-react-router": "^6.8.0",
     "css-modules-typescript-loader": "^4.0.1",
