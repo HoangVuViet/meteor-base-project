@@ -202,5 +202,10 @@
   "pm25Landsat": "PM2.5 Landsat Hà Nội",
   "APOM": "APOM",
   "IDS_HMS_FEATURE_UN_SUPPORTED": "Tính năng đang được phát triển!",
-  "IDS_HMS_GO_TO_HOMEPAGE": "Quay về trang chủ"
+  "IDS_HMS_GO_TO_HOMEPAGE": "Quay về trang chủ",
+  "product": "Sản phẩm",
+  "imageUni" : "Ảnh vệ tinh",
+  "conditionCombined" : "Điều kiện kết hợp"
+
+
 }

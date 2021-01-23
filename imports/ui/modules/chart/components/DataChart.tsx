@@ -75,7 +75,6 @@ const DataChart: React.FC<Props> = (props) => {
               <Paper
                 variant="outlined"
                 style={{
-
                   padding: '12px 16px',
                   borderRadius: 12,
                   background: '#f5f5f5',
@@ -101,7 +100,7 @@ const DataChart: React.FC<Props> = (props) => {
               </Paper>
             </Row>
           ) : (
-            <div style={{ marginLeft: 150, width: '570px' }}>
+            <div style={{ marginLeft: 200, marginTop : 100, width: '100%' }}>
               <img src="../../../svg/notFound.svg" alt="" />
             </div>
           )}

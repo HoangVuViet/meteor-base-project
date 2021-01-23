@@ -47,7 +47,7 @@ const BaseMap = (props) => {
         const view = new MapView({
           container: 'viewDiv',
           map,
-          zoom: props.isLandsat ? 9 : 5,
+          zoom: props.isLandsat ? 9 : 5.8,
           center: props.isLandsat ? [105.83416, 21.027763] : [107.590866, 16.463713],
         });
 
@@ -241,7 +241,7 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: 590 }}>
+    <Row style={{ height: 560 }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>

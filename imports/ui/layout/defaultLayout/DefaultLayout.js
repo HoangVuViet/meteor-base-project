@@ -3,7 +3,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import React from 'react';
-import routes from '../../configs/routes';
 import { ASIDE_WIDTH } from '../constants';
 import Sidebar from './components/Sidebar/Sidebar.tsx';
 import DefaultFooter from './DefaultFooter';
@@ -30,12 +29,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Admin({ ...rest }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   return (
     <div >
       <Sidebar
-        routes={routes}
         logoText={'APOM'}
         logo="../../../../../../img/reactlogo.png"
         image="../../../../../../img/sidebar-2.jpg"

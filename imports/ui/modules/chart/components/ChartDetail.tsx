@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { isEmpty } from 'voca';
-import { Row } from '../../common/components/elements';
+import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
 import {
   dataType,
@@ -42,131 +42,145 @@ const ChartDetail: React.FC<Props> = () => {
   return (
     <>
       <Row>
-        <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
-          <FormattedMessage id="dataChoosing" />
-        </Typography>
-      </Row>
-      <Row>
-        <Typography
-          style={{ margin: '12px 10px 12px 16px', whiteSpace: 'nowrap' }}
-          variant="subtitle2"
-          component="p"
-        >
-          <FormattedMessage id="data" />
-        </Typography>
-        <FieldSelectContent
-          name="dataType"
-          label={null}
-          style={{
-            width: 300,
-            margin: '20px 10px 12px 25px',
-          }}
-          formControlStyle={{
-            minWidth: 300,
-            width: 'auto',
-          }}
-          options={dataType}
-          getOptionLabel={(value) => value.name}
-          onSelectOption={(value: number) => {
-            setFieldValue('dataType', value);
-            if ((values as some).radius) {
-              setFieldValue('radius', undefined);
-            }
-            if ((values as some).station) {
-              setFieldValue('station', undefined);
-            }
-          }}
-          placeholder={intl.formatMessage({ id: 'choose' })}
-          disableError
-        />
-        <Typography
-          style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
-          variant="subtitle2"
-          component="p"
-        >
-          <FormattedMessage id="radius" />
-        </Typography>
-        <FieldSelectContent
-          name="radius"
-          label={null}
-          style={{
-            width: 300,
-            margin: '16px 10px 8px 40px',
-          }}
-          formControlStyle={{
-            minWidth: 300,
-            width: 'auto',
-          }}
-          options={
-            !isEmpty((values as some).dataType)
-              ? (getRadiusOption(
-                  dataType?.find((el: some) => el?.id === (values as some)?.dataType)?.name,
-                ) as any)
-              : []
-          }
-          placeholder={intl.formatMessage({ id: 'choose' })}
-          getOptionLabel={(value) => `${value.id} km`}
-          onSelectOption={(value: number) => {
-            setFieldValue('radius', value);
-          }}
-          disableError
-          disabled={isEmpty((values as some).dataType)}
-        />
-      </Row>
-      <Row>
-        <Typography
-          style={{ margin: '8px 10px 0px 16px', whiteSpace: 'nowrap' }}
-          variant="subtitle2"
-          component="p"
-        >
-          <FormattedMessage id="time" />
-        </Typography>
-        <FieldSelectContent
-          name="time"
-          label={null}
-          style={{
-            width: 300,
-            margin: '16px 10px 0px 12px',
-          }}
-          formControlStyle={{
-            minWidth: 300,
-            width: 'auto',
-          }}
-          options={timeEvaluation as any[]}
-          getOptionLabel={(value) => `${value.id} ${value.endor}`}
-          onSelectOption={(value: number) => {
-            setFieldValue('time', value);
-          }}
-          placeholder={intl.formatMessage({ id: 'choose' })}
-          disableError
-        />
-        <Typography
-          style={{ margin: '8px 10px 0px 12px', whiteSpace: 'nowrap' }}
-          variant="subtitle2"
-          component="p"
-        >
-          <FormattedMessage id="spaceStation" />
-        </Typography>
-        <FieldSelectContent
-          name="station"
-          label={null}
-          style={{
-            width: 300,
-            margin: '16px 10px 0px 8px',
-          }}
-          formControlStyle={{
-            minWidth: 300,
-            width: 'auto',
-          }}
-          options={stationList}
-          getOptionLabel={(value) => value.name}
-          onSelectOption={(value: number) => {
-            setFieldValue('station', value);
-          }}
-          placeholder={intl.formatMessage({ id: 'choose' })}
-          disableError
-          // disabled={(values as some).dataType === 4}
-        />
+        <Col>
+          <Row>
+            <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
+              <FormattedMessage id="product" />
+            </Typography>
+          </Row>
+          <Row>
+            <Typography
+              style={{ margin: '12px 14px 12px 16px', whiteSpace: 'nowrap' }}
+              variant="subtitle2"
+              component="p"
+            >
+              <FormattedMessage id="imageUni" />
+            </Typography>
+            <FieldSelectContent
+              name="dataType"
+              label={null}
+              style={{
+                width: 300,
+                margin: '20px 10px 12px 30px',
+              }}
+              formControlStyle={{
+                minWidth: 300,
+                width: 'auto',
+              }}
+              options={dataType}
+              getOptionLabel={(value) => value.name}
+              onSelectOption={(value: number) => {
+                setFieldValue('dataType', value);
+                if ((values as some).radius) {
+                  setFieldValue('radius', undefined);
+                }
+                if ((values as some).station) {
+                  setFieldValue('station', undefined);
+                }
+              }}
+              placeholder={intl.formatMessage({ id: 'choose' })}
+              disableError
+            />
+          </Row>
+          <Row>
+            <Typography
+              style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
+              variant="subtitle2"
+              component="p"
+            >
+              <FormattedMessage id="spaceStation" />
+            </Typography>
+            <FieldSelectContent
+              name="station"
+              label={null}
+              style={{
+                width: 300,
+                margin: '16px 10px 8px 15px',
+              }}
+              formControlStyle={{
+                minWidth: 300,
+                width: 'auto',
+              }}
+              options={stationList}
+              getOptionLabel={(value) => value.name}
+              onSelectOption={(value: number) => {
+                setFieldValue('station', value);
+              }}
+              placeholder={intl.formatMessage({ id: 'choose' })}
+              disableError
+            />
+          </Row>
+        </Col>
+        <Col style={{marginLeft : 100}}>
+          <Row>
+            <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
+              <FormattedMessage id="conditionCombined" />
+            </Typography>
+          </Row>
+          <Row>
+            <Typography
+              style={{ margin: '12px 10px 12px 15px', whiteSpace: 'nowrap' }}
+              variant="subtitle2"
+              component="p"
+            >
+              <FormattedMessage id="radius" />
+            </Typography>
+            <FieldSelectContent
+              name="radius"
+              label={null}
+              style={{
+                width: 300,
+                margin: '20px 10px 12px 25px',
+              }}
+              formControlStyle={{
+                minWidth: 300,
+                width: 'auto',
+              }}
+              options={
+                !isEmpty((values as some).dataType)
+                  ? (getRadiusOption(
+                      dataType?.find((el: some) => el?.id === (values as some)?.dataType)?.name,
+                    ) as any)
+                  : []
+              }
+              placeholder={intl.formatMessage({ id: 'choose' })}
+              getOptionLabel={(value) => `${value.id} km`}
+              onSelectOption={(value: number) => {
+                setFieldValue('radius', value);
+              }}
+              disableError
+              disabled={isEmpty((values as some).dataType)}
+            />
+          </Row>
+          <Row>
+            <Typography
+              style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
+              variant="subtitle2"
+              component="p"
+            >
+              <FormattedMessage id="time" />
+            </Typography>
+            <FieldSelectContent
+              name="time"
+              label={null}
+              style={{
+                width: 300,
+                margin: '16px 10px 8px 20px',
+              }}
+              formControlStyle={{
+                minWidth: 300,
+                width: 'auto',
+              }}
+              options={timeEvaluation as any[]}
+              getOptionLabel={(value) => `${value.id} ${value.endor}`}
+              onSelectOption={(value: number) => {
+                setFieldValue('time', value);
+              }}
+              placeholder={intl.formatMessage({ id: 'choose' })}
+              disableError
+            />
+          </Row>
+        </Col>
       </Row>
       <DataChart body={body}></DataChart>
     </>

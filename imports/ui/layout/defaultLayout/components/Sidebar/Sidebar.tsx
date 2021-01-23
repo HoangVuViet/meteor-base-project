@@ -11,10 +11,14 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React from 'react';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ASIDE_WIDTH } from '../../../constants';
 import styles from '../jss/material-dashboard-react/components/headerStyle.js';
-import SidebarLink from './SidebarLink';
+import SidebarList from './SideBarList';
+import { LIST_ITEMS } from './utils';
+import { APP_ROUTES } from '/imports/ui/configs/routes';
 import { some } from '/imports/ui/constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -ASIDE_WIDTH,
-    marginTop: 60,
+    marginTop: 40,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -77,22 +81,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PersistentDrawerLeft(props: any) {
-  const { routes, open, setOpen } = props;
+  const { open, setOpen } = props;
 
   const classes = useStyles();
   const theme = useTheme();
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   const makeBrand = () => {
     let name;
-    routes.map((elm: some) => {
+    APP_ROUTES.map((elm: some) => {
       if (window.location.href.indexOf(elm.layout + elm.path) !== -1) {
         name = elm.name;
       }
@@ -103,10 +99,10 @@ export default function PersistentDrawerLeft(props: any) {
 
   const switchRoutes = (
     <Switch>
-      {routes?.map((elm: some, index: number) => {
+      {APP_ROUTES?.map((elm: some, index: number) => {
         return <Route path={elm?.layout + elm?.path} component={elm?.component} key={index} />;
       })}
-      <Redirect from="/admin" to="/admin/dashboard" />
+      <Redirect from="/admin" to="/admin/pm25Map" />
     </Switch>
   );
 
@@ -119,11 +115,11 @@ export default function PersistentDrawerLeft(props: any) {
         position="fixed"
         // style={{ background: 'transparent', boxShadow: 'none'}}
       >
-        <Toolbar>
+        <Toolbar  variant="dense">
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={() => setOpen(true)}
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
@@ -144,12 +140,20 @@ export default function PersistentDrawerLeft(props: any) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={() => setOpen(!open)}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
-        <SidebarLink routes={routes}></SidebarLink>
+        <PerfectScrollbar>
+          <div>
+            {LIST_ITEMS.map((el: some, idx: number) => {
+              return (
+                <SidebarList key={idx} routes={el?.routes} icon={el?.icon} title={el?.title} />
+              );
+            })}
+          </div>
+        </PerfectScrollbar>
       </Drawer>
       <main
         className={clsx(classes.content, {
