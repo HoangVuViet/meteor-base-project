@@ -66,7 +66,6 @@ const BaseMap = (props) => {
             },
           ],
         });
-        console.log(layer)
         var searchWidget = new Search({
           view: view,
         });
@@ -144,7 +143,6 @@ const BaseMap = (props) => {
           locatorTask
             .locationToAddress(params)
             .then(function (response) {
-              console.log(response);
               featureLayer.popupTemplate.title =
                 '<table><tr><th>Toạ độ địa lý: </th><td>[' +
                 lon +
@@ -243,7 +241,7 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: 500 }}>
+    <Row style={{ height: 570 }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>
