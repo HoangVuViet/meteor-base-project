@@ -2,9 +2,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +13,7 @@ import MapIcon from '@material-ui/icons/Map';
 import MenuIcon from '@material-ui/icons/Menu';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import clsx from 'clsx';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Action } from 'redux';
@@ -24,8 +21,8 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../../../../redux/reducers';
 import { ASIDE_WIDTH } from '../../../constants';
 import styles from '../jss/material-dashboard-react/components/headerStyle.js';
+import SidebarLink from './SidebarLink';
 import { some } from '/imports/ui/constants';
-import { goToAction } from '/imports/ui/modules/common/redux/reducer';
 
 const useStyles = makeStyles((theme) => ({
   ...styles,
@@ -88,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerLeft(props: any) {
   const { routes, open, setOpen } = props;
-  const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
 
   const classes = useStyles();
   const theme = useTheme();
@@ -101,19 +97,6 @@ export default function PersistentDrawerLeft(props: any) {
     setOpen(false);
   };
 
-  const getMenuIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'dashboard':
-        return <Dashboard />;
-      case 'map':
-        return <MapIcon />;
-      case 'timeLine':
-        return <TimelineIcon />;
-      case 'library':
-        return <LibraryBooks />;
-    }
-  };
-
   const switchRoutes = (
     <Switch>
       {routes?.map((elm: some, index: number) => {
@@ -121,24 +104,6 @@ export default function PersistentDrawerLeft(props: any) {
       })}
       <Redirect from="/admin" to="/admin/dashboard" />
     </Switch>
-  );
-
-  var links = (
-    <List>
-      {routes.map((elm: any, index: number) => {
-        return !elm.hidden ? (
-          <Fragment key={index}>
-            <ListItem
-              button
-              onClick={() => dispatch(goToAction({ pathname: '/admin' + elm.path }))}
-            >
-              {getMenuIcon(elm.iconName)}
-              <ListItemText primary={elm.name} style={{ marginLeft: 5 }} />
-            </ListItem>
-          </Fragment>
-        ) : null;
-      })}
-    </List>
   );
 
   return (
@@ -179,7 +144,7 @@ export default function PersistentDrawerLeft(props: any) {
           </IconButton>
         </div>
         <Divider />
-        {links}
+        <SidebarLink routes={routes}></SidebarLink>
       </Drawer>
       <main
         className={clsx(classes.content, {
