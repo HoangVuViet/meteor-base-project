@@ -37,7 +37,7 @@ const dashboardRoutes = [
     isModule: true,
     path: ROUTES.pm25Landsat,
     exact: true,
-    component: ArcMap,
+    component: ArcMapLandsat,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',

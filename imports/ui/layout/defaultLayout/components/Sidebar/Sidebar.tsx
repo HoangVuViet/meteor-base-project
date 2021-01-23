@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -89,6 +90,17 @@ export default function PersistentDrawerLeft(props: any) {
     setOpen(false);
   };
 
+  const makeBrand = () => {
+    let name;
+    routes.map((elm: some) => {
+      if (window.location.href.indexOf(elm.layout + elm.path) !== -1) {
+        name = elm.name;
+      }
+      return null;
+    });
+    return name;
+  };
+
   const switchRoutes = (
     <Switch>
       {routes?.map((elm: some, index: number) => {
@@ -101,10 +113,11 @@ export default function PersistentDrawerLeft(props: any) {
   return (
     <div className={classes.root}>
       <AppBar
-        position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        position="fixed"
+        // style={{ background: 'transparent', boxShadow: 'none'}}
       >
         <Toolbar>
           <IconButton
@@ -143,6 +156,9 @@ export default function PersistentDrawerLeft(props: any) {
           [classes.contentShift]: open,
         })}
       >
+        <Button href="#" style={{ marginBottom: 12 }}>
+          {makeBrand()}
+        </Button>
         <div>
           <div>{switchRoutes}</div>
         </div>
