@@ -3,17 +3,18 @@ import { Button, IconButton, InputAdornment, RootRef } from '@material-ui/core';
 import moment, { Moment } from 'moment';
 import React from 'react';
 import { DayPickerRangeController, FocusedInputShape } from 'react-dates';
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { CSSTransition } from 'react-transition-group';
 import { SECONDARY } from '../../../configs/colors';
+import { some } from '../../../constants';
 import { DATE_FORMAT } from '../../../models/moment';
-import { ReactComponent as IconCalender } from '../../../svg/ic_calendar.svg';
 import { Col, DateMaskCustomRange, DateMaskCustomSingle, Wrapper } from './elements';
 import { useStylesForm } from './Form';
 import FormControlTextField from './FormControlTextField';
 import styles from './styles.module.scss';
 import { MIN_WIDTH_FORM, renderMonthText } from './utils';
-import { some } from '../../../constants';
 
 export function isDayHighlighted(day: Moment) {
   return moment().format('L') === day.format('L') ? (
@@ -43,7 +44,7 @@ export interface DateRangeFormControlProps extends some {
   direction?: 'left' | 'center';
 }
 
-const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
+const DateRangeFormControl: React.FC<DateRangeFormControlProps> = (props) => {
   const intl = useIntl();
   const {
     onChange,
@@ -174,7 +175,7 @@ const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
       tabIndex={-1}
       ref={parent}
       onBlur={onBlur}
-      onFocus={e => {
+      onFocus={(e) => {
         setFocus(true);
       }}
     >
@@ -215,7 +216,7 @@ const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
               value={dateFormatStr}
               optional={optional}
               inputProps={{ style: { width: '100%' } }}
-              onChange={e => {
+              onChange={(e) => {
                 setDateFormatStr(e.target.value);
                 textChange(e.target.value);
               }}
@@ -231,7 +232,7 @@ const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
                 !startAdornment && (
                   <InputAdornment position="end" style={{ marginRight: 8 }}>
                     <IconButton size="small" edge="start">
-                      <IconCalender />
+                      <img src="../../../../../svg/ic_calendar.svg"></img>
                     </IconButton>
                   </InputAdornment>
                 )
@@ -240,7 +241,7 @@ const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
                 startAdornment && (
                   <InputAdornment position="start" style={{ marginLeft: 8 }}>
                     <IconButton size="small" edge="start">
-                      <IconCalender />
+                      <img src="../../../../../svg/ic_calendar.svg"></img>
                     </IconButton>
                   </InputAdornment>
                 )
@@ -276,7 +277,7 @@ const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
               startDate={start || null}
               endDate={end || null}
               focusedInput={focusedInput}
-              onDatesChange={value => {
+              onDatesChange={(value) => {
                 setStartDate(value.startDate || undefined);
                 setEndDate(value.endDate || undefined);
                 setDateFormatStr(
@@ -297,23 +298,18 @@ const DateRangeFormControl: React.FC<DateRangeFormControlProps> = props => {
                       }`,
                 );
               }}
-              onFocusChange={text =>
+              onFocusChange={(text) =>
                 setFocusedInput(singleValue ? 'startDate' : text || 'startDate')
               }
               isOutsideRange={(e: any) =>
                 isOutsideRange
                   ? isOutsideRange(e)
-                  : moment()
-                      .endOf('day')
-                      .isSameOrBefore(e) ||
-                    moment()
-                      .subtract(6, 'months')
-                      .startOf('day')
-                      .isSameOrAfter(e)
+                  : moment().endOf('day').isSameOrBefore(e) ||
+                    moment().subtract(6, 'months').startOf('day').isSameOrAfter(e)
               }
               minimumNights={0}
               renderMonthText={renderMonthText}
-              renderDayContents={day => isDayHighlighted(day)}
+              renderDayContents={(day) => isDayHighlighted(day)}
             />
             <div style={{ alignSelf: 'flex-end', padding: '0px 12px 12px 0px' }}>
               <Button

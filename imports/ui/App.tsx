@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Route } from 'react-router';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { URL_PATH } from './configs/routes';
 import DefaultLayout from './layout/defaultLayout/DefaultLayout';
 import { validateAccessToken } from './modules/auth/redux/authThunks';
 import AuthProblemDialog from './modules/common/components/AuthProblemDialog';
@@ -43,7 +42,7 @@ const App: React.FC<Props> = (props) => {
         </Switch>
         <ProtectedRoute auth={auth.auth} path={URL_PATH} component={DefaultLayout} />
       </React.Suspense> */}
-      <Route path={URL_PATH} component={DefaultLayout} />
+      <Route path="/" component={DefaultLayout} />
     </React.Fragment>
   );
 };

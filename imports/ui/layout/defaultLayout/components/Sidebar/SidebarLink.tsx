@@ -55,7 +55,7 @@ const SidebarLink: React.FC<Props> = (props: any) => {
           <Fragment key={index}>
             <ListItem
               button
-              onClick={() => dispatch(goToAction({ pathname: '/admin' + elm.path }))}
+              onClick={() => dispatch(goToAction({ pathname: elm.path }))}
               style={{ marginLeft: 10 }}
             >
               <ListItemIcon style={{ marginRight: -24, marginLeft : 15 }}>{getMenuIcon(elm.iconName)}</ListItemIcon>

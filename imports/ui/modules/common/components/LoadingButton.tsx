@@ -7,7 +7,6 @@ interface Props extends ButtonProps {
   loading?: boolean;
   loadingColor?: PropTypes.Color;
 }
-interface State {}
 
 const LoadingButton: React.FC<Props> = props => {
   const { children, loading, loadingColor, onClick, disableRipple, ...rest } = props;

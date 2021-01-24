@@ -44,14 +44,14 @@ const ChartDetail: React.FC<Props> = () => {
       <Row>
         <Col>
           <Row>
-            <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
+            <Typography variant="subtitle2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
               <FormattedMessage id="product" />
             </Typography>
           </Row>
           <Row>
             <Typography
               style={{ margin: '12px 14px 12px 16px', whiteSpace: 'nowrap' }}
-              variant="subtitle2"
+              variant="body2"
               component="p"
             >
               <FormattedMessage id="imageUni" />
@@ -60,11 +60,11 @@ const ChartDetail: React.FC<Props> = () => {
               name="dataType"
               label={null}
               style={{
-                width: 300,
+                width: 250,
                 margin: '20px 10px 12px 30px',
               }}
               formControlStyle={{
-                minWidth: 300,
+                minWidth: 250,
                 width: 'auto',
               }}
               options={dataType}
@@ -85,7 +85,7 @@ const ChartDetail: React.FC<Props> = () => {
           <Row>
             <Typography
               style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
-              variant="subtitle2"
+              variant="body2"
               component="p"
             >
               <FormattedMessage id="spaceStation" />
@@ -94,11 +94,11 @@ const ChartDetail: React.FC<Props> = () => {
               name="station"
               label={null}
               style={{
-                width: 300,
+                width: 250,
                 margin: '16px 10px 8px 15px',
               }}
               formControlStyle={{
-                minWidth: 300,
+                minWidth: 250,
                 width: 'auto',
               }}
               options={stationList}
@@ -111,16 +111,16 @@ const ChartDetail: React.FC<Props> = () => {
             />
           </Row>
         </Col>
-        <Col style={{marginLeft : 100}}>
+        <Col style={{marginLeft : 80}}>
           <Row>
-            <Typography variant="body2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
+            <Typography variant="subtitle2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
               <FormattedMessage id="conditionCombined" />
             </Typography>
           </Row>
           <Row>
             <Typography
               style={{ margin: '12px 10px 12px 15px', whiteSpace: 'nowrap' }}
-              variant="subtitle2"
+              variant="body2"
               component="p"
             >
               <FormattedMessage id="radius" />
@@ -129,11 +129,11 @@ const ChartDetail: React.FC<Props> = () => {
               name="radius"
               label={null}
               style={{
-                width: 300,
+                width: 250,
                 margin: '20px 10px 12px 25px',
               }}
               formControlStyle={{
-                minWidth: 300,
+                minWidth: 250,
                 width: 'auto',
               }}
               options={
@@ -155,7 +155,7 @@ const ChartDetail: React.FC<Props> = () => {
           <Row>
             <Typography
               style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
-              variant="subtitle2"
+              variant="body2"
               component="p"
             >
               <FormattedMessage id="time" />
@@ -164,11 +164,11 @@ const ChartDetail: React.FC<Props> = () => {
               name="time"
               label={null}
               style={{
-                width: 300,
+                width: 250,
                 margin: '16px 10px 8px 20px',
               }}
               formControlStyle={{
-                minWidth: 300,
+                minWidth: 250,
                 width: 'auto',
               }}
               options={timeEvaluation as any[]}

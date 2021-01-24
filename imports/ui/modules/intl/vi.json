@@ -46,12 +46,13 @@
   "birthdayValid": "Ngày sinh sai định dạng",
   "IDS_HMS_SAVE": "Lưu lại",
   "IDS_HMS_DELETE": "Xóa",
+  "start": "Bắt đầu",
   "IDS_HMS_REJECT": "Bỏ qua",
   "IDS_HMS_SHOW": "Hiển thị",
   "allGroupUsers": "Tất cả nhóm người dùng",
   "addMember": "Thêm mới thành viên",
   "active": "Hoạt động",
-  "cancel": "Hủy",
+  "cancel": "Hủy bỏ",
   "ok": "OK",
   "accountInfo": "Thông tin tài khoản",
   "ignore": "Bỏ qua",
@@ -66,6 +67,8 @@
   "status": "Trạng thái",
   "deleted": "Đã xóa",
   "city": "Thành phố",
+  "success": "Thành công!",
+
   "nation": "Quốc gia",
   "filterBy": "Lọc kết quả theo",
   "rangeDayRegister": "Khoảng ngày đăng ký",
@@ -161,6 +164,7 @@
   "generalSetting": "Cấu hình",
 
   "notChosen": "Chưa chọn",
+  "IDS_HMS_DATE_PLACEHOLDER": "--/--/----",
   "chosenDate": "Chọn ngày",
 
   "labelRowPerPage": "Số hàng trên mỗi trang:",
@@ -194,8 +198,12 @@
   "MOD": "MOD",
   "MYD": "MYD",
   "VIIRS": "VIIRS",
+  "calipso": "CALIPSO",
+
   "data": "Dữ liệu",
   "dataChoosing": "Lựa chọn các thông số cho biểu đồ:",
+  "timeChoosing": "Thời gian tải",
+
   "time": "Thời gian",
   "radius": "Bán kính",
   "pm25Map": "Bản đồ PM2.5",
@@ -204,8 +212,19 @@
   "IDS_HMS_FEATURE_UN_SUPPORTED": "Tính năng đang được phát triển!",
   "IDS_HMS_GO_TO_HOMEPAGE": "Quay về trang chủ",
   "product": "Sản phẩm",
-  "imageUni" : "Ảnh vệ tinh",
-  "conditionCombined" : "Điều kiện kết hợp"
+  "imageUni": "Ảnh vệ tinh",
+  "conditionCombined": "Điều kiện kết hợp",
+  "download": "Tải dữ liệu:",
+  "Landsat": "Landsat",
+  "process": "Xử lý dữ liệu:",
+  "dataSet": "Dataset",
+  "interpolationMethod": "Phương pháp nội suy",
+  "files": "Danh sách file",
+  "chooseFile": "Chọn File"
+
+
+
+
 
 
 }

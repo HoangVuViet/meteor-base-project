@@ -45,7 +45,7 @@ export default function Admin({ ...rest }) {
         [classes.contentShift]: open,
       })}
       >
-        <DefaultFooter />
+        {/* <DefaultFooter /> */}
       </div>
     </div>
   );

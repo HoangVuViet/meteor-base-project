@@ -89,7 +89,7 @@ export default function PersistentDrawerLeft(props: any) {
   const makeBrand = () => {
     let name;
     APP_ROUTES.map((elm: some) => {
-      if (window.location.href.indexOf(elm.layout + elm.path) !== -1) {
+      if (window.location.href.indexOf(elm.path) !== -1) {
         name = elm.name;
       }
       return null;
@@ -100,9 +100,9 @@ export default function PersistentDrawerLeft(props: any) {
   const switchRoutes = (
     <Switch>
       {APP_ROUTES?.map((elm: some, index: number) => {
-        return <Route path={elm?.layout + elm?.path} component={elm?.component} key={index} />;
+        return <Route path={elm?.path} component={elm?.component} key={index} />;
       })}
-      <Redirect from="/admin" to="/admin/pm25Map" />
+      <Redirect from="/" to="/pm25Map" />
     </Switch>
   );
 
@@ -115,7 +115,7 @@ export default function PersistentDrawerLeft(props: any) {
         position="fixed"
         // style={{ background: 'transparent', boxShadow: 'none'}}
       >
-        <Toolbar  variant="dense">
+        <Toolbar variant="dense">
           <IconButton
             color="inherit"
             aria-label="open drawer"

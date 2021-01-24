@@ -3,8 +3,11 @@
 import Chart from '../modules/chart/pages/Chart';
 import HelloWorld from '../modules/chart/pages/HelloWorld';
 import NotFoundBox from '../modules/common/components/NotFoundBox';
+import CalipsoDownload from '../modules/download/pages/CalipsoDownload';
+import LandsatDownload from '../modules/download/pages/LandsatDownload';
 import ArcMapLandsat from '../modules/map/pages/ArcMapLandsat';
 import ArcMap from '../modules/map/pages/ArcMapPM25';
+import LandsatProcess from '../modules/process/pages/LandsatProcess';
 export const ROUTES = {
   login: '/login',
   forgotPass: '/forgot-password',
@@ -40,7 +43,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.landsatDownload,
     exact: true,
-    component: NotFoundBox,
+    component: LandsatDownload,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -51,7 +54,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.calipsoDownload,
     exact: true,
-    component: NotFoundBox,
+    component: CalipsoDownload,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -62,7 +65,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.modisDownload,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -73,7 +76,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.viirsDownload,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -84,7 +87,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.aeronetDownload,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -94,11 +97,11 @@ export const DOWNLOAD_DATA_ROUTES = [
 
 export const PROCESS_DATA_ROUTES = [
   {
-    name: 'MODIS',
+    name: 'Landsat AOD',
     isModule: true,
     path: ROUTES.landsatProcess,
     exact: true,
-    component: NotFoundBox,
+    component: LandsatProcess,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -109,7 +112,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.calipsoProcess,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -120,7 +123,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.modisProcess,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -131,7 +134,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.viirsProcess,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -142,7 +145,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.aeronetProcess,
     exact: true,
-    component: NotFoundBox,
+    component: HelloWorld,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
