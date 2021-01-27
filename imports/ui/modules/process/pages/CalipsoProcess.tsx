@@ -3,13 +3,13 @@ import React from 'react';
 import Process from '../components/Process';
 import { dataSetValues, interpolationMethod } from '../utils';
 
-const LandsatProcess: React.FC = () => {
+const CalipsoProcess: React.FC = () => {
   return (
     <Formik initialValues={{}} onSubmit={() => {}}>
       {({  }) => (
         <Form>
           <Process
-            dataTitle="Landsat"
+            dataTitle="calipso"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
           ></Process>
@@ -19,4 +19,4 @@ const LandsatProcess: React.FC = () => {
   );
 };
 
-export default LandsatProcess;
+export default CalipsoProcess;

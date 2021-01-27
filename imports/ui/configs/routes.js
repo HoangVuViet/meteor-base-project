@@ -3,11 +3,16 @@
 import Chart from '../modules/chart/pages/Chart';
 import HelloWorld from '../modules/chart/pages/HelloWorld';
 import NotFoundBox from '../modules/common/components/NotFoundBox';
+import AeronetDownload from '../modules/download/pages/AeronetDownload';
 import CalipsoDownload from '../modules/download/pages/CalipsoDownload';
 import LandsatDownload from '../modules/download/pages/LandsatDownload';
+import ViirsDownload from '../modules/download/pages/ViirsDownload';
 import ArcMapLandsat from '../modules/map/pages/ArcMapLandsat';
 import ArcMap from '../modules/map/pages/ArcMapPM25';
+import CalipsoProcess from '../modules/process/pages/CalipsoProcess';
 import LandsatProcess from '../modules/process/pages/LandsatProcess';
+import ViirsProcess from '../modules/process/pages/ViirsProcess';
+import AeronetProcess from '../modules/process/pages/AeronetProcess';
 export const ROUTES = {
   login: '/login',
   forgotPass: '/forgot-password',
@@ -76,7 +81,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.viirsDownload,
     exact: true,
-    component: HelloWorld,
+    component: ViirsDownload,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -87,7 +92,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.aeronetDownload,
     exact: true,
-    component: HelloWorld,
+    component: AeronetDownload,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -112,7 +117,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.calipsoProcess,
     exact: true,
-    component: HelloWorld,
+    component: CalipsoProcess,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -134,7 +139,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.viirsProcess,
     exact: true,
-    component: HelloWorld,
+    component: ViirsProcess,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -145,7 +150,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.aeronetProcess,
     exact: true,
-    component: HelloWorld,
+    component: AeronetProcess,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',

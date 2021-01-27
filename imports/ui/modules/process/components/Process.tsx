@@ -6,6 +6,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
+import LoadingButton from '../../common/components/LoadingButton';
 import { some } from '/imports/ui/constants';
 
 interface Props {
@@ -18,8 +19,7 @@ const Download: React.FC<Props> = (props) => {
   const { dataTitle, data, interpolationMethod } = props;
 
   const intl = useIntl();
-  const { setFieldValue, values } = useFormikContext();
-
+  const { setFieldValue, values, isSubmitting } = useFormikContext();
 
   return (
     <Col style={{ marginLeft: 20 }}>
@@ -212,6 +212,30 @@ const Download: React.FC<Props> = (props) => {
           </Paper>
         </Row>
       </Col>
+      <Row style={{ marginTop: 30, marginBottom: 20, marginLeft: 30 }}>
+        <LoadingButton
+          type="submit"
+          color="secondary"
+          variant="contained"
+          disableElevation
+          style={{ marginRight: 24, width: 100, whiteSpace: 'nowrap' }}
+          loading={isSubmitting}
+          // onClick={() => {
+
+          // }}
+        >
+          <FormattedMessage id="start" />
+        </LoadingButton>
+        <Button
+          variant="outlined"
+          disableElevation
+          style={{ width: 100 }}
+          // onClick={() => {
+          // }}
+        >
+          <FormattedMessage id="IDS_HMS_REJECT" />
+        </Button>
+      </Row>
     </Col>
   );
 };
