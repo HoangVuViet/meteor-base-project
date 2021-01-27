@@ -1,5 +1,6 @@
-import { Paper, Typography } from '@material-ui/core';
+import { Button, Paper, Typography } from '@material-ui/core';
 import { useFormikContext } from 'formik';
+import { Meteor } from 'meteor/meteor';
 import moment from 'moment';
 import React from 'react';
 import 'react-dates/initialize';
@@ -8,6 +9,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import DateRangeFormControl from '../../common/components/DateRangeFormControl';
 import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
+import LoadingButton from '../../common/components/LoadingButton';
 import { some } from '/imports/ui/constants';
 import { DATE_FORMAT_BACK_END } from '/imports/ui/models/moment';
 
@@ -20,10 +22,13 @@ const Download: React.FC<Props> = (props) => {
   const { dataTitle, product } = props;
 
   const intl = useIntl();
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values, isSubmitting, resetForm } = useFormikContext();
 
-  console.log(values as some);
-
+  const runScript = React.useCallback(() => {
+    Meteor.call('method2', 'value from client', (_error: any, result: any) => {
+      console.log(result);
+    });
+  }, []);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -131,6 +136,31 @@ const Download: React.FC<Props> = (props) => {
           </Paper>
         </Row>
       </Col>
+      <Row style={{ marginTop: 30, marginBottom: 20, marginLeft: 30 }}>
+        <LoadingButton
+          type="submit"
+          color="secondary"
+          variant="contained"
+          disableElevation
+          style={{ marginRight: 24, width: 100, whiteSpace: 'nowrap' }}
+          loading={isSubmitting}
+          onClick={() => {
+            runScript();
+          }}
+        >
+          <FormattedMessage id="start" />
+        </LoadingButton>
+        <Button
+          variant="outlined"
+          disableElevation
+          style={{ width: 100 }}
+          onClick={() => {
+            resetForm();
+          }}
+        >
+          <FormattedMessage id="IDS_HMS_REJECT" />
+        </Button>
+      </Row>
     </Col>
   );
 };

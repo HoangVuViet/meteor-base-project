@@ -3,7 +3,7 @@ import React from 'react';
 import Download from '../components/Download';
 import { landsatProduct } from '../utils';
 
-const LandsatDownload: React.FC = () => {
+const AeronetDownload: React.FC = () => {
   return (
     <Formik initialValues={{}} onSubmit={() => {}}>
       {({}) => (
@@ -15,4 +15,4 @@ const LandsatDownload: React.FC = () => {
   );
 };
 
-export default LandsatDownload;
+export default AeronetDownload;

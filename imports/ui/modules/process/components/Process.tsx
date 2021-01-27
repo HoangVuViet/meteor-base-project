@@ -20,7 +20,6 @@ const Download: React.FC<Props> = (props) => {
   const intl = useIntl();
   const { setFieldValue, values } = useFormikContext();
 
-  console.log(values as some);
 
   return (
     <Col style={{ marginLeft: 20 }}>
