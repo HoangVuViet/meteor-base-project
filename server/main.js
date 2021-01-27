@@ -29,7 +29,7 @@ if (Meteor.isServer) {
     method2: function (arg) {
       return new Promise((resolve, reject) => {
         let a = 0
-        const process = spawn('python', ['assets/app/test.py', arg]);
+        const process = spawn('python', ['assets/app/test.py', 'Test']);
 
         process.stdout.on(
           'data',
