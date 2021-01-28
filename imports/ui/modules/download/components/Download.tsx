@@ -23,12 +23,14 @@ const Download: React.FC<Props> = (props) => {
 
   const intl = useIntl();
   const { setFieldValue, values, isSubmitting, resetForm } = useFormikContext();
-
+  console.log(values);
   const runScript = React.useCallback(() => {
+    const valuePassedToSever = (values as some)?.product === 1 ? `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat TOA` : `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat SR`
+    console.log(valuePassedToSever)
     Meteor.call('method2', 'value from client', (_error: any, result: any) => {
       console.log(result);
     });
-  }, []);
+  }, [values]);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
