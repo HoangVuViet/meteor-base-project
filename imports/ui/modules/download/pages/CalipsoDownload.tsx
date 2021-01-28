@@ -8,7 +8,7 @@ const CalipsoDownload: React.FC = () => {
     <Formik initialValues={{}} onSubmit={() => {}}>
       {({}) => (
         <Form>
-          <Download dataTitle="calipso" product={calipsoProduct}></Download>
+          <Download dataTitle="calipso" product={calipsoProduct} fileName='download_landsat.py' command="python"></Download>
         </Form>
       )}
     </Formik>

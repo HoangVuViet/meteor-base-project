@@ -8,7 +8,7 @@ const LandsatDownload: React.FC = () => {
     <Formik initialValues={{}} onSubmit={() => {}}>
       {({}) => (
         <Form>
-          <Download dataTitle="Landsat" product={landsatProduct}></Download>
+          <Download dataTitle="Landsat" product={landsatProduct} fileName='test.py' command="python"></Download>
         </Form>
       )}
     </Formik>

@@ -16,21 +16,26 @@ import { DATE_FORMAT_BACK_END } from '/imports/ui/models/moment';
 interface Props {
   dataTitle: string;
   product: some[];
+  fileName: string;
+  command: string;
 }
 
 const Download: React.FC<Props> = (props) => {
-  const { dataTitle, product } = props;
+  const { dataTitle, product, command, fileName } = props;
 
   const intl = useIntl();
   const { setFieldValue, values, isSubmitting, resetForm } = useFormikContext();
   console.log(values);
   const runScript = React.useCallback(() => {
-    const valuePassedToSever = (values as some)?.product === 1 ? `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat TOA` : `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat SR`
-    console.log(valuePassedToSever)
-    Meteor.call('method2', 'value from client', (_error: any, result: any) => {
+    const valuePassedToSever =
+      (values as some)?.product === 1
+        ? `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat TOA`
+        : `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat SR`;
+    console.log(valuePassedToSever);
+    Meteor.call('method2', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
       console.log(result);
     });
-  }, [values]);
+  }, [values, command]);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
