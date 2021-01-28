@@ -28,6 +28,7 @@ if (Meteor.isServer) {
 
     method2: function (arg) {
       return new Promise((resolve, reject) => {
+        const args = `.\download_landsat.py '2019-01-01' '2019-02-01' (8,102,23,109) "D:/"`
         const process = spawn('python', ['assets/app/' + 'test.py', arg.toString()]);
 
         process.stdout.on(
