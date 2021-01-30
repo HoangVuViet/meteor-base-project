@@ -3,7 +3,7 @@ import landsatxplore.api
 from landsatxplore.earthexplorer import EarthExplorer
 from download_param import *
 
-def download_landsat(start_date,end_date,spatial_range,out_path):
+def download_landsat(start_date,end_date,product,spatial_range,out_path):
     """[This function to download Landsat product]
 
     Args:
@@ -18,7 +18,7 @@ def download_landsat(start_date,end_date,spatial_range,out_path):
 
     # Request
     scenes = api.search(
-        dataset = LANDSAT_PRODUCT,
+        dataset = product,
         bbox= spatial_range,
         start_date = start_date,
         end_date = end_date,
@@ -34,5 +34,5 @@ def download_landsat(start_date,end_date,spatial_range,out_path):
         ee.download(scene_id=scene['entityId'], output_dir=out_path)
         
     ee.logout()
-download_landsat(LANDSAT_START_DATE,LANDSAT_END_DATE,LANDSAT_RANGE,LANDSAT_OUT_PATH)
-#download_landsat(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3])
+#download_landsat(LANDSAT_START_DATE,LANDSAT_END_DATE,LANDSAT_PRODUCT,LANDSAT_RANGE,LANDSAT_OUT_PATH)
+download_landsat(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])

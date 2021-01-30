@@ -4,7 +4,7 @@ import os, shutil
 import subprocess
 import wget
 import pandas as pd 
-
+import sys
 def getFileId(product = 'MOD07_L2', start='2008-10-23', stop='2008-10-23', north = 40, south=30, west = -80, east=-70, dayNightBoth='DNB'):
 
 	url = r'http://modwebsrv.modaps.eosdis.nasa.gov/axis2/services/MODAPSservices/searchForFiles?product={0}&start={1}&stop={2}&north={3}&south={4}&west={5}&east={6}&coordsOrTiles=coords&dayNightBoth={7}'.format(product, start, stop, north, south, west, east, dayNightBoth)
@@ -51,7 +51,8 @@ def downloadFile(source, dest, token = 'a3Vkb2hkdHQxX2dtYWlsLmNvbTphM1ZrYjJoa2RI
 	status = os.system(cmd)
 	return status
 	
-def downloadladsweb(product, start, stop, north , south, west , east, dayNightBoth, filename_err='err.csv', folder_out='test'):
+def downloadladsweb(start, stop, product,north , south, west , east, dayNightBoth, filename_err='err.csv', folder_out='E:/APOM_PLATFORM/data/org/SatOrgMODIS/'
+):
 	#danh sach cac duong dan bi loi
 	# filename_err = r'E:\FIMO\test\wget\err.csv'
 	# Lay danh sach ID file
@@ -79,6 +80,6 @@ def downloadladsweb(product, start, stop, north , south, west , east, dayNightBo
 	df.to_csv(filename_err)
     
 
-downloadladsweb("MOD04_3K", '2018-10-23', '2018-10-23', 40 , 30, -80 , -70, "DNB", 'E:/err.csv', "E:/")
-#downloadladsweb(args[0], '2008-10-23', '2008-10-23', 40 , 30, -80 , -70, "DNB", 'E:/err.csv', "E:/")
+# downloadladsweb('2018-10-23', '2018-10-23',"MOD04_3K", 40 , 30, -80 , -70, "DNB", 'E:/err.csv', "E:/ImageTest")
+downloadladsweb(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9])
 				

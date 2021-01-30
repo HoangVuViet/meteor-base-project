@@ -25,20 +25,16 @@ const Download: React.FC<Props> = (props) => {
 
   const intl = useIntl();
   const { setFieldValue, values, isSubmitting, resetForm, setSubmitting } = useFormikContext();
-  console.log(values);
   const runScript = React.useCallback(() => {
     setSubmitting(true);
     const temp = product.find((el: some) => el?.id === (values as some)?.product)?.name;
-    const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
-      (values as some)?.toOrDerDate
-    } ${temp}`;
-    console.log(valuePassedToSever);
+    const valuePassedToSever = `'${(values as some)?.fromOrderDate}' '${(values as some)?.toOrDerDate
+      }' ${temp}`;
     Meteor.call('method2', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
       console.log(result);
     });
     setSubmitting(false);
   }, [values, command]);
-  console.log(product.find((el: some) => el?.id === (values as some)?.product)?.name);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -61,13 +57,13 @@ const Download: React.FC<Props> = (props) => {
           <DateRangeFormControl
             startDate={
               (values as some).fromOrderDate &&
-              moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
+                moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
                 ? moment((values as some).fromOrderDate, C_DATE_FORMAT, true)
                 : undefined
             }
             endDate={
               (values as some).toOrDerDate &&
-              moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
+                moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
                 ? moment((values as some).toOrDerDate, C_DATE_FORMAT, true)
                 : undefined
             }

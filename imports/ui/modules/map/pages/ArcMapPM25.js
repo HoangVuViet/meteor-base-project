@@ -14,8 +14,8 @@ const ArcMap = (props) => {
     <div style={{ height: 560 }}>
       <MyFeatureLayer
         featureLayerProperties={{
-          url: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer',
-          featureUrl: 'http://113.175.118.161:6080/arcgis/rest/services/PM25_MYD/MapServer/0',
+          url: 'http://localhost:6080/arcgis/rest/services/PM25_MYD/MapServer',
+          featureUrl: 'http://localhost:6080/arcgis/rest/services/PM25_MYD/MapServer/0',
         }}
         mapState={mapState}
       ></MyFeatureLayer>

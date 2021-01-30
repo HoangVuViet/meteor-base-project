@@ -3,9 +3,10 @@ import ftplib
 import os
 from download_param import *
 import datetime
+import sys
 
 
-def download_calipso(start_date,end_date,output_path):
+def download_calipso(start_date,end_date,product,output_path):
     """[This function for download CALIPSO data from FTP ICARE Server]
 
     Args:
@@ -24,6 +25,7 @@ def download_calipso(start_date,end_date,output_path):
         year_str = str(start.year)
         date_str = str(start.date()).replace("-","_")
         print("Starting date: " + date_str)
+        CALIPSO_ROOT = "/SPACEBORNE/" + CALIPSO_SAT + "/" + product
         data_path = CALIPSO_ROOT + "/" + year_str + "/" + date_str + "/"
         
         try:
@@ -37,4 +39,5 @@ def download_calipso(start_date,end_date,output_path):
             print ("No files on this date")
         start += step
     ftp.close()
-download_calipso(CALIPSO_START_DATE,CALIPSO_END_DATE,CALIPSO_OUT_PATH)
+download_calipso(CALIPSO_START_DATE,CALIPSO_END_DATE,CALIPSO_PRODUCT,CALIPSO_OUT_PATH)
+download_calipso(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3])
