@@ -58,13 +58,13 @@ const Download: React.FC<Props> = (props) => {
           <DateRangeFormControl
             startDate={
               (values as some).fromOrderDate &&
-              moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
+                moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
                 ? moment((values as some).fromOrderDate, C_DATE_FORMAT, true)
                 : undefined
             }
             endDate={
               (values as some).toOrDerDate &&
-              moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
+                moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
                 ? moment((values as some).toOrDerDate, C_DATE_FORMAT, true)
                 : undefined
             }
