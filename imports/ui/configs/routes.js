@@ -13,6 +13,8 @@ import CalipsoProcess from '../modules/process/pages/CalipsoProcess';
 import LandsatProcess from '../modules/process/pages/LandsatProcess';
 import ViirsProcess from '../modules/process/pages/ViirsProcess';
 import AeronetProcess from '../modules/process/pages/AeronetProcess';
+import ModisDownload from '../modules/download/pages/ModisDownload';
+import ModisProcess from '../modules/process/pages/ModisProcess';
 export const ROUTES = {
   login: '/login',
   forgotPass: '/forgot-password',
@@ -70,7 +72,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.modisDownload,
     exact: true,
-    component: HelloWorld,
+    component: ModisDownload,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',
@@ -128,7 +130,7 @@ export const PROCESS_DATA_ROUTES = [
     isModule: true,
     path: ROUTES.modisProcess,
     exact: true,
-    component: HelloWorld,
+    component: ModisProcess,
     hidden: false,
     disableBreadcrumb: true,
     layout: '/admin',

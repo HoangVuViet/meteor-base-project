@@ -1,8 +1,10 @@
 import { CircularProgress, Paper, Typography } from '@material-ui/core';
 import { csv, text } from 'd3';
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Col, Row } from '../../common/components/elements';
 import ChartRender from './ChartRender';
+import { GREY_600 } from '/imports/ui/configs/colors';
 import { isEmpty, some, URL_BASE } from '/imports/ui/constants';
 interface Props {
   body: some;
@@ -86,22 +88,30 @@ const DataChart: React.FC<Props> = (props) => {
                   <span>-</span>&nbsp;{textData[0]}
                 </Typography>
                 <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
-                <span>-</span>&nbsp;{textData[1]}
+                  <span>-</span>&nbsp;{textData[1]}
                 </Typography>
                 <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
-                <span>-</span>&nbsp;{textData[2]}
+                  <span>-</span>&nbsp;{textData[2]}
                 </Typography>
                 <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
-                <span>-</span>&nbsp;{textData[3]}
+                  <span>-</span>&nbsp;{textData[3]}
                 </Typography>
                 <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
-                <span>-</span>&nbsp;{textData[4]}
+                  <span>-</span>&nbsp;{textData[4]}
                 </Typography>
               </Paper>
             </Row>
           ) : (
-            <div style={{ marginLeft: 200, marginTop : 100, width: '100%' }}>
-              <img src="../../../svg/notFound.svg" alt="" />
+            <div style={{ margin: '100px auto', marginLeft: 450, width: '100%' }}>
+              <img src="../../../svg/ic_emptyIcon.svg" alt="" />
+              <Typography
+                gutterBottom
+                variant="subtitle2"
+                component="p"
+                style={{ color: '#757575', marginLeft: -40 }}
+              >
+                <FormattedMessage id="emptyData" />
+              </Typography>
             </div>
           )}
         </React.Fragment>

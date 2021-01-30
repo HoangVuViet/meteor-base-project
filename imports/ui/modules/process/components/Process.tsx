@@ -40,7 +40,7 @@ const Download: React.FC<Props> = (props) => {
               marginRight: 110,
               whiteSpace: 'nowrap',
               alignSelf: 'flex-start',
-            }}
+          }}
           >
             <FormattedMessage id="chooseFile" />
           </Typography>
