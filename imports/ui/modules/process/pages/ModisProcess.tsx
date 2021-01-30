@@ -1,17 +1,19 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import Process from '../components/Process';
-import { dataSetValues, interpolationMethod } from '../utils';
+import { interpolationMethod, modisDataSetValues } from '../utils';
 
 const ModisProcess: React.FC = () => {
   return (
     <Formik initialValues={{}} onSubmit={() => {}}>
-      {({  }) => (
+      {({}) => (
         <Form>
           <Process
             dataTitle="modis"
-            data={dataSetValues}
+            data={modisDataSetValues}
             interpolationMethod={interpolationMethod}
+            command="python"
+            fileName="test.py"
           ></Process>
         </Form>
       )}

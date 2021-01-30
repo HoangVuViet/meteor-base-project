@@ -23,13 +23,27 @@ if (Meteor.isServer) {
   Meteor.methods({
 
     method1: function (arg) {
-      return 123456;
-    },
+      return new Promise((resolve, reject) => {
+        // const args = `.\download_landsat.py '2019-01-01' '2019-02-01' (8,102,23,109) "D:/"`
+        const process = spawn(arg[0], ['assets/app/' + arg[1], arg[2].toString()]);
 
+        process.stdout.on(
+          'data',
+          data => {
+            resolve(data.toString())
+          }
+        );
+        process.stdout.on(
+          'error',
+          error => {
+            reject(error)
+          }
+        );
+      })
+    },
     method2: function (arg) {
       return new Promise((resolve, reject) => {
-        const args = `.\download_landsat.py '2019-01-01' '2019-02-01' (8,102,23,109) "D:/"`
-        const process = spawn(arg[0], ['assets/app/' + arg[1], arg[2].toString()]);
+        const process = spawn(arg[0], ['assets/app/' + arg[1], arg[2].toString(), `'":mod04:Optical_Depth_Land_And_Ocean'`, arg[3].toString()]);
 
         process.stdout.on(
           'data',

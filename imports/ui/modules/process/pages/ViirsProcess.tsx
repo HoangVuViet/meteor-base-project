@@ -12,6 +12,8 @@ const ViirsProcess: React.FC = () => {
             dataTitle="VIIRS"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
+            command="python"
+            fileName="test.py"
           ></Process>
         </Form>
       )}

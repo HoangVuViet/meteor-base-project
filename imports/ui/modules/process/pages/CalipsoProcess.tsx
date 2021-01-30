@@ -6,12 +6,14 @@ import { dataSetValues, interpolationMethod } from '../utils';
 const CalipsoProcess: React.FC = () => {
   return (
     <Formik initialValues={{}} onSubmit={() => {}}>
-      {({  }) => (
+      {({}) => (
         <Form>
           <Process
             dataTitle="calipso"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
+            command="python"
+            fileName="test.py"
           ></Process>
         </Form>
       )}

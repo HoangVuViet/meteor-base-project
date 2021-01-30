@@ -31,7 +31,7 @@ const Download: React.FC<Props> = (props) => {
     const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
       (values as some)?.toOrDerDate
     } ${temp}`;
-    Meteor.call('method2', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
+    Meteor.call('method1', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
       console.log(result);
     });
     setSubmitting(false);
@@ -131,7 +131,7 @@ const Download: React.FC<Props> = (props) => {
               </Typography>
             ) : (
               <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-                <FormattedMessage id="Chưa xong" />
+                <FormattedMessage id="notDone" />
               </Typography>
             )}
             <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>

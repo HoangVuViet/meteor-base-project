@@ -12,6 +12,8 @@ const AeronetProcess: React.FC = () => {
             dataTitle="aeronet"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
+            command="python"
+            fileName="test.py"
           ></Process>
         </Form>
       )}

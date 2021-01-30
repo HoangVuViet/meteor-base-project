@@ -170,6 +170,8 @@
   "labelRowPerPage": "Số hàng trên mỗi trang:",
   "rowPerPage": "Số dòng:",
   "stt": "STT",
+  "notDone": "Chua xong",
+
 
   "helloWorld": "Hello World",
 
@@ -208,6 +210,8 @@
   "emptyData": "Chưa có dữ liệu để hiển thị",
   "empty": "Chưa có dữ liệu!",
   "emptyStatus": "Chưa có trạng thái xử lý!",
+  "isDownloading": "Đang tải xuống.......!",
+
 
 
   "time": "Thời gian",
