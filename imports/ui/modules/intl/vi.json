@@ -199,11 +199,13 @@
   "MYD": "MYD",
   "VIIRS": "VIIRS",
   "calipso": "CALIPSO",
-  "aeronet":"AERONET",
+  "aeronet": "AERONET",
+  "modis": "MODIS",
 
   "data": "Dữ liệu",
   "dataChoosing": "Lựa chọn các thông số cho biểu đồ:",
   "timeChoosing": "Thời gian tải",
+  "emptyData": "Chưa có dữ liệu để hiển thị",
 
   "time": "Thời gian",
   "radius": "Bán kính",

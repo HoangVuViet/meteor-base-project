@@ -11,7 +11,7 @@ import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
 import LoadingButton from '../../common/components/LoadingButton';
 import { some } from '/imports/ui/constants';
-import { DATE_FORMAT_BACK_END } from '/imports/ui/models/moment';
+import { C_DATE_FORMAT } from '/imports/ui/models/moment';
 
 interface Props {
   dataTitle: string;
@@ -24,18 +24,21 @@ const Download: React.FC<Props> = (props) => {
   const { dataTitle, product, command, fileName } = props;
 
   const intl = useIntl();
-  const { setFieldValue, values, isSubmitting, resetForm } = useFormikContext();
+  const { setFieldValue, values, isSubmitting, resetForm, setSubmitting } = useFormikContext();
   console.log(values);
   const runScript = React.useCallback(() => {
-    const valuePassedToSever =
-      (values as some)?.product === 1
-        ? `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat TOA`
-        : `${(values as some)?.fromOrderDate} ${(values as some)?.toOrDerDate} Landsat SR`;
+    setSubmitting(true);
+    const temp = product.find((el: some) => el?.id === (values as some)?.product)?.name;
+    const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
+      (values as some)?.toOrDerDate
+    } ${temp}`;
     console.log(valuePassedToSever);
     Meteor.call('method2', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
       console.log(result);
     });
+    setSubmitting(false);
   }, [values, command]);
+  console.log(product.find((el: some) => el?.id === (values as some)?.product)?.name);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -58,21 +61,21 @@ const Download: React.FC<Props> = (props) => {
           <DateRangeFormControl
             startDate={
               (values as some).fromOrderDate &&
-              moment((values as some).fromOrderDate, DATE_FORMAT_BACK_END, true).isValid()
-                ? moment((values as some).fromOrderDate, DATE_FORMAT_BACK_END, true)
+              moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
+                ? moment((values as some).fromOrderDate, C_DATE_FORMAT, true)
                 : undefined
             }
             endDate={
               (values as some).toOrDerDate &&
-              moment((values as some).toOrDerDate, DATE_FORMAT_BACK_END, true).isValid()
-                ? moment((values as some).toOrDerDate, DATE_FORMAT_BACK_END, true)
+              moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
+                ? moment((values as some).toOrDerDate, C_DATE_FORMAT, true)
                 : undefined
             }
             style={{ minWidth: 250 }}
             optional
             onChange={(startDate: any, endDate: any) => {
-              setFieldValue(`fromOrderDate`, startDate?.format(DATE_FORMAT_BACK_END));
-              setFieldValue(`toOrDerDate`, endDate?.format(DATE_FORMAT_BACK_END));
+              setFieldValue(`fromOrderDate`, startDate?.format(C_DATE_FORMAT));
+              setFieldValue(`toOrDerDate`, endDate?.format(C_DATE_FORMAT));
             }}
             isOutsideRange={() => false}
             label={intl.formatMessage({ id: 'timeChoosing' })}
