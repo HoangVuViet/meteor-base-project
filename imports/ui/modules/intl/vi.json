@@ -206,6 +206,9 @@
   "dataChoosing": "Lựa chọn các thông số cho biểu đồ:",
   "timeChoosing": "Thời gian tải",
   "emptyData": "Chưa có dữ liệu để hiển thị",
+  "empty": "Chưa có dữ liệu!",
+  "emptyStatus": "Chưa có trạng thái xử lý!",
+
 
   "time": "Thời gian",
   "radius": "Bán kính",

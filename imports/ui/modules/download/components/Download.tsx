@@ -25,20 +25,17 @@ const Download: React.FC<Props> = (props) => {
 
   const intl = useIntl();
   const { setFieldValue, values, isSubmitting, resetForm, setSubmitting } = useFormikContext();
-  console.log(values);
   const runScript = React.useCallback(() => {
     setSubmitting(true);
     const temp = product.find((el: some) => el?.id === (values as some)?.product)?.name;
     const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
       (values as some)?.toOrDerDate
     } ${temp}`;
-    console.log(valuePassedToSever);
     Meteor.call('method2', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
       console.log(result);
     });
     setSubmitting(false);
   }, [values, command]);
-  console.log(product.find((el: some) => el?.id === (values as some)?.product)?.name);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -128,9 +125,15 @@ const Download: React.FC<Props> = (props) => {
               width: 500,
             }}
           >
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
+            {isSubmitting ? (
+              <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
+                <FormattedMessage id="success" />
+              </Typography>
+            ) : (
+              <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
+                <FormattedMessage id="Chưa xong" />
+              </Typography>
+            )}
             <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
               <FormattedMessage id="success" />
             </Typography>

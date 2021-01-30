@@ -1,13 +1,17 @@
 import { Button, Paper, Typography } from '@material-ui/core';
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { Fragment } from 'react';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useDispatch } from 'react-redux';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
 import LoadingButton from '../../common/components/LoadingButton';
-import { some } from '/imports/ui/constants';
+import { isEmpty, some } from '/imports/ui/constants';
+import { AppState } from '/imports/ui/redux/reducers';
 
 interface Props {
   dataTitle: string;
@@ -20,7 +24,15 @@ const Download: React.FC<Props> = (props) => {
 
   const intl = useIntl();
   const { setFieldValue, values, isSubmitting } = useFormikContext();
+  const [fileErrorNumber, setFileError] = React.useState<number>(0);
+  const [fileAmount, setFileAmount] = React.useState<string[]>([]);
 
+  const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
+
+  const handleUploadFile = async (e: any) => {
+    setFileAmount(Object.values(e.target.files)?.map((el: some) => el?.name));
+  };
+  console.log(fileAmount);
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -40,7 +52,7 @@ const Download: React.FC<Props> = (props) => {
               marginRight: 110,
               whiteSpace: 'nowrap',
               alignSelf: 'flex-start',
-          }}
+            }}
           >
             <FormattedMessage id="chooseFile" />
           </Typography>
@@ -59,7 +71,9 @@ const Download: React.FC<Props> = (props) => {
               id={`upload_file`}
               accept="image/jpeg,image/png,application/pdf"
               multiple
-              // onChange={handleUploadFile}
+              onChange={handleUploadFile}
+              directory=""
+              webkitdirectory=""
             />
 
             <FormattedMessage id="chooseFile" />
@@ -86,21 +100,19 @@ const Download: React.FC<Props> = (props) => {
               width: 500,
             }}
           >
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
+            {!isEmpty(fileAmount) ? (
+              <Fragment>
+                {fileAmount?.map((el: string) => (
+                  <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
+                    {el}
+                  </Typography>
+                ))}
+              </Fragment>
+            ) : (
+              <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
+                <FormattedMessage id="empty" />
+              </Typography>
+            )}
           </Paper>
         </Row>
         <Row>
@@ -153,26 +165,6 @@ const Download: React.FC<Props> = (props) => {
             disableError
           />
         </Row>
-        {/* <Row>
-          <Col>
-            <Typography
-              variant="body2"
-              style={{ marginBottom: 30, marginRight: 36, whiteSpace: 'nowrap' }}
-            >
-              <FormattedMessage id="Độ phân giải x" />
-            </Typography>
-            <FieldTextContent
-              name={`price`}
-              label={null}
-              style={{ width: 250 }}
-              formControlStyle={{ minWidth: 250 }}
-              inputProps={{
-                maxLength: 12,
-              }}
-              disableError
-            />
-          </Col>
-        </Row> */}
         <Row style={{ justifyContent: 'flex-start', marginBottom: 30 }}>
           <Typography
             variant="body2"
