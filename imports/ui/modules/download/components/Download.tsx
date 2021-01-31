@@ -36,6 +36,7 @@ const Download: React.FC<Props> = (props) => {
     });
     setSubmitting(false);
   }, [values, command]);
+  
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>

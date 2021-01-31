@@ -81,7 +81,7 @@ def downloadladsweb( start, stop, product,north , south, west , east, dayNightBo
 	df.to_csv(filename_err)
     
 
-#downloadladsweb('2018-10-23', '2018-10-23',"AERDB_L2_VIIRS_SNPP", 40 , 30, -80 , -70, "DNB", 'E:/err.csv', "E:/")
-
-downloadladsweb(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9])
+#downloadladsweb('2019-01-01', '2019-01-10','AERDB_L2_VIIRS_SNPP', 23 , 8, 102 , 109, 'DNB', 'E:/err.csv', "E:/ImageTest")
+#python download_viirs.py "2019-01-01" "2019-02-01" "AERDB_L2_VIIRS_SNPP" 23 8 102 109 "DNB" "err.csv" "E:/ImageTest/"		
+downloadladsweb(sys.argv[1],sys.argv[2],sys.argv[3],int(23),int(8),int(102),int(109),sys.argv[8],sys.argv[9],sys.argv[10])
 				

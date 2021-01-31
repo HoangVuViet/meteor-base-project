@@ -12,12 +12,13 @@ from bs4 import BeautifulSoup
 def getFileId(product = 'MOD07_L2', start='2008-10-23', stop='2008-10-23', north = 40, south=30, west = -80, east=-70, dayNightBoth='DNB'):
 
 	url = r'http://modwebsrv.modaps.eosdis.nasa.gov/axis2/services/MODAPSservices/searchForFiles?product={0}&start={1}&stop={2}&north={3}&south={4}&west={5}&east={6}&coordsOrTiles=coords&dayNightBoth={7}'.format(product, start, stop, north, south, west, east, dayNightBoth)
+	#print(url)
 	result = []
 	code = requests.get(url)
 	plain = code.text
 	s = BeautifulSoup(plain, "lxml")
 	fileIds = s.findAll('return')
-	# print(fileIds)
+	#print(fileIds)
 	for x in fileIds:
 		if x.string != 'No results':
 			result.append(x.string)
@@ -57,14 +58,12 @@ def downloadFile(source, dest, token = 'a3Vkb2hkdHQxX2dtYWlsLmNvbTphM1ZrYjJoa2RI
 	
 def downloadladsweb(start, stop, product,north , south, west , east, dayNightBoth, filename_err='err.csv', folder_out='E:/APOM_PLATFORM/data/org/SatOrgMODIS/'
 ):
-	print(start)
-	print(stop)
-	print(product)
-	exit()
+	
 	#danh sach cac duong dan bi loi
 	# filename_err = r'E:\FIMO\test\wget\err.csv'
 	# Lay danh sach ID file
 	id_list = getFileId(product, start, stop, north , south, west , east, dayNightBoth)
+	print(id_list)
 	# id_list = getFileId()
 	list_err = []
 
@@ -88,6 +87,6 @@ def downloadladsweb(start, stop, product,north , south, west , east, dayNightBot
 	df.to_csv(filename_err)
     
 
-# downloadladsweb('2018-10-23', '2018-10-23',"MOD04_3K", 40 , 30, -80 , -70, "DNB", 'E:/err.csv', "E:/ImageTest")
-# downloadladsweb(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4],sys.argv[5],sys.argv[6],sys.argv[7],sys.argv[8],sys.argv[9])
-downloadladsweb(sys.argv[1],sys.argv[2],sys.argv[3],40 , 30, -80 , -70, "DNB", 'E:/err.csv', "E:/ImageTest")
+# downloadladsweb('2019-01-01', '2019-01-10','MOD04_3K', 23 , 8, 102 , 109, 'DNB', 'E:/err.csv', "E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/")
+#python download_modis.py "2019-01-01" "2019-02-01" "MOD04_3K" 23 8 102 109 "DNB" "err.csv" "E:/ImageTest/"		
+downloadladsweb(sys.argv[1],sys.argv[2],sys.argv[3], 23 , 8, 102 , 109, 'DNB', 'E:/err.csv', "E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/")

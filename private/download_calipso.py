@@ -39,5 +39,6 @@ def download_calipso(start_date,end_date,product,output_path):
             print ("No files on this date")
         start += step
     ftp.close()
-download_calipso(CALIPSO_START_DATE,CALIPSO_END_DATE,CALIPSO_PRODUCT,CALIPSO_OUT_PATH)
-download_calipso(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3])
+#download_calipso(CALIPSO_START_DATE,CALIPSO_END_DATE,CALIPSO_PRODUCT,CALIPSO_OUT_PATH)
+#python download_calipso.py "2019-01-01" "2019-02-01" "VFM.v4.20"
+download_calipso(sys.argv[1],sys.argv[2],sys.argv[3],"E:/ImageTest/")

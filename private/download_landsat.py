@@ -35,4 +35,5 @@ def download_landsat(start_date,end_date,product,spatial_range,out_path):
         
     ee.logout()
 #download_landsat(LANDSAT_START_DATE,LANDSAT_END_DATE,LANDSAT_PRODUCT,LANDSAT_RANGE,LANDSAT_OUT_PATH)
-download_landsat(sys.argv[0],sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
+#python download_landsat.py "2019-01-01" "2019-02-01" "LANDSAT_8_C1"
+download_landsat(sys.argv[1],sys.argv[2],sys.argv[3],(8,102,23,109),"E:/ImageTest/")
