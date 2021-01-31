@@ -8,7 +8,7 @@ const ModisDownload: React.FC = () => {
     <Formik initialValues={{}} onSubmit={() => {}}>
       {({}) => (
         <Form>
-          <Download dataTitle="modis" product={modisProduct} fileName='test.py' command="python"></Download>
+          <Download dataTitle="modis" product={modisProduct} fileName='download_modis.py' command="python"></Download>
         </Form>
       )}
     </Formik>

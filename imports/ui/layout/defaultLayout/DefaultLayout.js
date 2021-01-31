@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Admin({ ...rest }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <div >

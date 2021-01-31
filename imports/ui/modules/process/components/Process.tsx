@@ -5,14 +5,10 @@ import React, { Fragment } from 'react';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { useDispatch } from 'react-redux';
-import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
 import LoadingButton from '../../common/components/LoadingButton';
 import { isEmpty, some } from '/imports/ui/constants';
-import { AppState } from '/imports/ui/redux/reducers';
 
 interface Props {
   dataTitle: string;
@@ -29,13 +25,9 @@ const Download: React.FC<Props> = (props) => {
   const { setFieldValue, values, isSubmitting, setSubmitting, resetForm } = useFormikContext();
   const [fileAmount, setFileAmount] = React.useState<string[]>([]);
 
-  const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
-
   const handleUploadFile = async (e: any) => {
-    console.log(e.target);
     setFileAmount(Object.values(e.target.files)?.map((el: some) => el?.name));
   };
-  console.log(fileAmount);
 
   const runScript = React.useCallback(() => {
     setSubmitting(true);
@@ -44,14 +36,13 @@ const Download: React.FC<Props> = (props) => {
     )?.name;
     Meteor.call(
       'method2',
-      [command, fileName, fileAmount.map((el: string) => 'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/' + el).join(' '), temp],
+      [command, fileName, 'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/', temp],
       (_error: any, result: any) => {
         console.log(result);
       },
     );
     setSubmitting(false);
   }, [values, command]);
-  console.log(fileAmount.map((el: string) => 'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/' + el).join(' '));
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -132,10 +123,10 @@ const Download: React.FC<Props> = (props) => {
                 ))}
               </Fragment>
             ) : (
-              <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
-                <FormattedMessage id="empty" />
-              </Typography>
-            )}
+                <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
+                  <FormattedMessage id="empty" />
+                </Typography>
+              )}
           </Paper>
         </Row>
         <Row>
@@ -214,10 +205,10 @@ const Download: React.FC<Props> = (props) => {
                 <FormattedMessage id="isProgressing" />
               </Typography>
             ) : (
-              <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
-                <FormattedMessage id="emptyStatus" />
-              </Typography>
-            )}
+                <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
+                  <FormattedMessage id="emptyStatus" />
+                </Typography>
+              )}
           </Paper>
         </Row>
       </Col>

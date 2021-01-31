@@ -150,6 +150,7 @@ def process_calipso_file(hdf_filepath,dataset,output_path):
         print("Data file not in Vietnam")
             
 #process_calipso_list(CALIPSO_INPUT_PATH,DATAFIELD_NAME,CALIPSO_OUTPUT_PATH)
-process_calipso_list(sys.argv[0],sys.argv[1],sys.argv[2])
+#python process_calipso.py "E:/ImageTest/" "Feature_Classification_Flags" "E:/ImageTest/"
+process_calipso_list(sys.argv[1],"Feature_Classification_Flags" "E:/ImageTest/")
 
 
