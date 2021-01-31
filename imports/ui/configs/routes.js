@@ -2,19 +2,18 @@
 // @material-ui/icons
 import Chart from '../modules/chart/pages/Chart';
 import HelloWorld from '../modules/chart/pages/HelloWorld';
-import NotFoundBox from '../modules/common/components/NotFoundBox';
 import AeronetDownload from '../modules/download/pages/AeronetDownload';
 import CalipsoDownload from '../modules/download/pages/CalipsoDownload';
 import LandsatDownload from '../modules/download/pages/LandsatDownload';
+import ModisDownload from '../modules/download/pages/ModisDownload';
 import ViirsDownload from '../modules/download/pages/ViirsDownload';
 import ArcMapLandsat from '../modules/map/pages/ArcMapLandsat';
 import ArcMap from '../modules/map/pages/ArcMapPM25';
+import AeronetProcess from '../modules/process/pages/AeronetProcess';
 import CalipsoProcess from '../modules/process/pages/CalipsoProcess';
 import LandsatProcess from '../modules/process/pages/LandsatProcess';
-import ViirsProcess from '../modules/process/pages/ViirsProcess';
-import AeronetProcess from '../modules/process/pages/AeronetProcess';
-import ModisDownload from '../modules/download/pages/ModisDownload';
 import ModisProcess from '../modules/process/pages/ModisProcess';
+import ViirsProcess from '../modules/process/pages/ViirsProcess';
 export const ROUTES = {
   login: '/login',
   forgotPass: '/forgot-password',
@@ -184,17 +183,6 @@ export const DATA_EVALUATION_ROUTES = [
 
 export const MAP_DISPLAY_ROUTES = [
   {
-    name: 'PM2.5 MODIS',
-    isModule: true,
-    path: ROUTES.pm25,
-    exact: true,
-    component: ArcMap,
-    hidden: false,
-    disableBreadcrumb: true,
-    layout: '/admin',
-    iconName: 'tree',
-  },
-  {
     name: 'PM2.5 Landsat',
     isModule: true,
     path: ROUTES.pm25Landsat,
@@ -206,13 +194,18 @@ export const MAP_DISPLAY_ROUTES = [
     iconName: 'map',
   },
   {
-    name: 'notFound404',
+    name: 'PM2.5 MODIS',
     isModule: true,
-    path: ROUTES.notFound,
-    component: NotFoundBox,
+    path: ROUTES.pm25,
+    exact: true,
+    component: ArcMap,
+    hidden: false,
     disableBreadcrumb: true,
-    hidden: true,
+    layout: '/admin',
+    iconName: 'tree',
   },
+
+
 ];
 
 

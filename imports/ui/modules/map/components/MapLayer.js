@@ -248,30 +248,30 @@ const BaseMap = (props) => {
                 backgroundColor: '#9bbe80', color: '#FFF'
               }}>&nbsp;0
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#b0cd80', color: '#FFF'}}>&nbsp;15
+              <td className="level text-left" style={{ backgroundColor: '#b0cd80', color: '#FFF' }}>&nbsp;15
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#c8dd80', color: '#FFF'}}>&nbsp;19
+              <td className="level text-left" style={{ backgroundColor: '#c8dd80', color: '#FFF' }}>&nbsp;19
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#e3ee80', color: '#FFF'}}>&nbsp;23
+              <td className="level text-left" style={{ backgroundColor: '#e3ee80', color: '#FFF' }}>&nbsp;23
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#ffff80', color: '#FFF'}}>&nbsp;27
+              <td className="level text-left" style={{ backgroundColor: '#ffff80', color: '#FFF' }}>&nbsp;27
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#ffec80', color: '#FFF'}}>&nbsp;33
+              <td className="level text-left" style={{ backgroundColor: '#ffec80', color: '#FFF' }}>&nbsp;33
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#ffd780', color: '#FFF'}}>&nbsp;41
+              <td className="level text-left" style={{ backgroundColor: '#ffd780', color: '#FFF' }}>&nbsp;41
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#ffc280', color: '#FFF'}}>&nbsp;54
+              <td className="level text-left" style={{ backgroundColor: '#ffc280', color: '#FFF' }}>&nbsp;54
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#ffad80', color: '#FFF'}}>&nbsp;73
+              <td className="level text-left" style={{ backgroundColor: '#ffad80', color: '#FFF' }}>&nbsp;73
                     </td>
-              <td className="level text-left" style={{backgroundColor: '#ff8f80', color: '#FFF'}}>&nbsp;108
+              <td className="level text-left" style={{ backgroundColor: '#ff8f80', color: '#FFF' }}>&nbsp;108
                     </td>
             </tr>
           </tbody>
         </table>
 
       </div>
-      <div style={{ marginLeft: -255, marginTop: -300 }}><RightAside></RightAside></div>
+      <div style={{ marginLeft: -50, marginTop: -500 }}><RightAside></RightAside></div>
     </Row>
   );
 };

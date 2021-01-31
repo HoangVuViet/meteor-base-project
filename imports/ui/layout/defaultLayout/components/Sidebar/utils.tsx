@@ -20,9 +20,9 @@ export const LIST_ITEMS = [
     icon: <PollIcon></PollIcon>,
     routes: DATA_EVALUATION_ROUTES,
   },
-  {
-    title: 'Hiển thị bản đồ',
-    icon: <ExploreIcon />,
-    routes: MAP_DISPLAY_ROUTES,
-  },
+  // {
+  //   title: 'Hiển thị bản đồ',
+  //   icon: <ExploreIcon />,
+  //   routes: MAP_DISPLAY_ROUTES,
+  // },
 ];
