@@ -17,7 +17,151 @@
 .esri-legend__layer-caption {
   display: none;
 }
+.esri-time-slider__min, .esri-time-slider__max {
+  display: none;
+}
+
+.esri-ui-corner .esri-expand .esri-widget--panel,
+.esri-ui-corner .esri-expand .esri-widget--panel-height-only,
+.esri-ui-corner .esri-component>.esri-widget--panel, 
+.esri-ui-corner .esri-component.esri-widget--panel {
+    width: fit-content;
+}
 /* .esri-legend {
   background-color: #f3f3f3;
 } */
+
+/* css phần time slider */
+
+#timeSlider {
+  position: absolute;
+  bottom: -35px;
+  left: 5px;
+  width: calc(100vw - 300px);
+  background: none;
+  margin-left: 0;
+  border: none;
+}
+
+.esri-time-slider__min, .esri-time-slider__max {
+  display: none;
+}
+
+.esri-time-slider__animation-button, .esri-time-slider__slider, .esri-time-slider__slider .esri-slider {
+  background: none;
+}
+
+.esri-time-slider__previous, .esri-time-slider__next {
+  display: none;
+}
+.esri-time-slider__time-extent-date {
+  background: #0863a0;
+  color: #ffffff;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 24px;
+  text-align: center;
+  padding: 5px;
+}
+
+.esri-time-slider__mode--cumulative-from-start .esri-slider__segment-1 {
+  background-color: #ffffff;
+}
+
+.esri-icon-play:before, .esri-icon-pause:before {
+  color: #0863a0;
+  border-radius: 50%;
+  background:  white;
+}
+
+.esri-icon-play, .esri-icon-pause {
+  font-size: 35px;
+}
+
+.esri-time-slider__animation-button .esri-icon-play {
+  margin-bottom: 35px;
+  margin-left: 24px;
+}
+
+#timeSlider .custom-ticks {
+  background: white;
+  width: 1px;
+  height: 25px;
+  margin-top: -13px;
+  margin-left: 23px;
+}
+
+#timeSlider .custom-labels {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 15px;
+  color: white;
+  margin-top: 5px;
+  margin-left: 67px;
+}
+
+.esri-slider--horizontal .esri-slider__track {
+  color: #0863a0;
+}
+
+.esri-time-slider__layout--compact .esri-time-slider__row:nth-child(1) {
+  display: none;
+}
+.esri-time-slider__layout--compact .esri-time-slider__time-extent {
+  display: none;
+}
+.esri-time-slider__layout--wide .esri-time-slider__time-extent {
+  display: none;
+}
+
+.esri-slider__thumb {
+  left: -17px;
+}
+
+.esri-slider__segment {
+  left: -17px;
+}
+
+ /* css phần legend */
+
+ .pm25_indexs {
+  position: fixed;
+  right: 30px;
+  bottom: 50px;
+  height: 40;
+  width: fit-content;
+  padding: 0 4px 4px;
+  z-index: 1000;
+}
+
+.table {
+  border: 0;
+  font-size: 14px;
+  border-spacing: 0;
+  text-align: center;
+  width: fit-content;
+}
+
+.text-left {
+  width: fit-content;
+  color: #FFF;
+}
+.table th, .table td {
+  text-align: center;
+  padding: 2px;
+  padding-left: 0px;
+}
+
+/* css lại nút hiển thị bản đồ nền */
+
+.esri-widget.esri-basemap-toggle .esri-widget.esri-basemap-toggle, .esri-ui-corner .esri-widget.esri-basemap-toggle {
+  width: fit-content;
+  height: fit-content;
+  margin-right: 32px;
+}
+
+.esri-basemap-toggle__container, .esri-basemap-toggle__image {
+  width: 32px;
+  height: 32px;
+}
 

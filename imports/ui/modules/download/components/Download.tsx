@@ -28,10 +28,10 @@ const Download: React.FC<Props> = (props) => {
   const runScript = React.useCallback(() => {
     setSubmitting(true);
     const temp = product.find((el: some) => el?.id === (values as some)?.product)?.name;
-    const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
-      (values as some)?.toOrDerDate
-    } ${temp}`;
-    Meteor.call('method1', [command, fileName, valuePassedToSever], (_error: any, result: any) => {
+    // const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
+    //   (values as some)?.toOrDerDate
+    // } ${temp}`;
+    Meteor.call('method1', [command, fileName, `${(values as some)?.fromOrderDate}`, `${(values as some)?.toOrDerDate}`, temp], (_error: any, result: any) => {
       console.log(result);
     });
     setSubmitting(false);

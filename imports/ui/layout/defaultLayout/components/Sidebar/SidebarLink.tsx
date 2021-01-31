@@ -21,36 +21,38 @@ import { goToAction } from '/imports/ui/modules/common/redux/reducer';
 interface Props {
   routes: some;
 }
+export const getMenuIcon = (iconName: string) => {
+  switch (iconName) {
+    case 'dashboard':
+      return <Dashboard />;
+    case 'map':
+      return <MapIcon />;
+    case 'timeLine':
+      return <TimelineIcon />;
+    case 'library':
+      return <LibraryBooks />;
+    case 'tree':
+      return <AccountTreeIcon />;
+    case 'callSplit':
+      return <CallSplitIcon />;
+    case 'category':
+      return <CategoryIcon />;
+    case 'dataUsage':
+      return <DataUsageIcon />;
+    case 'deviceHub':
+      return <DeviceHubIcon />;
+  }
+};
+
 const SidebarLink: React.FC<Props> = (props: any) => {
   const { routes } = props;
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
 
-  const getMenuIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'dashboard':
-        return <Dashboard />;
-      case 'map':
-        return <MapIcon />;
-      case 'timeLine':
-        return <TimelineIcon />;
-      case 'library':
-        return <LibraryBooks />;
-      case 'tree':
-        return <AccountTreeIcon />;
-      case 'callSplit':
-        return <CallSplitIcon />;
-      case 'category':
-        return <CategoryIcon />;
-      case 'dataUsage':
-        return <DataUsageIcon />;
-      case 'deviceHub':
-        return <DeviceHubIcon />;
-    }
-  };
+
 
   return (
     <List>
-      {routes.map((elm: any, index: number) => {
+      {routes?.map((elm: any, index: number) => {
         return !elm.hidden ? (
           <Fragment key={index}>
             <ListItem

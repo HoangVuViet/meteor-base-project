@@ -32,6 +32,7 @@ const Download: React.FC<Props> = (props) => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
 
   const handleUploadFile = async (e: any) => {
+    console.log(e.target);
     setFileAmount(Object.values(e.target.files)?.map((el: some) => el?.name));
   };
   console.log(fileAmount);
@@ -50,7 +51,7 @@ const Download: React.FC<Props> = (props) => {
     );
     setSubmitting(false);
   }, [values, command]);
-
+  console.log(fileAmount.map((el: string) => 'E:/ImageTest/' + el).join(' '));
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -90,7 +91,7 @@ const Download: React.FC<Props> = (props) => {
               accept="image/jpeg,image/png,application/pdf"
               multiple
               onChange={handleUploadFile}
-              directory=""
+              directory="E:/"
               webkitdirectory=""
             />
 
