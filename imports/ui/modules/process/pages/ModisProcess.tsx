@@ -13,7 +13,7 @@ const ModisProcess: React.FC = () => {
             data={modisDataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"
-            fileName="download_modis.py"
+            fileName="test.py"
           ></Process>
         </Form>
       )}

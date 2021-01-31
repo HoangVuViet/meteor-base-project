@@ -20,7 +20,7 @@ import { AppState } from '/imports/ui/redux/reducers';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    minWidth: 240,
+    minWidth: 180,
     backgroundColor: theme.palette.background.paper,
   },
   nested: {
@@ -40,15 +40,15 @@ export default function NestedList() {
   return (
     <List className={classes.root}>
       <ListItem button onClick={handleClick}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
         <ListItemText>
-          <Typography variant="body2" style={{ whiteSpace: 'nowrap' }}>
+          <Typography variant="caption" style={{ whiteSpace: 'nowrap' }}>
             <FormattedMessage id="map" />
           </Typography>
         </ListItemText>
-        {open ? <ExpandLess /> : <ExpandMore />}
+        {/* <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon> */}
+        {open ? <InboxIcon /> : <InboxIcon />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {MAP_DISPLAY_ROUTES?.map((elm: any, index: number) => {
@@ -59,14 +59,14 @@ export default function NestedList() {
                 onClick={() => dispatch(goToAction({ pathname: elm.path }))}
                 style={{ marginLeft: 10 }}
               >
-                <ListItemIcon style={{ marginRight: -24, marginLeft: 15 }} >
-                  {getMenuIcon(elm.iconName)}
-                </ListItemIcon>
-                <ListItemText style={{ marginLeft: 5 }} >
-                  <Typography variant="body2" style={{ whiteSpace: 'nowrap' }}>
-                    <FormattedMessage id={elm?.name} />
+                <ListItemText style={{ marginLeft: 5 }}>
+                  <Typography variant="caption" style={{ whiteSpace: 'nowrap' }}>
+                    {elm?.name}
                   </Typography>
                 </ListItemText>
+                <ListItemIcon style={{ marginLeft: 15 }}>
+                  {getMenuIcon(elm.iconName)}
+                </ListItemIcon>
               </ListItem>
             </Fragment>
           ) : null;
