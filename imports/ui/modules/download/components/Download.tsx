@@ -123,29 +123,18 @@ const Download: React.FC<Props> = (props) => {
               background: '#f5f5f5',
               boxShadow: 'none',
               width: 500,
+              height: 300
             }}
           >
-            {isSubmitting ? (
-              <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-                <FormattedMessage id="success" />
+           {isSubmitting ? (
+              <Typography variant="body2" style={{ whiteSpace: 'nowrap', color: '#ffb822' }}>
+                <FormattedMessage id="isDownloading" />
               </Typography>
             ) : (
-              <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-                <FormattedMessage id="notDone" />
+              <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
+                <FormattedMessage id="emptyStatus" />
               </Typography>
             )}
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
-            <Typography variant="body2" style={{ marginBottom: 12, whiteSpace: 'nowrap' }}>
-              <FormattedMessage id="success" />
-            </Typography>
           </Paper>
         </Row>
       </Col>
@@ -159,6 +148,9 @@ const Download: React.FC<Props> = (props) => {
           loading={isSubmitting}
           onClick={() => {
             runScript();
+            setTimeout(() => {
+              setSubmitting(false);
+            }, 5000);
           }}
         >
           <FormattedMessage id="start" />

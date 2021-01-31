@@ -41,7 +41,7 @@ const BaseMap = (props) => {
           opacity: 0.5,
         });
         var map = new Map({
-          basemap: 'streets-relief-vector',
+          basemap: 'satellite',
           layers: [layer],
         });
         const view = new MapView({
@@ -50,33 +50,22 @@ const BaseMap = (props) => {
           zoom: props.isLandsat ? 9 : 5.8,
           center: props.isLandsat ? [105.83416, 21.027763] : [107.590866, 16.463713],
         });
-
+        view.ui.move("zoom", "top-right");
         var toggle = new BasemapToggle({
           view: view,
-          nextBasemap: 'satellite',
+          nextBasemap: 'streets-relief-vector'
         });
 
-        var legend = new Legend({
-          view: view,
-          layerInfos: [
-            {
-              layer: layer,
-              opacity: 1.0,
-              title: 'Chỉ số PM 2.5',
-            },
-          ],
-        });
         var searchWidget = new Search({
           view: view,
         });
 
         view.ui.add(searchWidget, {
-          position: 'top-right',
+          position: 'top-left',
         });
 
-        view.ui.add(toggle, 'top-left');
+        view.ui.add(toggle, 'top-right');
 
-        view.ui.add(legend, 'bottom-right');
 
         var featureLayer = !props.isLandsat ? new FeatureLayer({
           url: props.featureLayerProperties.featureUrl,
@@ -183,7 +172,9 @@ const BaseMap = (props) => {
                 labelsVisible: true,
                 labelFormatFunction: (value) => {
                   const date = new Date(value);
-                  return `${date.getDate() + '/1'}`;
+                  var dateString = date.toDateString();
+                  var time = dateString.slice(4, dateString.length);
+                  return `${time}`;
                 },
                 tickCreatedFunction: (value, tickElement, labelElement) => {
                   tickElement.classList.add('custom-ticks');
@@ -206,7 +197,9 @@ const BaseMap = (props) => {
               labelsVisible: true,
               labelFormatFunction: (value) => { // get the full year from the date
                 const date = new Date(value);
-                return `${date.getDate() + "/1"}`; // only display the last two digits of the year
+                var dateString = date.toDateString();
+                var time = dateString.slice(4, dateString.length);
+                return `${time}`;
               },
               tickCreatedFunction: (value, tickElement, labelElement) => { // callback for the ticks
                 tickElement.classList.add("custom-ticks");  // assign a custom css for the ticks 
@@ -241,11 +234,42 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: 560 }}>
+    <Row style={{ height: 800 }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>
       <div id="timeSlider"></div>
+      <div className="pm25_indexs">
+        <table className="table" id="pm25_table">
+          <tbody>
+            <tr id="PM25_table">
+              <td className="level text-left" style={{
+                backgroundColor: '#9bbe80', color: '#FFF'
+              }}>&nbsp;0
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#b0cd80', color: '#FFF'}}>&nbsp;15
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#c8dd80', color: '#FFF'}}>&nbsp;19
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#e3ee80', color: '#FFF'}}>&nbsp;23
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#ffff80', color: '#FFF'}}>&nbsp;27
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#ffec80', color: '#FFF'}}>&nbsp;33
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#ffd780', color: '#FFF'}}>&nbsp;41
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#ffc280', color: '#FFF'}}>&nbsp;54
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#ffad80', color: '#FFF'}}>&nbsp;73
+                    </td>
+              <td className="level text-left" style={{backgroundColor: '#ff8f80', color: '#FFF'}}>&nbsp;108
+                    </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
     </Row>
   );
 };
