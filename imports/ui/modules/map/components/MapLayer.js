@@ -2,6 +2,7 @@ import { loadModules } from 'esri-loader';
 import React from 'react';
 import { Row } from '../../common/components/elements';
 import '../pages/styles';
+import RightAside from './RightAside';
 const styles = {
   mapDiv: {
     height: '100%',
@@ -246,6 +247,7 @@ const BaseMap = (props) => {
         {this.renderMap()}
       </div>
       <div id="timeSlider"></div>
+      <div style={{ marginLeft: -255, marginTop: -300 }}><RightAside></RightAside></div>
     </Row>
   );
 };

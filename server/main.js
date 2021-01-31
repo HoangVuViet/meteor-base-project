@@ -25,15 +25,15 @@ if (Meteor.isServer) {
     method1: function (arg) {
       return new Promise((resolve, reject) => {
         // const args = `.\download_landsat.py '2019-01-01' '2019-02-01' (8,102,23,109) "D:/"`
-        const process = spawn(arg[0], ['assets/app/' + arg[1], arg[2].toString()]);
+        const downloadBash = spawn(arg[0], ['assets/app/' + arg[1], `"${arg[2].toString()}"`, `"${arg[3].toString()}"`, `"${arg[4].toString()}"`]);
 
-        process.stdout.on(
+        downloadBash.stdout.on(
           'data',
           data => {
             resolve(data.toString())
           }
         );
-        process.stdout.on(
+        downloadBash.stdout.on(
           'error',
           error => {
             reject(error)
@@ -43,15 +43,15 @@ if (Meteor.isServer) {
     },
     method2: function (arg) {
       return new Promise((resolve, reject) => {
-        const process = spawn(arg[0], ['assets/app/' + arg[1], arg[2].toString(), `'":mod04:Optical_Depth_Land_And_Ocean'`, arg[3].toString()]);
+        const processBash = spawn(arg[0], ['assets/app/' + arg[1], `"${arg[2].toString()}"`, `'":mod04:Optical_Depth_Land_And_Ocean'`, `"${arg[3].toString()}"`]);
 
-        process.stdout.on(
+        processBash.stdout.on(
           'data',
           data => {
             resolve(data.toString())
           }
         );
-        process.stdout.on(
+        processBash.stdout.on(
           'error',
           error => {
             reject(error)
