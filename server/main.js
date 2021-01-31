@@ -43,7 +43,7 @@ if (Meteor.isServer) {
     },
     method2: function (arg) {
       return new Promise((resolve, reject) => {
-        const processBash = spawn(arg[0], ['assets/app/' + arg[1], `"${arg[2].toString()}"`, `'":mod04:Optical_Depth_Land_And_Ocean'`, `"${arg[3].toString()}"`]);
+        const processBash = spawn(arg[0], ['assets/app/' + arg[1], `${arg[2].toString()}`, `'":mod04:Optical_Depth_Land_And_Ocean'`, "E:/APOM_PLATFORM/code/visualization/meteor-base-project/Processing/"]);
 
         processBash.stdout.on(
           'data',

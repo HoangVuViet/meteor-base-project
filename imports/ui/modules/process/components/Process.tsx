@@ -44,14 +44,14 @@ const Download: React.FC<Props> = (props) => {
     )?.name;
     Meteor.call(
       'method2',
-      [command, fileName, fileAmount.join(' '), temp],
+      [command, fileName, fileAmount.map((el: string) => 'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/' + el).join(' '), temp],
       (_error: any, result: any) => {
         console.log(result);
       },
     );
     setSubmitting(false);
   }, [values, command]);
-  console.log(fileAmount.map((el: string) => 'E:/ImageTest/' + el).join(' '));
+  console.log(fileAmount.map((el: string) => 'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/' + el).join(' '));
   return (
     <Col style={{ marginLeft: 20 }}>
       <Row style={{ marginBottom: 12 }}>
@@ -211,7 +211,7 @@ const Download: React.FC<Props> = (props) => {
           >
             {isSubmitting ? (
               <Typography variant="body2" style={{ whiteSpace: 'nowrap', color: '#ffb822' }}>
-                <FormattedMessage id="isDownloading" />
+                <FormattedMessage id="isProgressing" />
               </Typography>
             ) : (
               <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
@@ -232,7 +232,7 @@ const Download: React.FC<Props> = (props) => {
           onClick={() => {
             setTimeout(() => {
               setSubmitting(false);
-            }, 5000);
+            }, 10000);
             runScript();
           }}
         >

@@ -30,6 +30,6 @@ def resample_Image_list(input_path,dataset,method):
 		resample_Image(file_name,dataset,method)
 		#print(file_name)
 	print("Done")
-resample_Image_list(sys.argv[0],sys.argv[1],sys.argv[2])
+resample_Image_list(sys.argv[1],sys.argv[2],sys.argv[3])
 
 
