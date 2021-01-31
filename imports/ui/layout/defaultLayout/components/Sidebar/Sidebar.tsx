@@ -13,13 +13,18 @@ import clsx from 'clsx';
 import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { ASIDE_WIDTH } from '../../../constants';
 import styles from '../jss/material-dashboard-react/components/headerStyle.js';
 import SidebarList from './SideBarList';
 import { LIST_ITEMS } from './utils';
-import { APP_ROUTES } from '/imports/ui/configs/routes';
+import { APP_ROUTES, ROUTES } from '/imports/ui/configs/routes';
 import { some } from '/imports/ui/constants';
+import { goToAction } from '/imports/ui/modules/common/redux/reducer';
+import { AppState } from '/imports/ui/redux/reducers';
 
 const useStyles = makeStyles((theme) => ({
   ...styles,
@@ -82,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerLeft(props: any) {
   const { open, setOpen } = props;
+  const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
 
   const classes = useStyles();
   const theme = useTheme();
@@ -125,7 +131,11 @@ export default function PersistentDrawerLeft(props: any) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography
+            variant="h6"
+            noWrap
+            onClick={() => dispatch(goToAction({ pathname: ROUTES.pm25 }))}
+          >
             APOM
           </Typography>
         </Toolbar>
