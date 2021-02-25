@@ -13,7 +13,7 @@ const CalipsoProcess: React.FC = () => {
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"
-            fileName="test.py"
+            fileName="process_calipso.py"
           ></Process>
         </Form>
       )}
