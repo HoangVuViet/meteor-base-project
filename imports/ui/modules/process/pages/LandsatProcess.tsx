@@ -13,7 +13,7 @@ const LandsatProcess: React.FC = () => {
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"
-            fileName="process_andsat.py"
+            fileName="process_landsat.py"
           ></Process>
         </Form>
       )}
