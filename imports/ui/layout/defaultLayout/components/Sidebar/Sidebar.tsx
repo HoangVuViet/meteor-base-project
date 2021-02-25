@@ -131,13 +131,15 @@ export default function PersistentDrawerLeft(props: any) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            onClick={() => dispatch(goToAction({ pathname: ROUTES.pm25 }))}
-          >
-            APOM
-          </Typography>
+          <Button style={{ color: 'white' }}>
+            <Typography
+              variant="h6"
+              noWrap
+              onClick={() => dispatch(goToAction({ pathname: ROUTES.pm25 }))}
+            >
+              APOM
+            </Typography>
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
