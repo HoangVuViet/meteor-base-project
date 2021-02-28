@@ -9,6 +9,7 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.15",
     "@babel/runtime": "^7.11.2",
     "@esri/react-arcgis": "^5.1.0",
     "@material-ui/core": "^4.11.2",
@@ -33,6 +34,7 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-slick": "^0.23.4",
+    "@types/react-swipeable-views": "^0.13.0",
     "@types/voca": "^1.4.0",
     "aphrodite": "^2.4.0",
     "assets": "^3.0.1",
@@ -80,6 +82,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts-scss-ts": "^2.17.1",
     "react-slick": "^0.27.13",
+    "react-swipeable-views": "^0.13.9",
     "react-tap-event-plugin": "^3.0.3",
     "react-text-mask": "^5.4.3",
     "react-with-styles": "^4.1.0",

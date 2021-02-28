@@ -1,4 +1,3 @@
-
 // @material-ui/icons
 import Chart from '../modules/chart/pages/Chart';
 import HelloWorld from '../modules/chart/pages/HelloWorld';
@@ -14,6 +13,7 @@ import CalipsoProcess from '../modules/process/pages/CalipsoProcess';
 import LandsatProcess from '../modules/process/pages/LandsatProcess';
 import ModisProcess from '../modules/process/pages/ModisProcess';
 import ViirsProcess from '../modules/process/pages/ViirsProcess';
+import Statistical from '../modules/statistical/pages/Statistical';
 export const ROUTES = {
   login: '/login',
   forgotPass: '/forgot-password',
@@ -99,7 +99,7 @@ export const DOWNLOAD_DATA_ROUTES = [
     layout: '/admin',
     iconName: 'deviceHub',
   },
-]
+];
 
 export const PROCESS_DATA_ROUTES = [
   {
@@ -157,8 +157,7 @@ export const PROCESS_DATA_ROUTES = [
     layout: '/admin',
     iconName: 'deviceHub',
   },
-]
-
+];
 
 export const DATA_EVALUATION_ROUTES = [
   {
@@ -168,18 +167,16 @@ export const DATA_EVALUATION_ROUTES = [
     component: Chart,
     layout: '/admin',
     hidden: false,
-
   },
   {
     path: '/typography',
     name: 'Tìm kiếm, thống kê',
     iconName: 'library',
-    component: HelloWorld,
+    component: Statistical,
     layout: '/admin',
     hidden: false,
-
   },
-]
+];
 
 export const MAP_DISPLAY_ROUTES = [
   {
@@ -204,9 +201,11 @@ export const MAP_DISPLAY_ROUTES = [
     layout: '/admin',
     iconName: 'tree',
   },
-
-
 ];
 
-
-export const APP_ROUTES = [...DOWNLOAD_DATA_ROUTES, ...PROCESS_DATA_ROUTES, ...MAP_DISPLAY_ROUTES, ...DATA_EVALUATION_ROUTES]
+export const APP_ROUTES = [
+  ...DOWNLOAD_DATA_ROUTES,
+  ...PROCESS_DATA_ROUTES,
+  ...MAP_DISPLAY_ROUTES,
+  ...DATA_EVALUATION_ROUTES,
+];
