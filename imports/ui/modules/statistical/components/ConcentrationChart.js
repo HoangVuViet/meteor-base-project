@@ -6,10 +6,11 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 am4core.useTheme(am4themes_animated);
 
 function ConcentrationChart(props) {
+  const { chartName } = props;
   const chart = useRef(null);
 
   useLayoutEffect(() => {
-    let x = am4core.create('chartdiv', am4charts.XYChart);
+    let x = am4core.create(chartName, am4charts.XYChart);
 
     x.paddingRight = 20;
 
@@ -49,7 +50,7 @@ function ConcentrationChart(props) {
 
   return (
     <div
-      id="chartdiv"
+      id={chartName}
       style={{ width: '100%', height: '500px', marginTop: -50, marginLeft: -30 }}
     ></div>
   );

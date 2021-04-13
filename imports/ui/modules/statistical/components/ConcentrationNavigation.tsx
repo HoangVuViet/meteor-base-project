@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { TabContext } from '@material-ui/lab';
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
+import { HelloWorld } from '../../HelloWorld';
 import ConcentrationChart from './ConcentrationChart';
 import DashBoardChart from './DashBoardChart';
 
@@ -92,19 +93,19 @@ export default function CustomizedTabs() {
           style={{ marginTop: 20 }}
         >
           <TabContext value={value.toString()} index={0} style={{ width: '100%' }}>
-            Hiện đang bị lỗi chưa render được biểu đồ{' '}
+            <ConcentrationChart chartName={'chartDiv1'}></ConcentrationChart>
           </TabContext>
           <TabContext value={value.toString()} index={1} style={{ width: '100%' }}>
-            <DashBoardChart></DashBoardChart>
+            <ConcentrationChart chartName={'chartDiv2'}></ConcentrationChart>
           </TabContext>
           <TabContext value={value.toString()} index={2} style={{ width: '100%' }}>
-            <ConcentrationChart></ConcentrationChart>
+            <ConcentrationChart chartName={'chartDiv3'}></ConcentrationChart>
           </TabContext>
           <TabContext value={value.toString()} index={3} style={{ width: '100%' }}>
-            <ConcentrationChart></ConcentrationChart>
+            <ConcentrationChart chartName={'chartDiv4'}></ConcentrationChart>
           </TabContext>
           <TabContext value={value.toString()} index={4} style={{ width: '100%' }}>
-            <ConcentrationChart></ConcentrationChart>
+            <HelloWorld></HelloWorld>
           </TabContext>
         </SwipeableViews>
       </div>
