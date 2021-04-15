@@ -11,6 +11,11 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.15",
     "@babel/runtime": "^7.11.2",
+    "@coreui/coreui": "^3.4.0",
+    "@coreui/icons-react": "^1.1.0",
+    "@coreui/react": "^3.4.6",
+    "@coreui/react-chartjs": "^1.1.0",
+    "@coreui/utils": "^1.3.1",
     "@esri/react-arcgis": "^5.1.0",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
@@ -92,6 +97,7 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.30.0",
     "slick-carousel": "^1.8.1",
+    "src": "^1.1.2",
     "styled-components": "^5.2.1",
     "ts-loader": "^8.0.11",
     "typesafe-actions": "^5.1.0",
@@ -127,7 +133,7 @@
   },
   "meteor": {
     "mainModule": {
-      "client": "client/main.tsx",
+      "client": "client/main.js",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"

@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import React from 'react';
+import { TheFooter } from '../../containers';
 import { ASIDE_WIDTH } from '../constants';
 import Sidebar from './components/Sidebar/Sidebar.tsx';
 import DefaultFooter from './DefaultFooter';
@@ -32,7 +33,7 @@ export default function Admin({ ...rest }) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div >
+    <div>
       <Sidebar
         logoText={'APOM'}
         logo="../../../../../../img/reactlogo.png"
@@ -41,11 +42,12 @@ export default function Admin({ ...rest }) {
         open={open}
         setOpen={setOpen}
       />
-      <div className={clsx(classes.content, {
-        [classes.contentShift]: open,
-      })}
+      <div
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
       >
-        {/* <DefaultFooter /> */}
+        <DefaultFooter />
       </div>
     </div>
   );
