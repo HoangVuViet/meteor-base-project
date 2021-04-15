@@ -13,11 +13,6 @@ import FormControlTextField from './FormControlTextField';
 import styles from './styles.module.scss';
 import { renderMonthText } from './utils';
 
-interface DateMaskCustomProps {
-  inputRef: (ref: HTMLInputElement | null) => void;
-  placeholder: string;
-}
-
 interface Props {
   minimizedWidth?: string | number;
   date?: Moment;
@@ -34,7 +29,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const DateField: React.FC<Props> = props => {
+const DateField: React.FC<Props> = (props) => {
   const {
     date,
     optional,
@@ -131,7 +126,7 @@ const DateField: React.FC<Props> = props => {
       tabIndex={-1}
       ref={parent}
       onBlur={onBlur}
-      onFocus={e => {
+      onFocus={(_e) => {
         setFocus(true);
       }}
     >
@@ -165,7 +160,7 @@ const DateField: React.FC<Props> = props => {
               value={dateFormatStr}
               optional={optional}
               inputProps={{ style: { width: '100%' } }}
-              onChange={e => {
+              onChange={(e) => {
                 setDateFormatStr(e.target.value);
                 textChange(e.target.value);
               }}
@@ -209,7 +204,7 @@ const DateField: React.FC<Props> = props => {
               focused={isFocused}
               numberOfMonths={numberOfMonths || 1}
               onFocusChange={() => {}}
-              onDateChange={newDate => {
+              onDateChange={(newDate) => {
                 setTime(newDate || undefined);
                 setDateFormatStr(
                   `${
@@ -220,16 +215,11 @@ const DateField: React.FC<Props> = props => {
               isOutsideRange={(e: any) =>
                 isOutsideRange
                   ? isOutsideRange(e)
-                  : moment()
-                      .endOf('day')
-                      .isSameOrBefore(e) ||
-                    moment()
-                      .subtract(6, 'months')
-                      .startOf('day')
-                      .isSameOrAfter(e)
+                  : moment().endOf('day').isSameOrBefore(e) ||
+                    moment().subtract(6, 'months').startOf('day').isSameOrAfter(e)
               }
               renderMonthText={renderMonthText}
-              renderDayContents={day => isDayHighlighted(day)}
+              renderDayContents={(day) => isDayHighlighted(day)}
             />
             <div style={{ alignSelf: 'flex-end', padding: '0px 12px 12px 0px' }}>
               <Button

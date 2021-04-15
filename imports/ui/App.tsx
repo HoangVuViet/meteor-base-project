@@ -17,9 +17,7 @@ function mapStateToProps(state: AppState) {
 }
 interface Props extends ReturnType<typeof mapStateToProps> {}
 
-const App: React.FC<Props> = (props) => {
-  const { router, auth } = props;
-
+const App: React.FC<Props> = (_props) => {
   const dispatch = useDispatch<ThunkDispatch<AppState, null, Action<string>>>();
 
   React.useEffect(() => {
