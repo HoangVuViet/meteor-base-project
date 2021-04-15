@@ -18,7 +18,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { ASIDE_WIDTH } from '../../../constants';
-import styles from '../jss/material-dashboard-react/components/headerStyle.js';
 import SidebarList from './SideBarList';
 import { LIST_ITEMS } from './utils';
 import { APP_ROUTES, ROUTES } from '/imports/ui/configs/routes';
@@ -27,7 +26,6 @@ import { goToAction } from '/imports/ui/modules/common/redux/reducer';
 import { AppState } from '/imports/ui/redux/reducers';
 
 const useStyles = makeStyles((theme) => ({
-  ...styles,
   root: {
     display: 'flex',
   },
@@ -115,9 +113,6 @@ export default function PersistentDrawerLeft(props: any) {
   return (
     <div className={classes.root}>
       <AppBar
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
         position="fixed"
         // style={{ background: 'transparent', boxShadow: 'none'}}
       >
