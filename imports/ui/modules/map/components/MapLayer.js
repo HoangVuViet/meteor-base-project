@@ -51,10 +51,10 @@ const BaseMap = (props) => {
           zoom: props.isLandsat ? 9 : 5.8,
           center: props.isLandsat ? [105.83416, 21.027763] : [107.590866, 16.463713],
         });
-        view.ui.move("zoom", "top-right");
+        view.ui.move('zoom', 'top-right');
         var toggle = new BasemapToggle({
           view: view,
-          nextBasemap: 'streets-relief-vector'
+          nextBasemap: 'streets-relief-vector',
         });
 
         var searchWidget = new Search({
@@ -67,38 +67,39 @@ const BaseMap = (props) => {
 
         view.ui.add(toggle, 'top-right');
 
-
-        var featureLayer = !props.isLandsat ? new FeatureLayer({
-          url: props.featureLayerProperties.featureUrl,
-          opacity: 0.5,
-          timeInfo: {
-            startField: 'time',
-            interval: {
-              unit: 'days',
-              value: 1,
-            },
-            fullTimeExtent: {
-              start: new Date(2017, 0, 1),
-              end: new Date(2017, 0, 10),
-            },
-          },
-        }) : new FeatureLayer({
-          //   url: "http://113.175.118.161:6080/arcgis/rest/services/PM25_time/MapServer/0",
-          url: props.featureLayerProperties.featureUrl,
-          opacity: 0.5,
-          timeInfo: {
-            startField: "time", // name of the date field
-            interval: {
-              // set time interval to one day
-              unit: "days",
-              value: 1
-            },
-            fullTimeExtent: {
-              start: new Date(2019, 0, 1),
-              end: new Date(2019, 0, 6)
-            }
-          }
-        });;
+        var featureLayer = !props.isLandsat
+          ? new FeatureLayer({
+              url: props.featureLayerProperties.featureUrl,
+              opacity: 0.5,
+              timeInfo: {
+                startField: 'time',
+                interval: {
+                  unit: 'days',
+                  value: 1,
+                },
+                fullTimeExtent: {
+                  start: new Date(2017, 0, 1),
+                  end: new Date(2017, 0, 10),
+                },
+              },
+            })
+          : new FeatureLayer({
+              //   url: "http://113.175.118.161:6080/arcgis/rest/services/PM25_time/MapServer/0",
+              url: props.featureLayerProperties.featureUrl,
+              opacity: 0.5,
+              timeInfo: {
+                startField: 'time', // name of the date field
+                interval: {
+                  // set time interval to one day
+                  unit: 'days',
+                  value: 1,
+                },
+                fullTimeExtent: {
+                  start: new Date(2019, 0, 1),
+                  end: new Date(2019, 0, 6),
+                },
+              },
+            });
 
         featureLayer.popupTemplate = {
           content: [
@@ -151,64 +152,71 @@ const BaseMap = (props) => {
 
         var timeSlider = !props.isLandsat
           ? new TimeSlider({
-            container: 'timeSlider',
-            view: view,
-            mode: 'cumulative-from-start',
-            loop: true,
-            tickConfigs: [
-              {
-                mode: 'position',
-                values: [
-                  new Date(2017, 0, 1),
-                  new Date(2017, 0, 2),
-                  new Date(2017, 0, 3),
-                  new Date(2017, 0, 4),
-                  new Date(2017, 0, 5),
-                  new Date(2017, 0, 6),
-                  new Date(2017, 0, 7),
-                  new Date(2017, 0, 8),
-                  new Date(2017, 0, 9),
-                  new Date(2017, 0, 10),
-                ].map((date) => date.getTime()),
-                labelsVisible: true,
-                labelFormatFunction: (value) => {
-                  const date = new Date(value);
-                  var dateString = date.toDateString();
-                  var time = dateString.slice(4, dateString.length);
-                  return `${time}`;
+              container: 'timeSlider',
+              view: view,
+              mode: 'cumulative-from-start',
+              loop: true,
+              tickConfigs: [
+                {
+                  mode: 'position',
+                  values: [
+                    new Date(2017, 0, 1),
+                    new Date(2017, 0, 2),
+                    new Date(2017, 0, 3),
+                    new Date(2017, 0, 4),
+                    new Date(2017, 0, 5),
+                    new Date(2017, 0, 6),
+                    new Date(2017, 0, 7),
+                    new Date(2017, 0, 8),
+                    new Date(2017, 0, 9),
+                    new Date(2017, 0, 10),
+                  ].map((date) => date.getTime()),
+                  labelsVisible: true,
+                  labelFormatFunction: (value) => {
+                    const date = new Date(value);
+                    var dateString = date.toDateString();
+                    var time = dateString.slice(4, dateString.length);
+                    return `${time}`;
+                  },
+                  tickCreatedFunction: (value, tickElement, labelElement) => {
+                    tickElement.classList.add('custom-ticks');
+                    labelElement.classList.add('custom-labels');
+                  },
                 },
-                tickCreatedFunction: (value, tickElement, labelElement) => {
-                  tickElement.classList.add('custom-ticks');
-                  labelElement.classList.add('custom-labels');
-                },
-              },
-            ],
-          })
+              ],
+            })
           : new TimeSlider({
-            container: "timeSlider",
-            view: view,
-            loop: true,
-            mode: "cumulative-from-start",
-            tickConfigs: [{
-              mode: "position",
-              values: [
-                new Date(2019, 0, 1), new Date(2019, 0, 2), new Date(2019, 0, 3),
-                new Date(2019, 0, 4), new Date(2019, 0, 5), new Date(2019, 0, 6)
-              ].map((date) => date.getTime()),
-              labelsVisible: true,
-              labelFormatFunction: (value) => { // get the full year from the date
-                const date = new Date(value);
-                var dateString = date.toDateString();
-                var time = dateString.slice(4, dateString.length);
-                return `${time}`;
-              },
-              tickCreatedFunction: (value, tickElement, labelElement) => { // callback for the ticks
-                tickElement.classList.add("custom-ticks");  // assign a custom css for the ticks 
-                labelElement.classList.add("custom-labels"); // assign a custom css for the labels
-              }
-            }]
-
-          });
+              container: 'timeSlider',
+              view: view,
+              loop: true,
+              mode: 'cumulative-from-start',
+              tickConfigs: [
+                {
+                  mode: 'position',
+                  values: [
+                    new Date(2019, 0, 1),
+                    new Date(2019, 0, 2),
+                    new Date(2019, 0, 3),
+                    new Date(2019, 0, 4),
+                    new Date(2019, 0, 5),
+                    new Date(2019, 0, 6),
+                  ].map((date) => date.getTime()),
+                  labelsVisible: true,
+                  labelFormatFunction: (value) => {
+                    // get the full year from the date
+                    const date = new Date(value);
+                    var dateString = date.toDateString();
+                    var time = dateString.slice(4, dateString.length);
+                    return `${time}`;
+                  },
+                  tickCreatedFunction: (value, tickElement, labelElement) => {
+                    // callback for the ticks
+                    tickElement.classList.add('custom-ticks'); // assign a custom css for the ticks
+                    labelElement.classList.add('custom-labels'); // assign a custom css for the labels
+                  },
+                },
+              ],
+            });
 
         featureLayer.when(function () {
           timeSlider.fullTimeExtent = featureLayer.timeInfo.fullTimeExtent;
@@ -235,7 +243,7 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: 800 }}>
+    <Row style={{ height: '100%' }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>
@@ -244,34 +252,49 @@ const BaseMap = (props) => {
         <table className="table" id="pm25_table">
           <tbody>
             <tr id="PM25_table">
-              <td className="level text-left" style={{
-                backgroundColor: '#9bbe80', color: '#FFF'
-              }}>&nbsp;0
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#b0cd80', color: '#FFF' }}>&nbsp;15
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#c8dd80', color: '#FFF' }}>&nbsp;19
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#e3ee80', color: '#FFF' }}>&nbsp;23
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#ffff80', color: '#FFF' }}>&nbsp;27
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#ffec80', color: '#FFF' }}>&nbsp;33
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#ffd780', color: '#FFF' }}>&nbsp;41
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#ffc280', color: '#FFF' }}>&nbsp;54
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#ffad80', color: '#FFF' }}>&nbsp;73
-                    </td>
-              <td className="level text-left" style={{ backgroundColor: '#ff8f80', color: '#FFF' }}>&nbsp;108
-                    </td>
+              <td
+                className="level text-left"
+                style={{
+                  backgroundColor: '#9bbe80',
+                  color: '#FFF',
+                }}
+              >
+                &nbsp;0
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#b0cd80', color: '#FFF' }}>
+                &nbsp;15
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#c8dd80', color: '#FFF' }}>
+                &nbsp;19
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#e3ee80', color: '#FFF' }}>
+                &nbsp;23
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#ffff80', color: '#FFF' }}>
+                &nbsp;27
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#ffec80', color: '#FFF' }}>
+                &nbsp;33
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#ffd780', color: '#FFF' }}>
+                &nbsp;41
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#ffc280', color: '#FFF' }}>
+                &nbsp;54
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#ffad80', color: '#FFF' }}>
+                &nbsp;73
+              </td>
+              <td className="level text-left" style={{ backgroundColor: '#ff8f80', color: '#FFF' }}>
+                &nbsp;108
+              </td>
             </tr>
           </tbody>
         </table>
-
       </div>
-      <div style={{ marginLeft: -50, marginTop: -500 }}><RightAside></RightAside></div>
+      <div style={{ alignItems: 'flex-end', marginLeft: -40, marginTop: -300 }}>
+        <RightAside></RightAside>
+      </div>
     </Row>
   );
 };
