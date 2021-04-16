@@ -14,8 +14,8 @@
   border: $card-border-width solid;
   @include border-radius($card-border-radius);
   @include themes($card-theme-map, $create: parent) {
-    background-color: themes-get-value("card-bg");
-    border-color: themes-get-value("card-border-color");
+    background-color: themes-get-value('card-bg');
+    border-color: themes-get-value('card-border-color');
   }
 
   > hr {
@@ -32,7 +32,7 @@
       @include border-top-radius($card-inner-border-radius);
     }
 
-    &:last-child  {
+    &:last-child {
       border-bottom-width: 0;
       @include border-bottom-radius($card-inner-border-radius);
     }
@@ -45,12 +45,12 @@
 }
 
 // Cards with color accent
-.card[class^="bg-"],
-.card[class*=" bg-"] {
-  border-color: rgba(0, 0, 0, .125); //darken($value, 12.5%);
+.card[class^='bg-'],
+.card[class*=' bg-'] {
+  border-color: rgba(0, 0, 0, 0.125); //darken($value, 12.5%);
   .card-header {
-    background-color: rgba(0, 0, 0, .05); //darken($value, 3%);
-    border-color: rgba(0, 0, 0, .125); //darken($value, 12.5%);
+    background-color: rgba(0, 0, 0, 0.05); //darken($value, 3%);
+    border-color: rgba(0, 0, 0, 0.125); //darken($value, 12.5%);
   }
 }
 
@@ -63,7 +63,7 @@
   min-height: 1px;
   padding: $card-spacer-x;
   @include themes($card-theme-map, $create: parent) {
-    color: themes-get-value("card-color");
+    color: themes-get-value('card-color');
   }
 }
 
@@ -104,9 +104,9 @@
   margin-bottom: 0; // Removes the default margin-bottom of <hN>
   border-bottom: $card-border-width solid;
   @include themes($card-theme-map, $create: parent) {
-    color: themes-get-value("card-cap-color");
-    background-color: themes-get-value("card-cap-bg");
-    border-color: themes-get-value("card-border-color");
+    color: themes-get-value('card-cap-color');
+    background-color: themes-get-value('card-cap-bg');
+    border-color: themes-get-value('card-border-color');
   }
 
   &:first-child {
@@ -131,16 +131,15 @@
   padding: $card-spacer-y $card-spacer-x;
   border-top: $card-border-width solid;
   @include themes($card-theme-map, $create: parent) {
-    color: themes-get-value("card-cap-color");
-    background-color: themes-get-value("card-cap-bg");
-    border-color: themes-get-value("card-border-color");
+    color: themes-get-value('card-cap-color');
+    background-color: themes-get-value('card-cap-bg');
+    border-color: themes-get-value('card-border-color');
   }
 
   &:last-child {
     @include border-radius(0 0 $card-inner-border-radius $card-inner-border-radius);
   }
 }
-
 
 //
 // Header navs
@@ -185,7 +184,6 @@
   @include border-bottom-radius($card-inner-border-radius);
 }
 
-
 // Card deck
 
 .card-deck {
@@ -208,7 +206,6 @@
     }
   }
 }
-
 
 //
 // Card groups
@@ -278,7 +275,6 @@
   }
 }
 
-
 //
 // Columns
 //
@@ -300,7 +296,6 @@
     }
   }
 }
-
 
 //
 // Accordion
@@ -327,7 +322,7 @@
 }
 
 .card-placeholder {
-  background: rgba($black, .025);
+  background: rgba($black, 0.025);
   border: 1px dashed $gray-300;
 }
 
@@ -335,14 +330,14 @@
   display: inline-block;
   width: ($card-spacer-y * 2) + ($font-size-base * $line-height-base);
   padding: $card-spacer-y 0;
-  margin: (- $card-spacer-y) $card-spacer-x (- $card-spacer-y) (- $card-spacer-x);
+  margin: (-$card-spacer-y) $card-spacer-x (-$card-spacer-y) (-$card-spacer-x);
   line-height: inherit;
   color: $card-icon-color;
   text-align: center;
   background: $card-icon-bg;
   border-right: $card-border-width solid;
   @include themes($card-theme-map, $create: parent) {
-    border-right: themes-get-value("card-border-color");
+    border-right: themes-get-value('card-border-color');
   }
 }
 
@@ -351,11 +346,11 @@
 
   @include ltr {
     float: right;
-    margin-right: - ($spacer / 4);
+    margin-right: -($spacer / 4);
   }
   @include rtl {
     float: left;
-    margin-left: - ($spacer / 4);
+    margin-left: -($spacer / 4);
   }
 }
 
@@ -369,7 +364,6 @@
   }
 }
 
-
 // Cards with color accent
 @include theme-variant() {
   .card-accent-#{$color} {
@@ -378,16 +372,15 @@
 }
 
 .card-full {
-  margin-top: - $spacer;
-  margin-right: - $grid-gutter-width / 2;
-  margin-left: - $grid-gutter-width / 2;
+  margin-top: -$spacer;
+  margin-right: -10px;
+  margin-left: -10px;
   border: 0;
   border-bottom: $card-border-width solid $border-color;
 }
 
 @include media-breakpoint-up(sm) {
   .card-columns {
-
     &.cols-2 {
       column-count: 2;
     }

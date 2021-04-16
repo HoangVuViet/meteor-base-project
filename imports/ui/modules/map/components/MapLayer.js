@@ -7,6 +7,10 @@ const styles = {
   mapDiv: {
     height: '100%',
     width: '100%',
+    padding: 0,
+    margin: 0,
+    maxWidth: '100%',
+    minWidth: '100%',
   },
 };
 
@@ -225,7 +229,6 @@ const BaseMap = (props) => {
           };
         });
         view.ui.add(timeSlider, 'bottom-left');
-
         view.then(() => {
           setState({
             map,
@@ -243,7 +246,7 @@ const BaseMap = (props) => {
     }
   };
   return (
-    <Row style={{ height: '100%' }}>
+    <Row style={{ height: '100%', padding: 0, margin: 0 }}>
       <div id="viewDiv" style={styles.mapDiv}>
         {this.renderMap()}
       </div>

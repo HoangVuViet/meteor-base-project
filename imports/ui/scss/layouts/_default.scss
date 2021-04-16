@@ -24,7 +24,6 @@
   min-height: 100vh;
 
   &:not(.c-wrapper-fluid) {
-
     .c-subheader-fixed {
       position: relative;
     }
@@ -83,7 +82,7 @@
   flex-shrink: 0;
   flex-grow: 1;
   min-width: 0;
-  padding-top: 2 * $spacer;
+  // padding-top: 2 * $spacer;
 
   > .container-fluid {
     @include media-breakpoint-up(md) {
@@ -92,4 +91,3 @@
     }
   }
 }
-
