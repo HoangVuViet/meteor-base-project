@@ -6,8 +6,6 @@ import { DATA_EVALUATION_ROUTES, DOWNLOAD_DATA_ROUTES, PROCESS_DATA_ROUTES } fro
   DOWNLOAD_DATA_ROUTES,
   PROCESS_DATA_ROUTES,
 } from '/imports/ui/configs/routes';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import PollIcon from '@material-ui/icons/Poll';
 export const LIST_ITEMS = [
   {
     title: 'Tải dữ liệu',

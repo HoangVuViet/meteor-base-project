@@ -1,42 +1,28 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import CIcon from '@coreui/icons-react';
 import {
   CHeader,
-  CToggler,
   CHeaderBrand,
   CHeaderNav,
   CHeaderNavItem,
   CHeaderNavLink,
-  CSubheader,
-  CBreadcrumbRouter,
-  CLink,
+  CToggler,
 } from '@coreui/react';
-import CIcon from '@coreui/icons-react';
-
-// routes config
-import routes from '../routes';
-
-import {
-  TheHeaderDropdown,
-  TheHeaderDropdownMssg,
-  TheHeaderDropdownNotif,
-  TheHeaderDropdownTasks,
-} from './index';
+import React from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { setClose } from '../redux/initReducer';
+import { TheHeaderDropdown, TheHeaderDropdownNotif } from './index';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
-
+  const { sidebarShow } = useSelector((state) => state.accommodation, shallowEqual);
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive';
-    dispatch({ type: 'set', sidebarShow: val });
+    dispatch(setClose(val));
   };
-  console.log(sidebarShow);
   const toggleSidebarMobile = () => {
-    const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive';
-    dispatch({ type: 'set', sidebarShow: val });
+    const val = [false, 'responsive'].includes(c) ? true : 'responsive';
+    dispatch(setClose(val));
   };
-
   return (
     <CHeader withSubheader>
       <CToggler inHeader className="ml-md-3 d-lg-none" onClick={toggleSidebarMobile} />

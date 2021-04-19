@@ -12,8 +12,8 @@ import App from '../imports/ui/App';
 import ConnectedIntlProvider from '/imports/ui/modules/intl/components/ConnectedIntlProvider';
 import configureStore, { history } from '/imports/ui/redux/configureStore';
 import { createStore } from 'redux';
-import { MUI_THEME, THEME } from '/imports/ui/configs/setupTheme';
 import { MuiThemeProvider, ThemeProvider } from '@material-ui/core';
+import { MUI_THEME, THEME } from '/imports/ui/configs/setupTheme';
 
 const initialState = {
   sidebarShow: 'responsive',
@@ -28,24 +28,28 @@ const changeState = (state = initialState, { type, ...rest }) => {
   }
 };
 
-const store = createStore(changeState);
-
+const store = configureStore({});
+const persistor = persistStore(store);
 React.icons = icons;
 
 Meteor.startup(() => {
   render(
     <Provider store={store}>
-      <ConnectedIntlProvider>
-        <ThemeProvider theme={THEME}>
-          <MuiThemeProvider theme={MUI_THEME}>
-            <SnackbarProvider maxSnack={3}>
-              {/* <Firebase> */}
-              <App />
-              {/* </Firebase> */}
-            </SnackbarProvider>
-          </MuiThemeProvider>
-        </ThemeProvider>
-      </ConnectedIntlProvider>
+      <ConnectedRouter history={history}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ConnectedIntlProvider>
+            <ThemeProvider theme={THEME}>
+              <MuiThemeProvider theme={MUI_THEME}>
+                <SnackbarProvider maxSnack={3}>
+                  {/* <Firebase> */}
+                  <App />
+                  {/* </Firebase> */}
+                </SnackbarProvider>
+              </MuiThemeProvider>
+            </ThemeProvider>
+          </ConnectedIntlProvider>
+        </PersistGate>
+      </ConnectedRouter>
     </Provider>,
     document.getElementById('app'),
   );

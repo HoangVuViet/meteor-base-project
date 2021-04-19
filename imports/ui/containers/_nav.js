@@ -84,27 +84,27 @@ const _nav = [
       {
         _tag: 'CSidebarNavItem',
         name: 'Landsat AOD',
-        to: '/notifications/alerts',
+        to: ROUTES.landsatProcess,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'CALIPSO AOD',
-        to: '/notifications/badges',
+        to: ROUTES.calipsoProcess,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'MODIS AOD',
-        to: '/notifications/modals',
+        to: ROUTES.modisProcess,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'VIIRS AOD',
-        to: '/notifications/toaster',
+        to: ROUTES.viirsProcess,
       },
       {
         _tag: 'CSidebarNavItem',
         name: 'AERONET AOD',
-        to: '/notifications/toaster',
+        to: ROUTES.aeronetProcess,
       },
     ],
   },
