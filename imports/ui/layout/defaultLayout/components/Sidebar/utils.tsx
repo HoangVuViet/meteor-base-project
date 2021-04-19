@@ -1,7 +1,11 @@
-import ExploreIcon from '@material-ui/icons/Explore';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
+import PollIcon from '@material-ui/icons/Poll';
 import React from 'react';
-import { DATA_EVALUATION_ROUTES, MAP_DISPLAY_ROUTES,DOWNLOAD_DATA_ROUTES,PROCESS_DATA_ROUTES } from '/imports/ui/configs/routes';
+import { DATA_EVALUATION_ROUTES, DOWNLOAD_DATA_ROUTES, PROCESS_DATA_ROUTES } from '/imports/ui/configs/routes';
+  DOWNLOAD_DATA_ROUTES,
+  PROCESS_DATA_ROUTES,
+} from '/imports/ui/configs/routes';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import PollIcon from '@material-ui/icons/Poll';
 export const LIST_ITEMS = [

@@ -1,0 +1,2 @@
+
+export const FETCH_ROOM_TYPES = 'FETCH_ROOM_TYPES';

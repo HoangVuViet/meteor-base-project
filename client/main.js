@@ -12,6 +12,8 @@ import App from '../imports/ui/App';
 import ConnectedIntlProvider from '/imports/ui/modules/intl/components/ConnectedIntlProvider';
 import configureStore, { history } from '/imports/ui/redux/configureStore';
 import { createStore } from 'redux';
+import { MUI_THEME, THEME } from '/imports/ui/configs/setupTheme';
+import { MuiThemeProvider, ThemeProvider } from '@material-ui/core';
 
 const initialState = {
   sidebarShow: 'responsive',
@@ -33,7 +35,17 @@ React.icons = icons;
 Meteor.startup(() => {
   render(
     <Provider store={store}>
-      <App />
+      <ConnectedIntlProvider>
+        <ThemeProvider theme={THEME}>
+          <MuiThemeProvider theme={MUI_THEME}>
+            <SnackbarProvider maxSnack={3}>
+              {/* <Firebase> */}
+              <App />
+              {/* </Firebase> */}
+            </SnackbarProvider>
+          </MuiThemeProvider>
+        </ThemeProvider>
+      </ConnectedIntlProvider>
     </Provider>,
     document.getElementById('app'),
   );

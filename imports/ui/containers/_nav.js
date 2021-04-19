@@ -1,9 +1,9 @@
-import React from 'react';
 import CIcon from '@coreui/icons-react';
-import LooksIcon from '@material-ui/icons/Looks';
+import CallMergeIcon from '@material-ui/icons/CallMerge';
 import EcoIcon from '@material-ui/icons/Eco';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import CallMergeIcon from '@material-ui/icons/CallMerge';
+import React from 'react';
+import { ROUTES } from '../configs/routes';
 const _nav = [
   // {
   //   _tag: 'CSidebarNavItem',
@@ -49,23 +49,28 @@ const _nav = [
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Tải dữ liệu',
-        to: '/buttons/buttons',
+        name: 'Landsat AOD',
+        to: '/download/Landsat',
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'Brand buttons',
-        to: '/buttons/brand-buttons',
+        name: 'CALIPSO AOD',
+        to: ROUTES.calipsoDownload,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
+        name: 'MODIS AOD',
+        to: ROUTES.modisDownload,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'Dropdowns',
-        to: '/buttons/button-dropdowns',
+        name: 'VIIRS AOD',
+        to: ROUTES.viirsDownload,
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'AERONET AOD',
+        to: ROUTES.aeronetDownload,
       },
     ],
   },
@@ -78,22 +83,27 @@ const _nav = [
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Alerts',
+        name: 'Landsat AOD',
         to: '/notifications/alerts',
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'Badges',
+        name: 'CALIPSO AOD',
         to: '/notifications/badges',
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'Modal',
+        name: 'MODIS AOD',
         to: '/notifications/modals',
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'Toaster',
+        name: 'VIIRS AOD',
+        to: '/notifications/toaster',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'AERONET AOD',
         to: '/notifications/toaster',
       },
     ],

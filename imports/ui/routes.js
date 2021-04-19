@@ -1,4 +1,6 @@
 import React from 'react';
+import { ROUTES } from './configs/routes';
+import LandsatDownload from './modules/download/pages/LandsatDownload';
 
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
@@ -45,7 +47,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: ArcMapLandsat },
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', component: Colors },
+  { path: ROUTES.landsatDownload, name: 'Landsat AOD', component: LandsatDownload },
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', name: 'Base', component: Cards, exact: true },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
