@@ -11,7 +11,7 @@ const ArcMap = (props) => {
     setMapState({ map, view });
   }, []);
   return (
-    <div style={{ height: 900, width: '105%', padding: 0, margin: 0, marginLeft: -10 }}>
+    <div style={{ height: 800, width: '105%', padding: 0, margin: 2, marginLeft: -6 }}>
       <MyFeatureLayer
         featureLayerProperties={{
           url: 'http://localhost:6080/arcgis/rest/services/PM25Landsat120m/MapServer',

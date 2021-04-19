@@ -1,133 +1,55 @@
 import React from 'react';
 import CIcon from '@coreui/icons-react';
-
+import LooksIcon from '@material-ui/icons/Looks';
+import EcoIcon from '@material-ui/icons/Eco';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import CallMergeIcon from '@material-ui/icons/CallMerge';
 const _nav = [
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Dashboard',
-    to: '/dashboard',
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
-    badge: {
-      color: 'info',
-    },
-  },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Dashboard',
+  //   to: '/dashboard',
+  //   // icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
+  //   badge: {
+  //     color: 'info',
+  //   },
+  // },
   {
     _tag: 'CSidebarNavTitle',
-    _children: ['Theme'],
+    _children: ['Bản đồ'],
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Colors',
+    name: 'Nhiệt độ',
     to: '/theme/colors',
-    icon: 'cil-drop',
+    icon: <CIcon name="cil-drop" customClasses="c-sidebar-nav-icon" />,
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Typography',
+    name: 'Gió',
     to: '/theme/typography',
-    icon: 'cil-pencil',
+    icon: <EcoIcon style={{ marginRight: 15, padding: 2 }}></EcoIcon>,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Áp suất',
+    to: '/theme/typography',
+    icon: <CIcon name="cil-globe-alt" customClasses="c-sidebar-nav-icon" />,
   },
   {
     _tag: 'CSidebarNavTitle',
-    _children: ['Components'],
+    _children: ['Dữ liệu'],
   },
   {
     _tag: 'CSidebarNavDropdown',
-    name: 'Base',
-    route: '/base',
-    icon: 'cil-puzzle',
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Breadcrumb',
-        to: '/base/breadcrumbs',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Cards',
-        to: '/base/cards',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Carousel',
-        to: '/base/carousels',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Collapse',
-        to: '/base/collapses',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Forms',
-        to: '/base/forms',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Jumbotron',
-        to: '/base/jumbotrons',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'List group',
-        to: '/base/list-groups',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Navs',
-        to: '/base/navs',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Navbars',
-        to: '/base/navbars',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Pagination',
-        to: '/base/paginations',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Popovers',
-        to: '/base/popovers',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Progress',
-        to: '/base/progress-bar',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Switches',
-        to: '/base/switches',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Tables',
-        to: '/base/tables',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Tabs',
-        to: '/base/tabs',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Tooltips',
-        to: '/base/tooltips',
-      },
-    ],
-  },
-  {
-    _tag: 'CSidebarNavDropdown',
-    name: 'Buttons',
+    name: 'Tải dữ liệu',
     route: '/buttons',
-    icon: 'cil-cursor',
+    // icon: 'cil-cursor',
+    icon: <GetAppIcon style={{ marginRight: 15, padding: 2 }} />,
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Buttons',
+        name: 'Tải dữ liệu',
         to: '/buttons/buttons',
       },
       {
@@ -148,16 +70,11 @@ const _nav = [
     ],
   },
   {
-    _tag: 'CSidebarNavItem',
-    name: 'Charts',
-    to: '/charts',
-    icon: 'cil-chart-pie',
-  },
-  {
     _tag: 'CSidebarNavDropdown',
-    name: 'Notifications',
+    name: 'Xử lý dữ liệu',
     route: '/notifications',
-    icon: 'cil-bell',
+    // icon: 'cil-bell',
+    icon: <CallMergeIcon style={{ marginRight: 15, padding: 2 }} />,
     _children: [
       {
         _tag: 'CSidebarNavItem',
