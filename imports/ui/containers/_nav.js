@@ -1,9 +1,13 @@
 import CIcon from '@coreui/icons-react';
 import CallMergeIcon from '@material-ui/icons/CallMerge';
+import CategoryIcon from '@material-ui/icons/Category';
 import EcoIcon from '@material-ui/icons/Eco';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import TimelineIcon from '@material-ui/icons/Timeline';
 import React from 'react';
+import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 import { ROUTES } from '../configs/routes';
+import AcUnitIcon from '@material-ui/icons/AcUnit';
 const _nav = [
   // {
   //   _tag: 'CSidebarNavItem',
@@ -22,19 +26,19 @@ const _nav = [
     _tag: 'CSidebarNavItem',
     name: 'Nhiệt độ',
     to: '/theme/colors',
-    icon: <CIcon name="cil-drop" customClasses="c-sidebar-nav-icon" />,
+    icon: <FilterVintageIcon style={{ marginRight: 13, padding: 2 }} />,
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Gió',
     to: '/theme/typography',
-    icon: <EcoIcon style={{ marginRight: 15, padding: 2 }}></EcoIcon>,
+    icon: <EcoIcon style={{ marginRight: 13, padding: 2 }}></EcoIcon>,
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Áp suất',
     to: '/theme/typography',
-    icon: <CIcon name="cil-globe-alt" customClasses="c-sidebar-nav-icon" />,
+    icon: <AcUnitIcon style={{ marginRight: 13, padding: 2 }} />,
   },
   {
     _tag: 'CSidebarNavTitle',
@@ -45,7 +49,7 @@ const _nav = [
     name: 'Tải dữ liệu',
     route: '/buttons',
     // icon: 'cil-cursor',
-    icon: <GetAppIcon style={{ marginRight: 15, padding: 2 }} />,
+    icon: <GetAppIcon style={{ marginRight: 13, padding: 2 }} />,
     _children: [
       {
         _tag: 'CSidebarNavItem',
@@ -79,7 +83,7 @@ const _nav = [
     name: 'Xử lý dữ liệu',
     route: '/notifications',
     // icon: 'cil-bell',
-    icon: <CallMergeIcon style={{ marginRight: 15, padding: 2 }} />,
+    icon: <CallMergeIcon style={{ marginRight: 13, padding: 2 }} />,
     _children: [
       {
         _tag: 'CSidebarNavItem',
@@ -113,35 +117,19 @@ const _nav = [
   },
   {
     _tag: 'CSidebarNavTitle',
-    _children: ['Extras'],
+    _children: ['Sản phẩm'],
   },
   {
-    _tag: 'CSidebarNavDropdown',
-    name: 'Pages',
-    route: '/pages',
-    icon: 'cil-star',
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Login',
-        to: '/login',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Register',
-        to: '/register',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Error 404',
-        to: '/404',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Error 500',
-        to: '/500',
-      },
-    ],
+    _tag: 'CSidebarNavItem',
+    name: 'Đánh giá sản phẩm ảnh vệ tinh',
+    to: ROUTES.chart,
+    icon: <TimelineIcon style={{ marginRight: 13, padding: 2 }}></TimelineIcon>,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Tìm kiếm, thống kê',
+    to: ROUTES.report,
+    icon: <CategoryIcon style={{ marginRight: 13, padding: 2 }}> </CategoryIcon>,
   },
   {
     _tag: 'CSidebarNavDivider',

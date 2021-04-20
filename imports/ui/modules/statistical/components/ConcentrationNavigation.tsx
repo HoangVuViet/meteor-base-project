@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   padding: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(1),
   },
   demo1: {
     backgroundColor: theme.palette.background.paper,
@@ -90,7 +90,7 @@ export default function CustomizedTabs() {
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={value}
           onChangeIndex={handleChange}
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 0 }}
         >
           <TabContext value={value.toString()} index={0} style={{ width: '100%' }}>
             <ConcentrationChart chartName={'chartDiv1'}></ConcentrationChart>

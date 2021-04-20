@@ -11,7 +11,7 @@ export default function SimpleBottomNavigation() {
       <Typography variant="h5"> Trung tâm Live & Learn</Typography>
       <Rating value={5} readOnly size="small" />
 
-      <Row style={{ display: 'flex', marginBottom: 30 }}>
+      <Row style={{ display: 'flex', marginBottom: 0 }}>
         <LocationOnIcon />
         <Typography variant="body2" component="span" style={{ marginLeft: 4 }}>
           phường Bưởi, quận Tây Hồ

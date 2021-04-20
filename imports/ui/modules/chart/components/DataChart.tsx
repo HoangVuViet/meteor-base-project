@@ -70,8 +70,8 @@ const DataChart: React.FC<Props> = (props) => {
           !isEmpty(body.radius) &&
           !isEmpty(body.station) &&
           chartData[0]?.x !== undefined ? (
-            <Row style={{ marginTop: 15 }}>
-              <Col style={{ marginRight: 20, width: '70%' }}>
+            <Row style={{ marginTop: 0 }}>
+              <Col style={{ marginRight: 20, width: '80%' }}>
                 <ChartRender chartData={chartData}></ChartRender>
               </Col>
               <Paper
@@ -84,19 +84,19 @@ const DataChart: React.FC<Props> = (props) => {
                   width: 300,
                 }}
               >
-                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
                   <span>-</span>&nbsp;{textData[0]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
                   <span>-</span>&nbsp;{textData[1]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
                   <span>-</span>&nbsp;{textData[2]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
                   <span>-</span>&nbsp;{textData[3]}
                 </Typography>
-                <Typography variant="body2" style={{ marginBottom: 36, whiteSpace: 'nowrap' }}>
+                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
                   <span>-</span>&nbsp;{textData[4]}
                 </Typography>
               </Paper>
@@ -116,7 +116,7 @@ const DataChart: React.FC<Props> = (props) => {
           )}
         </React.Fragment>
       ) : (
-        <Row style={{ margin: '150px auto', marginLeft: 500 }}>
+        <Row style={{ margin: '150px auto', marginLeft: 600 }}>
           <CircularProgress color="secondary" />
         </Row>
       )}

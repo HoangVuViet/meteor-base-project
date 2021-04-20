@@ -10,6 +10,7 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Concentration from './Concentration';
 import Dashboard from './Dashboard';
+import Table from './Table';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -47,7 +48,7 @@ function a11yProps(index: any) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: 1000,
+    width: '100%',
     padding: 12,
   },
 }));
@@ -78,19 +79,23 @@ export default function FullWidthTabs() {
         >
           <Tab label="Tổng quan" {...a11yProps(0)} />
           <Tab label="Nồng độ" {...a11yProps(1)} />
+          <Tab label="Thống kê" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 0 }}
       >
         <TabContext value={value.toString()} index={0} dir={theme.direction}>
           <Dashboard></Dashboard>
         </TabContext>
         <TabContext value={value.toString()} index={1} dir={theme.direction}>
           <Concentration></Concentration>
+        </TabContext>
+        <TabContext value={value.toString()} index={2} dir={theme.direction}>
+          <Table></Table>
         </TabContext>
       </SwipeableViews>
     </div>

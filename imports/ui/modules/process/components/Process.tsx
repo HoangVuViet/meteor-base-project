@@ -36,7 +36,12 @@ const Download: React.FC<Props> = (props) => {
     )?.name;
     Meteor.call(
       'method2',
-      [command, fileName, 'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/', temp],
+      [
+        command,
+        fileName,
+        'E:/APOM_PLATFORM/code/visualization/meteor-base-project/ImageDownload/',
+        temp,
+      ],
       (_error: any, result: any) => {
         console.log(result);
       },
@@ -44,7 +49,7 @@ const Download: React.FC<Props> = (props) => {
     setSubmitting(false);
   }, [values, command]);
   return (
-    <Col style={{ marginLeft: 20 }}>
+    <Col style={{ marginLeft: 20, marginTop: 10 }}>
       <Row style={{ marginBottom: 12 }}>
         <Typography variant="h6" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
           <FormattedMessage id="process" />
@@ -123,10 +128,10 @@ const Download: React.FC<Props> = (props) => {
                 ))}
               </Fragment>
             ) : (
-                <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
-                  <FormattedMessage id="empty" />
-                </Typography>
-              )}
+              <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
+                <FormattedMessage id="empty" />
+              </Typography>
+            )}
           </Paper>
         </Row>
         <Row>
@@ -205,10 +210,10 @@ const Download: React.FC<Props> = (props) => {
                 <FormattedMessage id="isProgressing" />
               </Typography>
             ) : (
-                <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
-                  <FormattedMessage id="emptyStatus" />
-                </Typography>
-              )}
+              <Typography variant="body2" style={{ whiteSpace: 'nowrap' }} color="textSecondary">
+                <FormattedMessage id="emptyStatus" />
+              </Typography>
+            )}
           </Paper>
         </Row>
       </Col>

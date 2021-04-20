@@ -55,7 +55,6 @@ const BaseMap = (props) => {
           zoom: props.isLandsat ? 9 : 5.8,
           center: props.isLandsat ? [105.83416, 21.027763] : [107.590866, 16.463713],
         });
-        view.ui.move('zoom', 'top-right');
         var toggle = new BasemapToggle({
           view: view,
           nextBasemap: 'streets-relief-vector',
@@ -68,8 +67,8 @@ const BaseMap = (props) => {
         view.ui.add(searchWidget, {
           position: 'top-left',
         });
-
-        view.ui.add(toggle, 'top-right');
+        view.ui.move('zoom', 'top-left');
+        view.ui.add(toggle, 'top-left');
 
         var featureLayer = !props.isLandsat
           ? new FeatureLayer({
@@ -295,7 +294,7 @@ const BaseMap = (props) => {
           </tbody>
         </table>
       </div>
-      <div style={{ alignItems: 'flex-end', marginLeft: -40, marginTop: -300 }}>
+      <div style={{ left: 48, top: 103, position: 'fixed' }}>
         <RightAside></RightAside>
       </div>
     </Row>

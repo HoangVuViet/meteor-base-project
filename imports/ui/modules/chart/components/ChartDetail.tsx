@@ -44,13 +44,13 @@ const ChartDetail: React.FC<Props> = () => {
       <Row>
         <Col>
           <Row>
-            <Typography variant="subtitle2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
+            <Typography variant="subtitle2" style={{ marginBottom: 8, whiteSpace: 'nowrap' }}>
               <FormattedMessage id="product" />
             </Typography>
           </Row>
           <Row>
             <Typography
-              style={{ margin: '12px 14px 12px 16px', whiteSpace: 'nowrap' }}
+              style={{ margin: '12px 40px 14px 16px', whiteSpace: 'nowrap' }}
               variant="body2"
               component="p"
             >
@@ -61,7 +61,6 @@ const ChartDetail: React.FC<Props> = () => {
               label={null}
               style={{
                 width: 250,
-                margin: '20px 10px 12px 30px',
               }}
               formControlStyle={{
                 minWidth: 250,
@@ -84,7 +83,7 @@ const ChartDetail: React.FC<Props> = () => {
           </Row>
           <Row>
             <Typography
-              style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
+              style={{ margin: '8px 20px 20px 16px', whiteSpace: 'nowrap' }}
               variant="body2"
               component="p"
             >
@@ -95,7 +94,6 @@ const ChartDetail: React.FC<Props> = () => {
               label={null}
               style={{
                 width: 250,
-                margin: '16px 10px 8px 15px',
               }}
               formControlStyle={{
                 minWidth: 250,
@@ -111,7 +109,7 @@ const ChartDetail: React.FC<Props> = () => {
             />
           </Row>
         </Col>
-        <Col style={{marginLeft : 80}}>
+        <Col style={{ marginLeft: 160 }}>
           <Row>
             <Typography variant="subtitle2" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
               <FormattedMessage id="conditionCombined" />
@@ -119,7 +117,7 @@ const ChartDetail: React.FC<Props> = () => {
           </Row>
           <Row>
             <Typography
-              style={{ margin: '12px 10px 12px 15px', whiteSpace: 'nowrap' }}
+              style={{ margin: '12px 40px 16px 15px', whiteSpace: 'nowrap' }}
               variant="body2"
               component="p"
             >
@@ -130,7 +128,6 @@ const ChartDetail: React.FC<Props> = () => {
               label={null}
               style={{
                 width: 250,
-                margin: '20px 10px 12px 25px',
               }}
               formControlStyle={{
                 minWidth: 250,
@@ -154,7 +151,7 @@ const ChartDetail: React.FC<Props> = () => {
           </Row>
           <Row>
             <Typography
-              style={{ margin: '8px 10px 8px 16px', whiteSpace: 'nowrap' }}
+              style={{ margin: '8px 35px 16px 16px', whiteSpace: 'nowrap' }}
               variant="body2"
               component="p"
             >
@@ -165,7 +162,6 @@ const ChartDetail: React.FC<Props> = () => {
               label={null}
               style={{
                 width: 250,
-                margin: '16px 10px 8px 20px',
               }}
               formControlStyle={{
                 minWidth: 250,

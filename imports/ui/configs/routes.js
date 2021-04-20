@@ -26,6 +26,7 @@ export const ROUTES = {
 
   homeDashboard: '/dashboard',
   chart: '/chart',
+  report: '/report',
 
   pm25: '/pm25Map',
   pm25Landsat: '/pm25Landsat',
@@ -180,7 +181,7 @@ export const DATA_EVALUATION_ROUTES = [
 
 export const MAP_DISPLAY_ROUTES = [
   {
-    name: 'PM2.5 Landsat',
+    name: 'Nhiệt độ',
     isModule: true,
     path: ROUTES.pm25Landsat,
     exact: true,
@@ -191,7 +192,7 @@ export const MAP_DISPLAY_ROUTES = [
     iconName: 'map',
   },
   {
-    name: 'PM2.5 MODIS',
+    name: 'Gió',
     isModule: true,
     path: ROUTES.pm25,
     exact: true,

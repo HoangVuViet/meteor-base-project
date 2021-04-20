@@ -10,22 +10,23 @@
 
 #timeSlider {
   position: absolute;
-  left: 5%;
-  right: 5%;
+  left: 2%;
+  right: 2%;
 }
 
 .esri-legend__layer-caption {
   display: none;
 }
-.esri-time-slider__min, .esri-time-slider__max {
+.esri-time-slider__min,
+.esri-time-slider__max {
   display: none;
 }
 
 .esri-ui-corner .esri-expand .esri-widget--panel,
 .esri-ui-corner .esri-expand .esri-widget--panel-height-only,
-.esri-ui-corner .esri-component>.esri-widget--panel, 
+.esri-ui-corner .esri-component > .esri-widget--panel,
 .esri-ui-corner .esri-component.esri-widget--panel {
-    width: fit-content;
+  width: fit-content;
 }
 /* .esri-legend {
   background-color: #f3f3f3;
@@ -35,23 +36,28 @@
 
 #timeSlider {
   position: absolute;
-  bottom: -35px;
   left: 5px;
+  right: 10px;
+  bottom: 0px;
   width: calc(100vw - 300px);
   background: none;
   margin-left: 0;
   border: none;
 }
 
-.esri-time-slider__min, .esri-time-slider__max {
+.esri-time-slider__min,
+.esri-time-slider__max {
   display: none;
 }
 
-.esri-time-slider__animation-button, .esri-time-slider__slider, .esri-time-slider__slider .esri-slider {
+.esri-time-slider__animation-button,
+.esri-time-slider__slider,
+.esri-time-slider__slider .esri-slider {
   background: none;
 }
 
-.esri-time-slider__previous, .esri-time-slider__next {
+.esri-time-slider__previous,
+.esri-time-slider__next {
   display: none;
 }
 .esri-time-slider__time-extent-date {
@@ -69,13 +75,15 @@
   background-color: #ffffff;
 }
 
-.esri-icon-play:before, .esri-icon-pause:before {
+.esri-icon-play:before,
+.esri-icon-pause:before {
   color: #0863a0;
   border-radius: 50%;
-  background:  white;
+  background: white;
 }
 
-.esri-icon-play, .esri-icon-pause {
+.esri-icon-play,
+.esri-icon-pause {
   font-size: 35px;
 }
 
@@ -122,12 +130,12 @@
   left: -17px;
 }
 
- /* css phần legend */
+/* css phần legend */
 
- .pm25_indexs {
+.pm25_indexs {
   position: fixed;
-  right: 30px;
-  bottom: 50px;
+  right: 10px;
+  bottom: 0px;
   height: 40;
   width: fit-content;
   padding: 0 4px 4px;
@@ -144,9 +152,10 @@
 
 .text-left {
   width: fit-content;
-  color: #FFF;
+  color: #fff;
 }
-.table th, .table td {
+.table th,
+.table td {
   text-align: center;
   padding: 2px;
   padding-left: 0px;
@@ -154,14 +163,15 @@
 
 /* css lại nút hiển thị bản đồ nền */
 
-.esri-widget.esri-basemap-toggle .esri-widget.esri-basemap-toggle, .esri-ui-corner .esri-widget.esri-basemap-toggle {
+.esri-widget.esri-basemap-toggle .esri-widget.esri-basemap-toggle,
+.esri-ui-corner .esri-widget.esri-basemap-toggle {
   width: fit-content;
   height: fit-content;
   margin-right: 32px;
 }
 
-.esri-basemap-toggle__container, .esri-basemap-toggle__image {
+.esri-basemap-toggle__container,
+.esri-basemap-toggle__image {
   width: 32px;
   height: 32px;
 }
-

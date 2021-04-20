@@ -7,8 +7,8 @@ const Chart: React.FC<Props> = () => {
     <Formik initialValues={{}} onSubmit={() => {}}>
       {() => (
         <Form>
-          <div style={{marginLeft: 20}}>
-          <ChartDetail />
+          <div style={{ marginLeft: 20, marginTop: 10 }}>
+            <ChartDetail />
           </div>
         </Form>
       )}

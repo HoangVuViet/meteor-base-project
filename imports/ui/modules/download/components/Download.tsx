@@ -31,14 +31,24 @@ const Download: React.FC<Props> = (props) => {
     // const valuePassedToSever = `${(values as some)?.fromOrderDate} ${
     //   (values as some)?.toOrDerDate
     // } ${temp}`;
-    Meteor.call('method1', [command, fileName, `${(values as some)?.fromOrderDate}`, `${(values as some)?.toOrDerDate}`, temp], (_error: any, result: any) => {
-      console.log(result);
-    });
+    Meteor.call(
+      'method1',
+      [
+        command,
+        fileName,
+        `${(values as some)?.fromOrderDate}`,
+        `${(values as some)?.toOrDerDate}`,
+        temp,
+      ],
+      (_error: any, result: any) => {
+        console.log(result);
+      },
+    );
     setSubmitting(false);
   }, [values, command]);
-  
+
   return (
-    <Col style={{ marginLeft: 20 }}>
+    <Col style={{ marginLeft: 20, marginTop: 10 }}>
       <Row style={{ marginBottom: 12 }}>
         <Typography variant="h6" style={{ marginBottom: 16, whiteSpace: 'nowrap' }}>
           <FormattedMessage id="download" />
@@ -59,13 +69,13 @@ const Download: React.FC<Props> = (props) => {
           <DateRangeFormControl
             startDate={
               (values as some).fromOrderDate &&
-                moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
+              moment((values as some).fromOrderDate, C_DATE_FORMAT, true).isValid()
                 ? moment((values as some).fromOrderDate, C_DATE_FORMAT, true)
                 : undefined
             }
             endDate={
               (values as some).toOrDerDate &&
-                moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
+              moment((values as some).toOrDerDate, C_DATE_FORMAT, true).isValid()
                 ? moment((values as some).toOrDerDate, C_DATE_FORMAT, true)
                 : undefined
             }
@@ -124,10 +134,10 @@ const Download: React.FC<Props> = (props) => {
               background: '#f5f5f5',
               boxShadow: 'none',
               width: 500,
-              height: 300
+              height: 300,
             }}
           >
-           {isSubmitting ? (
+            {isSubmitting ? (
               <Typography variant="body2" style={{ whiteSpace: 'nowrap', color: '#ffb822' }}>
                 <FormattedMessage id="isDownloading" />
               </Typography>
