@@ -1,7 +1,7 @@
 import { loadModules } from 'esri-loader';
 import React from 'react';
 import { Row } from '../../common/components/elements';
-import '../pages/styles';
+import '../pages/css/styles';
 import RightAside from './RightAside';
 const styles = {
   mapDiv: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ROUTES } from './configs/routes';
-import ArcMap from './modules/map/pages/ArcMapPM25';
+import ArcMap from './modules/map/pages/ArcMapPM25.js';
 import Statistical from './modules/statistical/pages/Statistical';
 
 const ArcMapLandsat = React.lazy(() => import('./modules/map/pages/ArcMapLandsat'));

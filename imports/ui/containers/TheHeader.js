@@ -27,14 +27,20 @@ const TheHeader = () => {
     <div style={{ width: 1400 }}>
       <CHeader withSubheader>
         <CToggler inHeader className="ml-md-3 d-lg-none" onClick={toggleSidebarMobile} />
-        <CToggler inHeader className="ml-3 d-md-down-none" onClick={toggleSidebar} />
+        <div style={{ marginLeft: -18, paddingTop: 17 }}>
+          <CToggler inHeader className="ml-3 d-md-down-none" onClick={toggleSidebar} />
+        </div>
         <CHeaderNav className="d-md-down-none mr-auto">
           <CHeaderNavItem className="px-3">
-            <CHeaderNavLink to="/">APOM</CHeaderNavLink>
+            <CHeaderNavLink to="/">
+              <img
+                src="../../../images/988e98fa6f7c4e48864479b1d99dca85.png"
+                style={{ width: 15, height: 15 }}
+              ></img>
+            </CHeaderNavLink>
           </CHeaderNavItem>
         </CHeaderNav>
-
-        <div style={{ marginRight: 15 }}>
+        <div style={{ marginRight: -18 }}>
           <CHeaderNav className="px-3">
             <TheHeaderDropdownNotif />
             <TheHeaderDropdown />
