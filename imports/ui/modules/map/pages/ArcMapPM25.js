@@ -11,13 +11,14 @@ const ArcMap = (props) => {
     setMapState({ map, view });
   }, []);
   return (
-    <div style={{ height: 650, width: 1435, padding: 0, marginTop: -5, marginLeft: -15 }}>
+    <div style={{ height: 610, width: 1400 }}>
       <MyFeatureLayer
         featureLayerProperties={{
-          url: 'http://localhost:6080/arcgis/rest/services/PM25_MYD/MapServer',
-          featureUrl: 'http://localhost:6080/arcgis/rest/services/PM25_MYD/MapServer/0',
+          url: 'http://arcgis70.fimo.edu.vn/arcgis/rest/services/PM25_Landsat/MapServer',
+          featureUrl: 'http://arcgis70.fimo.edu.vn/arcgis/rest/services/PM25_Landsat/MapServer',
         }}
         mapState={mapState}
+        isLandsat={true}
       ></MyFeatureLayer>
     </div>
   );

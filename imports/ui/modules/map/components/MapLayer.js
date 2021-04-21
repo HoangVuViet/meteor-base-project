@@ -46,7 +46,7 @@ const BaseMap = (props) => {
           opacity: 0.5,
         });
         var map = new Map({
-          basemap: 'satellite',
+          basemap: 'streets-relief-vector',
           layers: [layer],
         });
         const view = new MapView({
@@ -57,7 +57,7 @@ const BaseMap = (props) => {
         });
         var toggle = new BasemapToggle({
           view: view,
-          nextBasemap: 'streets-relief-vector',
+          nextBasemap: 'satellite',
         });
 
         var searchWidget = new Search({
@@ -294,7 +294,7 @@ const BaseMap = (props) => {
           </tbody>
         </table>
       </div>
-      <div style={{ left: 48, top: 103, position: 'fixed' }}>
+      <div style={{ left: 16, top: 240, position: 'fixed' }}>
         <RightAside></RightAside>
       </div>
     </Row>

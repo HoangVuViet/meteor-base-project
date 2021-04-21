@@ -1,78 +1,40 @@
 import { IconButton, Typography } from '@material-ui/core';
-import moment from 'moment';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { Form, Formik } from 'formik';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Col, Row } from '../../common/components/elements';
-import TableCustom, { Column } from '../../common/components/TableCustom';
-import { some } from '/imports/ui/constants';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import {
-  DATE_FORMAT,
-  DATE_FORMAT_BACK_END,
-  DATE_TIME_FORMAT,
-  TIME_FORMAT,
-} from '/imports/ui/models/moment';
+import { Row } from '../../common/components/elements';
 import LoadingButton from '../../common/components/LoadingButton';
-
+import TableCustom, { Column } from '../../common/components/TableCustom';
+import { dataFake } from './dataFake';
+import Filter from './Filter';
+import { some } from '/imports/ui/constants';
 interface ITableProps {}
 
 const Table: React.FunctionComponent<ITableProps> = (_props) => {
   const columns = React.useMemo(() => {
     const temp: Column[] = [
       {
-        style: { fontWeight: 500 },
-        title: 'IDS_HMS_BOOKING_ORDER',
-        dataIndex: 'bookingCode',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col>
-            {record?.orderCode ? (
-              <Typography variant="body2">{record?.orderCode}</Typography>
-            ) : (
-              <Typography variant="body2">
-                <FormattedMessage id="IDS_HMS_NULL_DATA" />
-              </Typography>
-            )}
-            <Typography variant="body2">
-              {moment(record?.created, DATE_TIME_FORMAT).format(DATE_FORMAT)}
-            </Typography>
-            <Typography variant="body2">
-              {moment(record?.created, DATE_TIME_FORMAT).format(TIME_FORMAT)}
-            </Typography>
-          </Col>
-        ),
-      },
-      {
-        title: 'IDS_HMS_BOOKING_ORDER_CODE',
-        dataIndex: 'bookingCode',
+        title: 'id',
+        dataIndex: 'employeeCode',
         variant: 'body2',
       },
       {
-        title: 'IDS_HMS_BOOKING_ORDER_STAYING_DAY',
-        dataIndex: 'checkIn-checkOut',
+        title: 'name',
+        dataIndex: 'name',
         variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col>
-            <Typography variant="body2">
-              <span>
-                {moment(record?.checkIn, DATE_FORMAT_BACK_END).format(DATE_FORMAT)}&nbsp;-&nbsp;
-                {moment(record?.checkOut, DATE_FORMAT_BACK_END).format(DATE_FORMAT)}
-              </span>
-            </Typography>
-            <Typography variant="body2">
-              <span>
-                {moment(record?.checkOut, DATE_FORMAT_BACK_END).diff(
-                  moment(record?.checkIn, DATE_FORMAT_BACK_END),
-                  'days',
-                )}
-              </span>
-              &nbsp;
-              <FormattedMessage id="IDS_HMS_NIGHT" />
-            </Typography>
-          </Col>
-        ),
+      },
+      {
+        title: 'Ngày sinh',
+        dataIndex: 'birthday',
+        variant: 'body2',
+      },
+      {
+        title: 'email',
+        dataIndex: 'email',
+        variant: 'body2',
       },
       {
         disableAction: true,
@@ -102,19 +64,28 @@ const Table: React.FunctionComponent<ITableProps> = (_props) => {
     return temp as Column[];
     // eslint-disable-next-line
   }, []);
-
+  console.log(dataFake);
   return (
     <React.Fragment>
+      <Formik initialValues={{}} onSubmit={() => {}}>
+        {() => (
+          <Form>
+            <div style={{ marginLeft: 20, marginTop: 10 }}>
+              <Filter></Filter>
+            </div>
+          </Form>
+        )}
+      </Formik>
       <TableCustom
-        style={{ borderRadius: 8, boxShadow: 'none', height: 600 }}
-        dataSource={[]}
+        style={{ borderRadius: 8, boxShadow: 'none', height: 400 }}
+        dataSource={dataFake || []}
         columns={columns}
         noColumnIndex
         header={
           <Row
             style={{
               justifyContent: 'space-between',
-              padding: '4px 16px',
+              padding: '4px 16px 0px 16px',
             }}
           >
             <Typography
@@ -129,8 +100,9 @@ const Table: React.FunctionComponent<ITableProps> = (_props) => {
               variant="contained"
               color="secondary"
               style={{
-                width: 150,
+                width: 180,
                 height: 36,
+                whiteSpace: 'nowrap',
               }}
               disableElevation
               // onClick={() => onClickCreate()}
@@ -138,7 +110,7 @@ const Table: React.FunctionComponent<ITableProps> = (_props) => {
               <Row>
                 <AddIcon
                   style={{
-                    marginRight: 10,
+                    marginRight: 8,
                   }}
                 />
                 <Typography variant="body2">

@@ -2,7 +2,6 @@ import { Typography } from '@material-ui/core';
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { isEmpty } from 'voca';
 import { Col, Row } from '../../common/components/elements';
 import { FieldSelectContent } from '../../common/components/FieldContent';
 import {
@@ -15,7 +14,7 @@ import {
   timeEvaluation,
 } from '../utils';
 import DataChart from './DataChart';
-import { some } from '/imports/ui/constants';
+import { isEmpty, some } from '/imports/ui/constants';
 
 interface Props {}
 

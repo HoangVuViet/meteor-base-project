@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core';
 import TableCustom, { Column, ExtendColumn } from './common/components/TableCustom';
 import { some } from '../constants';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     cover: {
       padding: 0,
@@ -147,7 +147,7 @@ const data = [
     phone: '12345645645',
   },
 ];
-export const HelloWorld = (props: Props) => {
+export const HelloWorld = (_props: Props) => {
   const classes = useStyles();
 
   const columns = React.useMemo(() => {

@@ -50,7 +50,7 @@ function DashBoardChart(props) {
   return (
     <div
       id="chartdiv"
-      style={{ width: '100%', height: '440px', marginTop: -50, marginLeft: -30 }}
+      style={{ width: '100%', height: '500px', marginTop: -50, marginLeft: -30 }}
     ></div>
   );
 }

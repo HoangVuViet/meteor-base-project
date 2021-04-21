@@ -1,6 +1,6 @@
 import React from 'react';
 import { ROUTES } from './configs/routes';
-import ArcMap from './modules/map/pages/ArcMapLandsat';
+import ArcMap from './modules/map/pages/ArcMapPM25';
 import Statistical from './modules/statistical/pages/Statistical';
 
 const ArcMapLandsat = React.lazy(() => import('./modules/map/pages/ArcMapLandsat'));
@@ -20,8 +20,8 @@ const CalipsoProcess = React.lazy(() => import('./modules/process/pages/CalipsoP
 const Chart = React.lazy(() => import('./modules/chart/pages/Chart'));
 
 const routes = [
-  { path: '/', exact: true, name: 'ArcMapLandsat', component: ArcMapLandsat },
-  { path: '/dashboard', name: 'Dashboard', component: ArcMapLandsat },
+  { path: '/', exact: true, name: 'ArcMapLandsat', component: ArcMap },
+  { path: '/dashboard', name: 'Dashboard', component: ArcMap },
   { path: ROUTES.pm25, name: 'ArcMapLandsat', component: ArcMap },
   { path: ROUTES.pm25Landsat, name: 'Dashboard', component: ArcMapLandsat },
   { path: ROUTES.landsatDownload, name: 'Landsat AOD', component: LandsatDownload },

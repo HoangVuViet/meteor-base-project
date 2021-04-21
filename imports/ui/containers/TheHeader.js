@@ -24,7 +24,7 @@ const TheHeader = () => {
     dispatch(setClose(val));
   };
   return (
-    <div style={{ marginTop: -10, width: 1435, marginLeft: -20 }}>
+    <div style={{ width: 1400 }}>
       <CHeader withSubheader>
         <CToggler inHeader className="ml-md-3 d-lg-none" onClick={toggleSidebarMobile} />
         <CToggler inHeader className="ml-3 d-md-down-none" onClick={toggleSidebar} />
