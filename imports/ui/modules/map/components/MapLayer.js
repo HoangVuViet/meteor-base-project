@@ -129,11 +129,9 @@ const BaseMap = (props) => {
         view.on('click', function (event) {
           var lat = Math.round(event.mapPoint.latitude * 1000) / 1000;
           var lon = Math.round(event.mapPoint.longitude * 1000) / 1000;
-
           var params = {
             location: event.mapPoint,
           };
-
           locatorTask
             .locationToAddress(params)
             .then(function (response) {

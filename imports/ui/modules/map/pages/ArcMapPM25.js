@@ -3,23 +3,28 @@ import ReactDOM from 'react-dom';
 
 import { Map } from '@esri/react-arcgis';
 import MyFeatureLayer from '../components/MapLayer';
-import './styles.css';
-const ArcMap = (props) => {
-  const [mapState, setMapState] = React.useState({ view: null, map: null });
+import { MapContainer, LayersControl, TileLayer, Marker, Popup } from 'react-leaflet';
 
-  const handleMapLoad = React.useCallback((map, view) => {
-    setMapState({ map, view });
-  }, []);
+const ArcMap = (props) => {
   return (
     <div style={{ height: 610, width: 1400 }}>
-      <MyFeatureLayer
-        featureLayerProperties={{
-          url: 'http://arcgis70.fimo.edu.vn/arcgis/rest/services/PM25_Landsat/MapServer',
-          featureUrl: 'http://arcgis70.fimo.edu.vn/arcgis/rest/services/PM25_Landsat/MapServer',
-        }}
-        mapState={mapState}
-        isLandsat={true}
-      ></MyFeatureLayer>
+      <MapContainer
+        center={[21.027763, 105.83416]}
+        zoom={11}
+        scrollWheelZoom={true}
+        style={{ height: 610, width: 1400 }}
+      >
+        <TileLayer
+          attribution='<a href="http://osm.org/copyright"></a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={[21.027763, 105.83416]}>
+          <Popup>
+            I am a custom popUp latitude and longitude from search component: 21.0294498 ,
+            105.8544441 Info from search component: Hà Nội, Việt Nam{' '}
+          </Popup>
+        </Marker>
+      </MapContainer>
     </div>
   );
 };

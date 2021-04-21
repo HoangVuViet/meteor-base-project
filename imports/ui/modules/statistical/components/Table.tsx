@@ -64,7 +64,6 @@ const Table: React.FunctionComponent<ITableProps> = (_props) => {
     return temp as Column[];
     // eslint-disable-next-line
   }, []);
-  console.log(dataFake);
   return (
     <React.Fragment>
       <Formik initialValues={{}} onSubmit={() => {}}>

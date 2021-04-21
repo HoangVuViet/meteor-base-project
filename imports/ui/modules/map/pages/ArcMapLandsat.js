@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Map } from '@esri/react-arcgis';
 import MyFeatureLayer from '../components/MapLayer';
-import './styles.css';
+import './leaflet.css';
 const ArcMap = (props) => {
   const [mapState, setMapState] = React.useState({ view: null, map: null });
 
