@@ -7,7 +7,7 @@ import LandsatDownload from '../modules/download/pages/LandsatDownload';
 import ModisDownload from '../modules/download/pages/ModisDownload';
 import ViirsDownload from '../modules/download/pages/ViirsDownload';
 import ArcMapLandsat from '../modules/map/pages/ArcMapLandsat';
-import ArcMap from '../modules/map/pages/ArcMapPM25';
+import ArcMap from '../modules/map/pages/MapDisplay';
 import AeronetProcess from '../modules/process/pages/AeronetProcess';
 import CalipsoProcess from '../modules/process/pages/CalipsoProcess';
 import LandsatProcess from '../modules/process/pages/LandsatProcess';

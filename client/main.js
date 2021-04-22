@@ -14,6 +14,7 @@ import configureStore, { history } from '/imports/ui/redux/configureStore';
 import { createStore } from 'redux';
 import { MuiThemeProvider, ThemeProvider } from '@material-ui/core';
 import { MUI_THEME, THEME } from '/imports/ui/configs/setupTheme';
+import 'leaflet-control-geocoder/dist/Control.Geocoder.js';
 
 const initialState = {
   sidebarShow: 'responsive',
