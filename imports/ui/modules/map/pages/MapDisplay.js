@@ -1,17 +1,15 @@
+import L from 'leaflet';
 import Locate from 'leaflet.locatecontrol';
 import React, { useEffect, useRef, useState } from 'react';
-import { Map, Marker, Popup, TileLayer, ZoomControl } from 'react-leaflet';
+import { Map, TileLayer, ZoomControl } from 'react-leaflet';
 import Search from 'react-leaflet-search';
 import DragMarker from '../components/DragMarker';
 import { hereTileUrl } from './constant';
-import L from 'leaflet';
-
 // import './leaflet.css';
 import './css/index.css';
-import MapBoxLayer from '../components/MapBoxLayer';
 
-// const MAPBOX_ACCESS_TOKEN =
-//   'pk.eyJ1Ijoia2F1dG91MXMiLCJhIjoiY2tucnFobzdjMjhyMTJ1cGV0eWdrZWZ4OCJ9._C38VS7x6M3-blvHxLYboA';
+const MAPBOX_ACCESS_TOKEN =
+  'pk.eyJ1Ijoia2F1dG91MXMiLCJhIjoiY2tucnFobzdjMjhyMTJ1cGV0eWdrZWZ4OCJ9._C38VS7x6M3-blvHxLYboA';
 
 const LeafletMap = (_props) => {
   const mapRef = useRef();
@@ -25,6 +23,11 @@ const LeafletMap = (_props) => {
       position: 'topright',
       drawCircles: true,
       locateOptions: { maxZoom: 8 },
+      strings: {
+        title: 'Show me where I am', // title of the locate control
+        popup: 'You are within {location} {unit} from this point11111', // text to appear if user clicks on circle
+        outsideMapBoundsMsg: 'You seem located outside the boundaries of the map', // default message for onLocationOutsideMapBounds
+      },
     });
     lc.addTo(map);
 
@@ -39,7 +42,7 @@ const LeafletMap = (_props) => {
         console.log(r);
         if (r) {
           setAddress(r.name);
-          setMarker({ lat: r.center.lat, lng: r.center.lng });
+          // setMarker({ lat: r.center.lat, lng: r.center.lng });
         }
       });
     });
@@ -55,8 +58,8 @@ const LeafletMap = (_props) => {
     <Map
       ref={mapRef}
       fullscreenControl={true}
-      center={[21.238, 105.83416]}
-      zoom={7}
+      center={[15.220589019578128, 107.77587890625]}
+      zoom={5.8}
       scrollWheelZoom={true}
       zoomControl={false}
       maxZoom={11}
@@ -69,11 +72,16 @@ const LeafletMap = (_props) => {
     >
       <ZoomControl position="topright"></ZoomControl>
       <TileLayer url={hereTileUrl('reduced.day')} />
+      <TileLayer
+        url={
+          'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=c906da2e2326185115258cadf371704f'
+        }
+      />
       {/* <MapBoxLayer
-          accessToken={MAPBOX_ACCESS_TOKEN}
-          style="mapbox://styles/mapbox/streets-v11"
-          maxZoom={15}
-        /> */}
+        accessToken={MAPBOX_ACCESS_TOKEN}
+        style="mapbox://styles/mapbox/streets-v9"
+        maxZoom={11}
+      /> */}
       <div style={{ minHeight: 28, width: 32 }}>
         <Search
           style={{ minHeight: 28, width: 32 }}
@@ -83,19 +91,11 @@ const LeafletMap = (_props) => {
             setMarker(info.latLng);
           }}
           position="topleft"
-          inputPlaceholder="TÌm kiếm địa điểm..."
+          inputPlaceholder="Tìm kiếm địa điểm..."
           closeResultsOnClick={true}
           openSearchOnLoad={true}
           showMarker={false}
           zoom={9}
-          // these searchbounds would limit results to only Turkey.
-          // providerOptions={{
-          //   searchBounds: [
-          //     new LatLng(33.100745405144245, 46.48315429687501),
-          //     new LatLng(44.55916341529184, 24.510498046875),
-          //   ],
-          //   region: 'tr',
-          // }}
         ></Search>
       </div>
       {marker.lat !== 0 && marker.lng !== 0 && (
