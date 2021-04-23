@@ -109,7 +109,7 @@
 .search-control-active .search-control-input {
   padding: 0px 26px 0px 0px;
   height: var(--active-height);
-  width: 244px;
+  width: 260px;
 }
 
 .search-control-active .search-control-close-button {

@@ -25,24 +25,23 @@ const LeafletMap = (_props) => {
       position: 'topright',
       drawCircles: true,
       locateOptions: { maxZoom: 8 },
+      showMarker: true,
     });
     lc.addTo(map);
 
     if (!map) return;
 
-    const geocoder = L.Control.Geocoder.nominatim();
-    let marker;
-
-    map.on('click', (e) => {
-      geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
-        var r = results[0];
-        console.log(r);
-        if (r) {
-          setAddress(r.name);
-          setMarker({ lat: r.center.lat, lng: r.center.lng });
-        }
-      });
-    });
+    // const geocoder = L.Control.Geocoder.nominatim();
+    // map.on('click', (e) => {
+    //   geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
+    //     var r = results[0];
+    //     console.log(r);
+    //     if (r) {
+    //       setAddress(r.name);
+    //       setMarker({ lat: r.center.lat, lng: r.center.lng });
+    //     }
+    //   });
+    // });
   }, []);
 
   useEffect(() => {
@@ -55,12 +54,13 @@ const LeafletMap = (_props) => {
     <Map
       ref={mapRef}
       fullscreenControl={true}
-      center={[21.238, 105.83416]}
+      center={[17.5462658, 106.2576229]}
       zoom={7}
       scrollWheelZoom={true}
       zoomControl={false}
       maxZoom={11}
-      style={{ height: 1000, width: '100%' }}
+      minZoom={5}
+      style={{ height: 620, width: '100%' }}
       attributionControl={false}
       onClick={(e) => {
         let { lat, lng } = e.latlng;
@@ -83,11 +83,12 @@ const LeafletMap = (_props) => {
             setMarker(info.latLng);
           }}
           position="topleft"
-          inputPlaceholder="TÌm kiếm địa điểm..."
+          inputPlaceholder="Tìm kiếm địa điểm..."
           closeResultsOnClick={true}
           openSearchOnLoad={true}
           showMarker={false}
-          zoom={9}
+          search={address || null}
+          zoom={8}
           // these searchbounds would limit results to only Turkey.
           // providerOptions={{
           //   searchBounds: [
