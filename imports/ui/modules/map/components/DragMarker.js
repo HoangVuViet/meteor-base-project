@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { Marker, Popup } from 'react-leaflet';
+import { Circle, LayerGroup, Marker, Popup } from 'react-leaflet';
 
 const DragMarker = (props) => {
   const [draggable, setDraggable] = useState(false);
@@ -21,23 +21,30 @@ const DragMarker = (props) => {
   }, []);
 
   return (
-    <Marker
-      draggable={draggable}
-      eventHandlers={eventHandlers}
-      position={props.markerPosition}
-      ref={markerRef}
-      onClick={toggleDraggable}
-    >
-      <Popup>
-        <div>
-          <p>{props.address}</p>
-          <p>
-            latitude and longitude from search component:
-            {props?.markerPosition?.toString()?.replace(',', ' , ')}
-          </p>
-        </div>
-      </Popup>
-    </Marker>
+    <LayerGroup>
+      <Marker
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        position={props.markerPosition}
+        ref={markerRef}
+        onClick={toggleDraggable}
+      >
+        <Popup>
+          <div>
+            <p>{props.address}</p>
+            <p>
+              latitude and longitude from search component:
+              {props?.markerPosition?.toString()?.replace(',', ' , ')}
+            </p>
+          </div>
+        </Popup>
+      </Marker>
+      <Circle
+        center={props.markerPosition}
+        pathOptions={{ fillColor: 'blue', color: 'blue' }}
+        radius={400}
+      />
+    </LayerGroup>
   );
 };
 
