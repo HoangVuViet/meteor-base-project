@@ -2,42 +2,38 @@ import L from 'leaflet';
 import Locate from 'leaflet.locatecontrol';
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  LayerGroup,
   LayersControl,
   Map,
-  TileLayer,
-  ZoomControl,
-  Circle,
-  FeatureGroup,
-  LayerGroup,
   Marker,
   Popup,
-  Rectangle,
+  TileLayer,
+  ZoomControl,
 } from 'react-leaflet';
 import Search from 'react-leaflet-search';
 import DragMarker from '../components/DragMarker';
+import HightlightArea from '../components/HightlightArea';
+import Legend from '../components/Legend';
 import MapBoxLayer from '../components/MapBoxLayer';
 import {
   defaultMapProperty,
   hereTileUrl,
+  MAPBOX_ACCESS_TOKEN,
+  openWeatherAtmosphericTileURL,
   openWeatherTemperatureURL,
   openWeatherWindTileURL,
-  openWeatherAtmosphericTileURL,
   OPEN_WEATHER_APP_ID,
-  MAPBOX_ACCESS_TOKEN,
-} from './constant';
+} from '../constant';
 // import './leaflet.css';
 import './css/index.css';
-
-const center = [15.220589019578128, 107.77587890625];
-const rectangle = [
-  [51.49, -0.08],
-  [51.5, -0.06],
-];
 
 const LeafletMap = (_props) => {
   const mapRef = useRef();
   const [marker, setMarker] = useState({ lat: 0, lng: 0 });
   const [address, setAddress] = useState('');
+  const [layerName, setLayerName] = useState('');
+
+  const [data, setData] = React.useState({});
 
   useEffect(() => {
     const { current = {} } = mapRef;
@@ -54,24 +50,29 @@ const LeafletMap = (_props) => {
         outsideMapBoundsMsg: 'You seem located outside the boundaries of the map',
       },
     });
-    console.log(lc);
     lc.addTo(map);
 
     if (!map) return;
+    map.on('baselayerchange', function (e) {
+      setLayerName(e.name);
+    });
 
     const geocoder = L.Control.Geocoder.nominatim();
-    let marker;
 
-    map.on('click', (e) => {
-      geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
-        var r = results[0];
-        console.log(r);
-        if (r) {
-          setAddress(r.name);
-          // setMarker({ lat: r.center.lat, lng: r.center.lng });
-        }
-      });
-    });
+    if (marker) {
+      const m1 = L.marker([marker.lat, marker.lng]).addTo(map);
+      m1.openPopup();
+    }
+
+    // map.on('click', (e) => {
+    //   geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
+    //     var r = results[0];
+    //     if (r) {
+    //       setAddress(r.name);
+    //       // setMarker({ lat: r.center.lat, lng: r.center.lng });
+    //     }
+    //   });
+    // });
   }, []);
 
   useEffect(() => {
@@ -85,7 +86,6 @@ const LeafletMap = (_props) => {
       setMarker({ lat: 0, lng: 0 });
     }
   }, [address]);
-  console.log(marker);
   return (
     <Map
       ref={mapRef}
@@ -107,23 +107,36 @@ const LeafletMap = (_props) => {
       timeDimensionControl={true}
     >
       <ZoomControl position="topright" fullscreenControl={true}></ZoomControl>
-      {/* <LayersControl position="topright">
+
+      {/* <TileLayer url={hereTileUrl('reduced.day')} />
+      <TileLayer
+        url={
+          'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=c906da2e232618595258cadf371704f'
+        }
+      /> */}
+      <LayersControl position="topright">
         <LayersControl.BaseLayer checked name="Nhiệt độ">
           <LayerGroup>
+            {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/kautou1s/cknvy1y6320rx17p81loldel6"
-              maxZoom={11}
-            />
+              style="mapbox://styles/mapbox/streets-v9"
+            />{' '}
             <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} />
           </LayerGroup>
         </LayersControl.BaseLayer>
+        <LayersControl.Overlay name="Test">
+          <Marker position={defaultMapProperty.center}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </LayersControl.Overlay>
         <LayersControl.BaseLayer name="Gió">
           <LayerGroup>
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}
               style="mapbox://styles/mapbox/streets-v9"
-              maxZoom={11}
             />
             <TileLayer url={openWeatherWindTileURL(OPEN_WEATHER_APP_ID)} />
           </LayerGroup>
@@ -133,24 +146,15 @@ const LeafletMap = (_props) => {
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}
               style="mapbox://styles/mapbox/streets-v9"
-              maxZoom={11}
             />{' '}
             <TileLayer url={openWeatherAtmosphericTileURL(OPEN_WEATHER_APP_ID)} />
           </LayerGroup>
         </LayersControl.BaseLayer>
-        <LayersControl.Overlay name="Test">
-          <Marker position={center}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </LayersControl.Overlay>
-      </LayersControl> */}
-      <MapBoxLayer
+      </LayersControl>
+      {/* <MapBoxLayer
         accessToken={MAPBOX_ACCESS_TOKEN}
         style="mapbox://styles/mapbox/streets-v9"
-        maxZoom={11}
-      />
+      /> */}
       <div style={{ minHeight: 28, width: 32 }}>
         <Search
           style={{ minHeight: 28, width: 32 }}
@@ -174,6 +178,8 @@ const LeafletMap = (_props) => {
           address={address}
         ></DragMarker>
       )}
+      <HightlightArea></HightlightArea>
+      <Legend layerName={layerName}></Legend>
     </Map>
   );
 };

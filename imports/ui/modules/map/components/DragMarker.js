@@ -39,11 +39,11 @@ const DragMarker = (props) => {
           </div>
         </Popup>
       </Marker>
-      <Circle
+      {/* <Circle
         center={props.markerPosition}
         pathOptions={{ fillColor: 'blue', color: 'blue' }}
         radius={400}
-      />
+      /> */}
     </LayerGroup>
   );
 };

@@ -4,7 +4,6 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Col, Row } from '../../common/components/elements';
 import ChartRender from './ChartRender';
-import { GREY_600 } from '/imports/ui/configs/colors';
 import { isEmpty, some, URL_BASE } from '/imports/ui/constants';
 interface Props {
   body: some;
