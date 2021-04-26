@@ -52,6 +52,19 @@ const LeafletMap = (_props) => {
     });
     lc.addTo(map);
 
+    var wmsUrl =
+      'https://thredds.socib.es/thredds/wms/observational/satellite/altimetry/aviso/madt/sealevel_med_phy_nrt_L4_agg/sealevel_med_phy_nrt_L4_agg_best.ncd';
+    var wmsLayer = L.tileLayer.wms(wmsUrl, {
+      layers: 'sea_water_velocity',
+      format: 'image/png',
+      transparent: true,
+      attribution: 'SOCIB HF RADAR | sea_water_velocity',
+    });
+
+    // Create and add a TimeDimension Layer to the map
+    var tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
+    tdWmsLayer.addTo(map);
+
     if (!map) return;
     map.on('baselayerchange', function (e) {
       setLayerName(e.name);
@@ -105,6 +118,26 @@ const LeafletMap = (_props) => {
       fullscreenControl={true}
       timeDimension={true}
       timeDimensionControl={true}
+      timeDimensionControlOptions={{
+        position: 'bottomleft',
+        timeInterval: '2021-04-20/2021-04-30',
+        autoPlay: false,
+        timeSlider: true,
+        loopButton: false,
+        minSpeed: 1,
+        speedStep: 0.5,
+        maxSpeed: 20,
+        timeSliderDragUpdate: true,
+        // playerOptions: {
+        //   transitionTime: 100,
+        //   loop: false,
+        //   startOver: true,
+        // },
+      }}
+      timeDimensionOptions={{
+        timeInterval: '2021-04-20/2021-04-30',
+        period: 'PT1H',
+      }}
     >
       <ZoomControl position="topright" fullscreenControl={true}></ZoomControl>
 
@@ -136,12 +169,12 @@ const LeafletMap = (_props) => {
           <LayerGroup>
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/mapbox/streets-v9"
+              style="mapbox://styles/mapbox/dark-v10"
             />
             <TileLayer url={openWeatherWindTileURL(OPEN_WEATHER_APP_ID)} />
           </LayerGroup>
         </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer name="Áp suất">
+        <LayersControl.BaseLayer name="Áp suất khí quyển">
           <LayerGroup>
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}

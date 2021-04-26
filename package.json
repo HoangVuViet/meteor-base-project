@@ -63,6 +63,7 @@
     "leaflet": "^1.7.1",
     "leaflet-control-geocoder": "^1.6.0",
     "leaflet-geosearch": "^3.2.1",
+    "leaflet-timedimension": "^1.1.1",
     "leaflet.locatecontrol": "^0.73.0",
     "mapbox-gl": "^2.2.0",
     "mapbox-gl-leaflet": "0.0.14",
