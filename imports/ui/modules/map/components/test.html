@@ -1,47 +1,19 @@
-<div
-  class="leaflet-control-color-scale leaflet-control"
-  style="
-    display: block;
-    background: none;
-    box-shadow: none;
-    border-width: 0px;
-    margin-right: 10px;
-    width: 360px;
-    height: 27px;
-  "
->
-  <div
-    class="leaflet-control-color-scale-line"
-    style="background-image: none; position: relative; border-width: 0px; margin: 0px"
+<div class="leaflet-bar leaflet-bar-horizontal leaflet-bar-timecontrol leaflet-control">
+  <a class="leaflet-control-timecontrol timecontrol-backward" href="#" title="Backward"></a
+  ><a class="leaflet-control-timecontrol timecontrol-play pause" href="#" title="Play"></a
+  ><a class="leaflet-control-timecontrol timecontrol-forward" href="#" title="Forward"></a
+  ><a class="leaflet-control-timecontrol timecontrol-date" href="#" title="Date"
+    >2021-04-25T20:00:00.000Z</a
   >
-    <div class="scale-details">
-      <div>Pressure, hPa</div>
-      <div class="scale-gradient" style="width: 260px">
-        <div class="scale-dividers">
-          <div>950</div>
-          <div>980</div>
-          <div>1010</div>
-          <div>1040</div>
-          <div>1070</div>
-        </div>
-        <div
-          class="horizontal-gradient-line"
-          style="
-            background-image: linear-gradient(
-              to right,
-              rgb(0, 115, 255) 0%,
-              rgb(0, 170, 255) 8.35059%,
-              rgb(75, 208, 214) 24.9192%,
-              rgb(141, 231, 199) 41.4879%,
-              rgb(176, 247, 32) 49.7722%,
-              rgb(240, 184, 0) 58.0565%,
-              rgb(251, 85, 21) 74.6251%,
-              rgb(243, 54, 59) 91.1938%,
-              rgb(198, 0, 0) 100%
-            );
-          "
-        ></div>
-      </div>
+  <div class="leaflet-control-timecontrol timecontrol-slider timecontrol-dateslider">
+    <div class="slider">
+      <div class="knob main" style="transform: translate3d(116.667px, 0px, 0px)"></div>
+    </div>
+  </div>
+  <div class="leaflet-control-timecontrol timecontrol-slider timecontrol-speed">
+    <span class="speed">6.5fps</span>
+    <div class="slider">
+      <div class="knob" style="transform: translate3d(15.9211px, 0px, 0px)"></div>
     </div>
   </div>
 </div>

@@ -290,10 +290,10 @@
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 0;
-  height: 26px;
+  height: 20px;
 }
 .leaflet-control-color-scale-line {
-  margin: 15px 5px 5px;
+  margin: 15px 5px 0px;
   position: inherit;
   height: 5px;
   border-top: 1px solid #777;
@@ -317,7 +317,7 @@
   float: right;
 }
 .leaflet-bottom .leaflet-control {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .leaflet-right .leaflet-control {
   margin-right: 10px;
@@ -343,10 +343,10 @@
   -webkit-border-radius: 5px;
   border-radius: 5px;
   padding: 0;
-  height: 26px;
+  height: 20px;
 }
 .leaflet-control-color-scale-line {
-  margin: 15px 5px 5px;
+  margin: 15px 5px 0px;
   position: inherit;
   height: 5px;
   border-top: 1px solid #777;
@@ -373,7 +373,7 @@
   -o-transition: box-shadow 0.1s ease-out;
   transition: box-shadow 0.1s ease-out;
   transition: box-shadow 0.1s ease-out, -webkit-box-shadow 0.1s ease-out;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;

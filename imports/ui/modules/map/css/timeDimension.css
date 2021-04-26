@@ -1,0 +1,258 @@
+.leaflet-container a {
+  -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-control {
+  position: relative;
+  z-index: 800;
+  pointer-events: visiblePainted;
+  pointer-events: auto;
+}
+.leaflet-control {
+  float: left;
+  clear: both;
+}
+.leaflet-bottom .leaflet-control {
+  margin-bottom: 10px;
+}
+.leaflet-left .leaflet-control {
+  margin-left: 10px;
+}
+.leaflet-control {
+  cursor: auto;
+}
+.leaflet-container a {
+  color: #0078a8;
+}
+.leaflet-bar {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  border-radius: 4px;
+}
+.leaflet-bar a,
+.leaflet-bar a:hover {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+.leaflet-bar a {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: block;
+}
+.leaflet-bar a:hover {
+  background-color: #f4f4f4;
+}
+.leaflet-bar a:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.leaflet-touch .leaflet-bar a {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+.leaflet-touch .leaflet-bar a:first-child {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.leaflet-touch .leaflet-bar {
+  box-shadow: none;
+}
+.leaflet-touch .leaflet-bar {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+}
+.leaflet-bar-timecontrol {
+  background-color: #fff;
+  color: #000;
+}
+.leaflet-bar-timecontrol * {
+  box-sizing: border-box;
+}
+.leaflet-bar-timecontrol .leaflet-control-timecontrol {
+  float: left;
+  height: 26px;
+  line-height: 26px;
+  border: solid #a5a5a5;
+  background-color: #fff;
+  border-width: 0 1px 0 0;
+}
+.leaflet-bar-timecontrol .leaflet-control-timecontrol:first-child {
+  border-radius: 4px 0 0 4px;
+}
+.leaflet-bar-timecontrol .leaflet-control-timecontrol:last-child {
+  border-radius: 0 4px 4px 0;
+}
+.leaflet-bar-timecontrol .leaflet-control-timecontrol:before {
+  font-family: 'Glyphicons Halflings';
+  display: block;
+}
+.leaflet-bar-timecontrol .timecontrol-slider {
+  position: relative;
+  width: auto;
+  cursor: auto;
+}
+.leaflet-bar-timecontrol a.timecontrol-date,
+.leaflet-bar-timecontrol a.timecontrol-date:hover {
+  position: relative;
+  min-width: 150px;
+  width: auto;
+  padding: 0 10px 0 20px;
+  white-space: nowrap;
+}
+.leaflet-bar-timecontrol .timecontrol-dateslider .slider {
+  width: 200px;
+}
+.leaflet-bar-timecontrol .timecontrol-speed {
+  white-space: nowrap;
+  cursor: auto;
+}
+.leaflet-bar-timecontrol .timecontrol-speed .slider {
+  width: 55px;
+  display: inline-block;
+}
+.leaflet-bar-timecontrol .timecontrol-speed .speed {
+  width: 55px;
+  display: inline-block;
+  float: left;
+  text-align: right;
+}
+.leaflet-bar-timecontrol .timecontrol-play,
+.leaflet-bar-timecontrol .timecontrol-play:hover {
+  position: relative;
+}
+.timecontrol-slider .slider {
+  position: relative;
+  height: 12px;
+  margin: 6px;
+  border: 1px solid #a5a5a5;
+  cursor: pointer;
+}
+.timecontrol-slider .knob {
+  position: absolute;
+  width: 8px;
+  height: 22px;
+  background-color: #ddd;
+  border-radius: 2px;
+  border: 1px solid #a5a5a5;
+  margin-top: -6px;
+  margin-left: -4px;
+  cursor: ew-resize;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+.timecontrol-slider .knob:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  width: 20px;
+  top: -5px;
+  height: 32px;
+  left: -7px;
+}
+.timecontrol-backward:before,
+.timecontrol-forward:before,
+.timecontrol-play:before {
+  width: 100%;
+  text-align: center;
+}
+.timecontrol-play:before {
+  position: absolute;
+  content: '\e072';
+}
+.timecontrol-speed:before {
+  content: '\e141';
+  position: absolute;
+  left: 7px;
+}
+.timecontrol-forward:before {
+  content: '\e075';
+}
+.timecontrol-backward:before {
+  content: '\e071';
+}
+@media (max-width: 767px) {
+  .leaflet-bar-timecontrol .timecontrol-date,
+  .leaflet-bar-timecontrol .timecontrol-slider {
+    clear: both;
+    float: none;
+    border-right: none;
+  }
+}
+.leaflet-touch .leaflet-bar-timecontrol .leaflet-control-timecontrol {
+  height: 30px;
+  line-height: 30px;
+}
+.leaflet-touch .timecontrol-slider .slider {
+  margin-top: 10px;
+}
+/*! CSS Used from: Embedded */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: #321fdb;
+}
+@media (hover: hover), (-ms-high-contrast: none) {
+  a:hover {
+    text-decoration: underline;
+    color: #321fdb;
+  }
+}
+@media print {
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+.leaflet-control {
+  position: relative;
+  z-index: 7;
+  pointer-events: auto;
+}
+.leaflet-control {
+  float: left;
+  clear: both;
+}
+.leaflet-bottom .leaflet-control {
+  margin-bottom: 8px;
+}
+.leaflet-control {
+  cursor: auto;
+}
+@media print {
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot);
+  src: url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot?#iefix)
+      format('embedded-opentype'),
+    url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff)
+      format('woff'),
+    url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf)
+      format('truetype'),
+    url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular)
+      format('svg');
+}

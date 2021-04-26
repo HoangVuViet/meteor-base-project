@@ -15,6 +15,7 @@ import DragMarker from '../components/DragMarker';
 import HightlightArea from '../components/HightlightArea';
 import Legend from '../components/Legend';
 import MapBoxLayer from '../components/MapBoxLayer';
+import TimeDimensionMap from '../components/TimeDimensionMap';
 import {
   defaultMapProperty,
   hereTileUrl,
@@ -25,19 +26,23 @@ import {
   OPEN_WEATHER_APP_ID,
 } from '../constant';
 // import './leaflet.css';
-import './css/index.css';
+import '../css/index.css';
 
 const LeafletMap = (_props) => {
-  const mapRef = useRef();
+  const mapRef = useRef(null);
   const [marker, setMarker] = useState({ lat: 0, lng: 0 });
   const [address, setAddress] = useState('');
   const [layerName, setLayerName] = useState('');
 
   const [data, setData] = React.useState({});
-
+  const [refReady, setRefReady] = useState(true);
+  const [mapR, setMapR] = useState(true);
   useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
+    setMapR(map.getContainer());
+    console.log(current);
+    console.log('map', map.getContainer()); // create Locate
     const lc = new Locate({
       position: 'topright',
       drawCircles: true,
@@ -51,7 +56,9 @@ const LeafletMap = (_props) => {
       },
     });
     lc.addTo(map);
+    //
 
+    // Create and add a TimeDimension Layer to the map
     var wmsUrl =
       'https://thredds.socib.es/thredds/wms/observational/satellite/altimetry/aviso/madt/sealevel_med_phy_nrt_L4_agg/sealevel_med_phy_nrt_L4_agg_best.ncd';
     var wmsLayer = L.tileLayer.wms(wmsUrl, {
@@ -61,9 +68,9 @@ const LeafletMap = (_props) => {
       attribution: 'SOCIB HF RADAR | sea_water_velocity',
     });
 
-    // Create and add a TimeDimension Layer to the map
     var tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
     tdWmsLayer.addTo(map);
+    //
 
     if (!map) return;
     map.on('baselayerchange', function (e) {
@@ -99,6 +106,11 @@ const LeafletMap = (_props) => {
       setMarker({ lat: 0, lng: 0 });
     }
   }, [address]);
+
+  useEffect(() => {
+    setRefReady(true);
+    console.log(mapRef);
+  }, [mapRef]);
   return (
     <Map
       ref={mapRef}
@@ -213,6 +225,8 @@ const LeafletMap = (_props) => {
       )}
       <HightlightArea></HightlightArea>
       <Legend layerName={layerName}></Legend>
+
+      {refReady && <TimeDimensionMap target={mapR} position="bottomleft"></TimeDimensionMap>}
     </Map>
   );
 };
