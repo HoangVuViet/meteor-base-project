@@ -1,3 +1,5 @@
+import L from 'leaflet';
+
 export const hereIsolineUrl = (coords, options) =>
   `https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?app_id=${hereCredentials.id}&app_code=${hereCredentials.code}&mode=shortest;${options.mode};traffic:${options.traffic}&start=geo!${coords[0]},${coords[1]}&range=${options.range}&rangetype=${options.type}`;
 
@@ -34,7 +36,7 @@ export const defaultMapProperty = {
   zoom: 6,
   scrollWheelZoom: true,
   zoomControl: false,
-  maxZoom: 10,
+  maxZoom: 9,
   minZoom: 6,
   style: { height: 610, width: '100%' },
 };
@@ -76,3 +78,11 @@ export const getLegend = (
 ) => {
   return `<div class="leaflet-control-color-scale leaflet-control" style=" display: block; background: none; box-shadow: none; border-width: 0px; margin-right: 10px; width: 360px; height: 20px; "  > <div class="leaflet-control-color-scale-line" style="background-image: none; position: relative; border-width: 0px; margin: 0px" > <div class="scale-details"> <div>${title}</div> <div class="scale-gradient" style="width: 260px"> <div class="scale-dividers"> ${progress} </div> ${colorT} </div> </div> </div>  </div>`;
 };
+
+export default L.icon({
+  iconSize: [25, 41],
+  iconAnchor: [10, 41],
+  popupAnchor: [2, -40],
+  iconUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
+});

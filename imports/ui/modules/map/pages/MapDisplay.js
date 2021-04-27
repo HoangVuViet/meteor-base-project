@@ -9,6 +9,8 @@ import {
   Popup,
   TileLayer,
   ZoomControl,
+  useMap,
+  useLeaflet,
 } from 'react-leaflet';
 import Search from 'react-leaflet-search';
 import DragMarker from '../components/DragMarker';
@@ -16,6 +18,8 @@ import HightlightArea from '../components/HightlightArea';
 import Legend from '../components/Legend';
 import MapBoxLayer from '../components/MapBoxLayer';
 import TimeDimensionMap from '../components/TimeDimensionMap';
+import FullscreenControl from 'react-leaflet-fullscreen';
+
 import {
   defaultMapProperty,
   hereTileUrl,
@@ -24,6 +28,7 @@ import {
   openWeatherTemperatureURL,
   openWeatherWindTileURL,
   OPEN_WEATHER_APP_ID,
+  icon,
 } from '../constant';
 // import './leaflet.css';
 import '../css/index.css';
@@ -37,6 +42,38 @@ const LeafletMap = (_props) => {
   const [data, setData] = React.useState({});
   const [refReady, setRefReady] = useState(true);
   const [mapR, setMapR] = useState(true);
+
+  // function LocationMarker() {
+  //   const [position, setPosition] = useState(null);
+  //   const [bbox, setBbox] = useState([]);
+
+  //   const { map } = useLeaflet();
+
+  //   useEffect(() => {
+  //     map.locate().on('locationfound', function (e) {
+  //       setPosition(e.latlng);
+  //       map.flyTo(e.latlng, map.getZoom());
+  //       const radius = e.accuracy;
+  //       const circle = L.circle(e.latlng, radius);
+  //       circle.addTo(map);
+  //       setBbox(e.bounds.toBBoxString().split(','));
+  //     });
+  //   }, [map]);
+
+  //   return position === null ? null : (
+  //     <Marker position={position} icon={icon}>
+  //       <Popup>
+  //         You are here. <br />
+  //         Map bbox: <br />
+  //         <b>Southwest lng</b>: {bbox[0]} <br />
+  //         <b>Southwest lat</b>: {bbox[1]} <br />
+  //         <b>Northeast lng</b>: {bbox[2]} <br />
+  //         <b>Northeast lat</b>: {bbox[3]}
+  //       </Popup>
+  //     </Marker>
+  //   );
+  // }
+
   useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
@@ -44,7 +81,7 @@ const LeafletMap = (_props) => {
     console.log(current);
     console.log('map', map.getContainer()); // create Locate
     const lc = new Locate({
-      position: 'topright',
+      position: 'topleft',
       drawCircles: true,
       locateOptions: { maxZoom: 8 },
       strings: {
@@ -59,17 +96,17 @@ const LeafletMap = (_props) => {
     //
 
     // Create and add a TimeDimension Layer to the map
-    var wmsUrl =
-      'https://thredds.socib.es/thredds/wms/observational/satellite/altimetry/aviso/madt/sealevel_med_phy_nrt_L4_agg/sealevel_med_phy_nrt_L4_agg_best.ncd';
-    var wmsLayer = L.tileLayer.wms(wmsUrl, {
-      layers: 'sea_water_velocity',
-      format: 'image/png',
-      transparent: true,
-      attribution: 'SOCIB HF RADAR | sea_water_velocity',
-    });
+    // var wmsUrl =
+    //   'https://thredds.socib.es/thredds/wms/observational/satellite/altimetry/aviso/madt/sealevel_med_phy_nrt_L4_agg/sealevel_med_phy_nrt_L4_agg_best.ncd';
+    // var wmsLayer = L.tileLayer.wms(wmsUrl, {
+    //   layers: 'sea_water_velocity',
+    //   format: 'image/png',
+    //   transparent: true,
+    //   attribution: 'SOCIB HF RADAR | sea_water_velocity',
+    // });
 
-    var tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
-    tdWmsLayer.addTo(map);
+    // var tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
+    // tdWmsLayer.addTo(map);
     //
 
     if (!map) return;
@@ -114,7 +151,7 @@ const LeafletMap = (_props) => {
   return (
     <Map
       ref={mapRef}
-      fullscreenControl={defaultMapProperty.fullscreenControl}
+      // fullscreenControl={defaultMapProperty.fullscreenControl}
       center={defaultMapProperty.center}
       zoom={defaultMapProperty.zoom}
       scrollWheelZoom={defaultMapProperty.scrollWheelZoom}
@@ -127,7 +164,6 @@ const LeafletMap = (_props) => {
         let { lat, lng } = e.latlng;
         setMarker(e.latlng);
       }}
-      fullscreenControl={true}
       timeDimension={true}
       timeDimensionControl={true}
       timeDimensionControlOptions={{
@@ -151,7 +187,9 @@ const LeafletMap = (_props) => {
         period: 'PT1H',
       }}
     >
-      <ZoomControl position="topright" fullscreenControl={true}></ZoomControl>
+      <FullscreenControl position="topright" />
+      <ZoomControl position="topright"></ZoomControl>
+      {/* <LocationMarker /> */}
 
       {/* <TileLayer url={hereTileUrl('reduced.day')} />
       <TileLayer
@@ -225,7 +263,6 @@ const LeafletMap = (_props) => {
       )}
       <HightlightArea></HightlightArea>
       <Legend layerName={layerName}></Legend>
-
       {refReady && <TimeDimensionMap target={mapR} position="bottomleft"></TimeDimensionMap>}
     </Map>
   );
