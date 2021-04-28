@@ -223,7 +223,7 @@ const LeafletMap = (_props) => {
             {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/mapbox/streets-v9"
+              style="mapbox://styles/mapbox/dark-v10"
             />{' '}
             <PlottyGeotiffLayer
               layerRef={windSpeedRef}
@@ -247,6 +247,7 @@ const LeafletMap = (_props) => {
               style="mapbox://styles/mapbox/streets-v9"
             />
             <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} />
+            <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
           </LayerGroup>
         </LayersControl.BaseLayer>
         <LayersControl.BaseLayer name="Gió">
