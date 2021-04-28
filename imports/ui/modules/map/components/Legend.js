@@ -1,8 +1,7 @@
-import { useLeaflet } from 'react-leaflet';
 import L from 'leaflet';
 import { useEffect } from 'react';
-import { dataText, getColor, getLegend } from '../constant';
-import { stringSlug } from '../../../constants';
+import { useLeaflet } from 'react-leaflet';
+import { getLegend } from '../constant';
 const Legend = (props) => {
   const { map } = useLeaflet();
   const { layerName } = props;

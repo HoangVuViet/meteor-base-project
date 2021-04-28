@@ -32,32 +32,13 @@ export const maxIsolineRangeLookup = {
 
 export const defaultMapProperty = {
   fullscreenControl: true,
-  center: [15.220589019578128, 107.77587890625],
+  center: [18.35452552912665, 105.73242187500001],
   zoom: 6,
   scrollWheelZoom: true,
   zoomControl: false,
-  maxZoom: 9,
-  minZoom: 6,
-  style: { height: 610, width: '100%' },
-};
-
-// get color depending on population density value
-export const getColor = (d) => {
-  return d > 1000
-    ? '#800026'
-    : d > 500
-    ? '#BD0026'
-    : d > 200
-    ? '#E31A1C'
-    : d > 100
-    ? '#FC4E2A'
-    : d > 50
-    ? '#FD8D3C'
-    : d > 20
-    ? '#FEB24C'
-    : d > 10
-    ? '#FED976'
-    : '#FFEDA0';
+  maxZoom: 10,
+  minZoom: 5,
+  style: { height: 880, width: '100%' },
 };
 
 export const style = (feature) => {

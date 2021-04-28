@@ -9,32 +9,32 @@ import {
   Popup,
   TileLayer,
   ZoomControl,
-  useMap,
-  useLeaflet,
 } from 'react-leaflet';
+import FullscreenControl from 'react-leaflet-fullscreen';
 import Search from 'react-leaflet-search';
 import DragMarker from '../components/DragMarker';
+import { PlottyGeotiffLayer, VectorArrowsGeotiffLayer } from '../components/GeotiffLayer';
 import HightlightArea from '../components/HightlightArea';
 import Legend from '../components/Legend';
 import MapBoxLayer from '../components/MapBoxLayer';
 import TimeDimensionMap from '../components/TimeDimensionMap';
-import FullscreenControl from 'react-leaflet-fullscreen';
-
+import VelocityLayer from '../components/VelocityLayer';
 import {
   defaultMapProperty,
-  hereTileUrl,
   MAPBOX_ACCESS_TOKEN,
   openWeatherAtmosphericTileURL,
   openWeatherTemperatureURL,
   openWeatherWindTileURL,
   OPEN_WEATHER_APP_ID,
-  icon,
 } from '../constant';
 // import './leaflet.css';
 import '../css/index.css';
 
 const LeafletMap = (_props) => {
   const mapRef = useRef(null);
+  const windSpeedRef = React.createRef();
+  const windDirectionRef = React.createRef();
+
   const [marker, setMarker] = useState({ lat: 0, lng: 0 });
   const [address, setAddress] = useState('');
   const [layerName, setLayerName] = useState('');
@@ -42,6 +42,25 @@ const LeafletMap = (_props) => {
   const [data, setData] = React.useState({});
   const [refReady, setRefReady] = useState(true);
   const [mapR, setMapR] = useState(true);
+
+  const windSpeedUrl = 'https://HoangVuViet.github.io/tif/PM25_20170101_3km.tif';
+  const windSpeedOptions = {
+    band: 0,
+    displayMin: 0,
+    displayMax: 30,
+    name: 'Wind speed',
+    colorScale: 'rainbow',
+    clampLow: false,
+    clampHigh: true,
+    //vector:true
+  };
+
+  const windDirectionUrl = 'https://HoangVuViet.github.io/tif/wind_direction.tif';
+  const windDirectionOptions = {
+    band: 0,
+    name: 'Wind direction',
+    arrowSize: 40,
+  };
 
   // function LocationMarker() {
   //   const [position, setPosition] = useState(null);
@@ -197,24 +216,39 @@ const LeafletMap = (_props) => {
           'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=c906da2e232618595258cadf371704f'
         }
       /> */}
+
       <LayersControl position="topright">
-        <LayersControl.BaseLayer checked name="Nhiệt độ">
+        <LayersControl.BaseLayer checked name="DefaultMap">
           <LayerGroup>
             {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
             <MapBoxLayer
               accessToken={MAPBOX_ACCESS_TOKEN}
               style="mapbox://styles/mapbox/streets-v9"
             />{' '}
+            <PlottyGeotiffLayer
+              layerRef={windSpeedRef}
+              url={windSpeedUrl}
+              options={windSpeedOptions}
+            />
+            <VectorArrowsGeotiffLayer
+              layerRef={windDirectionRef}
+              url={windDirectionUrl}
+              options={windDirectionOptions}
+            />
+            <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
+            {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
+          </LayerGroup>
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Nhiệt độ">
+          <LayerGroup>
+            {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
+            <MapBoxLayer
+              accessToken={MAPBOX_ACCESS_TOKEN}
+              style="mapbox://styles/mapbox/streets-v9"
+            />
             <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} />
           </LayerGroup>
         </LayersControl.BaseLayer>
-        <LayersControl.Overlay name="Test">
-          <Marker position={defaultMapProperty.center}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </LayersControl.Overlay>
         <LayersControl.BaseLayer name="Gió">
           <LayerGroup>
             <MapBoxLayer
@@ -233,6 +267,13 @@ const LeafletMap = (_props) => {
             <TileLayer url={openWeatherAtmosphericTileURL(OPEN_WEATHER_APP_ID)} />
           </LayerGroup>
         </LayersControl.BaseLayer>
+        <LayersControl.Overlay name="Test">
+          <Marker position={defaultMapProperty.center}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </LayersControl.Overlay>
       </LayersControl>
       {/* <MapBoxLayer
         accessToken={MAPBOX_ACCESS_TOKEN}
