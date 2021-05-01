@@ -52,7 +52,7 @@ export default function CustomizedMenus() {
         aria-haspopup="true"
         variant="contained"
         onClick={handleClick}
-        style={{ color: 'white', padding : 4 }}
+        style={{ color: 'white', padding: 4 }}
       >
         <ExploreIcon />{' '}
       </IconButton>

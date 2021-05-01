@@ -16,10 +16,10 @@ class VelocityLayer extends MapLayer {
         speedUnit: 'm/s',
       },
       // OPTIONAL
-      minVelocity: 5,
+      minVelocity: 0,
       maxVelocity: 10,
-      velocityScale: 0.006,
-      // colorScale: ['white'],
+      velocityScale: 0.007,
+      colorScale: ['white'],
     });
 
     this.leafletElement = velocityLayer;

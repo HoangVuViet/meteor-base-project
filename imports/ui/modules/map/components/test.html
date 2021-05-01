@@ -1,19 +1,24 @@
-<div class="leaflet-bar leaflet-bar-horizontal leaflet-bar-timecontrol leaflet-control">
-  <a class="leaflet-control-timecontrol timecontrol-backward" href="#" title="Backward"></a
-  ><a class="leaflet-control-timecontrol timecontrol-play pause" href="#" title="Play"></a
-  ><a class="leaflet-control-timecontrol timecontrol-forward" href="#" title="Forward"></a
-  ><a class="leaflet-control-timecontrol timecontrol-date" href="#" title="Date"
-    >2021-04-25T20:00:00.000Z</a
-  >
-  <div class="leaflet-control-timecontrol timecontrol-slider timecontrol-dateslider">
-    <div class="slider">
-      <div class="knob main" style="transform: translate3d(116.667px, 0px, 0px)"></div>
-    </div>
+<div class="play-control leaflet-control">
+  <div>
+    <button id="play-back-faster">
+      <img src="/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg" /><img
+        src="/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg"
+      /></button
+    ><button id="play-back">
+      <img src="/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg" /></button
+    ><button id="play">
+      <img src="/themes/openweathermap/assets/img/owm_icons/icon_down_white.svg" /></button
+    ><button id="stop" style="display: none">
+      <img src="/themes/openweathermap/assets/img/owm_icons/icon_pause_black.png" /></button
+    ><button id="play-forward">
+      <img src="/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg" /></button
+    ><button id="play-forward-faster">
+      <img src="/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg" /><img
+        src="/themes/openweathermap/assets/img/owm_icons/icon_down_black.svg"
+      />
+    </button>
   </div>
-  <div class="leaflet-control-timecontrol timecontrol-slider timecontrol-speed">
-    <span class="speed">6.5fps</span>
-    <div class="slider">
-      <div class="knob" style="transform: translate3d(15.9211px, 0px, 0px)"></div>
-    </div>
-  </div>
+  <div><span id="current-moment">May 01, 9:10</span></div>
+  <div><input id="control-range" type="range" min="1" max="112" /></div>
+  <div><span id="min-date">Apr 24</span><span id="max-date">May 08</span></div>
 </div>

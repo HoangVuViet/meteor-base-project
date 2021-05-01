@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import Locate from 'leaflet.locatecontrol';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import {
   LayerGroup,
   LayersControl,
@@ -97,8 +97,6 @@ const LeafletMap = (_props) => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
     setMapR(map.getContainer());
-    console.log(current);
-    console.log('map', map.getContainer()); // create Locate
     const lc = new Locate({
       position: 'topleft',
       drawCircles: true,
@@ -165,148 +163,149 @@ const LeafletMap = (_props) => {
 
   useEffect(() => {
     setRefReady(true);
-    console.log(mapRef);
   }, [mapRef]);
   return (
-    <Map
-      ref={mapRef}
-      // fullscreenControl={defaultMapProperty.fullscreenControl}
-      center={defaultMapProperty.center}
-      zoom={defaultMapProperty.zoom}
-      scrollWheelZoom={defaultMapProperty.scrollWheelZoom}
-      zoomControl={defaultMapProperty.zoomControl}
-      maxZoom={defaultMapProperty.maxZoom}
-      minZoom={defaultMapProperty.minZoom}
-      style={defaultMapProperty.style}
-      attributionControl={false}
-      onClick={(e) => {
-        let { lat, lng } = e.latlng;
-        setMarker(e.latlng);
-      }}
-      timeDimension={true}
-      timeDimensionControl={true}
-      timeDimensionControlOptions={{
-        position: 'bottomleft',
-        timeInterval: '2021-04-20/2021-04-30',
-        autoPlay: false,
-        timeSlider: true,
-        loopButton: false,
-        minSpeed: 1,
-        speedStep: 0.5,
-        maxSpeed: 20,
-        timeSliderDragUpdate: true,
-        // playerOptions: {
-        //   transitionTime: 100,
-        //   loop: false,
-        //   startOver: true,
-        // },
-      }}
-      timeDimensionOptions={{
-        timeInterval: '2021-04-20/2021-04-30',
-        period: 'PT1H',
-      }}
-    >
-      <FullscreenControl position="topright" />
-      <ZoomControl position="topright"></ZoomControl>
-      {/* <LocationMarker /> */}
+    <Fragment>
+      <Map
+        ref={mapRef}
+        // fullscreenControl={defaultMapProperty.fullscreenControl}
+        center={defaultMapProperty.center}
+        zoom={defaultMapProperty.zoom}
+        scrollWheelZoom={defaultMapProperty.scrollWheelZoom}
+        zoomControl={defaultMapProperty.zoomControl}
+        maxZoom={defaultMapProperty.maxZoom}
+        minZoom={defaultMapProperty.minZoom}
+        style={defaultMapProperty.style}
+        attributionControl={false}
+        onClick={(e) => {
+          let { lat, lng } = e.latlng;
+          setMarker(e.latlng);
+        }}
+        // timeDimension={true}
+        // timeDimensionControl={true}
+        // timeDimensionControlOptions={{
+        //   position: 'bottomleft',
+        //   timeInterval: '2021-04-20/2021-04-30',
+        //   autoPlay: false,
+        //   timeSlider: true,
+        //   loopButton: false,
+        //   minSpeed: 1,
+        //   speedStep: 0.5,
+        //   maxSpeed: 20,
+        //   timeSliderDragUpdate: true,
+        //   // playerOptions: {
+        //   //   transitionTime: 100,
+        //   //   loop: false,
+        //   //   startOver: true,
+        //   // },
+        // }}
+        // timeDimensionOptions={{
+        //   timeInterval: '2021-04-20/2021-04-30',
+        //   period: 'PT1H',
+        // }}
+      >
+        <FullscreenControl position="topright" />
+        <ZoomControl position="topright"></ZoomControl>
+        {/* <LocationMarker /> */}
 
-      {/* <TileLayer url={hereTileUrl('reduced.day')} />
+        {/* <TileLayer url={hereTileUrl('reduced.day')} />
       <TileLayer
         url={
           'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=c906da2e232618595258cadf371704f'
         }
       /> */}
 
-      <LayersControl position="topright">
-        <LayersControl.BaseLayer checked name="DefaultMap">
-          <LayerGroup>
-            {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
-            <MapBoxLayer
-              accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/mapbox/dark-v10"
-            />{' '}
-            <PlottyGeotiffLayer
-              layerRef={windSpeedRef}
-              url={windSpeedUrl}
-              options={windSpeedOptions}
-            />
-            <VectorArrowsGeotiffLayer
-              layerRef={windDirectionRef}
-              url={windDirectionUrl}
-              options={windDirectionOptions}
-            />
-            <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
-            {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
-          </LayerGroup>
-        </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer name="Nhiệt độ">
-          <LayerGroup>
-            {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
-            <MapBoxLayer
-              accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/mapbox/streets-v9"
-            />
-            <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} />
-            <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
-          </LayerGroup>
-        </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer name="Gió">
-          <LayerGroup>
-            <MapBoxLayer
-              accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/mapbox/dark-v10"
-            />
-            <TileLayer url={openWeatherWindTileURL(OPEN_WEATHER_APP_ID)} />
-          </LayerGroup>
-        </LayersControl.BaseLayer>
-        <LayersControl.BaseLayer name="Áp suất khí quyển">
-          <LayerGroup>
-            <MapBoxLayer
-              accessToken={MAPBOX_ACCESS_TOKEN}
-              style="mapbox://styles/mapbox/streets-v9"
-            />{' '}
-            <TileLayer url={openWeatherAtmosphericTileURL(OPEN_WEATHER_APP_ID)} />
-          </LayerGroup>
-        </LayersControl.BaseLayer>
-        <LayersControl.Overlay name="Test">
-          <Marker position={defaultMapProperty.center}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </LayersControl.Overlay>
-      </LayersControl>
-      {/* <MapBoxLayer
+        <LayersControl position="topright">
+          <LayersControl.BaseLayer checked name="DefaultMap">
+            <LayerGroup>
+              {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
+              <MapBoxLayer
+                accessToken={MAPBOX_ACCESS_TOKEN}
+                style="mapbox://styles/mapbox/streets-v9"
+              />{' '}
+              <PlottyGeotiffLayer
+                layerRef={windSpeedRef}
+                url={windSpeedUrl}
+                options={windSpeedOptions}
+              />
+              <VectorArrowsGeotiffLayer
+                layerRef={windDirectionRef}
+                url={windDirectionUrl}
+                options={windDirectionOptions}
+              />
+              <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
+              {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
+            </LayerGroup>
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Nhiệt độ">
+            <LayerGroup>
+              {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
+              <MapBoxLayer
+                accessToken={MAPBOX_ACCESS_TOKEN}
+                style="mapbox://styles/mapbox/streets-v9"
+              />
+              <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} />
+              <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
+            </LayerGroup>
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Gió">
+            <LayerGroup>
+              <MapBoxLayer
+                accessToken={MAPBOX_ACCESS_TOKEN}
+                style="mapbox://styles/mapbox/dark-v10"
+              />
+              <TileLayer url={openWeatherWindTileURL(OPEN_WEATHER_APP_ID)} />
+            </LayerGroup>
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Áp suất khí quyển">
+            <LayerGroup>
+              <MapBoxLayer
+                accessToken={MAPBOX_ACCESS_TOKEN}
+                style="mapbox://styles/mapbox/streets-v9"
+              />{' '}
+              <TileLayer url={openWeatherAtmosphericTileURL(OPEN_WEATHER_APP_ID)} />
+            </LayerGroup>
+          </LayersControl.BaseLayer>
+          <LayersControl.Overlay name="Test">
+            <Marker position={defaultMapProperty.center}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </LayersControl.Overlay>
+        </LayersControl>
+        {/* <MapBoxLayer
         accessToken={MAPBOX_ACCESS_TOKEN}
         style="mapbox://styles/mapbox/streets-v9"
       /> */}
-      <div style={{ minHeight: 28, width: 32 }}>
-        <Search
-          style={{ minHeight: 28, width: 32 }}
-          onChange={(info) => {
-            setAddress(info.info);
-            let { lat, lng } = info.latLng;
-            setMarker(info.latLng);
-          }}
-          position="topleft"
-          inputPlaceholder="Tìm kiếm địa điểm..."
-          closeResultsOnClick={true}
-          openSearchOnLoad={true}
-          showMarker={false}
-          zoom={7}
-        ></Search>
-      </div>
-      {marker.lat !== 0 && marker.lng !== 0 && (
-        <DragMarker
-          markerPosition={[marker.lat, marker.lng]}
-          setMarker={setMarker}
-          address={address}
-        ></DragMarker>
-      )}
-      <HightlightArea></HightlightArea>
-      <Legend layerName={layerName}></Legend>
-      {refReady && <TimeDimensionMap target={mapR} position="bottomleft"></TimeDimensionMap>}
-    </Map>
+        <div style={{ minHeight: 28, width: 32 }}>
+          <Search
+            style={{ minHeight: 28, width: 32 }}
+            onChange={(info) => {
+              setAddress(info.info);
+              let { lat, lng } = info.latLng;
+              setMarker(info.latLng);
+            }}
+            position="topleft"
+            inputPlaceholder="Tìm kiếm địa điểm..."
+            closeResultsOnClick={true}
+            openSearchOnLoad={true}
+            showMarker={false}
+            zoom={7}
+          ></Search>
+        </div>
+        {marker.lat !== 0 && marker.lng !== 0 && (
+          <DragMarker
+            markerPosition={[marker.lat, marker.lng]}
+            setMarker={setMarker}
+            address={address}
+          ></DragMarker>
+        )}
+        <HightlightArea></HightlightArea>
+        <Legend layerName={layerName}></Legend>
+      </Map>
+      <TimeDimensionMap></TimeDimensionMap>
+    </Fragment>
   );
 };
 

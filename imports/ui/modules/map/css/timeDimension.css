@@ -1,213 +1,4 @@
-.leaflet-container a {
-  -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
-}
-.leaflet-control {
-  position: relative;
-  z-index: 800;
-  pointer-events: visiblePainted;
-  pointer-events: auto;
-}
-.leaflet-control {
-  float: left;
-  clear: both;
-}
-.leaflet-bottom .leaflet-control {
-  margin-bottom: 10px;
-}
-.leaflet-left .leaflet-control {
-  margin-left: 10px;
-}
-.leaflet-control {
-  cursor: auto;
-}
-.leaflet-container a {
-  color: #0078a8;
-}
-.leaflet-bar {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  border-radius: 4px;
-}
-.leaflet-bar a,
-.leaflet-bar a:hover {
-  background-color: #fff;
-  border-bottom: 1px solid #ccc;
-  width: 26px;
-  height: 26px;
-  line-height: 26px;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-}
-.leaflet-bar a {
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  display: block;
-}
-.leaflet-bar a:hover {
-  background-color: #f4f4f4;
-}
-.leaflet-bar a:first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-.leaflet-touch .leaflet-bar a {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-}
-.leaflet-touch .leaflet-bar a:first-child {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-}
-.leaflet-touch .leaflet-bar {
-  box-shadow: none;
-}
-.leaflet-touch .leaflet-bar {
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  background-clip: padding-box;
-}
-.leaflet-bar-timecontrol {
-  background-color: #fff;
-  color: #000;
-}
-.leaflet-bar-timecontrol * {
-  box-sizing: border-box;
-}
-.leaflet-bar-timecontrol .leaflet-control-timecontrol {
-  float: left;
-  height: 26px;
-  line-height: 26px;
-  border: solid #a5a5a5;
-  background-color: #fff;
-  border-width: 0 1px 0 0;
-}
-.leaflet-bar-timecontrol .leaflet-control-timecontrol:first-child {
-  border-radius: 4px 0 0 4px;
-}
-.leaflet-bar-timecontrol .leaflet-control-timecontrol:last-child {
-  border-radius: 0 4px 4px 0;
-}
-.leaflet-bar-timecontrol .leaflet-control-timecontrol:before {
-  font-family: 'Glyphicons Halflings';
-  display: block;
-}
-.leaflet-bar-timecontrol .timecontrol-slider {
-  position: relative;
-  width: auto;
-  cursor: auto;
-}
-.leaflet-bar-timecontrol a.timecontrol-date,
-.leaflet-bar-timecontrol a.timecontrol-date:hover {
-  position: relative;
-  min-width: 150px;
-  width: auto;
-  padding: 0 10px 0 20px;
-  white-space: nowrap;
-}
-.leaflet-bar-timecontrol .timecontrol-dateslider .slider {
-  width: 200px;
-}
-.leaflet-bar-timecontrol .timecontrol-speed {
-  white-space: nowrap;
-  cursor: auto;
-}
-.leaflet-bar-timecontrol .timecontrol-speed .slider {
-  width: 55px;
-  display: inline-block;
-}
-.leaflet-bar-timecontrol .timecontrol-speed .speed {
-  width: 55px;
-  display: inline-block;
-  float: left;
-  text-align: right;
-}
-.leaflet-bar-timecontrol .timecontrol-play,
-.leaflet-bar-timecontrol .timecontrol-play:hover {
-  position: relative;
-}
-.timecontrol-slider .slider {
-  position: relative;
-  height: 12px;
-  margin: 6px;
-  border: 1px solid #a5a5a5;
-  cursor: pointer;
-}
-.timecontrol-slider .knob {
-  position: absolute;
-  width: 8px;
-  height: 22px;
-  background-color: #ddd;
-  border-radius: 2px;
-  border: 1px solid #a5a5a5;
-  margin-top: -6px;
-  margin-left: -4px;
-  cursor: ew-resize;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
-}
-.timecontrol-slider .knob:after {
-  content: ' ';
-  display: block;
-  position: absolute;
-  width: 20px;
-  top: -5px;
-  height: 32px;
-  left: -7px;
-}
-.timecontrol-backward:before,
-.timecontrol-forward:before,
-.timecontrol-play:before {
-  width: 100%;
-  text-align: center;
-}
-.timecontrol-play:before {
-  position: absolute;
-  content: '\e072';
-}
-.timecontrol-speed:before {
-  content: '\e141';
-  position: absolute;
-  left: 7px;
-}
-.timecontrol-forward:before {
-  content: '\e075';
-}
-.timecontrol-backward:before {
-  content: '\e071';
-}
-@media (max-width: 767px) {
-  .leaflet-bar-timecontrol .timecontrol-date,
-  .leaflet-bar-timecontrol .timecontrol-slider {
-    clear: both;
-    float: none;
-    border-right: none;
-  }
-}
-.leaflet-touch .leaflet-bar-timecontrol .leaflet-control-timecontrol {
-  height: 30px;
-  line-height: 30px;
-}
-.leaflet-touch .timecontrol-slider .slider {
-  margin-top: 10px;
-}
-/*! CSS Used from: Embedded */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-  background-color: transparent;
-  color: #321fdb;
-}
-@media (hover: hover), (-ms-high-contrast: none) {
-  a:hover {
-    text-decoration: underline;
-    color: #321fdb;
-  }
-}
+/*! CSS Used from: https://openweathermap.org/themes/openweathermap/assets/css/bundle_owm_styles.c31872127471c475ade1.css */
 @media print {
   * {
     text-shadow: none !important;
@@ -215,11 +6,60 @@ a {
     background: transparent !important;
     box-shadow: none !important;
   }
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+}
+img {
+  border: 0;
+}
+button,
+input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+button {
+  overflow: visible;
+}
+button {
+  text-transform: none;
+}
+button {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input {
+  line-height: normal;
 }
 *,
 :after,
 :before {
   box-sizing: border-box;
+}
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+img {
+  vertical-align: middle;
+}
+input[type='range'] {
+  display: block;
+  width: 100%;
+}
+.leaflet-container img {
+  max-width: none !important;
 }
 .leaflet-control {
   position: relative;
@@ -230,8 +70,14 @@ a {
   float: left;
   clear: both;
 }
-.leaflet-bottom .leaflet-control {
-  margin-bottom: 8px;
+.leaflet-right .leaflet-control {
+  float: right;
+}
+.leaflet-top .leaflet-control {
+  margin-top: 10px;
+}
+.leaflet-right .leaflet-control {
+  margin-right: 10px;
 }
 .leaflet-control {
   cursor: auto;
@@ -243,16 +89,146 @@ a {
     background: transparent !important;
     box-shadow: none !important;
   }
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
 }
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot);
-  src: url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot?#iefix)
-      format('embedded-opentype'),
-    url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff)
-      format('woff'),
-    url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf)
-      format('truetype'),
-    url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular)
-      format('svg');
+/*! CSS Used from: https://openweathermap.org/themes/openweathermap/assets/vendor/owm/css/weathermap.2e22cf40276266129f0d7c2a1ece288ef.css */
+.play-control,
+.play-control button {
+  color: #48484a;
+  -webkit-border-radius: 4pt;
+  border-radius: 4pt;
+  background-color: #fff;
+  text-align: center;
+}
+.play-control {
+  font-family: 'Space Grotesk', Arial, sans-serif;
+  width: 400px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  color: rgba(72, 72, 74, 0.5);
+  padding: 4pt 8pt;
+  font-size: 8pt;
+}
+button {
+  margin: 0;
+}
+.play-control button {
+  border: none;
+  outline: none;
+  padding: 4pt;
+  vertical-align: middle;
+  font-size: 10pt;
+  cursor: pointer;
+}
+.play-control button:first-child {
+  /* padding-left: 0; */
+}
+.play-control button:last-child {
+  /* padding-right: 0; */
+}
+.play-control button:hover {
+  color: #000;
+}
+.play-control button:focus {
+  border-color: #48484a;
+  outline: none;
+}
+.play-control button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+#play,
+#stop {
+  display: inline-block;
+  height: 24pt;
+  width: 24pt;
+  -webkit-border-radius: 20pt;
+  border-radius: 20pt;
+  margin: 4pt;
+  text-align: center;
+  vertical-align: middle;
+}
+#play {
+  background-color: #48484a;
+}
+#play img,
+#stop img {
+  height: 16pt;
+  width: 16pt;
+}
+#stop img {
+  margin-left: -1pt;
+}
+#play img {
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+  margin-left: 1pt;
+}
+#stop img {
+  margin-top: -1pt;
+}
+#stop {
+  border: 1px solid #f2f2f2;
+}
+#play:focus,
+#play:hover {
+  background-color: #48484a;
+}
+#play-back img,
+#play-back-faster img,
+#play-forward-faster img {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+#play-back img,
+#play-back-faster img {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+#play-forward,
+#play-forward-faster img {
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+#play-back-faster img {
+  margin-right: -7pt;
+}
+#play-forward-faster img {
+  margin-left: -7pt;
+}
+#control-range {
+  -webkit-appearance: none;
+  display: inline-block;
+}
+#control-range:focus {
+  outline: none;
+}
+.play-control div:first-child {
+  margin-bottom: 4pt;
+}
+.play-control div:nth-child(4) {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: -2pt;
+}
+#current-moment {
+  margin-right: 2pt;
+  color: #48484a;
 }
