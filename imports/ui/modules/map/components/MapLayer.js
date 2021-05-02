@@ -2,7 +2,6 @@ import { loadModules } from 'esri-loader';
 import React from 'react';
 import { Row } from '../../common/components/elements';
 import '../css/styles.css';
-import RightAside from './RightAside';
 const styles = {
   mapDiv: {
     height: '100%',
@@ -291,9 +290,6 @@ const BaseMap = (props) => {
             </tr>
           </tbody>
         </table>
-      </div>
-      <div style={{ left: 16, top: 240, position: 'fixed' }}>
-        <RightAside></RightAside>
       </div>
     </Row>
   );

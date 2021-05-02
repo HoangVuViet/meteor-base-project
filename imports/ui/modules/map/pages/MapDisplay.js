@@ -21,11 +21,14 @@ import TimeDimensionMap from '../components/TimeDimensionMap';
 import VelocityLayer from '../components/VelocityLayer';
 import {
   defaultMapProperty,
+  defaultTimeDimensionProperty,
+  defaultWindSpeedProperty,
   MAPBOX_ACCESS_TOKEN,
   openWeatherAtmosphericTileURL,
   openWeatherTemperatureURL,
   openWeatherWindTileURL,
   OPEN_WEATHER_APP_ID,
+  defaultWindDirectionProperty,
 } from '../constant';
 // import './leaflet.css';
 import '../css/index.css';
@@ -42,6 +45,9 @@ const LeafletMap = (_props) => {
   const [data, setData] = React.useState({});
   const [refReady, setRefReady] = useState(true);
   const [mapR, setMapR] = useState(true);
+
+  const [progress, setProgress] = React.useState(defaultTimeDimensionProperty.min);
+  const [isPlay, checkPlay] = React.useState(true);
 
   const windSpeedUrl = 'https://HoangVuViet.github.io/tif/PM25_20170101_3km.tif';
   const windSpeedOptions = {
@@ -138,28 +144,28 @@ const LeafletMap = (_props) => {
       m1.openPopup();
     }
 
-    // map.on('click', (e) => {
-    //   geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
-    //     var r = results[0];
-    //     if (r) {
-    //       setAddress(r.name);
-    //       // setMarker({ lat: r.center.lat, lng: r.center.lng });
-    //     }
-    //   });
-    // });
+    map.on('click', (e) => {
+      geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
+        var r = results[0];
+        if (r) {
+          setAddress(r.name);
+          // setMarker({ lat: r.center.lat, lng: r.center.lng });
+        }
+      });
+    });
   }, []);
 
-  useEffect(() => {
-    if (document.querySelector('input[name=SearchInput]') && address !== '') {
-      document.querySelector('input[name=SearchInput]').value = address;
-    }
-    if (
-      document.querySelector('input[name=SearchInput]') &&
-      !document.querySelector('input[name=SearchInput]').value
-    ) {
-      setMarker({ lat: 0, lng: 0 });
-    }
-  }, [address]);
+  // useEffect(() => {
+  //   if (document.querySelector('input[name=SearchInput]') && address !== '') {
+  //     document.querySelector('input[name=SearchInput]').value = address;
+  //   }
+  //   if (
+  //     document.querySelector('input[name=SearchInput]') &&
+  //     !document.querySelector('input[name=SearchInput]').value
+  //   ) {
+  //     setMarker({ lat: 0, lng: 0 });
+  //   }
+  // }, [address]);
 
   useEffect(() => {
     setRefReady(true);
@@ -216,7 +222,7 @@ const LeafletMap = (_props) => {
       /> */}
 
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="DefaultMap">
+          <LayersControl.BaseLayer checked name="defaultMap">
             <LayerGroup>
               {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
               <MapBoxLayer
@@ -225,13 +231,13 @@ const LeafletMap = (_props) => {
               />{' '}
               <PlottyGeotiffLayer
                 layerRef={windSpeedRef}
-                url={windSpeedUrl}
-                options={windSpeedOptions}
+                url={defaultWindSpeedProperty.url}
+                options={defaultWindSpeedProperty.options}
               />
               <VectorArrowsGeotiffLayer
                 layerRef={windDirectionRef}
-                url={windDirectionUrl}
-                options={windDirectionOptions}
+                url={defaultWindDirectionProperty.url}
+                options={defaultWindDirectionProperty.options}
               />
               <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
               {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
@@ -304,7 +310,7 @@ const LeafletMap = (_props) => {
         <HightlightArea></HightlightArea>
         <Legend layerName={layerName}></Legend>
       </Map>
-      <TimeDimensionMap></TimeDimensionMap>
+      <TimeDimensionMap progress={progress} isPlay={isPlay}></TimeDimensionMap>
     </Fragment>
   );
 };

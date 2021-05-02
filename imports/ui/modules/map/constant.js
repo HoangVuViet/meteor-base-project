@@ -41,6 +41,36 @@ export const defaultMapProperty = {
   style: { height: 610, width: '100%' },
 };
 
+export const defaultTimeDimensionProperty = {
+  step: 10,
+  min: 10,
+  max: 150,
+  defaultValue: 10,
+};
+
+export const defaultWindDirectionProperty = {
+  url: 'https://HoangVuViet.github.io/tif/wind_direction.tif',
+  options: {
+    band: 0,
+    name: 'Wind direction',
+    arrowSize: 40,
+  },
+};
+
+export const defaultWindSpeedProperty = {
+  url: 'https://HoangVuViet.github.io/tif/PM25_20170101_3km.tif',
+  options: {
+    band: 0,
+    displayMin: 0,
+    displayMax: 30,
+    name: 'Wind speed',
+    colorScale: 'rainbow',
+    clampLow: false,
+    clampHigh: true,
+    //vector:true
+  },
+};
+
 export const style = (feature) => {
   return {
     weight: 2,
