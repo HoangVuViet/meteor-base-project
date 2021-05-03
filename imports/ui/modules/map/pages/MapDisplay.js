@@ -8,6 +8,7 @@ import {
   Marker,
   Popup,
   TileLayer,
+  withLeaflet,
   ZoomControl,
 } from 'react-leaflet';
 import FullscreenControl from 'react-leaflet-fullscreen';
@@ -29,45 +30,49 @@ import {
   openWeatherWindTileURL,
   OPEN_WEATHER_APP_ID,
   defaultWindDirectionProperty,
+  hereTileUrl,
 } from '../constant';
-// import './leaflet.css';
 import '../css/index.css';
 
 const LeafletMap = (_props) => {
   const mapRef = useRef(null);
-  const windSpeedRef = React.createRef();
-  const windDirectionRef = React.createRef();
+  const windSpeedRef = React.useRef();
+  const windDirectionRef = React.useRef();
 
   const [marker, setMarker] = useState({ lat: 0, lng: 0 });
   const [address, setAddress] = useState('');
   const [layerName, setLayerName] = useState('');
 
-  const [data, setData] = React.useState({});
-  const [refReady, setRefReady] = useState(true);
-  const [mapR, setMapR] = useState(true);
+  const [geotifURL, setGeotifURL] = useState({
+    url: [
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20170101_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171203_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171204_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171205_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171206_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171207_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171208_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171210_3km.tif',
+      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171211_3km.tif',
+    ],
+    time: [
+      '03/12/2017',
+      '04/12/2017',
+      '05/12/2017',
+      '06/12/2017',
+      '07/12/2017',
+      '08/12/2017',
+      '09/12/2017',
+      '10/12/2017',
+      '11/12/2017',
+    ],
+  });
 
+  const [tiffUrl, setTiffUrl] = useState(geotifURL.url[0]);
+
+  const [mapR, setMapR] = useState(true);
   const [progress, setProgress] = React.useState(defaultTimeDimensionProperty.min);
   const [isPlay, checkPlay] = React.useState(true);
-
-  const windSpeedUrl = 'https://HoangVuViet.github.io/tif/PM25_20170101_3km.tif';
-  const windSpeedOptions = {
-    band: 0,
-    displayMin: 0,
-    displayMax: 30,
-    name: 'Wind speed',
-    colorScale: 'rainbow',
-    clampLow: false,
-    clampHigh: true,
-    //vector:true
-  };
-
-  const windDirectionUrl = 'https://HoangVuViet.github.io/tif/wind_direction.tif';
-  const windDirectionOptions = {
-    band: 0,
-    name: 'Wind direction',
-    arrowSize: 40,
-  };
-
   // function LocationMarker() {
   //   const [position, setPosition] = useState(null);
   //   const [bbox, setBbox] = useState([]);
@@ -167,9 +172,13 @@ const LeafletMap = (_props) => {
   //   }
   // }, [address]);
 
-  useEffect(() => {
-    setRefReady(true);
-  }, [mapRef]);
+  React.useEffect(() => {
+    if (!isPlay) {
+      setTiffUrl(geotifURL.url[1]);
+    }
+  }, [isPlay]);
+  console.log(tiffUrl);
+
   return (
     <Fragment>
       <Map
@@ -187,28 +196,6 @@ const LeafletMap = (_props) => {
           let { lat, lng } = e.latlng;
           setMarker(e.latlng);
         }}
-        // timeDimension={true}
-        // timeDimensionControl={true}
-        // timeDimensionControlOptions={{
-        //   position: 'bottomleft',
-        //   timeInterval: '2021-04-20/2021-04-30',
-        //   autoPlay: false,
-        //   timeSlider: true,
-        //   loopButton: false,
-        //   minSpeed: 1,
-        //   speedStep: 0.5,
-        //   maxSpeed: 20,
-        //   timeSliderDragUpdate: true,
-        //   // playerOptions: {
-        //   //   transitionTime: 100,
-        //   //   loop: false,
-        //   //   startOver: true,
-        //   // },
-        // }}
-        // timeDimensionOptions={{
-        //   timeInterval: '2021-04-20/2021-04-30',
-        //   period: 'PT1H',
-        // }}
       >
         <FullscreenControl position="topright" />
         <ZoomControl position="topright"></ZoomControl>
@@ -220,26 +207,26 @@ const LeafletMap = (_props) => {
           'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=c906da2e232618595258cadf371704f'
         }
       /> */}
-
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="defaultMap">
             <LayerGroup>
-              {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
-              <MapBoxLayer
+              <TileLayer url={hereTileUrl('reduced.day')} />
+              {/* <MapBoxLayer
                 accessToken={MAPBOX_ACCESS_TOKEN}
                 style="mapbox://styles/mapbox/streets-v9"
-              />{' '}
+              /> */}
               <PlottyGeotiffLayer
-                layerRef={windSpeedRef}
-                url={defaultWindSpeedProperty.url}
+                layerRef={mapRef}
+                url={tiffUrl}
                 options={defaultWindSpeedProperty.options}
               />
-              <VectorArrowsGeotiffLayer
+
+              {/* <VectorArrowsGeotiffLayer
                 layerRef={windDirectionRef}
                 url={defaultWindDirectionProperty.url}
                 options={defaultWindDirectionProperty.options}
-              />
-              <VelocityLayer url={'https://HoangVuViet.github.io/wind/wind.json'}></VelocityLayer>
+              /> */}
+              <VelocityLayer url={'../../../../../json/wind.json'}></VelocityLayer>
               {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
@@ -280,10 +267,6 @@ const LeafletMap = (_props) => {
             </Marker>
           </LayersControl.Overlay>
         </LayersControl>
-        {/* <MapBoxLayer
-        accessToken={MAPBOX_ACCESS_TOKEN}
-        style="mapbox://styles/mapbox/streets-v9"
-      /> */}
         <div style={{ minHeight: 28, width: 32 }}>
           <Search
             style={{ minHeight: 28, width: 32 }}
@@ -310,7 +293,16 @@ const LeafletMap = (_props) => {
         <HightlightArea></HightlightArea>
         <Legend layerName={layerName}></Legend>
       </Map>
-      <TimeDimensionMap progress={progress} isPlay={isPlay}></TimeDimensionMap>
+      <TimeDimensionMap
+        progress={progress}
+        isPlay={isPlay}
+        checkPlay={checkPlay}
+        setProgress={setProgress}
+        geotifURL={geotifURL}
+        setGeotifURL={setGeotifURL}
+        tiffUrl={tiffUrl}
+        setTiffUrl={setTiffUrl}
+      ></TimeDimensionMap>
     </Fragment>
   );
 };

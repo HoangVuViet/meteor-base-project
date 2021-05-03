@@ -9,7 +9,7 @@ import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
 class GeotiffLayer extends MapLayer {
   createLeafletElement(props) {
     const { url, options } = props;
-    return L.leafletGeotiff(url, options);
+    return new L.leafletGeotiff(url, options);
   }
 
   componentDidMount() {
@@ -17,6 +17,8 @@ class GeotiffLayer extends MapLayer {
     this.leafletElement.addTo(map);
   }
 }
+
+export default GeotiffLayer;
 
 export const PlottyGeotiffLayer = withLeaflet((props) => {
   const { options, layerRef } = props;

@@ -11,9 +11,18 @@ import PauseIcon from '@material-ui/icons/Pause';
 import { defaultTimeDimensionProperty } from '../constant';
 
 const TimeDimensionMap = (props) => {
-  const { progress, isPlay } = props;
+  const {
+    progress,
+    isPlay,
+    checkPlay,
+    setProgress,
+    setTiffUrl,
+    tiffUrl,
+    geotifURL,
+    setGeotifURL,
+  } = props;
   const valuetext = (value) => {
-    return `${value}°C`;
+    return `${geotifURL.time[progress / defaultTimeDimensionProperty.step - 1]}`;
   };
 
   // useEffect(() => {
@@ -27,26 +36,25 @@ const TimeDimensionMap = (props) => {
   //   timePros.addTo(map);
   // }, []);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      if (!isPlay) {
-        setProgress((oldProgress) => {
-          if (oldProgress === defaultTimeDimensionProperty.max) {
-            return 0;
-          }
-          return Math.min(
-            oldProgress + defaultTimeDimensionProperty.step,
-            defaultTimeDimensionProperty.max,
-          );
-        });
-      }
-    }, 1000);
+  // React.useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     if (!isPlay) {
+  //       setProgress((oldProgress) => {
+  //         if (oldProgress === defaultTimeDimensionProperty.max) {
+  //           return 0;
+  //         }
+  //         return Math.min(
+  //           oldProgress + defaultTimeDimensionProperty.step,
+  //           defaultTimeDimensionProperty.max,
+  //         );
+  //       });
+  //     }
+  //   }, 1000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [isPlay]);
-  console.log(progress);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, [isPlay, progress]);
   return (
     <>
       <div style={{ left: 16, bottom: 8, position: 'fixed', zIndex: 3000 }}>
@@ -128,7 +136,9 @@ const TimeDimensionMap = (props) => {
             </IconButton>
           </div>
           <div>
-            <span id="current-moment">May 01, 9:10</span>
+            <span id="current-moment">
+              {geotifURL.time[progress / defaultTimeDimensionProperty.step - 1]}
+            </span>
           </div>
           <div>
             <Slider
@@ -143,14 +153,13 @@ const TimeDimensionMap = (props) => {
               value={progress}
               color="secondary"
               onChangeCommitted={(event, value) => {
-                console.log(event);
                 setProgress(value);
               }}
             />
           </div>
           <div>
-            <span id="min-date">Apr 24</span>
-            <span id="max-date">May 08</span>
+            <span id="min-date">{geotifURL.time[0]}</span>
+            <span id="max-date"> {geotifURL.time[geotifURL.time.length - 1]}</span>
           </div>
         </div>
       </div>

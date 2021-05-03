@@ -37,14 +37,14 @@ export const defaultMapProperty = {
   scrollWheelZoom: true,
   zoomControl: false,
   maxZoom: 9,
-  minZoom: 5,
+  minZoom: 6,
   style: { height: 610, width: '100%' },
 };
 
 export const defaultTimeDimensionProperty = {
   step: 10,
   min: 10,
-  max: 150,
+  max: 90,
   defaultValue: 10,
 };
 
@@ -64,7 +64,7 @@ export const defaultWindSpeedProperty = {
     displayMin: 0,
     displayMax: 30,
     name: 'Wind speed',
-    colorScale: 'rainbow',
+    colorScale: 'viridis',
     clampLow: false,
     clampHigh: true,
     //vector:true
