@@ -11,50 +11,11 @@ import PauseIcon from '@material-ui/icons/Pause';
 import { defaultTimeDimensionProperty } from '../constant';
 
 const TimeDimensionMap = (props) => {
-  const {
-    progress,
-    isPlay,
-    checkPlay,
-    setProgress,
-    setTiffUrl,
-    tiffUrl,
-    geotifURL,
-    setGeotifURL,
-  } = props;
+  const { progress, isPlay, checkPlay, setProgress, geotifURL, setGeotifURL } = props;
   const valuetext = (value) => {
     return `${geotifURL.time[progress / defaultTimeDimensionProperty.step - 1]}`;
   };
-
-  // useEffect(() => {
-  //   const timePros = L.control({ position: 'bottomleft' });
-  //   timePros.onAdd = () => {
-  //     const div = L.DomUtil.create('div');
-  //     div.innerHTML =
-  //       '<div class="leaflet-bar leaflet-bar-horizontal leaflet-bar-timecontrol leaflet-control"><a class="leaflet-control-timecontrol timecontrol-backward" href="#" title="Backward"></a><a class="leaflet-control-timecontrol timecontrol-play play" href="#" title="Play"></a><a class="leaflet-control-timecontrol timecontrol-forward" href="#" title="Forward"></a><a class="leaflet-control-timecontrol timecontrol-date" href="#" title="Date">2021-04-26T17:00:00.000Z</a><div class="leaflet-control-timecontrol timecontrol-slider timecontrol-dateslider"><div class="slider"><div class="knob main" style="transform: translate3d(134.167px, 0px, 0px);"></div></div></div><div class="leaflet-control-timecontrol timecontrol-slider timecontrol-speed"><span class="speed">1fps</span><div class="slider"><div class="knob" style="transform: translate3d(0px, 0px, 0px);"></div></div></div></div>';
-  //     return div;
-  //   };
-  //   timePros.addTo(map);
-  // }, []);
-
-  // React.useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     if (!isPlay) {
-  //       setProgress((oldProgress) => {
-  //         if (oldProgress === defaultTimeDimensionProperty.max) {
-  //           return 0;
-  //         }
-  //         return Math.min(
-  //           oldProgress + defaultTimeDimensionProperty.step,
-  //           defaultTimeDimensionProperty.max,
-  //         );
-  //       });
-  //     }
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(timer);
-  //   };
-  // }, [isPlay, progress]);
+  console.log(progress);
   return (
     <>
       <div style={{ left: 16, bottom: 8, position: 'fixed', zIndex: 3000 }}>

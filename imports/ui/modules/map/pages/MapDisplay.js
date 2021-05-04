@@ -31,9 +31,12 @@ import {
   OPEN_WEATHER_APP_ID,
   defaultWindDirectionProperty,
   hereTileUrl,
+  defaultGeoUrl,
 } from '../constant';
 import '../css/index.css';
-
+import 'leaflet-geotiff';
+import 'leaflet-geotiff/leaflet-geotiff-plotty';
+import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
 const LeafletMap = (_props) => {
   const mapRef = useRef(null);
   const windSpeedRef = React.useRef();
@@ -43,67 +46,11 @@ const LeafletMap = (_props) => {
   const [address, setAddress] = useState('');
   const [layerName, setLayerName] = useState('');
 
-  const [geotifURL, setGeotifURL] = useState({
-    url: [
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20170101_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171203_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171204_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171205_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171206_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171207_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171208_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171210_3km.tif',
-      'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171211_3km.tif',
-    ],
-    time: [
-      '03/12/2017',
-      '04/12/2017',
-      '05/12/2017',
-      '06/12/2017',
-      '07/12/2017',
-      '08/12/2017',
-      '09/12/2017',
-      '10/12/2017',
-      '11/12/2017',
-    ],
-  });
-
-  const [tiffUrl, setTiffUrl] = useState(geotifURL.url[0]);
+  const [geotifURL, setGeotifURL] = useState(defaultGeoUrl);
 
   const [mapR, setMapR] = useState(true);
   const [progress, setProgress] = React.useState(defaultTimeDimensionProperty.min);
   const [isPlay, checkPlay] = React.useState(true);
-  // function LocationMarker() {
-  //   const [position, setPosition] = useState(null);
-  //   const [bbox, setBbox] = useState([]);
-
-  //   const { map } = useLeaflet();
-
-  //   useEffect(() => {
-  //     map.locate().on('locationfound', function (e) {
-  //       setPosition(e.latlng);
-  //       map.flyTo(e.latlng, map.getZoom());
-  //       const radius = e.accuracy;
-  //       const circle = L.circle(e.latlng, radius);
-  //       circle.addTo(map);
-  //       setBbox(e.bounds.toBBoxString().split(','));
-  //     });
-  //   }, [map]);
-
-  //   return position === null ? null : (
-  //     <Marker position={position} icon={icon}>
-  //       <Popup>
-  //         You are here. <br />
-  //         Map bbox: <br />
-  //         <b>Southwest lng</b>: {bbox[0]} <br />
-  //         <b>Southwest lat</b>: {bbox[1]} <br />
-  //         <b>Northeast lng</b>: {bbox[2]} <br />
-  //         <b>Northeast lat</b>: {bbox[3]}
-  //       </Popup>
-  //     </Marker>
-  //   );
-  // }
-
   useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
@@ -121,21 +68,6 @@ const LeafletMap = (_props) => {
       },
     });
     lc.addTo(map);
-    //
-
-    // Create and add a TimeDimension Layer to the map
-    // var wmsUrl =
-    //   'https://thredds.socib.es/thredds/wms/observational/satellite/altimetry/aviso/madt/sealevel_med_phy_nrt_L4_agg/sealevel_med_phy_nrt_L4_agg_best.ncd';
-    // var wmsLayer = L.tileLayer.wms(wmsUrl, {
-    //   layers: 'sea_water_velocity',
-    //   format: 'image/png',
-    //   transparent: true,
-    //   attribution: 'SOCIB HF RADAR | sea_water_velocity',
-    // });
-
-    // var tdWmsLayer = L.timeDimension.layer.wms(wmsLayer);
-    // tdWmsLayer.addTo(map);
-    //
 
     if (!map) return;
     map.on('baselayerchange', function (e) {
@@ -173,17 +105,62 @@ const LeafletMap = (_props) => {
   // }, [address]);
 
   React.useEffect(() => {
-    if (!isPlay) {
-      setTiffUrl(geotifURL.url[1]);
-    }
-  }, [isPlay]);
-  console.log(tiffUrl);
+    const { current = {} } = mapRef;
+    const { leafletElement: map } = current;
+    const renderer = L.LeafletGeotiff.plotty(defaultWindSpeedProperty.options);
+    const options = {
+      rBand: 0,
+      gBand: 1,
+      bBand: 2,
+      alphaBand: 0,
+      transpValue: 0,
+      renderer: renderer,
+    };
+    var windSpeed = new L.leafletGeotiff(
+      geotifURL.url[progress / defaultTimeDimensionProperty.step - 1],
+      options,
+    ).addTo(map);
+  }, [progress]);
+
+  React.useEffect(() => {
+    const { current = {} } = mapRef;
+    const { leafletElement: map } = current;
+    const timer = setInterval(() => {
+      if (!isPlay) {
+        const renderer = L.LeafletGeotiff.plotty(defaultWindSpeedProperty.options);
+        const options = {
+          rBand: 0,
+          gBand: 1,
+          bBand: 2,
+          alphaBand: 0,
+          transpValue: 0,
+          renderer: renderer,
+        };
+        setProgress((oldProgress) => {
+          if (oldProgress === defaultTimeDimensionProperty.max) {
+            return 0;
+          }
+          return Math.min(
+            oldProgress + defaultTimeDimensionProperty.step,
+            defaultTimeDimensionProperty.max,
+          );
+        });
+        var windSpeed = new L.leafletGeotiff(
+          geotifURL.url[progress / defaultTimeDimensionProperty.step - 1],
+          options,
+        ).addTo(map);
+      }
+    }, 1200);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [isPlay, progress]);
 
   return (
     <Fragment>
       <Map
         ref={mapRef}
-        // fullscreenControl={defaultMapProperty.fullscreenControl}
         center={defaultMapProperty.center}
         zoom={defaultMapProperty.zoom}
         scrollWheelZoom={defaultMapProperty.scrollWheelZoom}
@@ -200,7 +177,6 @@ const LeafletMap = (_props) => {
         <FullscreenControl position="topright" />
         <ZoomControl position="topright"></ZoomControl>
         {/* <LocationMarker /> */}
-
         {/* <TileLayer url={hereTileUrl('reduced.day')} />
       <TileLayer
         url={
@@ -208,18 +184,18 @@ const LeafletMap = (_props) => {
         }
       /> */}
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="defaultMap">
+          <LayersControl.BaseLayer name="Pm2.5">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               {/* <MapBoxLayer
                 accessToken={MAPBOX_ACCESS_TOKEN}
                 style="mapbox://styles/mapbox/streets-v9"
               /> */}
-              <PlottyGeotiffLayer
+              {/* <PlottyGeotiffLayer
                 layerRef={mapRef}
                 url={tiffUrl}
                 options={defaultWindSpeedProperty.options}
-              />
+              /> */}
 
               {/* <VectorArrowsGeotiffLayer
                 layerRef={windDirectionRef}
@@ -230,7 +206,7 @@ const LeafletMap = (_props) => {
               {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Nhiệt độ">
+          <LayersControl.BaseLayer checked name="Nhiệt độ">
             <LayerGroup>
               {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
               <MapBoxLayer
@@ -255,17 +231,15 @@ const LeafletMap = (_props) => {
               <MapBoxLayer
                 accessToken={MAPBOX_ACCESS_TOKEN}
                 style="mapbox://styles/mapbox/streets-v9"
-              />{' '}
+              />
               <TileLayer url={openWeatherAtmosphericTileURL(OPEN_WEATHER_APP_ID)} />
             </LayerGroup>
           </LayersControl.BaseLayer>
-          <LayersControl.Overlay name="Test">
+          {/* <LayersControl.Overlay name="Test">
             <Marker position={defaultMapProperty.center}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
+              <Popup>popup.</Popup>
             </Marker>
-          </LayersControl.Overlay>
+          </LayersControl.Overlay> */}
         </LayersControl>
         <div style={{ minHeight: 28, width: 32 }}>
           <Search
@@ -300,8 +274,6 @@ const LeafletMap = (_props) => {
         setProgress={setProgress}
         geotifURL={geotifURL}
         setGeotifURL={setGeotifURL}
-        tiffUrl={tiffUrl}
-        setTiffUrl={setTiffUrl}
       ></TimeDimensionMap>
     </Fragment>
   );

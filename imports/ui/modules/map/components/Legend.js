@@ -37,19 +37,38 @@ const Legend = (props) => {
       return div;
     };
 
+    const legendpm25 = L.control({ position: 'bottomright' });
+    legendpm25.onAdd = () => {
+      const div = L.DomUtil.create('div');
+      div.innerHTML = getLegend(
+        `pm2.5, µg/m³`,
+        `<div>0</div><div>10</div><div>20</div><div>50</div><div>100</div><div>200</div><div>300</div>`,
+        `<div class="horizontal-gradient-line" style="background-image: linear-gradient(to right, rgb(0, 115, 255) 0%, rgb(0, 170, 255) 8.35059%, rgb(75, 208, 214) 24.9192%, rgb(141, 231, 199) 41.4879%, rgb(176, 247, 32) 49.7722%, rgb(240, 184, 0) 58.0565%, rgb(251, 85, 21) 74.6251%, rgb(243, 54, 59) 91.1938%, rgb(198, 0, 0) 100% ); " ></div>`,
+      );
+      return div;
+    };
+
     map.on('baselayerchange', (e) => {
       if (e.name === 'Gió') {
         map.removeControl(legendTem);
         map.removeControl(legendAtm);
+        map.removeControl(legendpm25);
         legendWind.addTo(map);
       } else if (e.name === 'Áp suất khí quyển') {
         map.removeControl(legendWind);
         map.removeControl(legendTem);
+        map.removeControl(legendpm25);
         legendAtm.addTo(map);
-      } else {
+      } else if (e.name === 'Nhiệt độ') {
         map.removeControl(legendAtm);
         map.removeControl(legendWind);
+        map.removeControl(legendpm25);
         legendTem.addTo(map);
+      } else {
+        map.removeControl(legendWind);
+        map.removeControl(legendTem);
+        map.removeControl(legendAtm);
+        legendpm25.addTo(map);
       }
     });
   }, []);

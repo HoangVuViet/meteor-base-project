@@ -38,7 +38,7 @@ export const defaultMapProperty = {
   zoomControl: false,
   maxZoom: 9,
   minZoom: 6,
-  style: { height: 610, width: '100%' },
+  style: { height: 880, width: '100%' }, //610
 };
 
 export const defaultTimeDimensionProperty = {
@@ -64,7 +64,7 @@ export const defaultWindSpeedProperty = {
     displayMin: 0,
     displayMax: 30,
     name: 'Wind speed',
-    colorScale: 'viridis',
+    colorScale: 'rainbow',
     clampLow: false,
     clampHigh: true,
     //vector:true
@@ -97,3 +97,28 @@ export default L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
 });
+
+export const defaultGeoUrl = {
+  url: [
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171108_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171109_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171110_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171111_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171112_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171113_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171114_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171115_3km.tif',
+    'https://HoangVuViet.github.io/pm2.5/tif/2017/PM25_20171116_3km.tif',
+  ],
+  time: [
+    '03/12/2017',
+    '04/12/2017',
+    '05/12/2017',
+    '06/12/2017',
+    '07/12/2017',
+    '08/12/2017',
+    '09/12/2017',
+    '10/12/2017',
+    '11/12/2017',
+  ],
+};
