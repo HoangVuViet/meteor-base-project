@@ -15,7 +15,6 @@ const TimeDimensionMap = (props) => {
   const valuetext = (value) => {
     return `${geotifURL.time[progress / defaultTimeDimensionProperty.step - 1]}`;
   };
-  console.log(progress);
   return (
     <>
       <div style={{ left: 16, bottom: 8, position: 'fixed', zIndex: 3000 }}>

@@ -116,11 +116,8 @@ const LeafletMap = (_props) => {
       transpValue: 0,
       renderer: renderer,
     };
-    var windSpeed = new L.leafletGeotiff(
-      geotifURL.url[progress / defaultTimeDimensionProperty.step - 1],
-      options,
-    ).addTo(map);
-  }, [progress]);
+    var windSpeed = new L.leafletGeotiff(geotifURL.url[0], options).addTo(map);
+  }, []);
 
   React.useEffect(() => {
     const { current = {} } = mapRef;
@@ -146,9 +143,10 @@ const LeafletMap = (_props) => {
           );
         });
         var windSpeed = new L.leafletGeotiff(
-          geotifURL.url[progress / defaultTimeDimensionProperty.step - 1],
+          geotifURL.url[progress !== 0 ? progress / defaultTimeDimensionProperty.step - 1 : 0],
           options,
         ).addTo(map);
+        console.log(progress / defaultTimeDimensionProperty.step - 1);
       }
     }, 1200);
 

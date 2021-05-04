@@ -38,7 +38,7 @@ export const defaultMapProperty = {
   zoomControl: false,
   maxZoom: 9,
   minZoom: 6,
-  style: { height: 880, width: '100%' }, //610
+  style: { height: 610, width: '100%' }, //610
 };
 
 export const defaultTimeDimensionProperty = {
