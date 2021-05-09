@@ -148,7 +148,7 @@ const LeafletMap = (_props) => {
         ).addTo(map);
         console.log(progress / defaultTimeDimensionProperty.step - 1);
       }
-    }, 1200);
+    }, 1500);
 
     return () => {
       clearInterval(timer);

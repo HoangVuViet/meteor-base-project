@@ -5,6 +5,7 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
+  CHeaderNavLink,
   CImg,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
@@ -36,8 +37,10 @@ const TheHeaderDropdown = () => {
         </CDropdownItem>
         <CDropdownItem divider />
         <CDropdownItem>
-          <CIcon name="cil-account-logout" className="mfe-2" />
-          Sign out
+          <CHeaderNavLink to="/login">
+            <CIcon name="cil-account-logout" className="mfe-2" />
+            Sign out
+          </CHeaderNavLink>
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

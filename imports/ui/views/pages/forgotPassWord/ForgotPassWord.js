@@ -17,7 +17,7 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 
-const Login = () => {
+const ForgotPassWord = () => {
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -27,7 +27,7 @@ const Login = () => {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
-                    <h1>Đăng nhập hệ thống</h1>
+                    <h4>Vui lòng nhập địa chỉ email của bạn</h4>
                     {/* <p className="text-muted">Sign In to your account</p> */}
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
@@ -37,33 +37,20 @@ const Login = () => {
                       </CInputGroupPrepend>
                       <CInput type="text" placeholder="Email" autoComplete="username" required />
                     </CInputGroup>
-                    <CInputGroup className="mb-4">
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-lock-locked" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput
-                        type="password"
-                        placeholder="Mật khẩu"
-                        autoComplete="current-password"
-                        required
-                      />
-                    </CInputGroup>
                     <CRow>
                       <CCol xs="6">
                         <CHeaderNavLink to="/">
                           <CButton color="primary" className="px-4">
-                            Đăng nhập
+                            Xác nhận
                           </CButton>
                         </CHeaderNavLink>
                       </CCol>
                       <CCol xs="6" className="text-right">
-                        <CHeaderNavLink to="/forgot-password">
+                        <Link to="/login">
                           <CButton color="link" className="px-0">
-                            Quên mật khẩu?
+                            Đăng nhập
                           </CButton>
-                        </CHeaderNavLink>
+                        </Link>
                       </CCol>
                     </CRow>
                   </CForm>
@@ -89,4 +76,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassWord;
