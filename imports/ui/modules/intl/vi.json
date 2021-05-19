@@ -229,5 +229,10 @@
   "dataSet": "Dataset",
   "interpolationMethod": "Phương pháp nội suy",
   "files": "Danh sách file",
-  "chooseFile": "Chọn File"
+  "chooseFile": "Chọn File",
+  "name": "name",
+  "Ngày sinh": "Ngày sinh",
+  "ratePackage.createNewPricePackage": "Thêm mới",
+  "ratePackage.listPackage": "Danh sách",
+  "ratePackage.searchByIdOrName": "Nhập tên hoặc id để tìm kiếm thông tin"
 }
