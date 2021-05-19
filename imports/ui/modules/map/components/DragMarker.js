@@ -142,7 +142,7 @@ const DragMarker = (props) => {
               onOpen={toggleDrawer(anchor, true)}
             >
               <div style={{ width: 800 }}>
-                <Statistical></Statistical>
+                <Statistical position={props?.markerPosition}></Statistical>
               </div>
             </SwipeableDrawer>
           </React.Fragment>
