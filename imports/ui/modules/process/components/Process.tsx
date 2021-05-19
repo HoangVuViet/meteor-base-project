@@ -203,6 +203,7 @@ const Download: React.FC<Props> = (props) => {
               background: '#f5f5f5',
               boxShadow: 'none',
               width: 500,
+              height: 300,
             }}
           >
             {isSubmitting ? (

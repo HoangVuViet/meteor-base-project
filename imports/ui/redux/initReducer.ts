@@ -3,7 +3,7 @@ import { some } from '../constants';
 
 export interface AccommodationState {
   readonly sidebarShow: any;
-  readonly addressP: any;
+  readonly addressP: some;
 }
 
 export const DEFAULT_ACCOUNT_STATE = {

@@ -43,7 +43,7 @@ const TheHeader = () => {
         </CHeaderNav>
         <div style={{ marginRight: -18 }}>
           <CHeaderNav className="px-3">
-            <TheHeaderDropdownNotif />
+            {/* <TheHeaderDropdownNotif /> */}
             <TheHeaderDropdown />
           </CHeaderNav>
         </div>

@@ -51,6 +51,15 @@ export interface ICheckBox extends some {
 }
 
 export const URL_BASE = 'http://localhost:3000'
+export const URL_CONFIG = 'http://history.openweathermap.org';
+export const appToken = '093b90a9af239de17af3339289c83e69'
+export const hereCredentials = {
+  id: 'yATlKFDZwdLtjHzyTeCK',
+  code: '0XXQyxbiCjVU7jN2URXuhg',
+};
+
+export const MAPBOX_ACCESS_TOKEN =
+  'pk.eyJ1Ijoia2F1dG91MXMiLCJhIjoiY2tucnFobzdjMjhyMTJ1cGV0eWdrZWZ4OCJ9._C38VS7x6M3-blvHxLYboA';
 
 export const stringSlug = (string = '') => {
   const separator = '-';
@@ -108,3 +117,4 @@ export const stringSlug = (string = '') => {
 
   return text ? text : 'a';
 };
+

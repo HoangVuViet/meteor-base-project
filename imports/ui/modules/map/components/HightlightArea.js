@@ -1,7 +1,7 @@
 import { useLeaflet } from 'react-leaflet';
 import L from 'leaflet';
 import { useEffect } from 'react';
-import statesData from './states.json';
+import statesData from '../css/states.json';
 import { style } from '../constant';
 
 const HightlightArea = () => {

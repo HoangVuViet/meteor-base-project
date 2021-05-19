@@ -18,7 +18,7 @@ class VelocityLayer extends MapLayer {
       // OPTIONAL
       minVelocity: 0,
       maxVelocity: 10,
-      velocityScale: 0.007,
+      velocityScale: 0.009,
       // colorScale: ['white'],
     });
 
