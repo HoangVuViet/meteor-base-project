@@ -47,11 +47,6 @@ function DashBoardChart(props) {
     };
   }, []);
 
-  return (
-    <div
-      id="chartdiv"
-      style={{ width: '100%', height: '500px', marginTop: -50, marginLeft: -30 }}
-    ></div>
-  );
+  return <div id="chartdiv" style={{ width: 790, height: '500px', marginLeft: -20 }}></div>;
 }
 export default DashBoardChart;

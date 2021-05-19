@@ -48,11 +48,6 @@ function ConcentrationChart(props) {
     };
   }, []);
 
-  return (
-    <div
-      id={chartName}
-      style={{ width: '100%', height: '440px', marginTop: -50, marginLeft: -30 }}
-    ></div>
-  );
+  return <div id={chartName} style={{ width: 800, height: '500px', marginLeft: -20 }}></div>;
 }
 export default ConcentrationChart;

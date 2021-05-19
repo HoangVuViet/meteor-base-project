@@ -19,7 +19,7 @@ class VelocityLayer extends MapLayer {
       minVelocity: 0,
       maxVelocity: 10,
       velocityScale: 0.007,
-      colorScale: ['white'],
+      // colorScale: ['white'],
     });
 
     this.leafletElement = velocityLayer;

@@ -182,7 +182,7 @@ const LeafletMap = (_props) => {
         }
       /> */}
         <LayersControl position="topright">
-          <LayersControl.BaseLayer name="Pm2.5">
+          <LayersControl.BaseLayer checked name="Pm2.5">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               {/* <MapBoxLayer
@@ -204,7 +204,7 @@ const LeafletMap = (_props) => {
               {/* <TileLayer url={openWeatherTemperatureURL(OPEN_WEATHER_APP_ID)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer checked name="Nhiệt độ">
+          <LayersControl.BaseLayer name="Nhiệt độ">
             <LayerGroup>
               {/* <TileLayer url={hereTileUrl('reduced.day')} /> */}
               <MapBoxLayer

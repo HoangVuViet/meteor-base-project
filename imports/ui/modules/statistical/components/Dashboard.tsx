@@ -9,10 +9,11 @@ interface IDashboardProps {}
 const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
   return (
     <Col>
-      <Typography variant="h5"> Trung tâm Live & Learn</Typography>
+      <Typography variant="h5" style={{ marginTop: 15 }}>
+        Trung tâm Live & Learn
+      </Typography>
       <Rating value={5} readOnly size="small" />
-
-      <Row style={{ display: 'flex', marginBottom: 30 }}>
+      <Row style={{ display: 'flex', marginBottom: 15 }}>
         <LocationOnIcon />
         <Typography variant="body2" component="span" style={{ marginLeft: 4 }}>
           phường Bưởi, quận Tây Hồ

@@ -17,7 +17,7 @@ const TimeDimensionMap = (props) => {
   };
   return (
     <>
-      <div style={{ left: 16, bottom: 8, position: 'fixed' }}>
+      <div style={{ left: 16, bottom: 8, position: 'fixed', zIndex: 1000 }}>
         <div className="play-control leaflet-control">
           <div>
             <IconButton
