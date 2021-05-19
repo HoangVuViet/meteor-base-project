@@ -37,6 +37,7 @@ import '../css/index.css';
 import 'leaflet-geotiff';
 import 'leaflet-geotiff/leaflet-geotiff-plotty';
 import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
+import { setWhere } from '/imports/ui/redux/initReducer';
 const LeafletMap = (_props) => {
   const mapRef = useRef(null);
   const windSpeedRef = React.useRef();
