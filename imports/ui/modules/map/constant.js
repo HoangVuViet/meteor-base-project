@@ -65,8 +65,8 @@ export const style = (feature) => {
 };
 
 export const getLegend = (
-  title = `Tốc độ gió, m/s`,
-  progress = `<div>-40</div> <div>-30</div> <div>-20</div> <div>-10</div> <div>0</div> <div>10</div> <div>20</div> <div>30</div> <div>40</div>`,
+  title = `Tốc độ, km/h`,
+  progress = `<div>5</div><div>10</div><div>20</div><div>40</div> <div>60</div> <div>80</div> <div>100</div>`,
   colorT = `<div class="horizontal-gradient-line" style=" width: 260px; background: linear-gradient(to left, rgb(158, 128, 177), rgba(116, 76, 172, 0.9), rgb(164, 123, 170), rgba(170, 128, 177, 0.84), rgba(176, 128, 177, 0.71), rgba(170, 128, 177, 0.54), rgba(170, 128, 177, 0.44), rgba(255, 255, 0, 0) ); " ></div>`,
 ) => {
   return `<div class="leaflet-control-color-scale leaflet-control" style=" display: block; background: none; box-shadow: none; border-width: 0px; margin-right: -1px; width: 345px; height: 20px; "  > <div class="leaflet-control-color-scale-line" style="background-image: none; position: relative; border-width: 0px; margin: 0px" > <div class="scale-details"> <div>${title}</div> <div class="scale-gradient" style="width: 260px"> <div class="scale-dividers"> ${progress} </div> ${colorT} </div> </div> </div>  </div>`;

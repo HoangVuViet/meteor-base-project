@@ -1,6 +1,8 @@
 export const TIME_FORMAT = 'HH:mm:ss';
 export const HOUR_MINUTE = 'HH:mm';
 export const DATE_FORMAT = 'DD/MM/YYYY';
+export const DATE_FORMAT_NEW = 'MM/DD/YYYY';
+
 export const DATE_FORMAT_BACK_END = 'DD-MM-YYYY';
 export const C_DATE_FORMAT = 'YYYY-MM-DD';
 export const DAY_FORMAT = 'dddd';

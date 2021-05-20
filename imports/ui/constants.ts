@@ -14,10 +14,17 @@ export const SUCCESS_CODE = 200;
 
 export const TOKEN = 'token';
 
+export const START_TIME = '2017';
+
+export const END_TIME = '2020';
+
+
 export const PAGE_SIZE = 10;
 
 export const PAGE_SIZE_20 = 20;
 export const PAGE_SIZE_8 = 8;
+
+export const convertTime = 24000000;
 
 export const ROW_PER_PAGE = [10, 20, 30, 50];
 

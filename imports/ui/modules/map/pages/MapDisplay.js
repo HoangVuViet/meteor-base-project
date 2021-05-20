@@ -130,7 +130,6 @@ const LeafletMap = (_props) => {
           geotifURL.url[progress !== 0 ? progress / defaultTimeDimensionProperty.step - 1 : 0],
           options,
         ).addTo(map);
-        console.log(progress / defaultTimeDimensionProperty.step - 1);
       }
     }, 1500);
 
@@ -138,7 +137,6 @@ const LeafletMap = (_props) => {
       clearInterval(timer);
     };
   }, [isPlay, progress]);
-
   return (
     <Fragment>
       <Map
@@ -232,7 +230,7 @@ const LeafletMap = (_props) => {
               {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Áp suất khí quyển">
+          <LayersControl.BaseLayer name="Áp suất khí quyển(2m)">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               <VelocityLayer url={windUrl}></VelocityLayer>
@@ -298,6 +296,13 @@ const LeafletMap = (_props) => {
             markerPosition={[marker.lat, marker.lng]}
             setMarker={setMarker}
             address={address}
+            checkPlay={checkPlay}
+            progress={progress}
+            isPlay={isPlay}
+            checkPlay={checkPlay}
+            setProgress={setProgress}
+            geotifURL={geotifURL}
+            setGeotifURL={setGeotifURL}
           ></DragMarker>
         )}
         <HightlightArea />

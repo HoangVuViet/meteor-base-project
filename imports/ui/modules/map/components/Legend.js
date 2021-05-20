@@ -7,21 +7,21 @@ const Legend = (props) => {
   const { layerName } = props;
 
   useEffect(() => {
-    const legendTem = L.control({ position: 'bottomright' });
-    legendTem.onAdd = () => {
+    const legendWindSpeed = L.control({ position: 'bottomright' });
+    legendWindSpeed.onAdd = () => {
       const div = L.DomUtil.create('div');
       div.innerHTML = getLegend();
       return div;
     };
-    legendTem.addTo(map);
+    legendWindSpeed.addTo(map);
 
-    const legendWind = L.control({ position: 'bottomright' });
-    legendWind.onAdd = () => {
+    const legendTemp = L.control({ position: 'bottomright' });
+    legendTemp.onAdd = () => {
       const div = L.DomUtil.create('div');
       div.innerHTML = getLegend(
-        `Tốc độ gió, m/s`,
-        `<div>0</div> <div>2</div> <div>3</div> <div>6</div> <div>12</div> <div>25</div> <div>50</div> <div>100</div>`,
-        `<div class="horizontal-gradient-line" style=" width: 260px; background: linear-gradient(to left, rgb(158, 128, 177), rgba(116, 76, 172, 0.9), rgb(164, 123, 170), rgba(170, 128, 177, 0.84), rgba(176, 128, 177, 0.71), rgba(170, 128, 177, 0.54), rgba(170, 128, 177, 0.44), rgba(255, 255, 0, 0) ); " ></div>`,
+        `Nhiệt độ, °C`,
+        `<div>-40</div> <div>-30</div> <div>-20</div> <div>-10</div> <div>0</div> <div>10</div> <div>20</div> <div>30</div> <div>40</div>`,
+        `<div class="horizontal-gradient-line" style=" background-image: linear-gradient( to right, rgb(159, 85, 181) 0%, rgb(44, 106, 187) 8.75%, rgb(82, 139, 213) 12.5%, rgb(103, 163, 222) 18.75%, rgb(142, 202, 240) 25%, rgb(155, 213, 244) 31.25%, rgb(172, 225, 253) 37.5%, rgb(194, 234, 255) 43.75%, rgb(255, 255, 208) 50%, rgb(254, 248, 174) 56.25%, rgb(254, 232, 146) 62.5%, rgb(254, 226, 112) 68.75%, rgb(253, 212, 97) 75%, rgb(244, 168, 94) 82.5%, rgb(244, 129, 89) 87.5%, rgb(244, 104, 89) 93.75%, rgb(244, 76, 73) 100% ); " ></div>`,
       );
       return div;
     };
@@ -50,23 +50,23 @@ const Legend = (props) => {
 
     map.on('baselayerchange', (e) => {
       if (e.name === 'Gió') {
-        map.removeControl(legendTem);
+        map.removeControl(legendTemp);
         map.removeControl(legendAtm);
         map.removeControl(legendpm25);
-        legendWind.addTo(map);
-      } else if (e.name === 'Áp suất khí quyển') {
-        map.removeControl(legendWind);
-        map.removeControl(legendTem);
+        legendWindSpeed.addTo(map);
+      } else if (e.name === 'Áp suất khí quyển(2m)') {
+        map.removeControl(legendTemp);
+        map.removeControl(legendWindSpeed);
         map.removeControl(legendpm25);
         legendAtm.addTo(map);
       } else if (e.name === 'Nhiệt độ') {
         map.removeControl(legendAtm);
-        map.removeControl(legendWind);
+        map.removeControl(legendWindSpeed);
         map.removeControl(legendpm25);
-        legendTem.addTo(map);
+        legendTemp.addTo(map);
       } else {
-        map.removeControl(legendWind);
-        map.removeControl(legendTem);
+        map.removeControl(legendTemp);
+        map.removeControl(legendWindSpeed);
         map.removeControl(legendAtm);
         legendpm25.addTo(map);
       }

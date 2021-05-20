@@ -78,7 +78,7 @@ export default function FullWidthTabs() {
           aria-label="full width tabs example"
         >
           <Tab label="Tổng quan" {...a11yProps(0)} />
-          <Tab label="Nồng độ" {...a11yProps(1)} />
+          <Tab label="So sánh" {...a11yProps(1)} />
           <Tab label="Thống kê" {...a11yProps(2)} />
         </Tabs>
       </AppBar>

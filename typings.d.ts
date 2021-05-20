@@ -9,5 +9,4 @@ declare module '*.csv';
 
 declare var Assets: any;
 
-
-
+declare module 'query-string';

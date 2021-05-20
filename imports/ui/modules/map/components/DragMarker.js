@@ -53,7 +53,7 @@ const DragMarker = (props) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
+    props.checkPlay(true);
     setState({ ...state, [anchor]: open });
   };
 
@@ -120,13 +120,13 @@ const DragMarker = (props) => {
             <Typography variant="body2">
               <span>Tọa độ:</span>
             </Typography>
-            <Typography variant="body2" style={{ marginLeft: 12 }}>
+            <Typography variant="body2" style={{ marginLeft: 4 }}>
               <span>- Vĩ độ: {props?.markerPosition[0]}</span>
             </Typography>
-            <Typography variant="body2" style={{ marginLeft: 12 }}>
+            <Typography variant="body2" style={{ marginLeft: 4 }}>
               <span>- Kinh độ: {props?.markerPosition[1]}</span>
             </Typography>
-            <Button onClick={toggleDrawer(anchor, true)} style={{ padding: 0 }}>
+            <Button onClick={toggleDrawer(anchor, true)} style={{ padding: 0, height: 20 }}>
               <Typography variant="body2">
                 <span>{`Xem chi tiết >>`}</span>
               </Typography>
@@ -140,8 +140,12 @@ const DragMarker = (props) => {
         onClose={toggleDrawer(anchor, false)}
         onOpen={toggleDrawer(anchor, true)}
       >
-        <div style={{ width: 800 }}>
-          <Statistical position={props?.markerPosition} address={props.address}></Statistical>
+        <div style={{ width: 850 }}>
+          <Statistical
+            progress={props.progress}
+            position={props.markerPosition}
+            address={props.address}
+          ></Statistical>
         </div>
       </SwipeableDrawer>
     </>
@@ -149,10 +153,3 @@ const DragMarker = (props) => {
 };
 
 export default DragMarker;
-{
-  /* <Circle
-        center={props.markerPosition}
-        pathOptions={{ fillColor: 'blue', color: 'blue' }}
-        radius={400}
-      /> */
-}

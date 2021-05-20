@@ -5,8 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import { TabContext } from '@material-ui/lab';
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { HelloWorld } from '../../HelloWorld';
-import ConcentrationChart from './ConcentrationChart';
+import HumDChart from './HumDChart';
+import PressSChart from './PressSChart';
+import TempChart from './TempChart';
+import WindSpeedChart from './WindSpeedChart';
+import { some } from '/imports/ui/constants';
 
 const AntTabs = withStyles({
   root: {
@@ -64,25 +67,28 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#2e1534',
   },
 }));
-
-export default function CustomizedTabs() {
+interface Props {
+  data: some[];
+}
+const DashBoardTab: React.FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
 
+  const { data } = props;
+
   const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
   };
-
+  console.log('chartData', data);
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>
         <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label="PM2.5"></AntTab>
-          <AntTab label="PM10" />
+          <AntTab label={'Gió'} />
           <AntTab label="Nhiệt độ" />
-          <AntTab label="Độ ẩm" />
-          <AntTab label="CO" />
+          <AntTab label="Độ ẩm tương đối" />
+          <AntTab label="Áp suất khí quyển(2m)" />
         </AntTabs>
         <Typography className={classes.padding} />
         <SwipeableViews
@@ -92,22 +98,20 @@ export default function CustomizedTabs() {
           style={{ marginTop: 0 }}
         >
           <TabContext value={value.toString()} index={0} style={{ width: '100%' }}>
-            <ConcentrationChart chartName={'chartDivv1'}></ConcentrationChart>
+            <WindSpeedChart chartName={'chartDiv1'} data={data} />
           </TabContext>
           <TabContext value={value.toString()} index={1} style={{ width: '100%' }}>
-            <ConcentrationChart chartName={'chartDivv2'}></ConcentrationChart>
+            <TempChart chartName={'chartDiv2'} data={data} />
           </TabContext>
           <TabContext value={value.toString()} index={2} style={{ width: '100%' }}>
-            <ConcentrationChart chartName={'chartDivv3'}></ConcentrationChart>
+            <HumDChart chartName={'chartDiv3'} data={data} />
           </TabContext>
           <TabContext value={value.toString()} index={3} style={{ width: '100%' }}>
-            <ConcentrationChart chartName={'chartDivv4'}></ConcentrationChart>
-          </TabContext>
-          <TabContext value={value.toString()} index={4} style={{ width: '100%' }}>
-            <HelloWorld></HelloWorld>
+            <PressSChart chartName={'chartDiv4'} data={data} />
           </TabContext>
         </SwipeableViews>
       </div>
     </div>
   );
-}
+};
+export default DashBoardTab;

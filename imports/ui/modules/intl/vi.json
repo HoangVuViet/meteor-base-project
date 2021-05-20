@@ -234,5 +234,11 @@
   "Ngày sinh": "Ngày sinh",
   "ratePackage.createNewPricePackage": "Thêm mới",
   "ratePackage.listPackage": "Danh sách",
-  "ratePackage.searchByIdOrName": "Nhập tên hoặc id để tìm kiếm thông tin"
+  "ratePackage.searchByIdOrName": "Nhập tên hoặc id để tìm kiếm thông tin",
+  "Thời điểm (h)": "Thời điểm(h)",
+  "Nhiệt độ": "Nhiệt độ",
+  "Độ ẩm": "Độ ẩm tương đối",
+  "Áp suất": "Áp suất khí quyển(2m)",
+  "Gió": "Gió",
+  "Cảm nhận thực tế:": "Cảm nhận thực tế:"
 }

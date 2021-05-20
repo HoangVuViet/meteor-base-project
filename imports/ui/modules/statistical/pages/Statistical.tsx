@@ -7,10 +7,11 @@ import { setWhere } from '/imports/ui/redux/initReducer';
 interface IStatisticalProps {
   position: some;
   address: string;
+  progress: number;
 }
 
 const Statistical: React.FunctionComponent<IStatisticalProps> = (props) => {
-  const { position, address } = props;
+  const { position, address, progress } = props;
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -18,12 +19,13 @@ const Statistical: React.FunctionComponent<IStatisticalProps> = (props) => {
       setWhere({
         position: position,
         address: address,
+        progress: progress,
       }),
     );
   }, []);
   return (
     <div style={{ marginBottom: 20 }}>
-      <StatisticalContent></StatisticalContent>
+      <StatisticalContent />
     </div>
   );
 };
