@@ -18,7 +18,7 @@ function PressSChart(props) {
     chart.data = data?.map((el, idx) => {
       return {
         pressS: el?.main?.pressure,
-        time: `${idx * 3 + 1}h`,
+        time: `${idx * 2 + 1}h`,
         feelsLike: (el?.main?.feels_like - 273).toFixed(2),
       };
     });
@@ -37,7 +37,7 @@ function PressSChart(props) {
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.categoryX = 'time';
     series.dataFields.valueY = 'pressS';
-    series.tooltipText = 'Độ ẩm tương đối: {valueY.value} hPa';
+    series.tooltipText = 'Áp suất khí quyển: {valueY.value} hPa';
 
     let errorBullet = series.bullets.create(am4charts.ErrorBullet);
     errorBullet.isDynamic = true;

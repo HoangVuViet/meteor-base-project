@@ -70,35 +70,38 @@ const DataChart: React.FC<Props> = (props) => {
           !isEmpty(body.station) &&
           chartData[0]?.x !== undefined ? (
             <Row style={{ marginTop: 0 }}>
-              <Col style={{ marginRight: 20, width: '80%' }}>
+              <Col style={{ marginRight: 30, width: 800 }}>
                 <ChartRender chartData={chartData}></ChartRender>
               </Col>
-              <Paper
-                variant="outlined"
-                style={{
-                  padding: '12px 16px',
-                  borderRadius: 12,
-                  background: '#f5f5f5',
-                  boxShadow: 'none',
-                  width: 300,
-                }}
-              >
-                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
-                  <span>-</span>&nbsp;{textData[0]}
-                </Typography>
-                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
-                  <span>-</span>&nbsp;{textData[1]}
-                </Typography>
-                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
-                  <span>-</span>&nbsp;{textData[2]}
-                </Typography>
-                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
-                  <span>-</span>&nbsp;{textData[3]}
-                </Typography>
-                <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
-                  <span>-</span>&nbsp;{textData[4]}
-                </Typography>
-              </Paper>
+              <Col>
+                <Paper
+                  variant="outlined"
+                  style={{
+                    padding: '12px 16px',
+                    borderRadius: 12,
+                    background: '#f5f5f5',
+                    boxShadow: 'none',
+                    width: 300,
+                    marginRight:12
+                  }}
+                >
+                  <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
+                    <span>-</span>&nbsp;{textData[0]}
+                  </Typography>
+                  <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
+                    <span>-</span>&nbsp;{textData[1]}
+                  </Typography>
+                  <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
+                    <span>-</span>&nbsp;{textData[2]}
+                  </Typography>
+                  <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
+                    <span>-</span>&nbsp;{textData[3]}
+                  </Typography>
+                  <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>
+                    <span>-</span>&nbsp;{textData[4]}
+                  </Typography>
+                </Paper>
+              </Col>
             </Row>
           ) : (
             <div style={{ margin: '100px auto', marginLeft: 450, width: '100%' }}>

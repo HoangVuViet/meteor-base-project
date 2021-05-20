@@ -18,7 +18,7 @@ function TempChart(props) {
     chart.data = data?.map((el, idx) => {
       return {
         pressS: (el?.main?.temp - 273).toFixed(2),
-        time: `${idx * 3 + 1}h`,
+        time: `${idx * 2 + 1}h`,
         feelsLike: (el?.main?.feels_like - 273).toFixed(2),
       };
     });

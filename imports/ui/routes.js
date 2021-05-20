@@ -1,6 +1,7 @@
 import React from 'react';
 import { ROUTES } from './configs/routes';
 import ArcMap from './modules/map/pages/MapDisplay.js';
+import DataManagement from './modules/statistical/pages/DataManagement';
 import Statistical from './modules/statistical/pages/Statistical';
 
 const ArcMapLandsat = React.lazy(() => import('./modules/map/pages/ArcMapLandsat'));
@@ -37,7 +38,7 @@ const routes = [
   { path: ROUTES.aeronetProcess, name: 'AERONET AOD', component: AeronetProcess },
 
   { path: ROUTES.chart, name: 'Đánh giá sản phẩm ảnh vệ tinh', component: Chart },
-  { path: ROUTES.report, name: 'Tìm kiếm, thống kê', component: Statistical },
+  { path: ROUTES.report, name: 'Tìm kiếm, thống kê', component: DataManagement },
 ];
 
 export default routes;

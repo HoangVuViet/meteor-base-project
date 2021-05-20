@@ -52,11 +52,11 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       {
         title: 'Thời điểm (h)',
         variant: 'body2',
-        style: { alignItems: 'center' },
+
         render: (_record: some, index: number) => (
-          <Col>
+          <Col style={{ alignItems: 'center', marginRight: 10 }}>
             <Typography variant="caption">
-              <span>{index * 3 + 1}</span>
+              <span>{index * 2 + 1}</span>
             </Typography>
           </Col>
         ),
@@ -108,7 +108,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
         dataIndex: 'humidity ',
         variant: 'body2',
         render: (record: some, _index: number) => (
-          <Col>
+          <Col style={{ alignItems: 'center', marginRight: 20 }}>
             <Typography variant="caption">
               <span>{record?.main?.humidity}&nbsp;%</span>
             </Typography>
@@ -120,7 +120,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
         dataIndex: 'email',
         variant: 'body2',
         render: (record: some, _index: number) => (
-          <Col>
+          <Col style={{ alignItems: 'center', marginRight: 20 }}>
             <Typography variant="caption">
               <span>{record?.main?.pressure}&nbsp;hPa</span>
             </Typography>
@@ -201,7 +201,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
           </Typography>
           <TableCustom
             style={{ borderRadius: 8, boxShadow: 'none', marginBottom: 5 }}
-            dataSource={data?.list?.filter((_el: some, idx: number) => idx % 3 === 1) || []}
+            dataSource={data?.list?.filter((_el: some, idx: number) => idx % 2 === 1) || []}
             columns={columns}
             noColumnIndex
             loading={false}
@@ -217,7 +217,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
               ]
             }
           </Typography>
-          <DashBoardTab data={data?.list?.filter((_el: some, idx: number) => idx % 3 === 1)} />
+          <DashBoardTab data={data?.list?.filter((_el: some, idx: number) => idx % 2 === 1)} />
         </>
       ) : (
         <CircularProgress color="secondary" style={{ margin: '150px auto' }} />

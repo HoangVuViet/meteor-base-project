@@ -1,16 +1,23 @@
 import { IconButton, InputAdornment, Typography } from '@material-ui/core';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import IconSearch from '@material-ui/icons/Search';
+import { useFormikContext } from 'formik';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Row } from '../../common/components/elements';
 import { FieldTextContent } from '../../common/components/FieldContent';
 import LoadingButton from '../../common/components/LoadingButton';
-import IconSearch from '@material-ui/icons/Search';
+import { some } from '/imports/ui/constants';
 
-interface IFilterProps {}
+interface IFilterProps {
+  onUpdateFilter: (values: some) => void;
+}
 
 const Filter: React.FunctionComponent<IFilterProps> = (props) => {
   const intl = useIntl();
+  const { onUpdateFilter } = props;
+  const { setFieldValue, resetForm, values } = useFormikContext();
+  console.log(values as some);
   return (
     <Row style={{ flexWrap: 'wrap' }}>
       <Row>
@@ -26,20 +33,7 @@ const Filter: React.FunctionComponent<IFilterProps> = (props) => {
               <IconSearch fontSize="small" />
             </InputAdornment>
           }
-          // onClick={() => setOpenFilter(true)}
-          // onKeyPress={(e) => {
-          //   if (e.key === 'Enter') {
-          //     onUpdateFilter(values);
-          //     setOpenFilter(false);
-          //   }
-          // }}
         />
-        <IconButton
-          style={{ padding: 4, marginRight: 12 }}
-          //   onClick={() => onUpdateFilter(defaultPricePackageFilter)}
-        >
-          <RefreshIcon />
-        </IconButton>
         <LoadingButton
           style={{ minHeight: 36, marginRight: 16, minWidth: 100 }}
           type="submit"
@@ -51,6 +45,15 @@ const Filter: React.FunctionComponent<IFilterProps> = (props) => {
             <FormattedMessage id="search" />
           </Typography>
         </LoadingButton>
+        <IconButton
+          style={{ padding: 4, marginRight: 12 }}
+          onClick={() => {
+            resetForm();
+            onUpdateFilter({ pageOffset: 0, pageSize: 20 });
+          }}
+        >
+          <RefreshIcon />
+        </IconButton>
       </Row>
     </Row>
   );

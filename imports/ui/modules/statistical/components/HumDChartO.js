@@ -6,7 +6,7 @@ import { getDirection } from '../utils';
 
 am4core.useTheme(am4themes_animated);
 
-function HumDChart(props) {
+function HumDChartO(props) {
   const { chartName, data } = props;
   const chart = useRef(null);
 
@@ -18,7 +18,7 @@ function HumDChart(props) {
     chart.data = data?.map((el, idx) => {
       return {
         pressS: el?.main?.humidity,
-        time: `${idx * 2 + 1}h`,
+        time: el.dtg,
         feelsLike: (el?.main?.feels_like - 273).toFixed(2),
       };
     });
@@ -29,7 +29,7 @@ function HumDChart(props) {
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.dataFields.category = 'time';
     categoryAxis.renderer.minGridDistance = 60;
-    categoryAxis.title.text = 'Thời điểm trong ngày (h)';
+    // categoryAxis.title.text = 'Thời gian';
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.title.text = 'Độ ẩm tương đối (%)';
@@ -74,4 +74,4 @@ function HumDChart(props) {
 
   return <div id={chartName} style={{ width: 800, height: 530 }}></div>;
 }
-export default HumDChart;
+export default HumDChartO;

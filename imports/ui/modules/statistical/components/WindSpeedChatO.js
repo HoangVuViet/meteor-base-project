@@ -6,7 +6,7 @@ import { getDirection } from '../utils';
 
 am4core.useTheme(am4themes_animated);
 
-function HumDChart(props) {
+function WindSpeedChatO(props) {
   const { chartName, data } = props;
   const chart = useRef(null);
 
@@ -14,12 +14,11 @@ function HumDChart(props) {
     am4core.useTheme(am4themes_animated);
 
     let chart = am4core.create(chartName, am4charts.XYChart);
-
     chart.data = data?.map((el, idx) => {
       return {
-        pressS: el?.main?.humidity,
-        time: `${idx * 2 + 1}h`,
-        feelsLike: (el?.main?.feels_like - 273).toFixed(2),
+        speed: el.wind.speed,
+        time: el.dtg,
+        deg: `${getDirection(el.wind.deg)} (${el.wind.deg}°)`,
       };
     });
 
@@ -32,12 +31,12 @@ function HumDChart(props) {
     categoryAxis.title.text = 'Thời điểm trong ngày (h)';
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.title.text = 'Độ ẩm tương đối (%)';
+    valueAxis.title.text = 'Tốc độ gió (km/h)';
 
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.categoryX = 'time';
-    series.dataFields.valueY = 'pressS';
-    series.tooltipText = 'Độ ẩm tương đối: {valueY.value} %';
+    series.dataFields.valueY = 'speed';
+    series.tooltipText = 'Tốc độ: {valueY.value} km/h';
 
     let errorBullet = series.bullets.create(am4charts.ErrorBullet);
     errorBullet.isDynamic = true;
@@ -74,4 +73,4 @@ function HumDChart(props) {
 
   return <div id={chartName} style={{ width: 800, height: 530 }}></div>;
 }
-export default HumDChart;
+export default WindSpeedChatO;

@@ -80,7 +80,6 @@ const DashBoardTab: React.FunctionComponent<Props> = (props) => {
   const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
   };
-  console.log('chartData', data);
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>

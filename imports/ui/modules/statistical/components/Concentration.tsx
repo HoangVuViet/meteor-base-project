@@ -1,27 +1,23 @@
-import { CircularProgress, Divider, IconButton, Typography } from '@material-ui/core';
+import { CircularProgress, Divider, Typography } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import moment from 'moment';
+import querystring from 'query-string';
 import React from 'react';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Col, Row } from '../../common/components/elements';
+import TableCustom, { Column } from '../../common/components/TableCustom';
 import { defaultGeoUrl, defaultTimeDimensionProperty } from '../../map/constant';
 import ConcentrationNavigation from './ConcentrationNavigation';
 import {
   appToken,
   convertTime,
+  END_TIME,
   isEmpty,
   some,
   START_TIME,
-  URL_CONFIG,
-  END_TIME,
+  URL_CONFIG
 } from '/imports/ui/constants';
-import moment from 'moment';
-import querystring from 'query-string';
 import { DATE_FORMAT_NEW } from '/imports/ui/models/moment';
-import TableCustom, { Column } from '../../common/components/TableCustom';
-import BootstrapTooltip from '../../common/components/BootstrapTooltip';
-import { FormattedMessage } from 'react-intl';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import { getDirection } from '../utils';
 
 export default function Concentration() {
   const { addressP } = useSelector((state: some) => state.accommodation, shallowEqual);
@@ -35,11 +31,14 @@ export default function Concentration() {
         title: 'Thời điểm (h)',
         variant: 'body2',
         style: { alignItems: 'center' },
-        render: (_record: some, index: number) => (
+        render: (record: some, _index: number) => (
           <Col>
             <Typography variant="caption">
-              <span>{index * 3 + 1}</span>
+              <span>{record?.dtg}</span>
             </Typography>
+            {/* <Typography variant="caption">
+              <span>{moment.unix(record?.dt).format(DATE_FORMAT)}</span>
+            </Typography> */}
           </Col>
         ),
       },
@@ -51,11 +50,11 @@ export default function Concentration() {
             <Typography variant="caption">
               <span>Tốc độ: {(record?.wind?.speed * 3.6).toFixed(2)}&nbsp;km/h</span>
             </Typography>
-            <Typography variant="caption">
+            {/* <Typography variant="caption">
               <span>
                 Hướng: {getDirection(record?.wind?.deg)}&nbsp;({record?.wind?.deg}°)
               </span>
-            </Typography>
+            </Typography> */}
           </Col>
         ),
       },
@@ -64,25 +63,17 @@ export default function Concentration() {
         dataIndex: 'temp',
         variant: 'body2',
         render: (record: some, _index: number) => (
-          <Row>
+          <Col>
             <Typography variant="caption">
-              <span>{(record?.main?.temp - 273).toFixed(2)}&nbsp;°C</span>
+              <span>Trung bình:&nbsp;{(record?.main?.temp - 273).toFixed(2)}&nbsp;°C</span>
             </Typography>
-            <BootstrapTooltip
-              title={
-                <Typography variant="body2" style={{ padding: '12px 12px' }}>
-                  <FormattedMessage id="Cảm nhận thực tế:" />
-                  &nbsp;
-                  <span>{(record?.main?.feels_like - 273).toFixed(2)}&nbsp;°C</span>
-                </Typography>
-              }
-              placement="top"
-            >
-              <IconButton style={{ padding: 4, marginLeft: 4 }}>
-                <ErrorOutlineIcon style={{ padding: 1, color: '#1976d2' }} />
-              </IconButton>
-            </BootstrapTooltip>
-          </Row>
+            <Typography variant="caption">
+              <span>Tối thiểu:&nbsp;{(record?.main?.temp_min - 273).toFixed(2)}&nbsp;°C</span>
+            </Typography>
+            <Typography variant="caption">
+              <span>Tối đa:&nbsp;{(record?.main?.temp_max - 273).toFixed(2)}&nbsp;°C</span>
+            </Typography>
+          </Col>
         ),
       },
       {
@@ -90,7 +81,7 @@ export default function Concentration() {
         dataIndex: 'humidity ',
         variant: 'body2',
         render: (record: some, _index: number) => (
-          <Col>
+          <Col style={{ alignItems: 'center', marginRight: 20 }}>
             <Typography variant="caption">
               <span>{record?.main?.humidity}&nbsp;%</span>
             </Typography>
@@ -102,7 +93,7 @@ export default function Concentration() {
         dataIndex: 'email',
         variant: 'body2',
         render: (record: some, _index: number) => (
-          <Col>
+          <Col style={{ alignItems: 'center', marginRight: 20 }}>
             <Typography variant="caption">
               <span>{record?.main?.pressure}&nbsp;hPa</span>
             </Typography>
@@ -120,7 +111,8 @@ export default function Concentration() {
       lon: lon,
       appid: appToken,
       start: start,
-      cnt: 24,
+      end: start + 604800,
+      cnt: 1,
       type: 'hour',
     });
 
@@ -159,7 +151,6 @@ export default function Concentration() {
       );
     }
   }, []);
-  console.log('data', data);
 
   return (
     <Col>
@@ -177,49 +168,68 @@ export default function Concentration() {
       </Typography>
       <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 10 }}>
         <span>
-          Số liệu ngày:&nbsp;
-          {
+          Số liệu:&nbsp;Từ 03/12/2017 đến 11/12/2017
+          {/* {
             defaultGeoUrl.time[
               addressP.progress !== 0
                 ? addressP.progress / defaultTimeDimensionProperty.step - 1
                 : 0
             ]
-          }
+          } */}
         </span>
       </Typography>
       {data?.list ? (
         <>
           <Divider style={{ margin: 8, width: '100%', height: 2 }}></Divider>
           <Typography variant="subtitle1" style={{ margin: '10px auto 5px' }}>
-            Bảng thống kê số liệu khí tượng ngày&nbsp;
-            {
+            Bảng thống kê số liệu khí tượng từ 03/12/2017 đến 11/12/2017
+            {/* {
               defaultGeoUrl.time[
                 addressP.progress !== 0
                   ? addressP.progress / defaultTimeDimensionProperty.step - 1
                   : 0
               ]
-            }
+            } */}
           </Typography>
           <TableCustom
             style={{ borderRadius: 8, boxShadow: 'none', marginBottom: 5 }}
-            dataSource={data?.list?.filter((_el: some, idx: number) => idx % 3 === 1) || []}
+            dataSource={
+              data?.list
+                ?.filter((_el: some, idx: number) => idx % 10 === 0)
+                .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
+                .map((elm: some, idx: number) => {
+                  return {
+                    ...elm,
+                    dtg: defaultGeoUrl.time[idx],
+                  };
+                }) || []
+            }
             columns={columns}
             noColumnIndex
             loading={false}
           />
           <Divider style={{ margin: '12px 0px 8px', width: '100%', height: 2 }}></Divider>
           <Typography variant="subtitle1" style={{ margin: '10px auto 5px' }}>
-            Biểu đồ đánh giá số liệu khí tượng ngày&nbsp;
-            {
+            Biểu đồ đánh giá số liệu khí tượng từ 03/12/2017 đến 11/12/2017
+            {/* {
               defaultGeoUrl.time[
                 addressP.progress !== 0
                   ? addressP.progress / defaultTimeDimensionProperty.step - 1
                   : 0
               ]
-            }
+            } */}
           </Typography>
-          {/* <DashBoardTab data={data?.list?.filter((_el: some, idx: number) => idx % 3 === 1)} /> */}
-          <ConcentrationNavigation />
+          <ConcentrationNavigation
+            data={data?.list
+              ?.filter((_el: some, idx: number) => idx % 10 === 0)
+              .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
+              .map((elm: some, idx: number) => {
+                return {
+                  ...elm,
+                  dtg: defaultGeoUrl.time[idx],
+                };
+              })}
+          />
         </>
       ) : (
         <CircularProgress color="secondary" style={{ margin: '150px auto' }} />

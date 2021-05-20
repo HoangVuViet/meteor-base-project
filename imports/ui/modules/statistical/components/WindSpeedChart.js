@@ -18,7 +18,7 @@ function WindSpeedChart(props) {
     chart.data = data?.map((el, idx) => {
       return {
         speed: el.wind.speed,
-        time: `${idx * 3 + 1}h`,
+        time: `${idx * 2 + 1}h`,
         deg: `${getDirection(el.wind.deg)} (${el.wind.deg}°)`,
       };
     });

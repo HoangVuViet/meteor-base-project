@@ -113,6 +113,12 @@ const _nav = [
     ],
   },
   {
+    _tag: 'CSidebarNavItem',
+    name: 'Tìm kiếm, thống kê',
+    to: ROUTES.report,
+    icon: <CategoryIcon style={{ marginRight: 13, padding: 2 }}> </CategoryIcon>,
+  },
+  {
     _tag: 'CSidebarNavDivider',
   },
   {
@@ -125,12 +131,7 @@ const _nav = [
     to: ROUTES.chart,
     icon: <TimelineIcon style={{ marginRight: 13, padding: 2 }}></TimelineIcon>,
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Tìm kiếm, thống kê',
-    to: ROUTES.report,
-    icon: <CategoryIcon style={{ marginRight: 13, padding: 2 }}> </CategoryIcon>,
-  },
+
   {
     _tag: 'CSidebarNavDivider',
     className: 'm-2',

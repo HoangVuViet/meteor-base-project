@@ -18,7 +18,7 @@ export const defaultMapProperty = {
   zoom: 6,
   scrollWheelZoom: true,
   zoomControl: false,
-  maxZoom: 9,
+  maxZoom: 7,
   minZoom: 6,
   style: { height: 675, width: '100%' }, //660 || 880
 };

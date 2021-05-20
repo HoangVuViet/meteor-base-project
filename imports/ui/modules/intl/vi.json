@@ -232,7 +232,7 @@
   "chooseFile": "Chọn File",
   "name": "name",
   "Ngày sinh": "Ngày sinh",
-  "ratePackage.createNewPricePackage": "Thêm mới",
+  "ratePackage.createNewPricePackage": "Thêm mới dữ liệu",
   "ratePackage.listPackage": "Danh sách",
   "ratePackage.searchByIdOrName": "Nhập tên hoặc id để tìm kiếm thông tin",
   "Thời điểm (h)": "Thời điểm(h)",
@@ -240,5 +240,9 @@
   "Độ ẩm": "Độ ẩm tương đối",
   "Áp suất": "Áp suất khí quyển(2m)",
   "Gió": "Gió",
-  "Cảm nhận thực tế:": "Cảm nhận thực tế:"
+  "Cảm nhận thực tế:": "Cảm nhận thực tế:",
+  "IDS_HMS_DELETE_CONTRACT": "Xóa dữ liệu",
+  "IDS_HMS_DELETE_CONTRACT_CONFIRM": "Bạn có chắc chắn muốn xóa dữ liệu đang được chọn?",
+  "Chỉnh sửa dữ liệu":"Chỉnh sửa dữ liệu",
+  "Thêm mới dữ liệu":"Thêm mới dữ liệu"
 }

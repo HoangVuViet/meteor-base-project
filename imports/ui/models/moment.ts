@@ -15,3 +15,5 @@ export const DATE_FORMAT_TIME_BACK_END = `${DATE_FORMAT_BACK_END} ${TIME_FORMAT}
 export const DATE_FORMAT_ALL_ISOLATE = `${DATE_FORMAT}, ${TIME_FORMAT}`;
 export const DAY_DATE_ISOLATE = `${DAY_FORMAT}, ${DATE_FORMAT}`;
 export const MAX_YEARS = 1900;
+
+export const MM_YY = '/12/2017';
