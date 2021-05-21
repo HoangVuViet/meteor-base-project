@@ -18,6 +18,8 @@ export const START_TIME = '2017';
 
 export const END_TIME = '2020';
 
+export const DATA: string = 'DATA_SAVE';
+
 
 export const PAGE_SIZE = 10;
 

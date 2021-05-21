@@ -201,7 +201,7 @@ const ChangePasswordForm: React.FC<Props> = (props) => {
             disableElevation
             onClick={() => setOpen(false)}
           >
-            <FormattedMessage id="IDS_HMS_REJECT" />
+            <FormattedMessage id="reject" />
           </LoadingButton>
         </Row>
       </form>

@@ -33,7 +33,7 @@
   "birthday": "Ngày sinh",
   "auth.enterName": "Nhập họ tên",
   "IDS_HMS_SAVE": "Lưu lại",
-  "IDS_HMS_REJECT": "Bỏ qua",
+  "reject": "Bỏ qua",
 
   "accountManagement": "Quản lý tài khoản",
   "accManagement.generalInfo": "Thông tin chung",

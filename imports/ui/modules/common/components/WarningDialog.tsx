@@ -11,16 +11,9 @@ interface Props extends DialogCustomProps {
   messageContent?: React.ReactNode;
 }
 
-const WarningDialog: React.FunctionComponent<Props> = props => {
-  const {
-    children,
-    footerContent,
-    onAccept,
-    onDenies,
-    messageContent,
-    PaperProps,
-    ...rest
-  } = props;
+const WarningDialog: React.FunctionComponent<Props> = (props) => {
+  const { children, footerContent, onAccept, onDenies, messageContent, PaperProps, ...rest } =
+    props;
   return (
     <DialogCustom
       {...rest}
@@ -44,7 +37,7 @@ const WarningDialog: React.FunctionComponent<Props> = props => {
                 onDenies ? onDenies() : rest.onClose();
               }}
             >
-              <FormattedMessage id="IDS_HMS_REJECT" />
+              <FormattedMessage id="reject" />
             </Button>
           </Row>
         )

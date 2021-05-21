@@ -47,7 +47,7 @@ const LeafletMap = (_props) => {
         title: 'Show me where I am',
         metersUnit: 'meters',
         feetUnit: 'feet',
-        popup: 'You are within {distance} {unit} from this point',
+        popup: 'Bạn đang ở độ cao {distance} {unit} so với mực nước biển',
         outsideMapBoundsMsg: 'You seem located outside the boundaries of the map',
       },
     });
@@ -177,7 +177,6 @@ const LeafletMap = (_props) => {
                 url={tiffUrl}
                 options={defaultWindSpeedProperty.options}
               /> */}
-
               {/* <VectorArrowsGeotiffLayer
                 layerRef={windDirectionRef}
                 url={defaultWindDirectionProperty.url}

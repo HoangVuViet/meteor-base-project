@@ -82,7 +82,7 @@ const DataChart: React.FC<Props> = (props) => {
                     background: '#f5f5f5',
                     boxShadow: 'none',
                     width: 300,
-                    marginRight:12
+                    marginRight: 12,
                   }}
                 >
                   <Typography variant="body2" style={{ marginBottom: 20, whiteSpace: 'nowrap' }}>

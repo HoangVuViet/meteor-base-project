@@ -31,7 +31,7 @@ import LoadingIcon from '../LoadingIcon';
 import './table.css';
 import TablePaginationActionsCustom from './TablePaginationActionsCustom';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     cover: {
       overflow: 'hidden',
@@ -425,10 +425,10 @@ const TableCustom: React.FC<Props> = (props) => {
                           height: '250px',
                         }}
                       >
-                        <img src="../../../svg/ic_nodata.svg"></img>
+                        <img src="../../../svg/ic_emptyIcon.svg"></img>
                       </IconButton>
                       <Typography variant="body2" color="textSecondary">
-                        <FormattedMessage id="noData" />
+                        <FormattedMessage id="emptyData" />
                       </Typography>
                     </Col>
                   )}

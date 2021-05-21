@@ -244,7 +244,7 @@ const Download: React.FC<Props> = (props) => {
             setFileAmount([]);
           }}
         >
-          <FormattedMessage id="IDS_HMS_REJECT" />
+          <FormattedMessage id="reject" />
         </Button>
       </Row>
     </Col>

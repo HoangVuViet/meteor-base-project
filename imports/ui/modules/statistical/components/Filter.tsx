@@ -4,9 +4,11 @@ import IconSearch from '@material-ui/icons/Search';
 import { useFormikContext } from 'formik';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { stationList } from '../../chart/utils';
 import { Row } from '../../common/components/elements';
-import { FieldTextContent } from '../../common/components/FieldContent';
+import { FieldSelectContent, FieldTextContent } from '../../common/components/FieldContent';
 import LoadingButton from '../../common/components/LoadingButton';
+import { filterList } from '../utils';
 import { some } from '/imports/ui/constants';
 
 interface IFilterProps {
@@ -17,14 +19,13 @@ const Filter: React.FunctionComponent<IFilterProps> = (props) => {
   const intl = useIntl();
   const { onUpdateFilter } = props;
   const { setFieldValue, resetForm, values } = useFormikContext();
-  console.log(values as some);
   return (
     <Row style={{ flexWrap: 'wrap' }}>
       <Row>
         <FieldTextContent
           name="textSearch"
           placeholder={intl.formatMessage({
-            id: 'ratePackage.searchByIdOrName',
+            id: 'searchPlaceholder',
           })}
           formControlStyle={{ width: 500, marginRight: 15, marginTop: 20 }}
           inputProps={{ autoComplete: 'off' }}
@@ -34,12 +35,32 @@ const Filter: React.FunctionComponent<IFilterProps> = (props) => {
             </InputAdornment>
           }
         />
+        <FieldSelectContent
+          name="filterBy"
+          label={null}
+          style={{
+            width: 250,
+          }}
+          formControlStyle={{
+            minWidth: 250,
+            marginRight: 15,
+            marginTop: 20,
+          }}
+          options={filterList}
+          getOptionLabel={(value) => value.name}
+          onSelectOption={(value: number) => {
+            setFieldValue('filterBy', value);
+          }}
+          placeholder={intl.formatMessage({ id: 'filterBy' })}
+          disableError
+        />
         <LoadingButton
           style={{ minHeight: 36, marginRight: 16, minWidth: 100 }}
           type="submit"
           variant="contained"
           color="secondary"
           disableElevation
+          onClick={() => onUpdateFilter(values as some)}
         >
           <Typography variant="body2">
             <FormattedMessage id="search" />
@@ -49,7 +70,6 @@ const Filter: React.FunctionComponent<IFilterProps> = (props) => {
           style={{ padding: 4, marginRight: 12 }}
           onClick={() => {
             resetForm();
-            onUpdateFilter({ pageOffset: 0, pageSize: 20 });
           }}
         >
           <RefreshIcon />

@@ -26,7 +26,7 @@ interface Props extends DialogProps {
   styleActions?: React.CSSProperties;
 }
 
-const ConfirmDialog: React.FC<Props> = props => {
+const ConfirmDialog: React.FC<Props> = (props) => {
   const {
     open,
     onClose,
@@ -96,7 +96,7 @@ const ConfirmDialog: React.FC<Props> = props => {
             disableElevation
           >
             <Typography variant="body2" color="textSecondary">
-              <FormattedMessage id={rejectLabel || 'IDS_HMS_REJECT'} />
+              <FormattedMessage id={rejectLabel || 'reject'} />
             </Typography>
           </Button>
         )}

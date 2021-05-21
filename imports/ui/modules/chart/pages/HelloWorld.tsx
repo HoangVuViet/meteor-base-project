@@ -13,12 +13,12 @@ const NotSupported = () => {
         variant="body2"
         style={{ fontSize: 18, fontWeight: 700, marginBottom: 10, color: GREY_600 }}
       >
-        <FormattedMessage id="IDS_HMS_FEATURE_UN_SUPPORTED" />
+        <FormattedMessage id="unSupported" />
       </Typography>
       <Link href="/admin/pm25Map">
-        <Button variant="contained" color="secondary" style={{ height: 35}} disableElevation>
+        <Button variant="contained" color="secondary" style={{ height: 35 }} disableElevation>
           <img src="../../svg/ic_arrow_circle_small.svg" style={{ marginRight: 8 }}></img>
-          <FormattedMessage id="IDS_HMS_GO_TO_HOMEPAGE" />
+          <FormattedMessage id="goToHomePage" />
         </Button>
       </Link>
     </Col>

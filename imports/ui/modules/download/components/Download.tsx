@@ -174,7 +174,7 @@ const Download: React.FC<Props> = (props) => {
             resetForm();
           }}
         >
-          <FormattedMessage id="IDS_HMS_REJECT" />
+          <FormattedMessage id="reject" />
         </Button>
       </Row>
     </Col>

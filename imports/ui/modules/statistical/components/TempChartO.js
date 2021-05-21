@@ -75,6 +75,6 @@ function TempChartO(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 800, height: 530 }}></div>;
+  return <div id={chartName} style={{ width: 800, height: 550 }}></div>;
 }
 export default TempChartO;
