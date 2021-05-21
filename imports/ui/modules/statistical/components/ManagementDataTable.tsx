@@ -1,27 +1,24 @@
 import { Button, Dialog, DialogContent, Divider, IconButton, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import IconClose from '@material-ui/icons/CloseOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Form, Formik } from 'formik';
 import moment from 'moment';
+import { useSnackbar } from 'notistack';
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import ConfirmDialog from '../../common/components/ConfirmDialog';
-import { Col, Row } from '../../common/components/elements';
+import { Col, Row, snackbarSetting } from '../../common/components/elements';
 import LoadingButton from '../../common/components/LoadingButton';
 import TableCustom, { Column } from '../../common/components/TableCustom';
+import { filterList } from '../utils';
 import AddDataDialog from './AddDataDialog';
 import EditDataDialog from './EditDataDialog';
 import Filter from './Filter';
 import { GREY, GREY_600 } from '/imports/ui/configs/colors';
-import { some } from '/imports/ui/constants';
-import {
-  DATE_FORMAT,
-  DATE_FORMAT_BACK_END,
-  DATE_TIME_FORMAT,
-  TIME_FORMAT,
-} from '/imports/ui/models/moment';
-import IconClose from '@material-ui/icons/CloseOutlined';
+import { isEmpty, some } from '/imports/ui/constants';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
 interface ITableProps {
   loading: boolean;
@@ -29,10 +26,15 @@ interface ITableProps {
   setFilter: (value: some) => void;
   filter: some;
   handleDeleteData: (value: number) => void;
+  handleAddData: (value: some) => void;
+  handleEditData: (value: some) => void;
 }
 
 const Table: React.FunctionComponent<ITableProps> = (props) => {
-  const { loading, dataList, setFilter, filter, handleDeleteData } = props;
+  const { loading, dataList, setFilter, filter, handleDeleteData, handleEditData, handleAddData } =
+    props;
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const [open, setOpen] = React.useState(false);
   const [editOpen, setEditOpen] = React.useState(false);
@@ -50,10 +52,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
         render: (record: some, _index: number) => (
           <Col>
             <Typography variant="body2">
-              {moment(record?.created, DATE_TIME_FORMAT).format(DATE_FORMAT)}
-            </Typography>
-            <Typography variant="body2">
-              {moment(record?.created, DATE_TIME_FORMAT).format(TIME_FORMAT)}
+              {moment(record?.created || record?.createAt, DATE_TIME_FORMAT).format(DATE_FORMAT)}
             </Typography>
           </Col>
         ),
@@ -63,19 +62,31 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
         title: 'orderCode',
         dataIndex: 'bookingCode',
         variant: 'body2',
+        render: (record: some, _index: number) => (
+          <Col>
+            <Typography variant="body2">{record?.bookingCode || record?.dataName}</Typography>
+          </Col>
+        ),
       },
       {
         styleHeader: { color: GREY_600 },
-        title: 'checkIn',
-        dataIndex: 'checkIn-checkOut',
+        title: 'Định dạng file ảnh',
+        dataIndex: 'imageP',
+        variant: 'body2',
+        render: (_record: some, _index: number) => (
+          <Col>
+            <Typography variant="body2">geotiff</Typography>
+          </Col>
+        ),
+      },
+      {
+        styleHeader: { color: GREY_600 },
+        title: 'Loại dữ liệu',
         variant: 'body2',
         render: (record: some, _index: number) => (
           <Col>
             <Typography variant="body2">
-              <span>
-                {moment(record?.checkIn, DATE_FORMAT_BACK_END).format(DATE_FORMAT)}&nbsp;-&nbsp;
-                {moment(record?.checkOut, DATE_FORMAT_BACK_END).format(DATE_FORMAT)}
-              </span>
+              {filterList?.find((el: some) => el.id === record?.dataType)?.name}
             </Typography>
           </Col>
         ),
@@ -198,27 +209,6 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
           },
         }}
       />
-      {/* <ConfirmDialog
-        open={editOpen}
-        onClose={() => setEditOpen(!editOpen)}
-        onAccept={() => setEditOpen(!editOpen)} //''''must change
-        onReject={() => setEditOpen(!editOpen)}
-        titleLabel={
-          <Typography gutterBottom variant="body2" component="span">
-            <FormattedMessage id="Chỉnh sửa dữ liệu" />
-          </Typography>
-        }
-        acceptLabel="saveData"
-        rejectLabel="rejectData"
-      >
-        <Formik initialValues={{}} onSubmit={() => {}}>
-          {({ values }) => (
-            <Form>
-              <EditDataDialog rowData={rowData} values={values} />
-            </Form>
-          )}
-        </Formik>
-      </ConfirmDialog> */}
       <Dialog
         open={editOpen}
         onClose={() => setEditOpen(!editOpen)}
@@ -243,7 +233,9 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
             right: 8,
             padding: '8px',
           }}
-          onClick={() => setEditOpen(!editOpen)}
+          onClick={() => {
+            setEditOpen(!editOpen);
+          }}
         >
           <IconClose />
         </IconButton>
@@ -261,8 +253,24 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
                     size="medium"
                     style={{ minWidth: 108, marginRight: 12 }}
                     onClick={() => {
-                      // handleDeleteData(rowData.id);
-                    }} //''''must change
+                      setEditOpen(!editOpen);
+                      console.log('testAAAAA', {
+                        ...values,
+                        createAt: moment(new Date()).format(DATE_FORMAT),
+                        id: rowData.id,
+                      });
+                      handleEditData({
+                        ...values,
+                        createAt: moment(new Date()).format(DATE_FORMAT),
+                        id: rowData.id,
+                      });
+                      enqueueSnackbar(
+                        'Thành công',
+                        snackbarSetting((key) => closeSnackbar(key), {
+                          color: 'success',
+                        }),
+                      );
+                    }} //''''must change edit func
                     disableElevation
                   >
                     <FormattedMessage id="accept" />
@@ -327,9 +335,21 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
                     size="medium"
                     style={{ minWidth: 108, marginRight: 12 }}
                     onClick={() => {
-                      // handleDeleteData(rowData.id);
-                    }} //''''must change
+                      handleAddData({
+                        ...values,
+                        createAt: moment(new Date()).format(DATE_FORMAT),
+                        id: new Date().getTime(),
+                      });
+                      setAddOpen(!addOpen);
+                      enqueueSnackbar(
+                        'Thành công',
+                        snackbarSetting((key) => closeSnackbar(key), {
+                          color: 'success',
+                        }),
+                      );
+                    }}
                     disableElevation
+                    disabled={isEmpty(values)}
                   >
                     <FormattedMessage id="accept" />
                   </Button>
@@ -356,6 +376,12 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
         onAccept={() => {
           handleDeleteData(rowData.id);
           setOpen(false);
+          enqueueSnackbar(
+            'Thành công',
+            snackbarSetting((key) => closeSnackbar(key), {
+              color: 'success',
+            }),
+          );
         }}
         onReject={() => setOpen(!open)}
         titleLabel={

@@ -6,19 +6,19 @@ export const getDirection = (angle: number) => {
 export const filterList = [
   {
     id: 1,
-    name: 'value1',
+    name: 'Gió',
   },
   {
     id: 2,
-    name: 'value2',
+    name: 'Nhiệt độ',
   },
   {
     id: 3,
-    name: 'value3',
+    name: 'Độ ẩm tương đối',
   },
   {
     id: 4,
-    name: 'value4',
+    name: 'Áp suất khí quyển',
   },
 ];
 

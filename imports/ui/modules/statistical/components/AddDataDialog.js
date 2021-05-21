@@ -8,9 +8,10 @@ import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
 import { Col, Row } from '../../common/components/elements';
-import { FieldTextContent } from '../../common/components/FieldContent';
+import { FieldSelectContent, FieldTextContent } from '../../common/components/FieldContent';
 import { PlottyGeotiffLayer } from '../../map/components/GeotiffLayer';
 import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../map/constant';
+import { filterList } from '../utils';
 import { isEmpty } from '/imports/ui/constants';
 
 // interface IAddDataDialogProps {
@@ -72,6 +73,7 @@ const AddDataDialog = (props) => {
             name="dataName"
             formControlStyle={{ width: 400 }}
             inputProps={{ autoComplete: 'off' }}
+            placeholder={intl.formatMessage({ id: 'Nhập' })}
           />
         </Grid>
       </Grid>
@@ -89,10 +91,22 @@ const AddDataDialog = (props) => {
             textOverflow: 'ellipsis',
           }}
         >
-          <FieldTextContent
+          <FieldSelectContent
             name="dataType"
-            formControlStyle={{ width: 400 }}
-            inputProps={{ autoComplete: 'off' }}
+            label={null}
+            style={{
+              width: 400,
+            }}
+            formControlStyle={{
+              minWidth: 400,
+            }}
+            options={filterList}
+            getOptionLabel={(value) => value.name}
+            onSelectOption={(value) => {
+              setFieldValue('dataType', value);
+            }}
+            placeholder={intl.formatMessage({ id: 'choose' })}
+            disableError
           />
         </Grid>
       </Grid>

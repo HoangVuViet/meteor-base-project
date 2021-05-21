@@ -8,7 +8,7 @@ import { dataFake } from '../components/dataTest';
 import ManagementDataTable from '../components/ManagementDataTable';
 import { DATA, isEmpty, some } from '/imports/ui/constants';
 import { AppState } from '/imports/ui/redux/reducers';
-
+import FuzzySearch from 'fuzzy-search';
 interface IDataManagementProps {
   position: some;
   address: string;
@@ -91,6 +91,46 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
     [closeSnackbar, dispatch, enqueueSnackbar],
   );
 
+  const handleAddData = React.useCallback(
+    async (value: some) => {
+      try {
+        console.log([...dataList, value]);
+        localStorage.setItem(DATA, JSON.stringify([...dataList, value]));
+        return setDataList([...dataList, value]);
+      } catch (error) {}
+    },
+    [dataList],
+  );
+
+  const handleEditData = React.useCallback(
+    async (value: some) => {
+      try {
+        console.log('editValue', value);
+        localStorage.setItem(
+          DATA,
+          JSON.stringify(
+            dataList.map((el: some, idx: number) => {
+              if (el.id === value.id) return value;
+              return el;
+            }),
+          ),
+        );
+        return setDataList(
+          dataList.map((el: some, idx: number) => {
+            if (el.id === value.id) return value;
+            return el;
+          }),
+        );
+      } catch (error) {}
+    },
+    [dataList],
+  );
+
+  const searcher = new FuzzySearch(dataList, ['bookingCode', 'state'], {
+    caseSensitive: true,
+  });
+  const test = searcher.search('H');
+  console.log(test);
   React.useEffect(() => {
     fetchData(filter);
     // eslint-disable-next-line
@@ -100,10 +140,12 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
     <div style={{ overflow: 'auto' }}>
       <ManagementDataTable
         loading={loading}
-        dataList={dataList}
+        dataList={dataList?.sort((a: some, b: some) => Number(b.id) - Number(a.id))}
         setFilter={setFilter}
         filter={filter}
         handleDeleteData={(value) => handleDeleteData(value)}
+        handleAddData={(value) => handleAddData(value)}
+        handleEditData={(value) => handleEditData(value)}
       />
     </div>
   );

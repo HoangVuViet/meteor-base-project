@@ -4,14 +4,15 @@ import L from 'leaflet';
 import 'leaflet-geotiff';
 import 'leaflet-geotiff/leaflet-geotiff-plotty';
 import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
+import moment from 'moment';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
-import { Col, Row } from '../../common/components/elements';
+import { Col } from '../../common/components/elements';
 import { FieldTextContent } from '../../common/components/FieldContent';
-import { PlottyGeotiffLayer } from '../../map/components/GeotiffLayer';
-import { defaultMapProperty, defaultWindSpeedProperty } from '../../map/constant';
+import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../map/constant';
 import { GREY_500 } from '/imports/ui/configs/colors';
+import { DATE_FORMAT, DATE_FORMAT_BACK_END } from '/imports/ui/models/moment';
 
 // interface IEditDataDialogProps {
 //   rowData: some;
@@ -39,7 +40,7 @@ const EditDataDialog = (props) => {
       renderer: renderer,
     };
     var windSpeed = new L.leafletGeotiff(
-      'https://HoangVuViet.github.io/tif/PM25_20170101_3km.tif',
+      defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
       options,
     ).addTo(map);
   }, []);
@@ -47,8 +48,8 @@ const EditDataDialog = (props) => {
   React.useEffect(
     () => {
       const temp = {
-        createdAt: rowData?.created,
-        dataName: rowData?.bookingCode,
+        createdAt: rowData?.createAt || rowData?.created,
+        dataName: rowData?.bookingCode || rowData?.dataName,
         imageP: 'geotiff',
       };
       setValues(temp);
