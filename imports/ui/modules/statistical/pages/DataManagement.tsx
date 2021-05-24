@@ -5,10 +5,11 @@ import { useDispatch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { dataFake } from '../components/dataTest';
-import ManagementDataTable from '../components/ManagementDataTable';
 import { DATA, isEmpty, some } from '/imports/ui/constants';
 import { AppState } from '/imports/ui/redux/reducers';
 import FuzzySearch from 'fuzzy-search';
+const ManagementDataTable = React.lazy(() => import('../components/ManagementDataTable'));
+
 interface IDataManagementProps {
   position: some;
   address: string;

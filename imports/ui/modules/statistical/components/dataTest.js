@@ -6,7 +6,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '26-12-2017',
     checkOut: '28-12-2017',
-    created: '26-12-2017 09:52:48',
+    created: '26-12-2017',
   },
   {
     id: 729,
@@ -15,7 +15,7 @@ export const dataFake = [
     dataType: 2,
     collectedDate: '14-12-2017',
     checkOut: '15-12-2017',
-    created: '14-12-2017 09:28:07',
+    created: '14-12-2017',
   },
   {
     id: 647,
@@ -24,7 +24,7 @@ export const dataFake = [
     dataType: 3,
     collectedDate: '12-12-2017',
     checkOut: '14-12-2017',
-    created: '14-12-2017 10:08:54',
+    created: '14-12-2017',
   },
   {
     id: 642,
@@ -33,7 +33,7 @@ export const dataFake = [
     dataType: 2,
     collectedDate: '13-12-2017',
     checkOut: '14-12-2017',
-    created: '14-12-2017 09:27:43',
+    created: '14-12-2017',
   },
   {
     id: 640,
@@ -42,7 +42,7 @@ export const dataFake = [
     dataType: 4,
     collectedDate: '12-12-2017',
     checkOut: '12-12-2017',
-    created: '12-12-2017 09:21:40',
+    created: '12-12-2017',
   },
   {
     id: 615,
@@ -51,7 +51,7 @@ export const dataFake = [
     dataType: 2,
     collectedDate: '09-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 15:03:44',
+    created: '10-12-2017',
   },
   {
     id: 614,
@@ -60,7 +60,7 @@ export const dataFake = [
     dataType: 3,
     collectedDate: '09-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 14:59:55',
+    created: '10-12-2017',
   },
   {
     id: 571,
@@ -69,7 +69,7 @@ export const dataFake = [
     dataType: 3,
     collectedDate: '09-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 16:45:54',
+    created: '10-12-2017',
   },
   {
     id: 570,
@@ -78,7 +78,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '09-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 16:31:58',
+    created: '10-12-2017',
   },
   {
     id: 450,
@@ -87,7 +87,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '31-03-2017',
     checkOut: '10-12-2017',
-    created: '10-03-2017 11:52:13',
+    created: '10-03-2017',
   },
   {
     id: 437,
@@ -96,7 +96,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '10-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 17:26:36',
+    created: '10-12-2017',
   },
   {
     id: 424,
@@ -105,7 +105,7 @@ export const dataFake = [
     dataType: 4,
     collectedDate: '23-03-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 14:24:46',
+    created: '10-12-2017',
   },
   {
     id: 423,
@@ -114,7 +114,7 @@ export const dataFake = [
     dataType: 2,
     collectedDate: '10-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 11:21:22',
+    created: '10-12-2017',
   },
   {
     id: 422,
@@ -123,7 +123,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '19-03-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 09:27:39',
+    created: '10-12-2017',
   },
   {
     id: 409,
@@ -132,7 +132,7 @@ export const dataFake = [
     dataType: 2,
     collectedDate: '12-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 16:00:58',
+    created: '10-12-2017',
   },
   {
     id: 408,
@@ -141,7 +141,7 @@ export const dataFake = [
     dataType: 3,
     collectedDate: '12-03-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 14:41:12',
+    created: '10-12-2017',
   },
   {
     id: 407,
@@ -150,7 +150,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '12-03-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 14:16:01',
+    created: '10-12-2017',
   },
   {
     id: 396,
@@ -159,7 +159,7 @@ export const dataFake = [
     dataType: 4,
     collectedDate: '05-03-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 14:03:16',
+    created: '10-12-2017',
   },
   {
     id: 393,
@@ -168,7 +168,7 @@ export const dataFake = [
     dataType: 1,
     collectedDate: '10-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 13:53:50',
+    created: '10-12-2017',
   },
   {
     id: 384,
@@ -177,6 +177,6 @@ export const dataFake = [
     dataType: 2,
     collectedDate: '10-12-2017',
     checkOut: '10-12-2017',
-    created: '10-12-2017 10:50:07',
+    created: '10-12-2017',
   },
 ];
