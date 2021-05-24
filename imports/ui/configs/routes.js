@@ -171,7 +171,7 @@ export const DATA_EVALUATION_ROUTES = [
   },
   {
     path: '/typography',
-    name: 'Tìm kiếm, thống kê',
+    name: 'Quản lý dữ liệu',
     iconName: 'library',
     component: Statistical,
     layout: '/admin',
