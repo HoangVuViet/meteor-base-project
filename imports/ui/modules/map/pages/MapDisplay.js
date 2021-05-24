@@ -207,28 +207,28 @@ const LeafletMap = (_props) => {
               {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Pm2.5">
+          {/* <LayersControl.BaseLayer name="Pm2.5">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               <VelocityLayer url={windUrl}></VelocityLayer>
-              {/* <MapBoxLayer
+              <MapBoxLayer
                 accessToken={MAPBOX_ACCESS_TOKEN}
                 style="mapbox://styles/mapbox/streets-v9"
-              /> */}
-              {/* <PlottyGeotiffLayer
+              />
+              <PlottyGeotiffLayer
                 layerRef={mapRef}
                 url={tiffUrl}
                 options={defaultWindSpeedProperty.options}
-              /> */}
+              />
 
-              {/* <VectorArrowsGeotiffLayer
+              <VectorArrowsGeotiffLayer
                 layerRef={windDirectionRef}
                 url={defaultWindDirectionProperty.url}
                 options={defaultWindDirectionProperty.options}
-              /> */}
-              {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
+              />
+              <TileLayer url={openWeatherTemperatureURL(appToken)} />
             </LayerGroup>
-          </LayersControl.BaseLayer>
+          </LayersControl.BaseLayer> */}
           <LayersControl.BaseLayer name="Áp suất khí quyển(2m)">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />

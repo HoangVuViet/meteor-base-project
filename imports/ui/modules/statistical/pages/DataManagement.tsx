@@ -94,7 +94,7 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
   const handleAddData = React.useCallback(
     async (value: some) => {
       try {
-        console.log([...dataList, value]);
+        console.log('add', value);
         localStorage.setItem(DATA, JSON.stringify([...dataList, value]));
         return setDataList([...dataList, value]);
       } catch (error) {}
@@ -105,7 +105,6 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
   const handleEditData = React.useCallback(
     async (value: some) => {
       try {
-        console.log('editValue', value);
         localStorage.setItem(
           DATA,
           JSON.stringify(
@@ -126,16 +125,14 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
     [dataList],
   );
 
-  const searcher = new FuzzySearch(dataList, ['bookingCode', 'state'], {
-    caseSensitive: true,
-  });
-  const test = searcher.search('H');
-  console.log(test);
+  // const searcher = new FuzzySearch(dataList, ['bookingCode', 'state'], {
+  //   caseSensitive: true,
+  // });
+
   React.useEffect(() => {
     fetchData(filter);
     // eslint-disable-next-line
   }, [filter]);
-  console.log('dataList', dataList);
   return (
     <div style={{ overflow: 'auto' }}>
       <ManagementDataTable

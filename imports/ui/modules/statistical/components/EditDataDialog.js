@@ -9,10 +9,11 @@ import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
 import { Col } from '../../common/components/elements';
-import { FieldTextContent } from '../../common/components/FieldContent';
+import { FieldSelectContent, FieldTextContent } from '../../common/components/FieldContent';
 import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../map/constant';
+import { filterList } from '../utils';
 import { GREY_500 } from '/imports/ui/configs/colors';
-import { DATE_FORMAT, DATE_FORMAT_BACK_END } from '/imports/ui/models/moment';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
 // interface IEditDataDialogProps {
 //   rowData: some;
@@ -48,8 +49,12 @@ const EditDataDialog = (props) => {
   React.useEffect(
     () => {
       const temp = {
-        createdAt: rowData?.createAt || rowData?.created,
+        createdAt: moment(rowData?.created || rowData?.createAt, DATE_TIME_FORMAT).format(
+          DATE_FORMAT,
+        ),
         dataName: rowData?.bookingCode || rowData?.dataName,
+        dataType: rowData?.dataType,
+        collectedDate: rowData?.collectedDate,
         imageP: 'geotiff',
       };
       setValues(temp);
@@ -57,18 +62,17 @@ const EditDataDialog = (props) => {
     // eslint-disable-next-line
     [],
   );
-
   return (
     <Col style={{ width: 1000, padding: '16px 12px' }}>
       <Grid container spacing={1} style={{ marginBottom: 20 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
-            <FormattedMessage id="Ngày khởi tạo" />
+            <FormattedMessage id="Ngày thêm mới dữ liệu" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -87,14 +91,14 @@ const EditDataDialog = (props) => {
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Tên dữ liệu" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -107,37 +111,75 @@ const EditDataDialog = (props) => {
           />
         </Grid>
       </Grid>
-      {/* <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+      <Grid container spacing={1} style={{ marginBottom: 12 }}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Loại dữ liệu" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
+          style={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          <FieldSelectContent
+            name="dataType"
+            label={null}
+            style={{
+              width: 400,
+            }}
+            formControlStyle={{
+              minWidth: 400,
+            }}
+            options={filterList}
+            getOptionLabel={(value) => value.name}
+            onSelectOption={(value) => {
+              setFieldValue('dataType', value);
+            }}
+            placeholder={intl.formatMessage({ id: 'choose' })}
+            disableError
+            disabled
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={1} style={{ marginBottom: 20 }}>
+        <Grid item xs={3}>
+          <Typography style={{ marginTop: 10 }} variant="body2" component="p">
+            <FormattedMessage id="Ngày thu nhận dữ liệu" />
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
           }}
         >
           <FieldTextContent
-            name="imageP"
+            name="collectedDate"
+            placeholder={intl.formatMessage({
+              id: 'searchPlaceholder',
+            })}
             formControlStyle={{ width: 400 }}
+            style={{ background: GREY_500 }}
             inputProps={{ autoComplete: 'off' }}
             disabled
           />
         </Grid>
-      </Grid> */}
+      </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Định dạng file ảnh" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -152,14 +194,14 @@ const EditDataDialog = (props) => {
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Ảnh dữ liệu" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',

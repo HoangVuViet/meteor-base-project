@@ -46,7 +46,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
       {
         styleHeader: { color: GREY_600 },
         style: { fontWeight: 500 },
-        title: 'Ngày khởi tạo',
+        title: 'Ngày thêm mới dữ liệu',
         dataIndex: 'bookingCode',
         variant: 'body2',
         render: (record: some, _index: number) => (
@@ -92,6 +92,19 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
         ),
       },
       {
+        styleHeader: { color: GREY_600 },
+        style: { fontWeight: 500 },
+        title: 'Ngày thu nhận dữ liệu',
+        variant: 'body2',
+        render: (record: some, _index: number) => (
+          <Col>
+            <Typography variant="body2">
+              {moment(record?.collectedDate, DATE_TIME_FORMAT).format(DATE_FORMAT)}
+            </Typography>
+          </Col>
+        ),
+      },
+      {
         disableAction: true,
         render: (record: some, _index: number) => (
           <Row>
@@ -125,9 +138,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
     return temp as Column[];
     // eslint-disable-next-line
   }, []);
-
-  console.log('rowData', rowData);
-
+  console.log('dataList', dataList);
   return (
     <React.Fragment>
       <Formik initialValues={{}} onSubmit={() => {}}>
@@ -198,7 +209,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
         loading={loading}
         paginationProps={{
           // count: bookingDataList?.totalCount || 0,
-          count: 0,
+          count: dataList?.length || 0,
           page: filter.pageOffset || 0,
           rowsPerPage: filter.pageSize || 10,
           onChangePage: (_e: unknown, newPage: number) => {
@@ -223,7 +234,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
           style={{ padding: 16, fontWeight: 500, fontSize: 16, lineHeight: '26px', color: GREY }}
         >
           <Typography gutterBottom variant="body2" component="span">
-            <FormattedMessage id="Thêm mới dữ liệu" />
+            <FormattedMessage id="Chỉnh sửa dữ liệu" />
           </Typography>
         </div>
         <IconButton
@@ -254,11 +265,6 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
                     style={{ minWidth: 108, marginRight: 12 }}
                     onClick={() => {
                       setEditOpen(!editOpen);
-                      console.log('testAAAAA', {
-                        ...values,
-                        createAt: moment(new Date()).format(DATE_FORMAT),
-                        id: rowData.id,
-                      });
                       handleEditData({
                         ...values,
                         createAt: moment(new Date()).format(DATE_FORMAT),

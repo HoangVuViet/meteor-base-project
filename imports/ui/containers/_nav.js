@@ -18,28 +18,28 @@ const _nav = [
   //     color: 'info',
   //   },
   // },
-  {
-    _tag: 'CSidebarNavTitle',
-    _children: ['Bản đồ'],
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Nhiệt độ',
-    to: '/theme/colors',
-    icon: <FilterVintageIcon style={{ marginRight: 13, padding: 2 }} />,
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Gió',
-    to: '/theme/typography',
-    icon: <EcoIcon style={{ marginRight: 13, padding: 2 }}></EcoIcon>,
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Áp suất',
-    to: '/theme/typography',
-    icon: <AcUnitIcon style={{ marginRight: 13, padding: 2 }} />,
-  },
+  // {
+  //   _tag: 'CSidebarNavTitle',
+  //   _children: ['Bản đồ'],
+  // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Nhiệt độ',
+  //   to: '/theme/colors',
+  //   icon: <FilterVintageIcon style={{ marginRight: 13, padding: 2 }} />,
+  // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Gió',
+  //   to: '/theme/typography',
+  //   icon: <EcoIcon style={{ marginRight: 13, padding: 2 }}></EcoIcon>,
+  // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Áp suất',
+  //   to: '/theme/typography',
+  //   icon: <AcUnitIcon style={{ marginRight: 13, padding: 2 }} />,
+  // },
   {
     _tag: 'CSidebarNavTitle',
     _children: ['Dữ liệu'],
@@ -114,7 +114,7 @@ const _nav = [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Tìm kiếm, thống kê',
+    name: 'Quản lý dữ liệu',
     to: ROUTES.report,
     icon: <CategoryIcon style={{ marginRight: 13, padding: 2 }}> </CategoryIcon>,
   },

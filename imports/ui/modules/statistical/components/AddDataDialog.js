@@ -1,23 +1,25 @@
+// interface IAddDataDialogProps {
+//   rowData: some;
+//   values: some;
+// }
+import DateFnsUtils from '@date-io/date-fns';
 import { Button, Grid, Paper, Typography } from '@material-ui/core';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { useFormikContext } from 'formik';
 import L from 'leaflet';
 import 'leaflet-geotiff';
 import 'leaflet-geotiff/leaflet-geotiff-plotty';
 import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
+import moment from 'moment';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
-import { Col, Row } from '../../common/components/elements';
+import { Col } from '../../common/components/elements';
 import { FieldSelectContent, FieldTextContent } from '../../common/components/FieldContent';
-import { PlottyGeotiffLayer } from '../../map/components/GeotiffLayer';
 import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../map/constant';
 import { filterList } from '../utils';
 import { isEmpty } from '/imports/ui/constants';
-
-// interface IAddDataDialogProps {
-//   rowData: some;
-//   values: some;
-// }
+import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
 const AddDataDialog = (props) => {
   const { rowData, values } = props;
@@ -52,18 +54,17 @@ const AddDataDialog = (props) => {
       ).addTo(map);
     }
   }, [fileAmount]);
-
   return (
     <Col style={{ width: 800, padding: '16px 12px' }}>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Tên dữ liệu" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -78,14 +79,14 @@ const AddDataDialog = (props) => {
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Loại dữ liệu" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -111,14 +112,45 @@ const AddDataDialog = (props) => {
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
+          <Typography style={{ marginTop: 10 }} variant="body2" component="p">
+            <FormattedMessage id="Ngày thu nhận dữ liệu" />
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={9}
+          style={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              onChange={(date) => {
+                setFieldValue('collectedDate', moment(date, DATE_TIME_FORMAT).format(DATE_FORMAT));
+              }}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider>
+        </Grid>
+      </Grid>
+      <Grid container spacing={1} style={{ marginBottom: 12 }}>
+        <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="chooseFile" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -162,14 +194,14 @@ const AddDataDialog = (props) => {
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography variant="body2" component="p">
             <FormattedMessage id="Xem trước" />
           </Typography>
         </Grid>
         <Grid
           item
-          xs={10}
+          xs={9}
           style={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
