@@ -1,12 +1,24 @@
 import { CircularProgress, Divider, IconButton, Typography } from '@material-ui/core';
+import {
+  DataGrid,
+  GridColDef,
+  GridRowData,
+  GridToolbarContainer,
+  GridToolbarExport,
+  GridValueFormatterParams,
+  GridValueGetterParams,
+} from '@material-ui/data-grid';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import moment from 'moment';
 import querystring from 'query-string';
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { shallowEqual, useSelector } from 'react-redux';
+import BootstrapTooltip from '../../common/components/BootstrapTooltip';
 import { Col, Row } from '../../common/components/elements';
-import TableCustom, { Column } from '../../common/components/TableCustom';
 import { defaultGeoUrl, defaultTimeDimensionProperty } from '../../map/constant';
+import { getDirection } from '../utils';
 import DashBoardTab from './DashBoardTab';
 import {
   appToken,
@@ -18,10 +30,6 @@ import {
   URL_CONFIG,
 } from '/imports/ui/constants';
 import { DATE_FORMAT_NEW } from '/imports/ui/models/moment';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import BootstrapTooltip from '../../common/components/BootstrapTooltip';
-import { FormattedMessage } from 'react-intl';
-import { getDirection } from '../utils';
 interface IDashboardProps {}
 
 const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
@@ -29,6 +37,14 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
 
   const [data, setData] = React.useState<some>({});
   const [result, setResult] = React.useState<some>({});
+
+  const CustomToolbar = () => {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
+  };
 
   const fetchData = (lat: string, lon: string, start: any) => {
     const searchStr = querystring.stringify({
@@ -47,89 +63,146 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       .then((dataR) => setData(dataR));
   };
 
-  const columns = React.useMemo(() => {
-    const temp: Column[] = [
+  const columns: GridColDef[] = React.useMemo(() => {
+    return [
       {
-        title: 'Thời điểm (h)',
-        variant: 'body2',
-
-        render: (_record: some, index: number) => (
-          <Col style={{ alignItems: 'center', marginRight: 10 }}>
-            <Typography variant="caption">
-              <span>{index * 2 + 1}</span>
-            </Typography>
-          </Col>
-        ),
+        field: 'id',
+        headerName: 'Thời điểm (h)',
+        width: 150,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'number',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${Number(params?.row?.id) * 3 + 1} h`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col style={{ alignItems: 'center', marginLeft: 30 }}>
+              <Typography variant="caption">
+                <span>{params.row.id * 3 + 1}</span>
+              </Typography>
+            </Col>
+          );
+        },
       },
       {
-        title: 'Gió',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col>
-            <Typography variant="caption">
-              <span>Tốc độ: {(record?.wind?.speed * 3.6).toFixed(2)}&nbsp;km/h</span>
-            </Typography>
-            <Typography variant="caption">
-              <span>
-                Hướng: {getDirection(record?.wind?.deg)}&nbsp;({record?.wind?.deg}°)
-              </span>
-            </Typography>
-          </Col>
-        ),
+        field: 'wind',
+        headerName: 'Gió',
+        width: 180,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${(params.row.wind.speed * 3.6).toFixed(2)} km/h`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${(params.row.wind.speed * 3.6).toFixed(2)} km/h`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col>
+              <Typography variant="caption">
+                <span>Tốc độ: {(params.row.wind.speed * 3.6).toFixed(2)}&nbsp;km/h</span>
+              </Typography>
+              <Typography variant="caption">
+                <span>
+                  Hướng: {getDirection(params.row.wind.speed.deg)}&nbsp;(
+                  {params.row.wind.speed.deg}°)
+                </span>
+              </Typography>
+            </Col>
+          );
+        },
       },
       {
-        title: 'Nhiệt độ',
-        dataIndex: 'temp',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Row>
-            <Typography variant="caption">
-              <span>{(record?.main?.temp - 273).toFixed(2)}&nbsp;°C</span>
-            </Typography>
-            <BootstrapTooltip
-              title={
-                <Typography variant="body2" style={{ padding: '12px 12px' }}>
-                  <FormattedMessage id="Cảm nhận thực tế:" />
-                  &nbsp;
-                  <span>{(record?.main?.feels_like - 273).toFixed(2)}&nbsp;°C</span>
-                </Typography>
-              }
-              placement="top"
-            >
-              <IconButton style={{ padding: 4, marginLeft: 4 }}>
-                <ErrorOutlineIcon style={{ padding: 1, color: '#1976d2' }} />
-              </IconButton>
-            </BootstrapTooltip>
-          </Row>
-        ),
+        field: 'temp',
+        headerName: 'Nhiệt độ',
+        width: 180,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${(params.row?.main?.temp - 273).toFixed(2)} C`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${(params.row?.main?.temp - 273).toFixed(2)} C`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Row>
+              <Typography variant="caption">
+                <span>{(params.row?.main?.temp - 273).toFixed(2)}&nbsp;°C</span>
+              </Typography>
+              <BootstrapTooltip
+                title={
+                  <Typography variant="body2" style={{ padding: '12px 12px' }}>
+                    <FormattedMessage id="Cảm nhận thực tế:" />
+                    &nbsp;
+                    <span>{(params.row?.main?.feels_like - 273).toFixed(2)}&nbsp;°C</span>
+                  </Typography>
+                }
+                placement="top"
+              >
+                <IconButton style={{ padding: 4, marginLeft: 4 }}>
+                  <ErrorOutlineIcon style={{ padding: 1, color: '#1976d2' }} />
+                </IconButton>
+              </BootstrapTooltip>
+            </Row>
+          );
+        },
       },
       {
-        title: 'Độ ẩm',
-        dataIndex: 'humidity ',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col style={{ alignItems: 'center', marginRight: 20 }}>
-            <Typography variant="caption">
-              <span>{record?.main?.humidity}&nbsp;%</span>
-            </Typography>
-          </Col>
-        ),
+        field: 'humidity',
+        headerName: 'Độ ẩm',
+        width: 180,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${params.row?.main?.humidity} %`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${params.row?.main?.humidity} %`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col style={{ alignItems: 'center', marginRight: 20 }}>
+              <Typography variant="caption">
+                <span>{params.row?.main?.humidity}&nbsp;%</span>
+              </Typography>
+            </Col>
+          );
+        },
       },
       {
-        title: 'Áp suất',
-        dataIndex: 'email',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col style={{ alignItems: 'center', marginRight: 20 }}>
-            <Typography variant="caption">
-              <span>{record?.main?.pressure}&nbsp;hPa</span>
-            </Typography>
-          </Col>
-        ),
+        field: 'email',
+        headerName: 'Áp suất',
+        width: 180,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${params.row?.main?.pressure} hPa`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${params.row?.main?.pressure} hPa`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col style={{ alignItems: 'center', marginRight: 20 }}>
+              <Typography variant="caption">
+                <span>{params.row?.main?.pressure}&nbsp;hPa</span>
+              </Typography>
+            </Col>
+          );
+        },
       },
     ];
-    return temp as Column[];
-    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
@@ -160,6 +233,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       );
     }
   }, []);
+
   return (
     <Col>
       <Row style={{ display: 'flex', marginBottom: 5, marginTop: 20 }}>
@@ -199,13 +273,26 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
               ]
             }
           </Typography>
-          <TableCustom
-            style={{ borderRadius: 8, boxShadow: 'none', marginBottom: 5 }}
-            dataSource={data?.list?.filter((_el: some, idx: number) => idx % 2 === 1) || []}
-            columns={columns}
-            noColumnIndex
-            loading={false}
-          />
+          <div style={{ height: 595 }}>
+            <DataGrid
+              rows={
+                data?.list
+                  ?.filter((_el: some, idx: number) => idx % 3 === 1)
+                  .map((elm: some, idx: number) => {
+                    return { ...elm, id: idx };
+                  }) as GridRowData[]
+              }
+              columns={columns}
+              pageSize={8}
+              hideFooter={true}
+              rowHeight={63}
+              // checkboxSelection
+              disableSelectionOnClick
+              components={{
+                Toolbar: CustomToolbar,
+              }}
+            />
+          </div>
           <Divider style={{ margin: '12px 0px 8px', width: '100%', height: 2 }}></Divider>
           <Typography variant="subtitle1" style={{ margin: '10px auto 5px' }}>
             Biểu đồ đánh giá số liệu khí tượng ngày&nbsp;
@@ -217,7 +304,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
               ]
             }
           </Typography>
-          <DashBoardTab data={data?.list?.filter((_el: some, idx: number) => idx % 2 === 1)} />
+          <DashBoardTab data={data?.list?.filter((_el: some, idx: number) => idx % 3 === 1)} />
         </>
       ) : (
         <CircularProgress color="secondary" style={{ margin: '150px auto' }} />

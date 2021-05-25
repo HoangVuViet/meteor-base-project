@@ -131,7 +131,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
         renderCell: (params: GridValueGetterParams | some) => (
           <Col>
             <Typography variant="body2">
-              {moment(params?.getValue('collectedDate'), DATE_TIME_FORMAT).format(DATE_FORMAT)}
+              {moment(params.getValue('collectedDate'), DATE_TIME_FORMAT).format(DATE_FORMAT)}
             </Typography>
           </Col>
         ),

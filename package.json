@@ -54,6 +54,7 @@
     "css-modules-typescript-loader": "^4.0.1",
     "d3": "^6.7.0",
     "date-fns": "^2.21.3",
+    "esri-leaflet-geocoder": "^2.3.3",
     "esri-loader": "^3.0.0",
     "firebase": "^8.1.2",
     "formik": "^2.2.5",

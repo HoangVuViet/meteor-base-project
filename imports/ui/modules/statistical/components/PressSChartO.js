@@ -72,6 +72,6 @@ function PressSChartO(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 800, height: 550 }}></div>;
+  return <div id={chartName} style={{ width: 680, height: 550 }}></div>;
 }
 export default PressSChartO;

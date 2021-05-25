@@ -84,7 +84,7 @@ const DashBoardTab: React.FunctionComponent<Props> = (props) => {
     <div className={classes.root}>
       <div className={classes.demo1}>
         <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label={'Gió'} />
+          <AntTab label="Gió" />
           <AntTab label="Nhiệt độ" />
           <AntTab label="Độ ẩm tương đối" />
           <AntTab label="Áp suất khí quyển(2m)" />

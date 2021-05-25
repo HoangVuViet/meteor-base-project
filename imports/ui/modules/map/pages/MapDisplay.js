@@ -12,6 +12,8 @@ import HightlightArea from '../components/HightlightArea';
 import Legend from '../components/Legend';
 import TimeDimensionMap from '../components/TimeDimensionMap';
 import VelocityLayer from '../components/VelocityLayer';
+import * as ELG from 'esri-leaflet-geocoder';
+
 import {
   defaultGeoUrl,
   defaultMapProperty,
@@ -60,20 +62,20 @@ const LeafletMap = (_props) => {
 
     const geocoder = L.Control.Geocoder.nominatim();
 
+    map.on('click', (e) => {
+      ELG.reverseGeocode()
+        .latlng(e.latlng)
+        .run(function (error, result, response) {
+          if (result) {
+            setAddress(result.address.Match_addr);
+          }
+        });
+    });
+
     if (marker) {
       const m1 = L.marker([marker.lat, marker.lng]).addTo(map);
       m1.openPopup();
     }
-
-    map.on('click', (e) => {
-      geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), (results) => {
-        var r = results[0];
-        if (r) {
-          setAddress(r.name);
-          // setMarker({ lat: r.center.lat, lng: r.center.lng });
-        }
-      });
-    });
   }, []);
 
   // useEffect(() => {

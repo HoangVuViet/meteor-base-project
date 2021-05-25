@@ -140,12 +140,12 @@ const DragMarker = (props) => {
         onClose={toggleDrawer(anchor, false)}
         onOpen={toggleDrawer(anchor, true)}
       >
-        <div style={{ width: 850 }}>
+        <div style={{ width: 680 }}>
           <Statistical
             progress={props.progress}
             position={props.markerPosition}
             address={props.address}
-          ></Statistical>
+          />
         </div>
       </SwipeableDrawer>
     </>

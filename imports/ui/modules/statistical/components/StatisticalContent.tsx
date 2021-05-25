@@ -79,7 +79,6 @@ export default function FullWidthTabs() {
         >
           <Tab label="Tổng quan" {...a11yProps(0)} />
           <Tab label="So sánh" {...a11yProps(1)} />
-          {/* <Tab label="Thống kê" {...a11yProps(2)} /> */}
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -94,9 +93,6 @@ export default function FullWidthTabs() {
         <TabContext value={value.toString()} index={1} dir={theme.direction}>
           <Concentration></Concentration>
         </TabContext>
-        {/* <TabContext value={value.toString()} index={2} dir={theme.direction}>
-          <Table></Table>
-        </TabContext> */}
       </SwipeableViews>
     </div>
   );

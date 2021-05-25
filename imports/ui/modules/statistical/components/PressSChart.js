@@ -18,7 +18,7 @@ function PressSChart(props) {
     chart.data = data?.map((el, idx) => {
       return {
         pressS: el?.main?.pressure,
-        time: `${idx * 2 + 1}h`,
+        time: `${idx * 3 + 1}h`,
         feelsLike: (el?.main?.feels_like - 273).toFixed(2),
       };
     });
@@ -72,6 +72,6 @@ function PressSChart(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 800, height: 530 }}></div>;
+  return <div id={chartName} style={{ width: 680, height: 630 }}></div>;
 }
 export default PressSChart;
