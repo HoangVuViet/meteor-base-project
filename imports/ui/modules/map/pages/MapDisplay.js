@@ -290,7 +290,7 @@ const LeafletMap = (_props) => {
             openSearchOnLoad={true}
             showMarker={false}
             zoom={7}
-          ></Search>
+          />
         </div>
         {marker.lat !== 0 && marker.lng !== 0 && (
           <DragMarker

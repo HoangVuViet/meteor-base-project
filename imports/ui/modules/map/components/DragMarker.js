@@ -10,6 +10,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import clsx from 'clsx';
 import Statistical from '../../statistical/pages/Statistical';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { Col, Row } from '../../common/components/elements';
 
 const useStyles = makeStyles({
   list: {
@@ -115,23 +117,28 @@ const DragMarker = (props) => {
         {...props}
       >
         <Popup>
-          <div>
-            <Typography variant="body2">{`Địa điểm: ${props.address}`}</Typography>
-            <Typography variant="body2">
-              <span>Tọa độ:</span>
-            </Typography>
-            <Typography variant="body2" style={{ marginLeft: 4 }}>
-              <span>- Vĩ độ: {props?.markerPosition[0]}</span>
-            </Typography>
-            <Typography variant="body2" style={{ marginLeft: 4 }}>
-              <span>- Kinh độ: {props?.markerPosition[1]}</span>
-            </Typography>
-            <Button onClick={toggleDrawer(anchor, true)} style={{ padding: 0, height: 20 }}>
+          <Col style={{ padding: '8px' }}>
+            <Row style={{ display: 'flex', marginBottom: 5 }}>
+              <Typography variant="body2">{`Địa điểm: ${props.address}`}</Typography>
+            </Row>
+            <Row style={{ marginBottom: 5 }}>
+              <Typography variant="caption">
+                <span>Vĩ độ:&nbsp;{props?.markerPosition[0].toFixed(5)}</span>
+              </Typography>
+              <Typography variant="caption">
+                <span>Kinh độ:&nbsp;{props?.markerPosition[1].toFixed(5)}</span>
+              </Typography>
+            </Row>{' '}
+            <Button
+              variant="outlined"
+              onClick={toggleDrawer(anchor, true)}
+              style={{ padding: 0, height: 20, width: 100 }}
+            >
               <Typography variant="body2">
                 <span>{`Xem chi tiết >>`}</span>
               </Typography>
             </Button>
-          </div>
+          </Col>
         </Popup>
       </Marker>
       <SwipeableDrawer
