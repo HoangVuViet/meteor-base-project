@@ -118,19 +118,23 @@ const DragMarker = (props) => {
       >
         <Popup>
           <Col style={{ padding: '8px' }}>
-            <Row style={{ display: 'flex', marginBottom: 5 }}>
-              <Typography variant="body2">{`Địa điểm: ${props.address}`}</Typography>
+            <Row>
+              <Typography variant="body2">
+                <span style={{ fontWeight: 'bold' }}>Địa điểm:</span>
+                {`${props.address}`}
+              </Typography>
             </Row>
-            <Row style={{ marginBottom: 5 }}>
+            <Row style={{ marginBottom: 10 }}>
               <Typography variant="caption">
                 <span>Vĩ độ:&nbsp;{props?.markerPosition[0].toFixed(5)}</span>
               </Typography>
+              <span>&nbsp;/&nbsp;</span>
               <Typography variant="caption">
                 <span>Kinh độ:&nbsp;{props?.markerPosition[1].toFixed(5)}</span>
               </Typography>
             </Row>{' '}
             <Button
-              variant="outlined"
+              // variant="outlined"
               onClick={toggleDrawer(anchor, true)}
               style={{ padding: 0, height: 20, width: 100 }}
             >
