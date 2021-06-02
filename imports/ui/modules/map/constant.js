@@ -207,11 +207,11 @@ export const getColor = (d) => {
 
 export const style = (feature) => {
   return {
-    weight: 2,
-    opacity: 0.5,
+    weight: 1,
+    opacity: 0.1,
     // color: 'white',
     dashArray: '3',
-    fillOpacity: 0.2,
+    fillOpacity: 0.1,
     // fillColor: getColor(feature && feature.properties.density),
   };
 };
