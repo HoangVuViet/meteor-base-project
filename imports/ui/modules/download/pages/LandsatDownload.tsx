@@ -9,7 +9,7 @@ const LandsatDownload: React.FC = () => {
       {({}) => (
         <Form>
           <Download
-            dataTitle="Landsat"
+            dataTitle="Gió"
             product={landsatProduct}
             fileName="download_landsat.py"
             command="python"

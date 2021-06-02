@@ -9,7 +9,7 @@ const LandsatProcess: React.FC = () => {
       {({}) => (
         <Form>
           <Process
-            dataTitle="Landsat"
+            dataTitle="Gió"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"

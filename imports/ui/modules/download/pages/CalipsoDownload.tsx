@@ -9,7 +9,7 @@ const CalipsoDownload: React.FC = () => {
       {({}) => (
         <Form>
           <Download
-            dataTitle="calipso"
+            dataTitle="Nhiệt độ"
             product={calipsoProduct}
             fileName="download_calipso.py"
             command="python"

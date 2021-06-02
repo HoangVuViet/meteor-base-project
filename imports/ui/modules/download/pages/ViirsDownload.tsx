@@ -9,7 +9,7 @@ const ViirsDownload: React.FC = () => {
       {({}) => (
         <Form>
           <Download
-            dataTitle="VIIRS"
+            dataTitle="Áp suất"
             product={landsatProduct}
             fileName="download_viirs.py"
             command="python"

@@ -9,7 +9,7 @@ const ModisProcess: React.FC = () => {
       {({}) => (
         <Form>
           <Process
-            dataTitle="modis"
+            dataTitle="Độ ẩm"
             data={modisDataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"

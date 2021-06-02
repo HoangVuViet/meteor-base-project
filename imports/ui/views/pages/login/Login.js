@@ -16,8 +16,13 @@ import {
   CRow,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
+import { useSnackbar } from 'notistack';
+import { snackbarSetting } from '/imports/ui/modules/common/components/elements';
+import { useIntl } from 'react-intl';
 
 const Login = () => {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const intl = useIntl();
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -53,7 +58,18 @@ const Login = () => {
                     <CRow>
                       <CCol xs="6">
                         <CHeaderNavLink to="/">
-                          <CButton color="primary" className="px-4">
+                          <CButton
+                            color="primary"
+                            className="px-4"
+                            onClick={() => {
+                              enqueueSnackbar(
+                                intl.formatMessage({ id: 'success' }),
+                                snackbarSetting((key) => closeSnackbar(key), {
+                                  color: 'success',
+                                }),
+                              );
+                            }}
+                          >
                             Đăng nhập
                           </CButton>
                         </CHeaderNavLink>

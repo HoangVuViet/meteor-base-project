@@ -278,7 +278,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
                         id: rowData.id,
                       });
                       enqueueSnackbar(
-                        'Thành công',
+                        intl.formatMessage({ id: 'success' }),
                         snackbarSetting((key) => closeSnackbar(key), {
                           color: 'success',
                         }),
@@ -355,7 +355,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
                       });
                       setAddOpen(!addOpen);
                       enqueueSnackbar(
-                        'Thành công',
+                        intl.formatMessage({ id: 'success' }),
                         snackbarSetting((key) => closeSnackbar(key), {
                           color: 'success',
                         }),
@@ -390,7 +390,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
           handleDeleteData(rowData.id);
           setOpen(false);
           enqueueSnackbar(
-            'Thành công',
+            intl.formatMessage({ id: 'success' }),
             snackbarSetting((key) => closeSnackbar(key), {
               color: 'success',
             }),

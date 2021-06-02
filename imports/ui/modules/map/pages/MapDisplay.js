@@ -20,6 +20,10 @@ import {
   defaultTimeDimensionProperty,
   defaultWindSpeedProperty,
   hereTileUrl,
+  tempLayerUrl,
+  windLayerUrl,
+  pressLayerUrl,
+  rhLayerUrl,
   windUrl,
 } from '../constant';
 import '../css/index.css';
@@ -32,7 +36,7 @@ const LeafletMap = (_props) => {
   const [address, setAddress] = useState('');
   const [layerName, setLayerName] = useState('');
 
-  const [geotifURL, setGeotifURL] = useState(defaultGeoUrl);
+  const [geotifURL, setGeotifURL] = useState(windLayerUrl);
 
   const [mapR, setMapR] = useState(true);
   const [progress, setProgress] = React.useState(defaultTimeDimensionProperty.min);
@@ -93,6 +97,23 @@ const LeafletMap = (_props) => {
   React.useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
+    map.on('baselayerchange', (e) => {
+      console.log('e.name', e.name);
+      if (e.name === 'Gió') {
+        setGeotifURL(windLayerUrl);
+      } else if (e.name === 'Nhiệt độ') {
+        setGeotifURL(tempLayerUrl);
+      } else if (e.name === 'Áp suất khí quyển(2m)') {
+        setGeotifURL(pressLayerUrl);
+      } else if (e.name === 'Độ ẩm') {
+        setGeotifURL(rhLayerUrl);
+      }
+    });
+  }, [geotifURL]);
+
+  React.useEffect(() => {
+    const { current = {} } = mapRef;
+    const { leafletElement: map } = current;
     const renderer = L.LeafletGeotiff.plotty(defaultWindSpeedProperty.options);
     const options = {
       rBand: 0,
@@ -103,8 +124,8 @@ const LeafletMap = (_props) => {
       renderer: renderer,
     };
     var windSpeed = new L.leafletGeotiff(geotifURL.url[0], options).addTo(map);
-  }, []);
-
+  }, [geotifURL]);
+  console.log('geotifURL', geotifURL);
   React.useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
@@ -138,7 +159,7 @@ const LeafletMap = (_props) => {
     return () => {
       clearInterval(timer);
     };
-  }, [isPlay, progress]);
+  }, [isPlay, progress, geotifURL]);
   return (
     <Fragment>
       <Map

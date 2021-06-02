@@ -36,12 +36,10 @@ const TheHeaderDropdown = () => {
           Settings
         </CDropdownItem>
         <CDropdownItem divider />
-        <CDropdownItem>
-          <CHeaderNavLink to="/login">
-            <CIcon name="cil-account-logout" className="mfe-2" />
-            Sign out
-          </CHeaderNavLink>
-        </CDropdownItem>
+        <CHeaderNavLink to="/login">
+          <CIcon name="cil-account-logout" className="mfe-2" />
+          Sign out
+        </CHeaderNavLink>
       </CDropdownMenu>
     </CDropdown>
   );

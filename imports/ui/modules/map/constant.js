@@ -19,7 +19,7 @@ export const defaultMapProperty = {
   scrollWheelZoom: true,
   zoomControl: false,
   maxZoom: 7,
-  minZoom: 2,
+  minZoom: 4,
   style: { height: 800, width: '100%' }, //660 || 880
 };
 
@@ -46,7 +46,7 @@ export const defaultWindSpeedProperty = {
     displayMin: 0,
     displayMax: 30,
     name: 'Wind speed',
-    colorScale: 'rainbow',
+    // colorScale: 'rainbow',
     clampLow: false,
     clampHigh: true,
     //vector:true
@@ -86,8 +86,132 @@ export const defaultGeoUrl = {
   ],
 };
 
-export const windLayerUrl = [`${baseConfigUrl}/data/wspd/WSPD_2020-01-02.tif`];
+export const windLayerUrl = {
+  url: [
+    `${baseConfigUrl}/data/wspd/WSPD_2020-01-01.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171109_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171110_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171111_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171112_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171113_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171114_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171115_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171116_3km.tif`,
+  ],
+  time: [
+    '03/12/2017',
+    '04/12/2017',
+    '05/12/2017',
+    '06/12/2017',
+    '07/12/2017',
+    '08/12/2017',
+    '09/12/2017',
+    '10/12/2017',
+    '11/12/2017',
+  ],
+};
+export const tempLayerUrl = {
+  url: [
+    `${baseConfigUrl}/data/tmp/TMP_2020-01-01.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171109_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171110_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171111_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171112_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171113_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171114_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171115_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171116_3km.tif`,
+  ],
+  time: [
+    '03/12/2020',
+    '04/12/2020',
+    '05/12/2020',
+    '06/12/2020',
+    '07/12/2020',
+    '08/12/2020',
+    '09/12/2020',
+    '10/12/2020',
+    '11/12/2020',
+  ],
+};
 
-export const tempLayerUrl = [`${baseConfigUrl}/data/tmp/TMP_2020-01-02.tif`];
+export const pressLayerUrl = {
+  url: [
+    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-02.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171109_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171110_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171111_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171112_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171113_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171114_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171115_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171116_3km.tif`,
+  ],
+  time: [
+    '03/12/2020',
+    '04/12/2020',
+    '05/12/2020',
+    '06/12/2020',
+    '07/12/2020',
+    '08/12/2020',
+    '09/12/2020',
+    '10/12/2020',
+    '11/12/2020',
+  ],
+};
+
+export const rhLayerUrl = {
+  url: [
+    `${baseConfigUrl}/data/rh/RH_2020-01-02.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171109_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171110_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171111_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171112_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171113_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171114_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171115_3km.tif`,
+    `${baseConfigUrl}/pm2.5/tif/2017/PM25_20171116_3km.tif`,
+  ],
+  time: [
+    '03/12/2020',
+    '04/12/2020',
+    '05/12/2020',
+    '06/12/2020',
+    '07/12/2020',
+    '08/12/2020',
+    '09/12/2020',
+    '10/12/2020',
+    '11/12/2020',
+  ],
+};
 
 export const windUrl = '../../../../../json/wind.json';
+
+export const getColor = (d) => {
+  return d > 1000
+    ? '#800026'
+    : d > 500
+    ? '#BD0026'
+    : d > 200
+    ? '#E31A1C'
+    : d > 100
+    ? '#FC4E2A'
+    : d > 50
+    ? '#FD8D3C'
+    : d > 20
+    ? '#FEB24C'
+    : d > 10
+    ? '#FED976'
+    : '#FFEDA0';
+};
+
+export const style = (feature) => {
+  return {
+    weight: 2,
+    opacity: 0.5,
+    // color: 'white',
+    dashArray: '3',
+    fillOpacity: 0.2,
+    // fillColor: getColor(feature && feature.properties.density),
+  };
+};

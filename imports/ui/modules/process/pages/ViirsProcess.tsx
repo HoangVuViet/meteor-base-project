@@ -9,7 +9,7 @@ const ViirsProcess: React.FC = () => {
       {({}) => (
         <Form>
           <Process
-            dataTitle="VIIRS"
+            dataTitle="Áp suất"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"

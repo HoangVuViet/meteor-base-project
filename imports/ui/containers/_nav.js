@@ -46,36 +46,36 @@ const _nav = [
   },
   {
     _tag: 'CSidebarNavDropdown',
-    name: 'Tải dữ liệu',
+    name: 'Thu thập dữ liệu',
     route: '/buttons',
     // icon: 'cil-cursor',
     icon: <GetAppIcon style={{ marginRight: 13, padding: 2 }} />,
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Landsat AOD',
+        name: 'Gió',
         to: '/download/Landsat',
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'CALIPSO AOD',
+        name: 'Nhiệt độ',
         to: ROUTES.calipsoDownload,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'MODIS AOD',
+        name: 'Độ ẩm',
         to: ROUTES.modisDownload,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'VIIRS AOD',
+        name: 'Áp suất',
         to: ROUTES.viirsDownload,
       },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'AERONET AOD',
-        to: ROUTES.aeronetDownload,
-      },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: 'AERONET AOD',
+      //   to: ROUTES.aeronetDownload,
+      // },
     ],
   },
   {
@@ -87,29 +87,29 @@ const _nav = [
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: 'Landsat AOD',
+        name: 'Gió',
         to: ROUTES.landsatProcess,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'CALIPSO AOD',
+        name: 'Nhiệt độ',
         to: ROUTES.calipsoProcess,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'MODIS AOD',
+        name: 'Độ ẩm',
         to: ROUTES.modisProcess,
       },
       {
         _tag: 'CSidebarNavItem',
-        name: 'VIIRS AOD',
+        name: 'Áp suất',
         to: ROUTES.viirsProcess,
       },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'AERONET AOD',
-        to: ROUTES.aeronetProcess,
-      },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: 'AERONET AOD',
+      //   to: ROUTES.aeronetProcess,
+      // },
     ],
   },
   {

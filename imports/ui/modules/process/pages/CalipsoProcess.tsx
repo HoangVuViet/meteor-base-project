@@ -9,7 +9,7 @@ const CalipsoProcess: React.FC = () => {
       {({}) => (
         <Form>
           <Process
-            dataTitle="calipso"
+            dataTitle="Nhiệt độ"
             data={dataSetValues}
             interpolationMethod={interpolationMethod}
             command="python"
