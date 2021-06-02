@@ -72,6 +72,6 @@ function TempChart(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 680, height: 630 }}></div>;
+  return <div id={chartName} style={{ width: 680, height: 450 }}></div>;
 }
 export default TempChart;

@@ -37,7 +37,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
 
   const [data, setData] = React.useState<some>({});
   const [result, setResult] = React.useState<some>({});
-
+  console.log(data);
   const CustomToolbar = () => {
     return (
       <GridToolbarContainer>
@@ -68,8 +68,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       {
         field: 'id',
         headerName: 'Thời điểm (h)',
-        width: 150,
-        headerClassName: 'super-app-theme--header',
+        width: 130,
         align: 'left',
         headerAlign: 'left',
         type: 'number',
@@ -80,7 +79,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
           return (
             <Col style={{ alignItems: 'center', marginLeft: 30 }}>
               <Typography variant="caption">
-                <span>{params.row.id * 3 + 1}</span>
+                <span>{params.row.id * 3 + 1} h</span>
               </Typography>
             </Col>
           );
@@ -89,7 +88,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       {
         field: 'wind',
         headerName: 'Gió',
-        width: 180,
+        width: 160,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -108,8 +107,8 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
               </Typography>
               <Typography variant="caption">
                 <span>
-                  Hướng: {getDirection(params.row.wind.speed.deg)}&nbsp;(
-                  {params.row.wind.speed.deg}°)
+                  Hướng: {getDirection(params.row.wind.deg)}&nbsp;(
+                  {params.row.wind.deg}°)
                 </span>
               </Typography>
             </Col>
@@ -119,7 +118,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       {
         field: 'temp',
         headerName: 'Nhiệt độ',
-        width: 180,
+        width: 120,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -155,31 +154,31 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
         },
       },
       {
-        field: 'humidity',
+        field: 'ids',
         headerName: 'Độ ẩm',
-        width: 180,
+        width: 100,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
         type: 'string',
         valueGetter: (params: GridValueGetterParams) => {
-          return `${params.row?.main?.humidity} %`;
+          return params.row.main.humidity;
         },
         valueFormatter: (params: GridValueFormatterParams) => {
-          return `${params.row?.main?.humidity} %`;
+          return `${params.row.main.humidity} %`;
         },
         renderCell: (params: GridValueGetterParams | some) => {
           return (
             <Col style={{ alignItems: 'center', marginRight: 20 }}>
               <Typography variant="caption">
-                <span>{params.row?.main?.humidity}&nbsp;%</span>
+                <span>{params.row.main.humidity}&nbsp;%</span>
               </Typography>
             </Col>
           );
         },
       },
       {
-        field: 'email',
+        field: 'pressure',
         headerName: 'Áp suất',
         width: 180,
         headerClassName: 'super-app-theme--header',
@@ -233,7 +232,13 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       );
     }
   }, []);
-
+  console.log(
+    data?.list
+      ?.filter((_el: some, idx: number) => idx % 3 === 1)
+      .map((elm: some, idx: number) => {
+        return { ...elm, id: idx };
+      }) as GridRowData[],
+  );
   return (
     <Col>
       <Row style={{ display: 'flex', marginBottom: 5, marginTop: 20 }}>

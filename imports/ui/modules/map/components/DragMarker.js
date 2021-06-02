@@ -108,6 +108,7 @@ const DragMarker = (props) => {
         ref={initMarker}
         onClick={toggleDraggable}
         onDragEnd={toggleDraggable}
+        onDragStart={toggleDraggable}
         // onDoubleClick={() => {
         //   props.setMarker({ lat: 0, lng: 0 });
         // }}
@@ -120,7 +121,7 @@ const DragMarker = (props) => {
           <Col style={{ padding: '8px' }}>
             <Row>
               <Typography variant="body2">
-                <span style={{ fontWeight: 'bold' }}>Địa điểm:</span>
+                <span style={{ fontWeight: 'bold' }}>Địa điểm:&nbsp;</span>
                 {`${props.address}`}
               </Typography>
             </Row>
@@ -151,11 +152,12 @@ const DragMarker = (props) => {
         onClose={toggleDrawer(anchor, false)}
         onOpen={toggleDrawer(anchor, true)}
       >
-        <div style={{ width: 680 }}>
+        <div style={{ width: 620, maxHeight: 800 }}>
           <Statistical
             progress={props.progress}
             position={props.markerPosition}
             address={props.address}
+            // abc xyz
           />
         </div>
       </SwipeableDrawer>

@@ -82,7 +82,7 @@ export default function FullWidthTabs() {
         </Tabs>
       </AppBar>
       <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        // axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
         style={{ marginTop: 0 }}
