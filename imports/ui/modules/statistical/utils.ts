@@ -18,7 +18,9 @@ export const filterList = [
   },
   {
     id: 4,
-    name: 'Áp suất khí quyển',
+    name: 'Áp suất khí quyển(2m)',
   },
 ];
 
+export const DEFAULT_CHART_WIDTH = 680;
+export const DEFAULT_CHAT_HEIGHT = 450;

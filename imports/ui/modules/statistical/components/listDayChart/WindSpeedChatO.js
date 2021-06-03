@@ -1,12 +1,12 @@
-import React, { useRef, useLayoutEffect } from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4core from '@amcharts/amcharts4/core';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import { getDirection } from '../utils';
+import React, { useLayoutEffect, useRef } from 'react';
+import { DEFAULT_CHART_WIDTH, DEFAULT_CHAT_HEIGHT, getDirection } from '../../utils';
 
 am4core.useTheme(am4themes_animated);
 
-function WindSpeedChart(props) {
+function WindSpeedChatO(props) {
   const { chartName, data } = props;
   const chart = useRef(null);
 
@@ -14,11 +14,10 @@ function WindSpeedChart(props) {
     am4core.useTheme(am4themes_animated);
 
     let chart = am4core.create(chartName, am4charts.XYChart);
-
     chart.data = data?.map((el, idx) => {
       return {
         speed: el.wind.speed,
-        time: `${idx * 3 + 1}h`,
+        time: el.dtg.toString().replace(el.dtg.substr(5), ''),
         deg: `${getDirection(el.wind.deg)} (${el.wind.deg}°)`,
       };
     });
@@ -37,7 +36,7 @@ function WindSpeedChart(props) {
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.categoryX = 'time';
     series.dataFields.valueY = 'speed';
-    series.tooltipText = 'Tốc độ: {valueY.value} km/h / Hướng: {deg}';
+    series.tooltipText = 'Tốc độ: {valueY.value} km/h';
 
     let errorBullet = series.bullets.create(am4charts.ErrorBullet);
     errorBullet.isDynamic = true;
@@ -72,6 +71,8 @@ function WindSpeedChart(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 680, height: 450 }}></div>;
+  return (
+    <div id={chartName} style={{ width: DEFAULT_CHART_WIDTH, height: DEFAULT_CHAT_HEIGHT }}></div>
+  );
 }
-export default WindSpeedChart;
+export default WindSpeedChatO;

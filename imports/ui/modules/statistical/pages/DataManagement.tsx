@@ -1,5 +1,4 @@
 import { useSnackbar } from 'notistack';
-import querystring from 'query-string';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Action } from 'redux';
@@ -7,8 +6,9 @@ import { ThunkDispatch } from 'redux-thunk';
 import { dataFake } from '../components/dataTest';
 import { DATA, isEmpty, some } from '/imports/ui/constants';
 import { AppState } from '/imports/ui/redux/reducers';
-import FuzzySearch from 'fuzzy-search';
-const ManagementDataTable = React.lazy(() => import('../components/ManagementDataTable'));
+const ManagementDataTable = React.lazy(
+  () => import('../components/management/ManagementDataTable'),
+);
 
 interface IDataManagementProps {
   position: some;
@@ -29,12 +29,8 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
   });
 
   const fetchData = React.useCallback(
-    async (resultFilter: some) => {
+    async (_resultFilter: some) => {
       try {
-        const searchStr = querystring.stringify({
-          pageOffset: resultFilter.pageOffset,
-          pageSize: resultFilter.pageSize,
-        });
         setLoading(true);
         // const res = await dispatch(
         //   actionsBookingManagement(
@@ -95,7 +91,6 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
   const handleAddData = React.useCallback(
     async (value: some) => {
       try {
-        console.log('add', value);
         localStorage.setItem(DATA, JSON.stringify([...dataList, value]));
         return setDataList([...dataList, value]);
       } catch (error) {}
@@ -109,14 +104,14 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
         localStorage.setItem(
           DATA,
           JSON.stringify(
-            dataList.map((el: some, idx: number) => {
+            dataList.map((el: some, _idx: number) => {
               if (el.id === value.id) return value;
               return el;
             }),
           ),
         );
         return setDataList(
-          dataList.map((el: some, idx: number) => {
+          dataList.map((el: some, _idx: number) => {
             if (el.id === value.id) return value;
             return el;
           }),
@@ -125,10 +120,6 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
     },
     [dataList],
   );
-
-  // const searcher = new FuzzySearch(dataList, ['bookingCode', 'state'], {
-  //   caseSensitive: true,
-  // });
 
   React.useEffect(() => {
     fetchData(filter);
@@ -141,9 +132,9 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
         dataList={dataList?.sort((a: some, b: some) => Number(b.id) - Number(a.id))}
         setFilter={setFilter}
         filter={filter}
-        handleDeleteData={(value) => handleDeleteData(value)}
-        handleAddData={(value) => handleAddData(value)}
-        handleEditData={(value) => handleEditData(value)}
+        handleDeleteData={(value: number) => handleDeleteData(value)}
+        handleAddData={(value: some) => handleAddData(value)}
+        handleEditData={(value: some) => handleEditData(value)}
       />
     </div>
   );

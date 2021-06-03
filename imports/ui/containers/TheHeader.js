@@ -20,7 +20,7 @@ const TheHeader = () => {
     dispatch(setClose(val));
   };
   const toggleSidebarMobile = () => {
-    const val = [false, 'responsive'].includes(c) ? true : 'responsive';
+    const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive';
     dispatch(setClose(val));
   };
   return (

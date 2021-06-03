@@ -241,5 +241,21 @@
   "Ảnh dữ liệu": "Ảnh dữ liệu",
   "Xem trước": "Xem trước",
   "Nhập": "Nhập",
-  "Ngày thu nhận dữ liệu": "Ngày thu nhận dữ liệu"
+  "Ngày thu nhận dữ liệu": "Ngày thu nhận dữ liệu",
+
+  "speed": "Tốc độ",
+  "median": "Trung bình",
+  "max": "Tối đa",
+  "min": "Tối thiểu",
+  "deg": "Hướng",
+  "lat": "Vĩ độ",
+  "lon": "Kinh độ",
+  "dataStat": "Số liệu",
+  "dataDay": "Số liệu ngày",
+  "Ngày thu nhận": "Ngày thu nhận",
+  "chartListDay": "Biểu đồ đánh giá số liệu khí tượng từ 03/12/2017 đến 11/12/2017",
+  "fromDateToDate": "Từ 03/12/2017 đến 11/12/2017",
+  "tableDay": "Bảng thống kê số liệu khí tượng ngày",
+  "chartDay": "Biểu đồ đánh giá số liệu khí tượng ngày",
+  "tableListDay": "Bảng thống kê số liệu khí tượng từ 03/12/2017 đến 11/12/2017"
 }

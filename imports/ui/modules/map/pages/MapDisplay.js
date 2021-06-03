@@ -1,9 +1,10 @@
+import * as ELG from 'esri-leaflet-geocoder';
 import L from 'leaflet';
 import 'leaflet-geotiff';
 import 'leaflet-geotiff/leaflet-geotiff-plotty';
 import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
 import Locate from 'leaflet.locatecontrol';
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment } from 'react';
 import { LayerGroup, LayersControl, Map, TileLayer, ZoomControl } from 'react-leaflet';
 import FullscreenControl from 'react-leaflet-fullscreen';
 import Search from 'react-leaflet-search';
@@ -12,36 +13,36 @@ import HightlightArea from '../components/HightlightArea';
 import Legend from '../components/Legend';
 import TimeDimensionMap from '../components/TimeDimensionMap';
 import VelocityLayer from '../components/VelocityLayer';
-import * as ELG from 'esri-leaflet-geocoder';
-
 import {
-  defaultGeoUrl,
   defaultMapProperty,
   defaultTimeDimensionProperty,
   defaultWindSpeedProperty,
   hereTileUrl,
-  tempLayerUrl,
-  windLayerUrl,
   pressLayerUrl,
   rhLayerUrl,
+  tempLayerUrl,
+  windLayerUrl,
   windUrl,
 } from '../constant';
 import '../css/index.css';
+
 const LeafletMap = (_props) => {
-  const mapRef = useRef(null);
+  const mapRef = React.useRef(null);
   const windSpeedRef = React.useRef();
   const windDirectionRef = React.useRef();
 
-  const [marker, setMarker] = useState({ lat: 0, lng: 0 });
-  const [address, setAddress] = useState('');
-  const [layerName, setLayerName] = useState('');
+  const [marker, setMarker] = React.useState({ lat: 0, lng: 0 });
+  const [address, setAddress] = React.useState('');
+  const [layerName, setLayerName] = React.useState('');
 
-  const [geotifURL, setGeotifURL] = useState(windLayerUrl);
-
-  const [mapR, setMapR] = useState(true);
+  const [geotifURL, setGeotifURL] = React.useState(windLayerUrl);
+  const [mapR, setMapR] = React.useState(true);
   const [progress, setProgress] = React.useState(defaultTimeDimensionProperty.min);
+
   const [isPlay, checkPlay] = React.useState(true);
-  useEffect(() => {
+  const [isBaseMap, checkBaseMap] = React.useState(false);
+
+  React.useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
     setMapR(map.getContainer());
@@ -101,12 +102,18 @@ const LeafletMap = (_props) => {
       console.log('e.name', e.name);
       if (e.name === 'Gió') {
         setGeotifURL(windLayerUrl);
+        checkBaseMap(false);
       } else if (e.name === 'Nhiệt độ') {
         setGeotifURL(tempLayerUrl);
+        checkBaseMap(false);
       } else if (e.name === 'Áp suất khí quyển(2m)') {
         setGeotifURL(pressLayerUrl);
+        checkBaseMap(false);
       } else if (e.name === 'Độ ẩm') {
         setGeotifURL(rhLayerUrl);
+        checkBaseMap(false);
+      } else {
+        checkBaseMap(true);
       }
     });
   }, [geotifURL]);
@@ -160,6 +167,7 @@ const LeafletMap = (_props) => {
       clearInterval(timer);
     };
   }, [isPlay, progress, geotifURL]);
+
   return (
     <Fragment>
       <Map
@@ -191,109 +199,29 @@ const LeafletMap = (_props) => {
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               <VelocityLayer url={windUrl}></VelocityLayer>
-              {/* <MapBoxLayer
-                accessToken={MAPBOX_ACCESS_TOKEN}
-                style="mapbox://styles/mapbox/streets-v9"
-              /> */}
-              {/* <PlottyGeotiffLayer
-                layerRef={mapRef}
-                url={tiffUrl}
-                options={defaultWindSpeedProperty.options}
-              /> */}
-              {/* <VectorArrowsGeotiffLayer
-                layerRef={windDirectionRef}
-                url={defaultWindDirectionProperty.url}
-                options={defaultWindDirectionProperty.options}
-              /> */}
-              {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="Nhiệt độ">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               <VelocityLayer url={windUrl}></VelocityLayer>
-              {/* <MapBoxLayer
-                accessToken={MAPBOX_ACCESS_TOKEN}
-                style="mapbox://styles/mapbox/streets-v9"
-              /> */}
-              {/* <PlottyGeotiffLayer
-                layerRef={mapRef}
-                url={tiffUrl}
-                options={defaultWindSpeedProperty.options}
-              /> */}
-
-              {/* <VectorArrowsGeotiffLayer
-                layerRef={windDirectionRef}
-                url={defaultWindDirectionProperty.url}
-                options={defaultWindDirectionProperty.options}
-              /> */}
-              {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
-          {/* <LayersControl.BaseLayer name="Pm2.5">
-            <LayerGroup>
-              <TileLayer url={hereTileUrl('reduced.day')} />
-              <VelocityLayer url={windUrl}></VelocityLayer>
-              <MapBoxLayer
-                accessToken={MAPBOX_ACCESS_TOKEN}
-                style="mapbox://styles/mapbox/streets-v9"
-              />
-              <PlottyGeotiffLayer
-                layerRef={mapRef}
-                url={tiffUrl}
-                options={defaultWindSpeedProperty.options}
-              />
-
-              <VectorArrowsGeotiffLayer
-                layerRef={windDirectionRef}
-                url={defaultWindDirectionProperty.url}
-                options={defaultWindDirectionProperty.options}
-              />
-              <TileLayer url={openWeatherTemperatureURL(appToken)} />
-            </LayerGroup>
-          </LayersControl.BaseLayer> */}
           <LayersControl.BaseLayer name="Áp suất khí quyển(2m)">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               <VelocityLayer url={windUrl}></VelocityLayer>
-              {/* <MapBoxLayer
-                accessToken={MAPBOX_ACCESS_TOKEN}
-                style="mapbox://styles/mapbox/streets-v9"
-              /> */}
-              {/* <PlottyGeotiffLayer
-                layerRef={mapRef}
-                url={tiffUrl}
-                options={defaultWindSpeedProperty.options}
-              /> */}
-
-              {/* <VectorArrowsGeotiffLayer
-                layerRef={windDirectionRef}
-                url={defaultWindDirectionProperty.url}
-                options={defaultWindDirectionProperty.options}
-              /> */}
-              {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
             </LayerGroup>
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="Độ ẩm">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
               <VelocityLayer url={windUrl}></VelocityLayer>
-              {/* <MapBoxLayer
-                accessToken={MAPBOX_ACCESS_TOKEN}
-                style="mapbox://styles/mapbox/streets-v9"
-              /> */}
-              {/* <PlottyGeotiffLayer
-                layerRef={mapRef}
-                url={tiffUrl}
-                options={defaultWindSpeedProperty.options}
-              /> */}
-
-              {/* <VectorArrowsGeotiffLayer
-                layerRef={windDirectionRef}
-                url={defaultWindDirectionProperty.url}
-                options={defaultWindDirectionProperty.options}
-              /> */}
-              {/* <TileLayer url={openWeatherTemperatureURL(appToken)} /> */}
+            </LayerGroup>
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Bản đồ nền">
+            <LayerGroup>
+              <TileLayer url={hereTileUrl('reduced.day')} />
             </LayerGroup>
           </LayersControl.BaseLayer>
         </LayersControl>

@@ -3,12 +3,11 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import FastRewindIcon from '@material-ui/icons/FastRewind';
+import PauseIcon from '@material-ui/icons/Pause';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import React from 'react';
-import { MapControl } from 'react-leaflet';
-import '../css/timeDimension.css';
-import PauseIcon from '@material-ui/icons/Pause';
 import { defaultTimeDimensionProperty } from '../constant';
+import '../css/timeDimension.css';
 
 const TimeDimensionMap = (props) => {
   const { progress, isPlay, checkPlay, setProgress, geotifURL, setGeotifURL } = props;

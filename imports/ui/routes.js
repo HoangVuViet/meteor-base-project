@@ -1,5 +1,6 @@
 import React from 'react';
 import { ROUTES } from './configs/routes';
+
 const ArcMapLandsat = React.lazy(() => import('./modules/map/pages/ArcMapLandsat'));
 const ArcMap = React.lazy(() => import('./modules/map/pages/MapDisplay.js'));
 const Statistical = React.lazy(() => import('./modules/statistical/pages/Statistical'));

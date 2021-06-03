@@ -1,4 +1,4 @@
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
@@ -20,38 +20,40 @@ const AntTabs = withStyles({
   },
 })(Tabs);
 
-const AntTab = withStyles((theme) => ({
-  root: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
+const AntTab = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      textTransform: 'none',
+      minWidth: 72,
+      fontWeight: theme.typography.fontWeightRegular,
+      marginRight: theme.spacing(4),
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      '&:hover': {
+        color: '#40a9ff',
+        opacity: 1,
+      },
+      '&$selected': {
+        color: '#1890ff',
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+      '&:focus': {
+        color: '#40a9ff',
+      },
     },
-    '&$selected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:focus': {
-      color: '#40a9ff',
-    },
-  },
-  selected: {},
-}))((props) => <Tab disableRipple {...props} />);
+    selected: {},
+  }),
+)((props: any) => <Tab disableRipple {...props} />);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,16 +72,18 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   data: some[];
 }
-const DashBoardTab: React.FunctionComponent<Props> = (props) => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const theme = useTheme();
 
+const DashBoardTab: React.FunctionComponent<Props> = (props) => {
   const { data } = props;
+
+  const classes = useStyles();
+
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
   };
+
   return (
     <div className={classes.root}>
       <div className={classes.demo1}>
@@ -90,23 +94,18 @@ const DashBoardTab: React.FunctionComponent<Props> = (props) => {
           <AntTab label="Áp suất khí quyển(2m)" />
         </AntTabs>
         <Typography className={classes.padding} />
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChange}
-          style={{ marginTop: 0 }}
-        >
-          <TabContext value={value.toString()} index={0} style={{ width: '100%' }}>
-            <WindSpeedChart chartName={'chartDiv1'} data={data} />
+        <SwipeableViews index={value} onChangeIndex={handleChange} style={{ marginTop: 0 }}>
+          <TabContext value={value.toString()}>
+            <WindSpeedChart chartName="chartDiv1" data={data} />
           </TabContext>
-          <TabContext value={value.toString()} index={1} style={{ width: '100%' }}>
-            <TempChart chartName={'chartDiv2'} data={data} />
+          <TabContext value={value.toString()}>
+            <TempChart chartName="chartDiv2" data={data} />
           </TabContext>
-          <TabContext value={value.toString()} index={2} style={{ width: '100%' }}>
-            <HumDChart chartName={'chartDiv3'} data={data} />
+          <TabContext value={value.toString()}>
+            <HumDChart chartName="chartDiv3" data={data} />
           </TabContext>
-          <TabContext value={value.toString()} index={3} style={{ width: '100%' }}>
-            <PressSChart chartName={'chartDiv4'} data={data} />
+          <TabContext value={value.toString()}>
+            <PressSChart chartName="chartDiv4" data={data} />
           </TabContext>
         </SwipeableViews>
       </div>

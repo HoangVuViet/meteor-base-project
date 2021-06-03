@@ -1,8 +1,8 @@
-import React, { useRef, useLayoutEffect } from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4core from '@amcharts/amcharts4/core';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import { getDirection } from '../utils';
+import React, { useLayoutEffect, useRef } from 'react';
+import { DEFAULT_CHART_WIDTH, DEFAULT_CHAT_HEIGHT } from '../../utils';
 
 am4core.useTheme(am4themes_animated);
 
@@ -72,6 +72,8 @@ function PressSChartO(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 680, height: 550 }}></div>;
+  return (
+    <div id={chartName} style={{ width: DEFAULT_CHART_WIDTH, height: DEFAULT_CHAT_HEIGHT }}></div>
+  );
 }
 export default PressSChartO;

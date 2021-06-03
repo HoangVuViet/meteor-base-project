@@ -19,8 +19,8 @@ export const defaultMapProperty = {
   scrollWheelZoom: true,
   zoomControl: false,
   maxZoom: 7,
-  minZoom: 4,
-  style: { height: 800, width: '100%' }, //660 || 880
+  minZoom: 6,
+  style: { height: 675, width: '100%' }, //660 || 800
 };
 
 export const defaultTimeDimensionProperty = {
@@ -208,7 +208,7 @@ export const getColor = (d) => {
 export const style = (feature) => {
   return {
     weight: 1,
-    opacity: 0.1,
+    opacity: 0.2,
     // color: 'white',
     dashArray: '3',
     fillOpacity: 0.1,

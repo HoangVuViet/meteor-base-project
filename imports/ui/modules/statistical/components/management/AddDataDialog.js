@@ -1,7 +1,3 @@
-// interface IAddDataDialogProps {
-//   rowData: some;
-//   values: some;
-// }
 import DateFnsUtils from '@date-io/date-fns';
 import { Button, Grid, Paper, Typography } from '@material-ui/core';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -14,10 +10,11 @@ import moment from 'moment';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
-import { Col } from '../../common/components/elements';
-import { FieldSelectContent, FieldTextContent } from '../../common/components/FieldContent';
-import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../map/constant';
-import { filterList } from '../utils';
+import { Col } from '../../../common/components/elements';
+import { FieldSelectContent, FieldTextContent } from '../../../common/components/FieldContent';
+import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../../map/constant';
+import { filterList } from '../../utils';
+
 import { isEmpty } from '/imports/ui/constants';
 import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 

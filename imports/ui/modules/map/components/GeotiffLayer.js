@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import { withLeaflet, MapLayer } from 'react-leaflet';
 import L from 'leaflet';
-
 import 'leaflet-geotiff';
 import 'leaflet-geotiff/leaflet-geotiff-plotty';
 import 'leaflet-geotiff/leaflet-geotiff-vector-arrows';
+import React from 'react';
+import { MapLayer, withLeaflet } from 'react-leaflet';
 
 class GeotiffLayer extends MapLayer {
   createLeafletElement(props) {

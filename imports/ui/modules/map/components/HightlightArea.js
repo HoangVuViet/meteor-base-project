@@ -8,7 +8,6 @@ const HightlightArea = () => {
   const { map } = useLeaflet();
 
   useEffect(() => {
-    // control that shows state info on hover
     const info = L.control();
 
     info.onAdd = () => {

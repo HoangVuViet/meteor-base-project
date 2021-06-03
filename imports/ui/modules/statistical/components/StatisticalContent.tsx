@@ -1,6 +1,6 @@
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +10,6 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Concentration from './Concentration';
 import Dashboard from './Dashboard';
-import Table from './ManagementDataTable';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -55,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function FullWidthTabs() {
   const classes = useStyles();
-  const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (_event: any, newValue: number) => {
@@ -81,17 +79,12 @@ export default function FullWidthTabs() {
           <Tab label="So sánh" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-      <SwipeableViews
-        // axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-        style={{ marginTop: 0 }}
-      >
-        <TabContext value={value.toString()} index={0} dir={theme.direction}>
-          <Dashboard></Dashboard>
+      <SwipeableViews index={value} onChangeIndex={handleChangeIndex} style={{ marginTop: 0 }}>
+        <TabContext value={value.toString()}>
+          <Dashboard />
         </TabContext>
-        <TabContext value={value.toString()} index={1} dir={theme.direction}>
-          <Concentration></Concentration>
+        <TabContext value={value.toString()}>
+          <Concentration />
         </TabContext>
       </SwipeableViews>
     </div>

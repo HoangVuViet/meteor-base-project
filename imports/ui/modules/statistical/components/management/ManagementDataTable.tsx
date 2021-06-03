@@ -23,10 +23,10 @@ import moment from 'moment';
 import { useSnackbar } from 'notistack';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import ConfirmDialog from '../../common/components/ConfirmDialog';
-import { Col, Row, snackbarSetting } from '../../common/components/elements';
-import LoadingButton from '../../common/components/LoadingButton';
-import { filterList } from '../utils';
+import ConfirmDialog from '../../../common/components/ConfirmDialog';
+import { Col, Row, snackbarSetting } from '../../../common/components/elements';
+import LoadingButton from '../../../common/components/LoadingButton';
+import { filterList } from '../../utils';
 import AddDataDialog from './AddDataDialog';
 import EditDataDialog from './EditDataDialog';
 import { GREY } from '/imports/ui/configs/colors';
@@ -58,8 +58,8 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
     return [
       {
         field: 'created',
-        headerName: 'Ngày thêm mới dữ liệu',
-        width: 250,
+        headerName: 'Ngày thêm mới',
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -78,7 +78,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
       {
         field: 'bookingCode',
         headerName: intl.formatMessage({ id: 'orderCode' }),
-        width: 220,
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -94,11 +94,11 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
       {
         field: 'imageP',
         headerName: intl.formatMessage({ id: 'Định dạng file ảnh' }),
-        width: 220,
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
-        renderCell: (params: GridValueGetterParams | some) => (
+        renderCell: (_params: GridValueGetterParams | some) => (
           <Col>
             <Typography variant="body2">geotiff</Typography>
           </Col>
@@ -107,7 +107,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
       {
         field: 'dataType',
         headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
-        width: 220,
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -122,8 +122,8 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
       },
       {
         field: 'collectedDate',
-        headerName: intl.formatMessage({ id: 'Ngày thu nhận dữ liệu' }),
-        width: 250,
+        headerName: intl.formatMessage({ id: 'Ngày thu nhận' }),
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -138,7 +138,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
       },
       {
         field: 'Chỉnh Sửa / Xóa',
-        width: 220,
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -173,9 +173,8 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
     ];
   }, []);
 
-  console.log('rowData', rowData);
   return (
-    <React.Fragment>
+    <div style={{ width: '80%' }}>
       <Row
         style={{
           justifyContent: 'space-between',
@@ -195,7 +194,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
           variant="contained"
           color="secondary"
           style={{
-            width: 220,
+            width: 200,
             height: 36,
             whiteSpace: 'nowrap',
           }}
@@ -411,7 +410,7 @@ const Table: React.FunctionComponent<ITableProps> = (props) => {
           </Typography>
         </div>
       </ConfirmDialog>
-    </React.Fragment>
+    </div>
   );
 };
 

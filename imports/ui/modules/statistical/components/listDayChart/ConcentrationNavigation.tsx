@@ -1,4 +1,4 @@
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
@@ -20,38 +20,40 @@ const AntTabs = withStyles({
   },
 })(Tabs);
 
-const AntTab = withStyles((theme) => ({
-  root: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
+const AntTab = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      textTransform: 'none',
+      minWidth: 72,
+      fontWeight: theme.typography.fontWeightRegular,
+      marginRight: theme.spacing(4),
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      '&:hover': {
+        color: '#40a9ff',
+        opacity: 1,
+      },
+      '&$selected': {
+        color: '#1890ff',
+        fontWeight: theme.typography.fontWeightMedium,
+      },
+      '&:focus': {
+        color: '#40a9ff',
+      },
     },
-    '&$selected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:focus': {
-      color: '#40a9ff',
-    },
-  },
-  selected: {},
-}))((props) => <Tab disableRipple {...props} />);
+    selected: {},
+  }),
+)((props: any) => <Tab disableRipple {...props} />);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +79,6 @@ export const ConcentrationNavigation: React.FunctionComponent<Props> = (props) =
   const classes = useStyles();
 
   const [value, setValue] = React.useState(0);
-  const theme = useTheme();
 
   const handleChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setValue(newValue);
@@ -92,23 +93,18 @@ export const ConcentrationNavigation: React.FunctionComponent<Props> = (props) =
           <AntTab label="Áp suất khí quyển(2m)" />
         </AntTabs>
         <Typography className={classes.padding} />
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={handleChange}
-          style={{ marginTop: 0 }}
-        >
-          <TabContext value={value.toString()} index={0} style={{ width: '100%' }}>
-            <WindSpeedChatO chartName={'chartDivv1'} data={data} />
+        <SwipeableViews index={value} onChangeIndex={handleChange} style={{ marginTop: 0 }}>
+          <TabContext value={value.toString()}>
+            <WindSpeedChatO chartName="chartDivv1" data={data} />
           </TabContext>
-          <TabContext value={value.toString()} index={1} style={{ width: '100%' }}>
-            <TempChartO chartName={'chartDivv2'} data={data} />
+          <TabContext value={value.toString()}>
+            <TempChartO chartName="chartDivv2" data={data} />
           </TabContext>
-          <TabContext value={value.toString()} index={2} style={{ width: '100%' }}>
-            <HumDChartO chartName={'chartDivv3'} data={data} />
+          <TabContext value={value.toString()}>
+            <HumDChartO chartName="chartDivv3" data={data} />
           </TabContext>
-          <TabContext value={value.toString()} index={3} style={{ width: '100%' }}>
-            <PressSChartO chartName={'chartDivv4'} data={data} />
+          <TabContext value={value.toString()}>
+            <PressSChartO chartName="chartDivv4" data={data} />
           </TabContext>
         </SwipeableViews>
       </div>

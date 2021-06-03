@@ -1,17 +1,8 @@
 import { Button, makeStyles, SwipeableDrawer, Typography } from '@material-ui/core';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Circle, LayerGroup, Marker, Popup, useLeaflet } from 'react-leaflet';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import clsx from 'clsx';
-import Statistical from '../../statistical/pages/Statistical';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import React, { useCallback, useMemo, useRef } from 'react';
+import { Marker, Popup, useLeaflet } from 'react-leaflet';
 import { Col, Row } from '../../common/components/elements';
+import Statistical from '../../statistical/pages/Statistical';
 
 const useStyles = makeStyles({
   list: {
@@ -23,18 +14,19 @@ const useStyles = makeStyles({
 });
 
 const DragMarker = (props) => {
-  const [draggable, setDraggable] = useState(false);
-  const { map } = useLeaflet();
   const anchor = 'right';
-  const markerRef = useRef(null);
 
+  const { map } = useLeaflet();
+  const markerRef = useRef(null);
   const classes = useStyles();
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+  const [draggable, setDraggable] = React.useState(false);
 
   const icon = L.icon({
     iconSize: [25, 41],
@@ -58,6 +50,10 @@ const DragMarker = (props) => {
     props.checkPlay(true);
     setState({ ...state, [anchor]: open });
   };
+
+  const toggleDraggable = useCallback(() => {
+    setDraggable((d) => !d);
+  }, []);
 
   const eventHandlers = useMemo(
     () => ({
@@ -89,9 +85,6 @@ const DragMarker = (props) => {
     [],
   );
 
-  const toggleDraggable = useCallback(() => {
-    setDraggable((d) => !d);
-  }, []);
   return (
     <>
       <Marker
@@ -109,12 +102,6 @@ const DragMarker = (props) => {
         onClick={toggleDraggable}
         onDragEnd={toggleDraggable}
         onDragStart={toggleDraggable}
-        // onDoubleClick={() => {
-        //   props.setMarker({ lat: 0, lng: 0 });
-        // }}
-        // onPopupClose={() => {
-        //   props.setMarker({ lat: 0, lng: 0 });
-        // }}
         {...props}
       >
         <Popup>
@@ -152,12 +139,11 @@ const DragMarker = (props) => {
         onClose={toggleDrawer(anchor, false)}
         onOpen={toggleDrawer(anchor, true)}
       >
-        <div style={{ width: 620, maxHeight: 800 }}>
+        <div style={{ width: 700 }}>
           <Statistical
             progress={props.progress}
             position={props.markerPosition}
             address={props.address}
-            // abc xyz
           />
         </div>
       </SwipeableDrawer>

@@ -13,13 +13,13 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import moment from 'moment';
 import querystring from 'query-string';
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { shallowEqual, useSelector } from 'react-redux';
 import BootstrapTooltip from '../../common/components/BootstrapTooltip';
 import { Col, Row } from '../../common/components/elements';
+import TableCustom, { Column } from '../../common/components/TableCustom';
 import { defaultGeoUrl, defaultTimeDimensionProperty } from '../../map/constant';
 import { getDirection } from '../utils';
-import DashBoardTab from './DashBoardTab';
 import {
   appToken,
   convertTime,
@@ -36,14 +36,35 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
   const { addressP } = useSelector((state: some) => state.accommodation, shallowEqual);
 
   const [data, setData] = React.useState<some>({});
+  const [dataList, setListData] = React.useState<some>({});
   const [result, setResult] = React.useState<some>({});
-  console.log(data);
+
+  const intl = useIntl();
+
   const CustomToolbar = () => {
     return (
       <GridToolbarContainer>
         <GridToolbarExport />
       </GridToolbarContainer>
     );
+  };
+
+  const fetchListData = (lat: string, lon: string, start: any) => {
+    const searchStr = querystring.stringify({
+      lat: lat,
+      lon: lon,
+      appid: appToken,
+      start: start,
+      end: start + 604800,
+      cnt: 1,
+      type: 'hour',
+    });
+
+    fetch(`${URL_CONFIG}/data/2.5/history/city?${searchStr}`, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((dataR) => setListData(dataR));
   };
 
   const fetchData = (lat: string, lon: string, start: any) => {
@@ -63,11 +84,238 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       .then((dataR) => setData(dataR));
   };
 
+  const columnsList = React.useMemo(() => {
+    const temp: Column[] = [
+      {
+        title: 'Thời điểm (h)',
+        variant: 'body2',
+        style: { alignItems: 'center' },
+        render: (record: some, _index: number) => (
+          <Col>
+            <Typography variant="caption">
+              <span>{record?.dtg}</span>
+            </Typography>
+          </Col>
+        ),
+      },
+      {
+        title: 'Gió',
+        variant: 'body2',
+        render: (record: some, _index: number) => (
+          <Col>
+            <Typography variant="caption">
+              <span>
+                {intl.formatMessage({ id: 'speed' })}: {(record?.wind?.speed * 3.6).toFixed(2)}
+                &nbsp;km/h
+              </span>
+            </Typography>
+          </Col>
+        ),
+      },
+      {
+        title: 'Nhiệt độ',
+        dataIndex: 'temp',
+        variant: 'body2',
+        render: (record: some, _index: number) => (
+          <Col>
+            <Typography variant="caption">
+              <span>
+                {intl.formatMessage({ id: 'speed' })}:&nbsp;{(record?.main?.temp - 273).toFixed(2)}
+                &nbsp;°C
+              </span>
+            </Typography>
+            <Typography variant="caption">
+              <span>
+                {intl.formatMessage({ id: 'min' })}:&nbsp;
+                {(record?.main?.temp_min - 273).toFixed(2)}&nbsp;°C
+              </span>
+            </Typography>
+            <Typography variant="caption">
+              <span>
+                {intl.formatMessage({ id: 'max' })}:&nbsp;
+                {(record?.main?.temp_max - 273).toFixed(2)}&nbsp;°C
+              </span>
+            </Typography>
+          </Col>
+        ),
+      },
+      {
+        title: 'Độ ẩm',
+        dataIndex: 'humidity ',
+        variant: 'body2',
+        render: (record: some, _index: number) => (
+          <Col style={{ alignItems: 'center', marginRight: 20 }}>
+            <Typography variant="caption">
+              <span>{record?.main?.humidity}&nbsp;%</span>
+            </Typography>
+          </Col>
+        ),
+      },
+      {
+        title: 'Áp suất',
+        dataIndex: 'email',
+        variant: 'body2',
+        render: (record: some, _index: number) => (
+          <Col style={{ alignItems: 'center', marginRight: 20 }}>
+            <Typography variant="caption">
+              <span>{record?.main?.pressure}&nbsp;hPa</span>
+            </Typography>
+          </Col>
+        ),
+      },
+    ];
+    return temp as Column[];
+    // eslint-disable-next-line
+  }, []);
+  const columns1: GridColDef[] = React.useMemo(() => {
+    return [
+      {
+        field: 'id',
+        headerName: 'Thời điểm',
+        width: 130,
+        align: 'left',
+        headerAlign: 'left',
+        type: 'number',
+        valueGetter: (params: GridValueGetterParams) => {
+          return params?.row?.dtg;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col style={{ alignItems: 'center', marginLeft: 30 }}>
+              <Typography variant="caption">
+                <span>{params?.row?.dtg}</span>
+              </Typography>
+            </Col>
+          );
+        },
+      },
+      {
+        field: 'wind',
+        headerName: 'Gió',
+        width: 160,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${(params.row.wind.speed * 3.6).toFixed(2)} km/h`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${(params.row.wind.speed * 3.6).toFixed(2)} km/h`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col>
+              <Typography variant="caption">
+                <span>
+                  {intl.formatMessage({ id: 'speed' })}: {(params.row.wind.speed * 3.6).toFixed(2)}
+                  &nbsp;km/h
+                </span>
+              </Typography>
+              <Typography variant="caption">
+                <span>
+                  {intl.formatMessage({ id: 'deg' })}: {getDirection(params.row.wind.deg)}&nbsp;(
+                  {params.row.wind.deg}°)
+                </span>
+              </Typography>
+            </Col>
+          );
+        },
+      },
+      {
+        field: 'temp',
+        headerName: 'Nhiệt độ',
+        width: 120,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${(params.row?.main?.temp - 273).toFixed(2)} C`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${(params.row?.main?.temp - 273).toFixed(2)} C`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Row>
+              <Typography variant="caption">
+                <span>{(params.row?.main?.temp - 273).toFixed(2)}&nbsp;°C</span>
+              </Typography>
+              <BootstrapTooltip
+                title={
+                  <Typography variant="body2" style={{ padding: '12px 12px' }}>
+                    <FormattedMessage id="Cảm nhận thực tế:" />
+                    &nbsp;
+                    <span>{(params.row?.main?.feels_like - 273).toFixed(2)}&nbsp;°C</span>
+                  </Typography>
+                }
+                placement="top"
+              >
+                <IconButton style={{ padding: 4, marginLeft: 4 }}>
+                  <ErrorOutlineIcon style={{ padding: 1, color: '#1976d2' }} />
+                </IconButton>
+              </BootstrapTooltip>
+            </Row>
+          );
+        },
+      },
+      {
+        field: 'ids',
+        headerName: 'Độ ẩm',
+        width: 100,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return params.row.main.humidity;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${params.row.main.humidity} %`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col style={{ alignItems: 'center', marginRight: 20 }}>
+              <Typography variant="caption">
+                <span>{params.row.main.humidity}&nbsp;%</span>
+              </Typography>
+            </Col>
+          );
+        },
+      },
+      {
+        field: 'pressure',
+        headerName: 'Áp suất',
+        width: 180,
+        headerClassName: 'super-app-theme--header',
+        align: 'left',
+        headerAlign: 'left',
+        type: 'string',
+        valueGetter: (params: GridValueGetterParams) => {
+          return `${params.row?.main?.pressure} hPa`;
+        },
+        valueFormatter: (params: GridValueFormatterParams) => {
+          return `${params.row?.main?.pressure} hPa`;
+        },
+        renderCell: (params: GridValueGetterParams | some) => {
+          return (
+            <Col style={{ alignItems: 'center', marginRight: 20 }}>
+              <Typography variant="caption">
+                <span>{params.row?.main?.pressure}&nbsp;hPa</span>
+              </Typography>
+            </Col>
+          );
+        },
+      },
+    ];
+  }, []);
+
   const columns: GridColDef[] = React.useMemo(() => {
     return [
       {
         field: 'id',
-        headerName: 'Thời điểm (h)',
+        headerName: 'Thời điểm',
         width: 130,
         align: 'left',
         headerAlign: 'left',
@@ -103,11 +351,14 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
           return (
             <Col>
               <Typography variant="caption">
-                <span>Tốc độ: {(params.row.wind.speed * 3.6).toFixed(2)}&nbsp;km/h</span>
+                <span>
+                  {intl.formatMessage({ id: 'speed' })}: {(params.row.wind.speed * 3.6).toFixed(2)}
+                  &nbsp;km/h
+                </span>
               </Typography>
               <Typography variant="caption">
                 <span>
-                  Hướng: {getDirection(params.row.wind.deg)}&nbsp;(
+                  {intl.formatMessage({ id: 'deg' })}: {getDirection(params.row.wind.deg)}&nbsp;(
                   {params.row.wind.deg}°)
                 </span>
               </Typography>
@@ -232,13 +483,35 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       );
     }
   }, []);
-  console.log(
-    data?.list
-      ?.filter((_el: some, idx: number) => idx % 3 === 1)
-      .map((elm: some, idx: number) => {
-        return { ...elm, id: idx };
-      }) as GridRowData[],
-  );
+
+  React.useEffect(() => {
+    if (!isEmpty(addressP?.position)) {
+      setResult({
+        ...addressP,
+        position: {
+          lat: addressP.position[0],
+          long: addressP.position[1],
+        },
+      });
+      fetchListData(
+        addressP.position[0],
+        addressP.position[1],
+        new Date(
+          moment(
+            defaultGeoUrl.time[
+              addressP.progress !== 0
+                ? addressP.progress / defaultTimeDimensionProperty.step - 1
+                : 0
+            ],
+          )
+            .format(DATE_FORMAT_NEW)
+            .replace(START_TIME, END_TIME),
+        ).getTime() /
+          1000 +
+          convertTime,
+      );
+    }
+  }, []);
   return (
     <Col>
       <Row style={{ display: 'flex', marginBottom: 5, marginTop: 20 }}>
@@ -249,13 +522,15 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       </Row>
       <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 5 }}>
         <span>
-          Vĩ độ:&nbsp;{!isEmpty(result?.position) ? result.position.lat : '-'} / Kinh độ:&nbsp;
+          {intl.formatMessage({ id: 'lat' })}:&nbsp;
+          {!isEmpty(result?.position) ? result.position.lat : '-'} /{' '}
+          {intl.formatMessage({ id: 'lon' })}:&nbsp;
           {!isEmpty(result?.position) ? result.position.long : '-'}
         </span>
       </Typography>
       <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 10 }}>
         <span>
-          Số liệu ngày:&nbsp;
+          {intl.formatMessage({ id: 'dataDay' })}:&nbsp;
           {
             defaultGeoUrl.time[
               addressP.progress !== 0
@@ -269,7 +544,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
         <>
           <Divider style={{ margin: 8, width: '100%', height: 2 }}></Divider>
           <Typography variant="subtitle1" style={{ margin: '10px auto 5px' }}>
-            Bảng thống kê số liệu khí tượng ngày&nbsp;
+            {intl.formatMessage({ id: 'tableDay' })}&nbsp;
             {
               defaultGeoUrl.time[
                 addressP.progress !== 0
@@ -291,25 +566,55 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
               pageSize={8}
               hideFooter={true}
               rowHeight={63}
-              // checkboxSelection
               disableSelectionOnClick
               components={{
                 Toolbar: CustomToolbar,
               }}
             />
           </div>
-          <Divider style={{ margin: '12px 0px 8px', width: '100%', height: 2 }}></Divider>
+          <Divider style={{ margin: '12px 0px 8px', width: '100%', height: 2 }} />
           <Typography variant="subtitle1" style={{ margin: '10px auto 5px' }}>
-            Biểu đồ đánh giá số liệu khí tượng ngày&nbsp;
-            {
-              defaultGeoUrl.time[
-                addressP.progress !== 0
-                  ? addressP.progress / defaultTimeDimensionProperty.step - 1
-                  : 0
-              ]
-            }
+            {intl.formatMessage({ id: 'tableListDay' })}
           </Typography>
-          <DashBoardTab data={data?.list?.filter((_el: some, idx: number) => idx % 3 === 1)} />
+          <TableCustom
+            style={{ borderRadius: 8, boxShadow: 'none', marginBottom: 5 }}
+            dataSource={
+              dataList?.list
+                ?.filter((_el: some, idx: number) => idx % 10 === 0)
+                .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
+                .map((elm: some, idx: number) => {
+                  return {
+                    ...elm,
+                    dtg: defaultGeoUrl.time[idx],
+                  };
+                }) || []
+            }
+            columns={columnsList}
+            noColumnIndex
+            loading={false}
+          />
+          <DataGrid
+            rows={
+              (dataList?.list
+                ?.filter((_el: some, idx: number) => idx % 10 === 0)
+                .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
+                .map((elm: some, idx: number) => {
+                  return {
+                    ...elm,
+                    dtg: defaultGeoUrl.time[idx],
+                    id: idx,
+                  };
+                }) || []) as GridRowData[]
+            }
+            columns={columns1}
+            pageSize={8}
+            hideFooter={true}
+            rowHeight={63}
+            disableSelectionOnClick
+            components={{
+              Toolbar: CustomToolbar,
+            }}
+          />
         </>
       ) : (
         <CircularProgress color="secondary" style={{ margin: '150px auto' }} />

@@ -16,6 +16,7 @@ import CIcon from '@coreui/icons-react';
 
 // sidebar nav config
 import navigation from './_nav';
+import { setClose } from '../redux/initReducer';
 
 const TheSidebar = () => {
   const dispatch = useDispatch();

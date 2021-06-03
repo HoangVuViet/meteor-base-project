@@ -1,12 +1,12 @@
-import React, { useRef, useLayoutEffect } from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import * as am4core from '@amcharts/amcharts4/core';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import { getDirection } from '../utils';
+import React, { useLayoutEffect, useRef } from 'react';
+import { DEFAULT_CHART_WIDTH, DEFAULT_CHAT_HEIGHT } from '../../utils';
 
 am4core.useTheme(am4themes_animated);
 
-function HumDChart(props) {
+function TempChart(props) {
   const { chartName, data } = props;
   const chart = useRef(null);
 
@@ -17,7 +17,7 @@ function HumDChart(props) {
 
     chart.data = data?.map((el, idx) => {
       return {
-        pressS: el?.main?.humidity,
+        pressS: (el?.main?.temp - 273).toFixed(2),
         time: `${idx * 3 + 1}h`,
         feelsLike: (el?.main?.feels_like - 273).toFixed(2),
       };
@@ -32,12 +32,12 @@ function HumDChart(props) {
     categoryAxis.title.text = 'Thời điểm trong ngày (h)';
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.title.text = 'Độ ẩm tương đối (%)';
+    valueAxis.title.text = 'Nhiệt độ (°C)';
 
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.categoryX = 'time';
     series.dataFields.valueY = 'pressS';
-    series.tooltipText = 'Độ ẩm tương đối: {valueY.value} %';
+    series.tooltipText = 'Nhiệt độ: {valueY.value} °C / Cảm nhận thực tế: {feelsLike} °C';
 
     let errorBullet = series.bullets.create(am4charts.ErrorBullet);
     errorBullet.isDynamic = true;
@@ -72,6 +72,8 @@ function HumDChart(props) {
     };
   }, []);
 
-  return <div id={chartName} style={{ width: 680, height: 450 }}></div>;
+  return (
+    <div id={chartName} style={{ width: DEFAULT_CHART_WIDTH, height: DEFAULT_CHAT_HEIGHT }}></div>
+  );
 }
-export default HumDChart;
+export default TempChart;

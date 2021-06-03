@@ -1,12 +1,14 @@
 import L from 'leaflet';
-import { useEffect } from 'react';
+import React from 'react';
 import { useLeaflet } from 'react-leaflet';
 import { getLegend } from '../constant';
+
 const Legend = (props) => {
-  const { map } = useLeaflet();
   const { layerName } = props;
 
-  useEffect(() => {
+  const { map } = useLeaflet();
+
+  React.useEffect(() => {
     const legendWindSpeed = L.control({ position: 'bottomright' });
     legendWindSpeed.onAdd = () => {
       const div = L.DomUtil.create('div');
@@ -65,10 +67,10 @@ const Legend = (props) => {
         map.removeControl(legendpm25);
         legendTemp.addTo(map);
       } else {
-        map.removeControl(legendTemp);
-        map.removeControl(legendWindSpeed);
         map.removeControl(legendAtm);
-        legendpm25.addTo(map);
+        map.removeControl(legendWindSpeed);
+        map.removeControl(legendpm25);
+        map.removeControl(legendTemp);
       }
     });
   }, []);

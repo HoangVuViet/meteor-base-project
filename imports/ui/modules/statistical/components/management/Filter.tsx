@@ -4,11 +4,10 @@ import IconSearch from '@material-ui/icons/Search';
 import { useFormikContext } from 'formik';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { stationList } from '../../chart/utils';
-import { Row } from '../../common/components/elements';
-import { FieldSelectContent, FieldTextContent } from '../../common/components/FieldContent';
-import LoadingButton from '../../common/components/LoadingButton';
-import { filterList } from '../utils';
+import { Row } from '../../../common/components/elements';
+import { FieldSelectContent, FieldTextContent } from '../../../common/components/FieldContent';
+import LoadingButton from '../../../common/components/LoadingButton';
+import { filterList } from '../../utils';
 import { some } from '/imports/ui/constants';
 
 interface IFilterProps {
