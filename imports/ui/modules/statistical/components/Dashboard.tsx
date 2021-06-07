@@ -17,7 +17,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { shallowEqual, useSelector } from 'react-redux';
 import BootstrapTooltip from '../../common/components/BootstrapTooltip';
 import { Col, Row } from '../../common/components/elements';
-import TableCustom, { Column } from '../../common/components/TableCustom';
 import { defaultGeoUrl, defaultTimeDimensionProperty } from '../../map/constant';
 import { getDirection } from '../utils';
 import {
@@ -84,90 +83,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       .then((dataR) => setData(dataR));
   };
 
-  const columnsList = React.useMemo(() => {
-    const temp: Column[] = [
-      {
-        title: 'Thời điểm (h)',
-        variant: 'body2',
-        style: { alignItems: 'center' },
-        render: (record: some, _index: number) => (
-          <Col>
-            <Typography variant="caption">
-              <span>{record?.dtg}</span>
-            </Typography>
-          </Col>
-        ),
-      },
-      {
-        title: 'Gió',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col>
-            <Typography variant="caption">
-              <span>
-                {intl.formatMessage({ id: 'speed' })}: {(record?.wind?.speed * 3.6).toFixed(2)}
-                &nbsp;km/h
-              </span>
-            </Typography>
-          </Col>
-        ),
-      },
-      {
-        title: 'Nhiệt độ',
-        dataIndex: 'temp',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col>
-            <Typography variant="caption">
-              <span>
-                {intl.formatMessage({ id: 'speed' })}:&nbsp;{(record?.main?.temp - 273).toFixed(2)}
-                &nbsp;°C
-              </span>
-            </Typography>
-            <Typography variant="caption">
-              <span>
-                {intl.formatMessage({ id: 'min' })}:&nbsp;
-                {(record?.main?.temp_min - 273).toFixed(2)}&nbsp;°C
-              </span>
-            </Typography>
-            <Typography variant="caption">
-              <span>
-                {intl.formatMessage({ id: 'max' })}:&nbsp;
-                {(record?.main?.temp_max - 273).toFixed(2)}&nbsp;°C
-              </span>
-            </Typography>
-          </Col>
-        ),
-      },
-      {
-        title: 'Độ ẩm',
-        dataIndex: 'humidity ',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col style={{ alignItems: 'center', marginRight: 20 }}>
-            <Typography variant="caption">
-              <span>{record?.main?.humidity}&nbsp;%</span>
-            </Typography>
-          </Col>
-        ),
-      },
-      {
-        title: 'Áp suất',
-        dataIndex: 'email',
-        variant: 'body2',
-        render: (record: some, _index: number) => (
-          <Col style={{ alignItems: 'center', marginRight: 20 }}>
-            <Typography variant="caption">
-              <span>{record?.main?.pressure}&nbsp;hPa</span>
-            </Typography>
-          </Col>
-        ),
-      },
-    ];
-    return temp as Column[];
-    // eslint-disable-next-line
-  }, []);
-  const columns1: GridColDef[] = React.useMemo(() => {
+  const listDayColumns: GridColDef[] = React.useMemo(() => {
     return [
       {
         field: 'id',
@@ -180,6 +96,8 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
           return params?.row?.dtg;
         },
         renderCell: (params: GridValueGetterParams | some) => {
+          console.log(params?.row);
+
           return (
             <Col style={{ alignItems: 'center', marginLeft: 30 }}>
               <Typography variant="caption">
@@ -190,7 +108,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
         },
       },
       {
-        field: 'wind',
+        field: 'winds',
         headerName: 'Gió',
         width: 160,
         headerClassName: 'super-app-theme--header',
@@ -212,12 +130,6 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
                   &nbsp;km/h
                 </span>
               </Typography>
-              <Typography variant="caption">
-                <span>
-                  {intl.formatMessage({ id: 'deg' })}: {getDirection(params.row.wind.deg)}&nbsp;(
-                  {params.row.wind.deg}°)
-                </span>
-              </Typography>
             </Col>
           );
         },
@@ -225,7 +137,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       {
         field: 'temp',
         headerName: 'Nhiệt độ',
-        width: 120,
+        width: 150,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
@@ -238,25 +150,27 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
         },
         renderCell: (params: GridValueGetterParams | some) => {
           return (
-            <Row>
+            <Col>
               <Typography variant="caption">
-                <span>{(params.row?.main?.temp - 273).toFixed(2)}&nbsp;°C</span>
+                <span>
+                  {intl.formatMessage({ id: 'speed' })}:&nbsp;
+                  {(params?.row?.main?.temp - 273).toFixed(2)}
+                  &nbsp;°C
+                </span>
               </Typography>
-              <BootstrapTooltip
-                title={
-                  <Typography variant="body2" style={{ padding: '12px 12px' }}>
-                    <FormattedMessage id="Cảm nhận thực tế:" />
-                    &nbsp;
-                    <span>{(params.row?.main?.feels_like - 273).toFixed(2)}&nbsp;°C</span>
-                  </Typography>
-                }
-                placement="top"
-              >
-                <IconButton style={{ padding: 4, marginLeft: 4 }}>
-                  <ErrorOutlineIcon style={{ padding: 1, color: '#1976d2' }} />
-                </IconButton>
-              </BootstrapTooltip>
-            </Row>
+              <Typography variant="caption">
+                <span>
+                  {intl.formatMessage({ id: 'min' })}:&nbsp;
+                  {(params?.row?.main?.temp_min - 273).toFixed(2)}&nbsp;°C
+                </span>
+              </Typography>
+              <Typography variant="caption">
+                <span>
+                  {intl.formatMessage({ id: 'max' })}:&nbsp;
+                  {(params?.row?.main?.temp_max - 273).toFixed(2)}&nbsp;°C
+                </span>
+              </Typography>
+            </Col>
           );
         },
       },
@@ -512,6 +426,19 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       );
     }
   }, []);
+  console.log(
+    'dataList',
+    dataList?.list
+      ?.filter((_el: some, idx: number) => idx % 10 === 0)
+      .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
+      .map((elm: some, idx: number) => {
+        return {
+          ...elm,
+          dtg: defaultGeoUrl.time[idx],
+          id: idx,
+        };
+      }),
+  );
   return (
     <Col>
       <Row style={{ display: 'flex', marginBottom: 5, marginTop: 20 }}>
@@ -576,45 +503,31 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
           <Typography variant="subtitle1" style={{ margin: '10px auto 5px' }}>
             {intl.formatMessage({ id: 'tableListDay' })}
           </Typography>
-          <TableCustom
-            style={{ borderRadius: 8, boxShadow: 'none', marginBottom: 5 }}
-            dataSource={
-              dataList?.list
-                ?.filter((_el: some, idx: number) => idx % 10 === 0)
-                .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
-                .map((elm: some, idx: number) => {
-                  return {
-                    ...elm,
-                    dtg: defaultGeoUrl.time[idx],
-                  };
-                }) || []
-            }
-            columns={columnsList}
-            noColumnIndex
-            loading={false}
-          />
-          <DataGrid
-            rows={
-              (dataList?.list
-                ?.filter((_el: some, idx: number) => idx % 10 === 0)
-                .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
-                .map((elm: some, idx: number) => {
-                  return {
-                    ...elm,
-                    dtg: defaultGeoUrl.time[idx],
-                    id: idx,
-                  };
-                }) || []) as GridRowData[]
-            }
-            columns={columns1}
-            pageSize={8}
-            hideFooter={true}
-            rowHeight={63}
-            disableSelectionOnClick
-            components={{
-              Toolbar: CustomToolbar,
-            }}
-          />
+
+          <div style={{ height: 595 }}>
+            <DataGrid
+              rows={
+                (dataList?.list
+                  ?.filter((_el: some, idx: number) => idx % 10 === 0)
+                  .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
+                  .map((elm: some, idx: number) => {
+                    return {
+                      ...elm,
+                      dtg: defaultGeoUrl.time[idx],
+                      id: idx,
+                    };
+                  }) || []) as GridRowData[]
+              }
+              columns={listDayColumns}
+              pageSize={8}
+              hideFooter={true}
+              rowHeight={63}
+              disableSelectionOnClick
+              components={{
+                Toolbar: CustomToolbar,
+              }}
+            />
+          </div>
         </>
       ) : (
         <CircularProgress color="secondary" style={{ margin: '150px auto' }} />

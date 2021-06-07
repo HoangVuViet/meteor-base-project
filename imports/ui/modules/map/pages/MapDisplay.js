@@ -23,6 +23,7 @@ import {
   tempLayerUrl,
   windLayerUrl,
   windUrl,
+  defaultGeoUrl,
 } from '../constant';
 import '../css/index.css';
 
@@ -114,6 +115,7 @@ const LeafletMap = (_props) => {
         checkBaseMap(false);
       } else {
         checkBaseMap(true);
+        setGeotifURL(undefined);
       }
     });
   }, [geotifURL]);
@@ -130,7 +132,9 @@ const LeafletMap = (_props) => {
       transpValue: 0,
       renderer: renderer,
     };
-    var windSpeed = new L.leafletGeotiff(geotifURL.url[0], options).addTo(map);
+    if (geotifURL) {
+      var windSpeed = new L.leafletGeotiff(geotifURL.url[0], options).addTo(map);
+    }
   }, [geotifURL]);
   console.log('geotifURL', geotifURL);
   React.useEffect(() => {
@@ -156,10 +160,12 @@ const LeafletMap = (_props) => {
             defaultTimeDimensionProperty.max,
           );
         });
-        var windSpeed = new L.leafletGeotiff(
-          geotifURL.url[progress !== 0 ? progress / defaultTimeDimensionProperty.step - 1 : 0],
-          options,
-        ).addTo(map);
+        if (geotifURL) {
+          var windSpeed = new L.leafletGeotiff(
+            geotifURL.url[progress !== 0 ? progress / defaultTimeDimensionProperty.step - 1 : 0],
+            options,
+          ).addTo(map);
+        }
       }
     }, 1500);
 
@@ -258,14 +264,16 @@ const LeafletMap = (_props) => {
         <HightlightArea />
         <Legend layerName={layerName} />
       </Map>
-      <TimeDimensionMap
-        progress={progress}
-        isPlay={isPlay}
-        checkPlay={checkPlay}
-        setProgress={setProgress}
-        geotifURL={geotifURL}
-        setGeotifURL={setGeotifURL}
-      />
+      {geotifURL && (
+        <TimeDimensionMap
+          progress={progress}
+          isPlay={isPlay}
+          checkPlay={checkPlay}
+          setProgress={setProgress}
+          geotifURL={geotifURL}
+          setGeotifURL={setGeotifURL}
+        />
+      )}
     </Fragment>
   );
 };

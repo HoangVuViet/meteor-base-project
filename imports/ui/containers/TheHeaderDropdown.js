@@ -10,8 +10,15 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { Col } from '../modules/common/components/elements';
+import { Typography } from '@material-ui/core';
+import { LOGIN } from '/imports/ui/constants';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { setLogin } from '../redux/initReducer';
 
 const TheHeaderDropdown = () => {
+  const dispatch = useDispatch();
+  const { sidebarShow, logined } = useSelector((state) => state.accommodation, shallowEqual);
+
   return (
     <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
       <CDropdownToggle className="c-header-nav-link" caret={false}>
@@ -38,7 +45,14 @@ const TheHeaderDropdown = () => {
         <CDropdownItem divider />
         <CHeaderNavLink to="/login">
           <CIcon name="cil-account-logout" className="mfe-2" />
-          Sign out
+          <Typography
+            variant="body2"
+            onClick={() => {
+              dispatch(setLogin(val));
+            }}
+          >
+            Sign out
+          </Typography>
         </CHeaderNavLink>
       </CDropdownMenu>
     </CDropdown>

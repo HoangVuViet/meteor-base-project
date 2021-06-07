@@ -20,6 +20,9 @@ export const END_TIME = '2020';
 
 export const DATA: string = 'DATA_SAVE';
 
+export const LOGIN: string = 'LOGIN';
+
+
 export const baseConfigUrl = 'https://HoangVuViet.github.io';
 
 

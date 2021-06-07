@@ -19,10 +19,16 @@ import CIcon from '@coreui/icons-react';
 import { useSnackbar } from 'notistack';
 import { snackbarSetting } from '/imports/ui/modules/common/components/elements';
 import { useIntl } from 'react-intl';
+import { LOGIN } from '/imports/ui/constants';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '/imports/ui/redux/initReducer';
 
 const Login = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const intl = useIntl();
+
+  const dispatch = useDispatch();
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -62,6 +68,7 @@ const Login = () => {
                             color="primary"
                             className="px-4"
                             onClick={() => {
+                              dispatch(setLogin(true));
                               enqueueSnackbar(
                                 intl.formatMessage({ id: 'success' }),
                                 snackbarSetting((key) => closeSnackbar(key), {

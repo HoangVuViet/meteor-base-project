@@ -7,14 +7,16 @@ import {
   CHeaderNavLink,
   CToggler,
 } from '@coreui/react';
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { setClose } from '../redux/initReducer';
+import { LOGIN } from '../constants';
+import { setClose, setLogin } from '../redux/initReducer';
 import { TheHeaderDropdown, TheHeaderDropdownNotif } from './index';
 
 const TheHeader = () => {
   const dispatch = useDispatch();
-  const { sidebarShow } = useSelector((state) => state.accommodation, shallowEqual);
+  const { sidebarShow, logined } = useSelector((state) => state.accommodation, shallowEqual);
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive';
     dispatch(setClose(val));
@@ -23,6 +25,7 @@ const TheHeader = () => {
     const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive';
     dispatch(setClose(val));
   };
+  console.log(logined);
   return (
     <div style={{ width: '100%' }}>
       <CHeader withSubheader>
@@ -32,19 +35,26 @@ const TheHeader = () => {
         </div>
         <CHeaderNav className="d-md-down-none mr-auto">
           <CHeaderNavItem className="px-3">
-            <CHeaderNavLink to="/">
-              {/* <img
-                src="../../../images/988e98fa6f7c4e48864479b1d99dca85.png"
-                style={{ width: 15, height: 15 }}
-              ></img> */}
-              APOM
-            </CHeaderNavLink>
+            <CHeaderNavLink to="/">APOM</CHeaderNavLink>
           </CHeaderNavItem>
         </CHeaderNav>
-        <div style={{ marginRight: -18 }}>
+        <div style={{ marginRight: 18 }}>
           <CHeaderNav className="px-3">
             {/* <TheHeaderDropdownNotif /> */}
-            <TheHeaderDropdown />
+            {!logined ? (
+              <CHeaderNavLink to="/login">
+                <Typography
+                  variant="body2"
+                  onClick={() => {
+                    dispatch(setLogin(false));
+                  }}
+                >
+                  Đăng nhập
+                </Typography>
+              </CHeaderNavLink>
+            ) : (
+              <TheHeaderDropdown />
+            )}
           </CHeaderNav>
         </div>
 
