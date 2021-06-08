@@ -22,6 +22,10 @@ export const DATA: string = 'DATA_SAVE';
 
 export const LOGIN: string = 'LOGIN';
 
+export const USER_RESGIS: string = 'USER_RESGIS';
+
+export const USER_LOGIN: string = 'USER_LOGIN';
+
 
 export const baseConfigUrl = 'https://HoangVuViet.github.io';
 
@@ -64,7 +68,7 @@ export interface ICheckBox extends some {
   amenitiesTypes: some[];
 }
 
-export const URL_BASE = 'http://localhost:3000'
+export const URL_BASE = 'https://github.com/HoangVuViet/HoangVuViet.github.io';
 export const URL_CONFIG = 'http://history.openweathermap.org';
 export const appToken = '093b90a9af239de17af3339289c83e69'
 export const hereCredentials = {

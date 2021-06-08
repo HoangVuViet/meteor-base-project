@@ -25,7 +25,6 @@ const TheHeader = () => {
     const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive';
     dispatch(setClose(val));
   };
-  console.log(logined);
   return (
     <div style={{ width: '100%' }}>
       <CHeader withSubheader>
@@ -38,7 +37,7 @@ const TheHeader = () => {
             <CHeaderNavLink to="/">APOM</CHeaderNavLink>
           </CHeaderNavItem>
         </CHeaderNav>
-        <div style={{ marginRight: 18 }}>
+        <div style={{ marginRight: -8 }}>
           <CHeaderNav className="px-3">
             {/* <TheHeaderDropdownNotif /> */}
             {!logined ? (

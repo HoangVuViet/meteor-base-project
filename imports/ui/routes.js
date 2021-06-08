@@ -38,7 +38,10 @@ const routes = [
   // { path: ROUTES.aeronetProcess, name: 'AERONET AOD', component: AeronetProcess },
 
   { path: ROUTES.chart, name: 'Đánh giá sản phẩm ảnh vệ tinh', component: Chart },
-  { path: ROUTES.report, name: 'Quản lý dữ liệu', component: DataManagement },
+  { path: ROUTES.report, name: 'Gió', component: DataManagement },
+  { path: ROUTES.reportTMP, name: 'Nhiệt độ', component: DataManagement },
+  { path: ROUTES.reportHUD, name: 'Độ ẩm', component: DataManagement },
+  { path: ROUTES.reportPRESS, name: 'Áp suất', component: DataManagement },
 ];
 
 export default routes;

@@ -19,7 +19,7 @@ import CIcon from '@coreui/icons-react';
 import { useSnackbar } from 'notistack';
 import { snackbarSetting } from '/imports/ui/modules/common/components/elements';
 import { useIntl } from 'react-intl';
-import { LOGIN } from '/imports/ui/constants';
+import { LOGIN, USER_RESGIS, USER_LOGIN } from '/imports/ui/constants';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '/imports/ui/redux/initReducer';
 
@@ -29,6 +29,14 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
+  const [userLoginProfile, setUserLoginProfile] = React.useState({
+    ...(JSON.parse(localStorage.getItem(USER_RESGIS)) || {
+      userName: '',
+      email: '',
+      password: '',
+      repeatPass: '',
+    }),
+  });
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -46,7 +54,15 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Email" autoComplete="username" required />
+                      <CInput
+                        type="text"
+                        placeholder="Email/Username"
+                        autoComplete="username"
+                        required
+                        onChange={(e) => {
+                          setUserLoginProfile({ ...userLoginProfile, email: e.target.value });
+                        }}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -59,6 +75,9 @@ const Login = () => {
                         placeholder="Mật khẩu"
                         autoComplete="current-password"
                         required
+                        onChange={(e) => {
+                          setUserLoginProfile({ ...userLoginProfile, password: e.target.value });
+                        }}
                       />
                     </CInputGroup>
                     <CRow>
@@ -69,6 +88,7 @@ const Login = () => {
                             className="px-4"
                             onClick={() => {
                               dispatch(setLogin(true));
+                              localStorage.setItem(USER_LOGIN, JSON.stringify(userLoginProfile));
                               enqueueSnackbar(
                                 intl.formatMessage({ id: 'success' }),
                                 snackbarSetting((key) => closeSnackbar(key), {

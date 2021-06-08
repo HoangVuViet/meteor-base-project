@@ -8,6 +8,7 @@ import React from 'react';
 import FilterVintageIcon from '@material-ui/icons/FilterVintage';
 import { ROUTES } from '../configs/routes';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
+import DataUsageIcon from '@material-ui/icons/DataUsage';
 const _nav = [
   // {
   //   _tag: 'CSidebarNavItem',
@@ -71,18 +72,12 @@ const _nav = [
         name: 'Áp suất',
         to: ROUTES.viirsDownload,
       },
-      // {
-      //   _tag: 'CSidebarNavItem',
-      //   name: 'AERONET AOD',
-      //   to: ROUTES.aeronetDownload,
-      // },
     ],
   },
   {
     _tag: 'CSidebarNavDropdown',
     name: 'Xử lý dữ liệu',
     route: '/notifications',
-    // icon: 'cil-bell',
     icon: <CallMergeIcon style={{ marginRight: 13, padding: 2 }} />,
     _children: [
       {
@@ -105,32 +100,50 @@ const _nav = [
         name: 'Áp suất',
         to: ROUTES.viirsProcess,
       },
-      // {
-      //   _tag: 'CSidebarNavItem',
-      //   name: 'AERONET AOD',
-      //   to: ROUTES.aeronetProcess,
-      // },
     ],
   },
   {
-    _tag: 'CSidebarNavItem',
+    _tag: 'CSidebarNavDropdown',
     name: 'Quản lý dữ liệu',
-    to: ROUTES.report,
-    icon: <CategoryIcon style={{ marginRight: 13, padding: 2 }}> </CategoryIcon>,
+    route: '/chip',
+    icon: <DataUsageIcon style={{ marginRight: 13, padding: 2 }} />,
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Gió',
+        to: ROUTES.report,
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Nhiệt độ',
+        to: ROUTES.reportTMP,
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Độ ẩm',
+        to: ROUTES.reportHUD,
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Áp suất',
+        to: ROUTES.reportPRESS,
+      },
+    ],
   },
+
   {
     _tag: 'CSidebarNavDivider',
   },
-  {
-    _tag: 'CSidebarNavTitle',
-    _children: ['Sản phẩm'],
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Đánh giá sản phẩm ảnh vệ tinh',
-    to: ROUTES.chart,
-    icon: <TimelineIcon style={{ marginRight: 13, padding: 2 }}></TimelineIcon>,
-  },
+  // {
+  //   _tag: 'CSidebarNavTitle',
+  //   _children: ['Sản phẩm'],
+  // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Đánh giá sản phẩm ảnh vệ tinh',
+  //   to: ROUTES.chart,
+  //   icon: <TimelineIcon style={{ marginRight: 13, padding: 2 }}></TimelineIcon>,
+  // },
 
   {
     _tag: 'CSidebarNavDivider',

@@ -26,21 +26,24 @@ export const ROUTES = {
 
   homeDashboard: '/dashboard',
   chart: '/chart',
-  report: '/report',
+  report: '/management/wind',
+  reportTMP: '/management/tmp',
+  reportHUD: '/management/hud',
+  reportPRESS: '/management/press2m',
 
   pm25: '/pm25Map',
   pm25Landsat: '/pm25Landsat',
 
-  landsatDownload: '/download/Landsat',
-  calipsoDownload: '/download/CALIPSO',
-  modisDownload: '/download/MODIS',
-  viirsDownload: '/download/VIIRS',
+  landsatDownload: '/download/wind',
+  calipsoDownload: '/download/tmp',
+  modisDownload: '/download/hud',
+  viirsDownload: '/download/press2m',
   aeronetDownload: '/download/AERONET',
 
-  landsatProcess: '/process/landsat',
-  calipsoProcess: '/process/CALIPSO',
-  modisProcess: '/process/MODIS',
-  viirsProcess: '/process/VIIRS',
+  landsatProcess: '/process/wind',
+  calipsoProcess: '/process/tmp',
+  modisProcess: '/process/hud',
+  viirsProcess: '/process/press2m',
   aeronetProcess: '/process/AERONET',
 };
 
