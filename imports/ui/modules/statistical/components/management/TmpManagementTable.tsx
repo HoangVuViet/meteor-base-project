@@ -27,13 +27,13 @@ import ConfirmDialog from '../../../common/components/ConfirmDialog';
 import { Col, Row, snackbarSetting } from '../../../common/components/elements';
 import LoadingButton from '../../../common/components/LoadingButton';
 import { filterList } from '../../utils';
-import AddDataDialog from './create/AddDataDialog';
-import EditDataDialog from './edit/EditDataDialog';
+import AddTmpDialog from './create/AddTmpDialog';
+import EditTmpDialog from './edit/EditTmpDialog';
 import { GREY } from '/imports/ui/configs/colors';
 import { isEmpty, some } from '/imports/ui/constants';
 import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
-interface IManagementDataTableProps {
+interface ITmpManagementTableProps {
   loading: boolean;
   dataList?: some[];
   setFilter: (value: some) => void;
@@ -43,7 +43,7 @@ interface IManagementDataTableProps {
   handleEditData: (value: some) => void;
 }
 
-const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = (props) => {
+const TmpManagementTable: React.FunctionComponent<ITmpManagementTableProps> = (props) => {
   const { dataList, handleDeleteData, handleEditData, handleAddData, loading } = props;
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -174,13 +174,12 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
   }, []);
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '80%' }}>
       <Row
         style={{
           justifyContent: 'space-between',
-          padding: '4px 0px 0px 16px',
+          padding: '4px 16px 0px 16px',
           marginTop: 10,
-          width: '80%',
         }}
       >
         <Typography
@@ -189,7 +188,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
             fontWeight: 'bold',
           }}
         >
-          <FormattedMessage id="listDisPlay" values={{ value: 'gió' }} />
+          <FormattedMessage id="listDisPlay" values={{ value: 'nhiệt độ' }} />
         </Typography>
         <LoadingButton
           variant="contained"
@@ -214,7 +213,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
           </Row>
         </LoadingButton>
       </Row>
-      <Paper style={{ margin: '16px 12px', height: 620, width: '80%' }}>
+      <Paper style={{ margin: '16px 12px', height: 620, width: '100%' }}>
         <DataGrid
           rows={dataList as GridRowData[]}
           columns={columns}
@@ -262,7 +261,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
           <Formik initialValues={{}} onSubmit={() => {}}>
             {({ values }) => (
               <Form>
-                <EditDataDialog rowData={rowData} values={values} />
+                <EditTmpDialog rowData={rowData} values={values} />
                 <Divider />
                 <Row style={{ padding: 16, justifyContent: 'flex-end' }}>
                   <Button
@@ -339,7 +338,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
           <Formik initialValues={{}} onSubmit={() => {}}>
             {({ values }) => (
               <Form>
-                <AddDataDialog values={values} />
+                <AddTmpDialog values={values} />
                 <Divider />
                 <Row style={{ padding: 16, justifyContent: 'flex-end' }}>
                   <Button
@@ -415,4 +414,4 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
   );
 };
 
-export default ManagementDataTable;
+export default TmpManagementTable;

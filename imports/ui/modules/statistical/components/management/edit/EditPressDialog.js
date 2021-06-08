@@ -1,6 +1,4 @@
-import DateFnsUtils from '@date-io/date-fns';
-import { Button, Grid, Paper, Typography } from '@material-ui/core';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { Grid, Typography } from '@material-ui/core';
 import { useFormikContext } from 'formik';
 import L from 'leaflet';
 import 'leaflet-geotiff';
@@ -10,25 +8,28 @@ import moment from 'moment';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
-import { Col } from '../../../common/components/elements';
-import { FieldSelectContent, FieldTextContent } from '../../../common/components/FieldContent';
-import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../../map/constant';
-import { filterList } from '../../utils';
+import { Col } from '../../../../common/components/elements';
+import { FieldSelectContent, FieldTextContent } from '../../../../common/components/FieldContent';
+import {
+  defaultGeoUrl,
+  defaultMapProperty,
+  defaultWindSpeedProperty,
+} from '../../../../map/constant';
+import { filterList } from '../../../utils';
 
-import { isEmpty } from '/imports/ui/constants';
+import { GREY_500 } from '/imports/ui/configs/colors';
 import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
-const AddDataDialog = (props) => {
+// interface IEditPressDialogProps {
+//   rowData: some;
+//   values: some;
+// }
+
+const EditPressDialog = (props) => {
   const { rowData, values } = props;
   const { setFieldValue, setValues } = useFormikContext();
   const intl = useIntl();
   const mapRef = React.useRef(null);
-
-  const [fileAmount, setFileAmount] = React.useState();
-
-  const handleUploadFile = async (e) => {
-    setFileAmount(Object.values(e.target.files)?.map((el) => el?.name));
-  };
 
   React.useEffect(() => {
     const { current = {} } = mapRef;
@@ -44,15 +45,56 @@ const AddDataDialog = (props) => {
       transpValue: 0,
       renderer: renderer,
     };
-    if (fileAmount) {
-      var windSpeed = new L.leafletGeotiff(
-        defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
-        options,
-      ).addTo(map);
-    }
-  }, [fileAmount]);
+    var windSpeed = new L.leafletGeotiff(
+      defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
+      options,
+    ).addTo(map);
+  }, []);
+
+  React.useEffect(
+    () => {
+      const temp = {
+        createdAt: moment(rowData?.created || rowData?.createAt, DATE_TIME_FORMAT).format(
+          DATE_FORMAT,
+        ),
+        dataName: rowData?.bookingCode || rowData?.dataName,
+        dataType: rowData?.dataType,
+        collectedDate: rowData?.collectedDate,
+        imageP: 'geotiff',
+      };
+      setValues(temp);
+    },
+    // eslint-disable-next-line
+    [],
+  );
   return (
-    <Col style={{ width: 800, padding: '16px 12px' }}>
+    <Col style={{ width: 1000, padding: '16px 12px' }}>
+      <Grid container spacing={1} style={{ marginBottom: 20 }}>
+        <Grid item xs={3}>
+          <Typography style={{ marginTop: 10 }} variant="body2" component="p">
+            <FormattedMessage id="Ngày thêm mới dữ liệu" />
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={9}
+          style={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          <FieldTextContent
+            name="createdAt"
+            placeholder={intl.formatMessage({
+              id: 'searchPlaceholder',
+            })}
+            formControlStyle={{ width: 400 }}
+            style={{ background: GREY_500 }}
+            inputProps={{ autoComplete: 'off' }}
+            disabled
+          />
+        </Grid>
+      </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
@@ -71,7 +113,6 @@ const AddDataDialog = (props) => {
             name="dataName"
             formControlStyle={{ width: 400 }}
             inputProps={{ autoComplete: 'off' }}
-            placeholder={intl.formatMessage({ id: 'Nhập' })}
           />
         </Grid>
       </Grid>
@@ -105,10 +146,11 @@ const AddDataDialog = (props) => {
             }}
             placeholder={intl.formatMessage({ id: 'choose' })}
             disableError
+            disabled
           />
         </Grid>
       </Grid>
-      <Grid container spacing={1} style={{ marginBottom: 12 }}>
+      <Grid container spacing={1} style={{ marginBottom: 20 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Ngày thu nhận dữ liệu" />
@@ -122,27 +164,22 @@ const AddDataDialog = (props) => {
             textOverflow: 'ellipsis',
           }}
         >
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              onChange={(date) => {
-                setFieldValue('collectedDate', moment(date, DATE_TIME_FORMAT).format(DATE_FORMAT));
-              }}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-            />
-          </MuiPickersUtilsProvider>
+          <FieldTextContent
+            name="collectedDate"
+            placeholder={intl.formatMessage({
+              id: 'searchPlaceholder',
+            })}
+            formControlStyle={{ width: 400 }}
+            style={{ background: GREY_500 }}
+            inputProps={{ autoComplete: 'off' }}
+            disabled
+          />
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
-            <FormattedMessage id="chooseFile" />
+            <FormattedMessage id="Định dạng file ảnh" />
           </Typography>
         </Grid>
         <Grid
@@ -153,47 +190,18 @@ const AddDataDialog = (props) => {
             textOverflow: 'ellipsis',
           }}
         >
-          <Button
-            color="secondary"
-            variant="contained"
-            disableElevation
-            style={{ width: 150, whiteSpace: 'nowrap' }}
-            onClick={() => {
-              document.getElementById(`add_upload_file`)?.click();
-            }}
-          >
-            <input
-              type="file"
-              style={{ display: 'none' }}
-              id={`add_upload_file`}
-              accept="tiff/tif/hdc"
-              onChange={handleUploadFile}
-            />
-            <FormattedMessage id="chooseFile" />
-          </Button>
-          {!isEmpty(fileAmount) && (
-            <Paper
-              variant="outlined"
-              style={{
-                padding: '8px 16px 16px',
-                borderRadius: 12,
-                background: '#f5f5f5',
-                boxShadow: 'none',
-                width: 400,
-                marginTop: 10,
-              }}
-            >
-              <Typography style={{ marginTop: 10 }} variant="body2" component="p">
-                {fileAmount}
-              </Typography>
-            </Paper>
-          )}
+          <FieldTextContent
+            name="imageP"
+            formControlStyle={{ width: 400 }}
+            inputProps={{ autoComplete: 'off' }}
+            disabled
+          />
         </Grid>
       </Grid>
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
-          <Typography variant="body2" component="p">
-            <FormattedMessage id="Xem trước" />
+          <Typography style={{ marginTop: 10 }} variant="body2" component="p">
+            <FormattedMessage id="Ảnh dữ liệu" />
           </Typography>
         </Grid>
         <Grid
@@ -226,4 +234,4 @@ const AddDataDialog = (props) => {
   );
 };
 
-export default AddDataDialog;
+export default EditPressDialog;

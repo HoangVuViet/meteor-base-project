@@ -8,20 +8,24 @@ import moment from 'moment';
 import * as React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
-import { Col } from '../../../common/components/elements';
-import { FieldSelectContent, FieldTextContent } from '../../../common/components/FieldContent';
-import { defaultGeoUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../../map/constant';
-import { filterList } from '../../utils';
+import { Col } from '../../../../common/components/elements';
+import { FieldSelectContent, FieldTextContent } from '../../../../common/components/FieldContent';
+import {
+  defaultGeoUrl,
+  defaultMapProperty,
+  defaultWindSpeedProperty,
+} from '../../../../map/constant';
+import { filterList } from '../../../utils';
 
 import { GREY_500 } from '/imports/ui/configs/colors';
 import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
-// interface IEditDataDialogProps {
+// interface IEditTmpDialogProps {
 //   rowData: some;
 //   values: some;
 // }
 
-const EditDataDialog = (props) => {
+const EditTmpDialog = (props) => {
   const { rowData, values } = props;
   const { setFieldValue, setValues } = useFormikContext();
   const intl = useIntl();
@@ -230,4 +234,4 @@ const EditDataDialog = (props) => {
   );
 };
 
-export default EditDataDialog;
+export default EditTmpDialog;

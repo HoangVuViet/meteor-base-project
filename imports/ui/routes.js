@@ -5,6 +5,9 @@ const ArcMapLandsat = React.lazy(() => import('./modules/map/pages/ArcMapLandsat
 const ArcMap = React.lazy(() => import('./modules/map/pages/MapDisplay.js'));
 const Statistical = React.lazy(() => import('./modules/statistical/pages/Statistical'));
 const DataManagement = React.lazy(() => import('./modules/statistical/pages/DataManagement'));
+const TmpManagement = React.lazy(() => import('./modules/statistical/pages/TmpManagement'));
+const HudManagement = React.lazy(() => import('./modules/statistical/pages/HudManagement'));
+const PressManagement = React.lazy(() => import('./modules/statistical/pages/PressManagement'));
 
 const LandsatDownload = React.lazy(() => import('./modules/download/pages/LandsatDownload'));
 const AeronetDownload = React.lazy(() => import('./modules/download/pages/AeronetDownload'));
@@ -39,9 +42,9 @@ const routes = [
 
   { path: ROUTES.chart, name: 'Đánh giá sản phẩm ảnh vệ tinh', component: Chart },
   { path: ROUTES.report, name: 'Gió', component: DataManagement },
-  { path: ROUTES.reportTMP, name: 'Nhiệt độ', component: DataManagement },
-  { path: ROUTES.reportHUD, name: 'Độ ẩm', component: DataManagement },
-  { path: ROUTES.reportPRESS, name: 'Áp suất', component: DataManagement },
+  { path: ROUTES.reportTMP, name: 'Nhiệt độ', component: TmpManagement },
+  { path: ROUTES.reportHUD, name: 'Độ ẩm', component: HudManagement },
+  { path: ROUTES.reportPRESS, name: 'Áp suất', component: PressManagement },
 ];
 
 export default routes;
