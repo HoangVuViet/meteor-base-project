@@ -10,11 +10,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
 import { Col } from '../../../../common/components/elements';
 import { FieldSelectContent, FieldTextContent } from '../../../../common/components/FieldContent';
-import {
-  defaultGeoUrl,
-  defaultMapProperty,
-  defaultWindSpeedProperty,
-} from '../../../../map/constant';
+import { rhLayerUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../../../map/constant';
 import { filterList } from '../../../utils';
 
 import { GREY_500 } from '/imports/ui/configs/colors';
@@ -46,7 +42,7 @@ const EditHudDialog = (props) => {
       renderer: renderer,
     };
     var windSpeed = new L.leafletGeotiff(
-      defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
+      rhLayerUrl.url[Math.floor(Math.random() * rhLayerUrl.url.length)],
       options,
     ).addTo(map);
   }, []);
@@ -215,7 +211,7 @@ const EditHudDialog = (props) => {
           <div style={{ width: 500, height: 450 }}>
             <Map
               ref={mapRef}
-              center={[16.594081412718474, 106.06201171875001]}
+              center={[17.41355, 106.49927]}
               zoom={6}
               scrollWheelZoom={true}
               zoomControl={defaultMapProperty.zoomControl}

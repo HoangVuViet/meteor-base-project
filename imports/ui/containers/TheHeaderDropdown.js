@@ -19,7 +19,6 @@ const TheHeaderDropdown = () => {
   const dispatch = useDispatch();
   const { sidebarShow, logined } = useSelector((state) => state.accommodation, shallowEqual);
   const profile = JSON.parse(localStorage.getItem(USER_LOGIN)) || {};
-  console.log(logined);
 
   const history = useHistory();
 

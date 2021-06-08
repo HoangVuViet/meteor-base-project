@@ -8,6 +8,7 @@ import React, { Fragment } from 'react';
 import { LayerGroup, LayersControl, Map, TileLayer, ZoomControl } from 'react-leaflet';
 import FullscreenControl from 'react-leaflet-fullscreen';
 import Search from 'react-leaflet-search';
+import { isEmpty } from 'voca';
 import DragMarker from '../components/DragMarker';
 import HightlightArea from '../components/HightlightArea';
 import Legend from '../components/Legend';
@@ -100,7 +101,6 @@ const LeafletMap = (_props) => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
     map.on('baselayerchange', (e) => {
-      console.log('e.name', e.name);
       if (e.name === 'Gió') {
         setGeotifURL(windLayerUrl);
         checkBaseMap(false);
@@ -132,11 +132,12 @@ const LeafletMap = (_props) => {
       transpValue: 0,
       renderer: renderer,
     };
-    if (geotifURL) {
-      var windSpeed = new L.leafletGeotiff(geotifURL.url[0], options).addTo(map);
-    }
+    var windSpeed = new L.leafletGeotiff(
+      !isEmpty(geotifURL) ? geotifURL.url[0] : '',
+      options,
+    ).addTo(map);
   }, [geotifURL]);
-  console.log('geotifURL', geotifURL);
+
   React.useEffect(() => {
     const { current = {} } = mapRef;
     const { leafletElement: map } = current;
@@ -162,7 +163,9 @@ const LeafletMap = (_props) => {
         });
         if (geotifURL) {
           var windSpeed = new L.leafletGeotiff(
-            geotifURL.url[progress !== 0 ? progress / defaultTimeDimensionProperty.step - 1 : 0],
+            !isEmpty(geotifURL)
+              ? geotifURL.url[progress !== 0 ? progress / defaultTimeDimensionProperty.step - 1 : 0]
+              : '',
             options,
           ).addTo(map);
         }
@@ -193,13 +196,6 @@ const LeafletMap = (_props) => {
       >
         <FullscreenControl position="topright" />
         <ZoomControl position="topright"></ZoomControl>
-        {/* <LocationMarker /> */}
-        {/* <TileLayer url={hereTileUrl('reduced.day')} />
-      <TileLayer
-        url={
-          'http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=c906da2e232618595258cadf371704f'
-        }
-      /> */}
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Gió">
             <LayerGroup>

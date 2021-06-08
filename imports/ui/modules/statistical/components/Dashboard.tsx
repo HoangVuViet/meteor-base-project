@@ -39,7 +39,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
   const [result, setResult] = React.useState<some>({});
 
   const intl = useIntl();
-
+  console.log('addressP', addressP);
   const CustomToolbar = () => {
     return (
       <GridToolbarContainer>
@@ -96,8 +96,6 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
           return params?.row?.dtg;
         },
         renderCell: (params: GridValueGetterParams | some) => {
-          console.log(params?.row);
-
           return (
             <Col style={{ alignItems: 'center', marginLeft: 30 }}>
               <Typography variant="caption">
@@ -426,19 +424,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       );
     }
   }, []);
-  console.log(
-    'dataList',
-    dataList?.list
-      ?.filter((_el: some, idx: number) => idx % 10 === 0)
-      .filter((_el: some, idx: number) => idx % 2 === 0 && idx > 0 && idx < 17)
-      .map((elm: some, idx: number) => {
-        return {
-          ...elm,
-          dtg: defaultGeoUrl.time[idx],
-          id: idx,
-        };
-      }),
-  );
+
   return (
     <Col>
       <Row style={{ display: 'flex', marginBottom: 5, marginTop: 20 }}>

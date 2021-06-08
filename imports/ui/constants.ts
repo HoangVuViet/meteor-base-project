@@ -18,7 +18,14 @@ export const START_TIME = '2017';
 
 export const END_TIME = '2020';
 
-export const DATA: string = 'DATA_SAVE';
+export const DATA: string = 'DATA_WIND_SAVE';
+
+export const DATA_TMP: string = 'DATA_TMP_SAVE';
+
+export const DATA_HUD: string = 'DATA_HUD_SAVE';
+
+export const DATA_PRESS: string = 'DATA_PRESS_SAVE';
+
 
 export const LOGIN: string = 'LOGIN';
 

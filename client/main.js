@@ -43,9 +43,7 @@ Meteor.startup(() => {
             <ThemeProvider theme={THEME}>
               <MuiThemeProvider theme={MUI_THEME}>
                 <SnackbarProvider maxSnack={3}>
-                  {/* <Firebase> */}
                   <App />
-                  {/* </Firebase> */}
                 </SnackbarProvider>
               </MuiThemeProvider>
             </ThemeProvider>

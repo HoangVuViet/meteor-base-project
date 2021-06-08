@@ -105,21 +105,34 @@ const HudManagementtable: React.FunctionComponent<IHudManagementtableProps> = (p
         ),
       },
       {
-        field: 'dataType',
-        headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
-        width: 200,
+        field: 'url',
+        headerName: intl.formatMessage({ id: 'Đường dẫn' }),
+        width: 250,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
-        type: 'string',
         renderCell: (params: GridValueGetterParams | some) => (
           <Col>
-            <Typography variant="body2">
-              {filterList?.find((el: some) => el.id === params?.getValue('dataType'))?.name}
-            </Typography>
+            <Typography variant="body2">{params?.getValue('url')}</Typography>
           </Col>
         ),
       },
+      // {
+      //   field: 'dataType',
+      //   headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
+      //   width: 200,
+      //   headerClassName: 'super-app-theme--header',
+      //   align: 'left',
+      //   headerAlign: 'left',
+      //   type: 'string',
+      //   renderCell: (params: GridValueGetterParams | some) => (
+      //     <Col>
+      //       <Typography variant="body2">
+      //         {filterList?.find((el: some) => el.id === params?.getValue('dataType'))?.name}
+      //       </Typography>
+      //     </Col>
+      //   ),
+      // },
       {
         field: 'collectedDate',
         headerName: intl.formatMessage({ id: 'Ngày thu nhận' }),
@@ -180,6 +193,7 @@ const HudManagementtable: React.FunctionComponent<IHudManagementtableProps> = (p
           justifyContent: 'space-between',
           padding: '4px 16px 0px 16px',
           marginTop: 10,
+          width: 1200,
         }}
       >
         <Typography
@@ -213,7 +227,7 @@ const HudManagementtable: React.FunctionComponent<IHudManagementtableProps> = (p
           </Row>
         </LoadingButton>
       </Row>
-      <Paper style={{ margin: '16px 12px', height: 620, width: '100%' }}>
+      <Paper style={{ margin: '16px 12px', height: 580, width: 1200 }}>
         <DataGrid
           rows={dataList as GridRowData[]}
           columns={columns}

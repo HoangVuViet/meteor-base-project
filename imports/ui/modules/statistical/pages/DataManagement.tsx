@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { dataFake } from '../components/dataTest';
+import { windData } from '../utils';
 import { DATA, isEmpty, some } from '/imports/ui/constants';
 import { AppState } from '/imports/ui/redux/reducers';
 const ManagementDataTable = React.lazy(
@@ -32,40 +32,11 @@ const DataManagement: React.FunctionComponent<IDataManagementProps> = (_props) =
     async (_resultFilter: some) => {
       try {
         setLoading(true);
-        // const res = await dispatch(
-        //   actionsBookingManagement(
-        //     searchStr,
-        //     'post',
-        //     JSON.stringify({
-        //       hotelId: match?.params?.hotelId,
-        //       bookingStatuses: !isEmpty(resultFilter?.status) ? resultFilter?.status : ['success'],
-        //       bookingCode:
-        //         !isEmpty(resultFilter?.textSearch) && resultFilter?.textSearch !== ' '
-        //           ? resultFilter?.textSearch?.trim()
-        //           : null,
-        //       bookingFrom: resultFilter?.fromOrderDate,
-        //       bookingTo: resultFilter?.toOrderDate,
-        //       stayingFrom: resultFilter?.fromStayingDate,
-        //       stayingTo: resultFilter?.toStayingDate,
-        //     }),
-        //   ),
-        // );
-        // if (res?.code === SUCCESS_CODE) {
-        //   setDataList(res?.data);
-        // } else {
-        //   res?.message &&
-        //     enqueueSnackbar(
-        //       res?.message,
-        //       snackbarSetting((key) => closeSnackbar(key), {
-        //         color: 'error',
-        //       }),
-        //     );
-        // }
         if (!isEmpty(JSON.parse(localStorage.getItem(DATA) || '{}'))) {
           setDataList(JSON.parse(localStorage.getItem(DATA) || '{}'));
         } else {
-          setDataList(dataFake);
-          localStorage.setItem(DATA, JSON.stringify(dataFake));
+          setDataList(windData);
+          localStorage.setItem(DATA, JSON.stringify(windData));
         }
         setLoading(false);
       } catch (error) {}

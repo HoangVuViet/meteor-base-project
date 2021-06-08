@@ -105,21 +105,34 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
         ),
       },
       {
-        field: 'dataType',
-        headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
-        width: 200,
+        field: 'url',
+        headerName: intl.formatMessage({ id: 'Đường dẫn' }),
+        width: 250,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
-        type: 'string',
         renderCell: (params: GridValueGetterParams | some) => (
           <Col>
-            <Typography variant="body2">
-              {filterList?.find((el: some) => el.id === params?.getValue('dataType'))?.name}
-            </Typography>
+            <Typography variant="body2">{params?.getValue('url')}</Typography>
           </Col>
         ),
       },
+      // {
+      //   field: 'dataType',
+      //   headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
+      //   width: 200,
+      //   headerClassName: 'super-app-theme--header',
+      //   align: 'left',
+      //   headerAlign: 'left',
+      //   type: 'string',
+      //   renderCell: (params: GridValueGetterParams | some) => (
+      //     <Col>
+      //       <Typography variant="body2">
+      //         {filterList?.find((el: some) => el.id === params?.getValue('dataType'))?.name}
+      //       </Typography>
+      //     </Col>
+      //   ),
+      // },
       {
         field: 'collectedDate',
         headerName: intl.formatMessage({ id: 'Ngày thu nhận' }),
@@ -172,7 +185,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
       },
     ];
   }, []);
-
+  console.log(dataList);
   return (
     <div style={{ width: '100%' }}>
       <Row
@@ -180,7 +193,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
           justifyContent: 'space-between',
           padding: '4px 0px 0px 16px',
           marginTop: 10,
-          width: '80%',
+          width: 1200,
         }}
       >
         <Typography
@@ -214,11 +227,12 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
           </Row>
         </LoadingButton>
       </Row>
-      <Paper style={{ margin: '16px 12px', height: 620, width: '80%' }}>
+      <Paper style={{ margin: '16px 12px', height: 580, width: 1200 }}>
         <DataGrid
           rows={dataList as GridRowData[]}
           columns={columns}
           pageSize={10}
+          rowHeight={50}
           // checkboxSelection
           disableSelectionOnClick
           components={{

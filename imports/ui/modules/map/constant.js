@@ -63,7 +63,7 @@ export const getLegend = (
 
 export const defaultGeoUrl = {
   url: [
-    `abc`,
+    `${baseConfigUrl}/pm2.5/tif/2020/PM25_20201108_3km.tif`,
     `${baseConfigUrl}/pm2.5/tif/2020/PM25_20201109_3km.tif`,
     `${baseConfigUrl}/pm2.5/tif/2020/PM25_20201110_3km.tif`,
     `${baseConfigUrl}/pm2.5/tif/2020/PM25_20201111_3km.tif`,
@@ -74,15 +74,15 @@ export const defaultGeoUrl = {
     `${baseConfigUrl}/pm2.5/tif/2020/PM25_20201116_3km.tif`,
   ],
   time: [
-    '03/12/2020',
-    '04/12/2020',
-    '05/12/2020',
-    '06/12/2020',
-    '07/12/2020',
-    '08/12/2020',
-    '09/12/2020',
-    '10/12/2020',
-    '11/12/2020',
+    '01/01/2020',
+    '02/01/2020',
+    '03/01/2020',
+    '04/01/2020',
+    '05/01/2020',
+    '06/01/2020',
+    '07/01/2020',
+    '08/01/2020',
+    '09/01/2020',
   ],
   isBase: true,
 };

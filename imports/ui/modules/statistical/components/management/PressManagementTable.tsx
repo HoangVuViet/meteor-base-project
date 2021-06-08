@@ -26,7 +26,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ConfirmDialog from '../../../common/components/ConfirmDialog';
 import { Col, Row, snackbarSetting } from '../../../common/components/elements';
 import LoadingButton from '../../../common/components/LoadingButton';
-import { filterList } from '../../utils';
 import AddPressDialog from './create/AddPressDialog';
 import EditPressDialog from './edit/EditPressDialog';
 import { GREY } from '/imports/ui/configs/colors';
@@ -105,21 +104,34 @@ const PressManagementTable: React.FunctionComponent<IPressManagementTableProps> 
         ),
       },
       {
-        field: 'dataType',
-        headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
-        width: 200,
+        field: 'url',
+        headerName: intl.formatMessage({ id: 'Đường dẫn' }),
+        width: 250,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
-        type: 'string',
         renderCell: (params: GridValueGetterParams | some) => (
           <Col>
-            <Typography variant="body2">
-              {filterList?.find((el: some) => el.id === params?.getValue('dataType'))?.name}
-            </Typography>
+            <Typography variant="body2">{params?.getValue('url')}</Typography>
           </Col>
         ),
       },
+      // {
+      //   field: 'dataType',
+      //   headerName: intl.formatMessage({ id: 'Loại dữ liệu' }),
+      //   width: 200,
+      //   headerClassName: 'super-app-theme--header',
+      //   align: 'left',
+      //   headerAlign: 'left',
+      //   type: 'string',
+      //   renderCell: (params: GridValueGetterParams | some) => (
+      //     <Col>
+      //       <Typography variant="body2">
+      //         {filterList?.find((el: some) => el.id === params?.getValue('dataType'))?.name}
+      //       </Typography>
+      //     </Col>
+      //   ),
+      // },
       {
         field: 'collectedDate',
         headerName: intl.formatMessage({ id: 'Ngày thu nhận' }),
@@ -180,6 +192,7 @@ const PressManagementTable: React.FunctionComponent<IPressManagementTableProps> 
           justifyContent: 'space-between',
           padding: '4px 16px 0px 16px',
           marginTop: 10,
+          width: 1200,
         }}
       >
         <Typography
@@ -213,7 +226,7 @@ const PressManagementTable: React.FunctionComponent<IPressManagementTableProps> 
           </Row>
         </LoadingButton>
       </Row>
-      <Paper style={{ margin: '16px 12px', height: 620, width: '100%' }}>
+      <Paper style={{ margin: '16px 12px', height: 580, width: 1200 }}>
         <DataGrid
           rows={dataList as GridRowData[]}
           columns={columns}

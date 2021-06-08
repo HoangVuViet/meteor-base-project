@@ -11,7 +11,7 @@ import { Map, ZoomControl } from 'react-leaflet';
 import { Col } from '../../../../common/components/elements';
 import { FieldSelectContent, FieldTextContent } from '../../../../common/components/FieldContent';
 import {
-  defaultGeoUrl,
+  tempLayerUrl,
   defaultMapProperty,
   defaultWindSpeedProperty,
 } from '../../../../map/constant';
@@ -46,7 +46,7 @@ const EditTmpDialog = (props) => {
       renderer: renderer,
     };
     var windSpeed = new L.leafletGeotiff(
-      defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
+      tempLayerUrl.url[Math.floor(Math.random() * tempLayerUrl.url.length)],
       options,
     ).addTo(map);
   }, []);

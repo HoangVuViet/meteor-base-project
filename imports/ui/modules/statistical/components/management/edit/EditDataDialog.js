@@ -14,6 +14,7 @@ import {
   defaultGeoUrl,
   defaultMapProperty,
   defaultWindSpeedProperty,
+  windLayerUrl,
 } from '../../../../map/constant';
 import { filterList } from '../../../utils';
 
@@ -46,7 +47,7 @@ const EditDataDialog = (props) => {
       renderer: renderer,
     };
     var windSpeed = new L.leafletGeotiff(
-      defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
+      windLayerUrl.url[Math.floor(Math.random() * windLayerUrl.url.length)],
       options,
     ).addTo(map);
   }, []);
@@ -216,7 +217,7 @@ const EditDataDialog = (props) => {
             <Map
               ref={mapRef}
               center={[16.594081412718474, 106.06201171875001]}
-              zoom={6}
+              zoom={5}
               scrollWheelZoom={true}
               zoomControl={defaultMapProperty.zoomControl}
               maxZoom={7}

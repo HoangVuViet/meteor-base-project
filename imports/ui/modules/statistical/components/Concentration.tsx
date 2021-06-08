@@ -138,9 +138,7 @@ export default function Concentration() {
           {!isEmpty(result?.position) ? result.position.long : '-'}
         </span>
       </Typography>
-      <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 10 }}>
-        <span>{intl.formatMessage({ id: 'fromDateToDate' })}:&nbsp;</span>
-      </Typography>
+
       {data?.list ? (
         <>
           <Divider style={{ margin: 8, width: '100%', height: 2 }}></Divider>

@@ -32,7 +32,6 @@ const Register = () => {
     password: '',
     repeatPass: '',
   });
-  console.log('userRegister', userRegister);
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
