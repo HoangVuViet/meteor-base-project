@@ -12,6 +12,7 @@ import {
   GridColDef,
   GridRowData,
   GridToolbar,
+  GridValueFormatterParams,
   GridValueGetterParams,
 } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
@@ -31,7 +32,7 @@ import AddDataDialog from './create/AddDataDialog';
 import EditDataDialog from './edit/EditDataDialog';
 import { GREY } from '/imports/ui/configs/colors';
 import { isEmpty, some } from '/imports/ui/constants';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
+import { DATE_FORMAT, DATE_TIME_FORMAT, DATE_FORMAT_NEW } from '/imports/ui/models/moment';
 
 interface IManagementDataTableProps {
   loading: boolean;
@@ -141,10 +142,13 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
         align: 'left',
         headerAlign: 'left',
         type: 'date',
+        valueFormatter: (params: GridValueFormatterParams | some) => {
+          return moment(params.row.collectedDate, DATE_FORMAT_NEW).format(DATE_FORMAT);
+        },
         renderCell: (params: GridValueGetterParams | some) => (
           <Col>
             <Typography variant="body2">
-              {moment(params.getValue('collectedDate'), DATE_TIME_FORMAT).format(DATE_FORMAT)}
+              {moment(params.getValue('collectedDate'), DATE_FORMAT_NEW).format(DATE_FORMAT)}
             </Typography>
           </Col>
         ),

@@ -17,7 +17,7 @@ export const setClose = (data: some) => ({ type: actions.FETCH_ROOM_TYPES, paylo
 
 export const setWhere = (data: some) => ({ type: actions.FETCH_ADDRESS, payload: data });
 
-export const setLogin = (data: some) => ({ type: actions.CHECK_LOGIN, payload: data });
+export const setLogin = (data: boolean) => ({ type: actions.CHECK_LOGIN, payload: data });
 
 
 export default function reducer(

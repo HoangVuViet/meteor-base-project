@@ -59,8 +59,9 @@ const EditPressDialog = (props) => {
         ),
         dataName: rowData?.bookingCode || rowData?.dataName,
         dataType: rowData?.dataType,
-        collectedDate: rowData?.collectedDate,
+        collectedDate: moment(rowData?.collectedDate, DATE_TIME_FORMAT).format(DATE_FORMAT),
         imageP: 'geotiff',
+        url: rowData?.url,
       };
       setValues(temp);
     },
@@ -119,6 +120,27 @@ const EditPressDialog = (props) => {
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
+            <FormattedMessage id="Đường dẫn" />
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={9}
+          style={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          <FieldTextContent
+            name="url"
+            formControlStyle={{ width: 400 }}
+            inputProps={{ autoComplete: 'off' }}
+          />
+        </Grid>
+      </Grid>
+      {/* <Grid container spacing={1} style={{ marginBottom: 12 }}>
+        <Grid item xs={3}>
+          <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Loại dữ liệu" />
           </Typography>
         </Grid>
@@ -149,7 +171,7 @@ const EditPressDialog = (props) => {
             disabled
           />
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid container spacing={1} style={{ marginBottom: 20 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">

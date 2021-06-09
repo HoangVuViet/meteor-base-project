@@ -12,6 +12,7 @@ import {
   GridColDef,
   GridRowData,
   GridToolbar,
+  GridValueFormatterParams,
   GridValueGetterParams,
 } from '@material-ui/data-grid';
 import AddIcon from '@material-ui/icons/Add';
@@ -31,7 +32,7 @@ import AddHudDialog from './create/AddHudDialog';
 import EditHudDialog from './edit/EditHudDialog';
 import { GREY } from '/imports/ui/configs/colors';
 import { isEmpty, some } from '/imports/ui/constants';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
+import { DATE_FORMAT, DATE_FORMAT_NEW, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
 interface IHudManagementtableProps {
   loading: boolean;
@@ -105,15 +106,21 @@ const HudManagementtable: React.FunctionComponent<IHudManagementtableProps> = (p
         ),
       },
       {
-        field: 'url',
-        headerName: intl.formatMessage({ id: 'Đường dẫn' }),
-        width: 250,
+        field: 'collectedDate',
+        headerName: intl.formatMessage({ id: 'Ngày thu nhận' }),
+        width: 200,
         headerClassName: 'super-app-theme--header',
         align: 'left',
         headerAlign: 'left',
+        type: 'date',
+        valueFormatter: (params: GridValueFormatterParams | some) => {
+          return moment(params.getValue('collectedDate'), DATE_FORMAT_NEW).format(DATE_FORMAT);
+        },
         renderCell: (params: GridValueGetterParams | some) => (
           <Col>
-            <Typography variant="body2">{params?.getValue('url')}</Typography>
+            <Typography variant="body2">
+              {moment(params.getValue('collectedDate'), DATE_FORMAT_NEW).format(DATE_FORMAT)}
+            </Typography>
           </Col>
         ),
       },

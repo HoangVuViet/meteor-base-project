@@ -12,11 +12,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Map, ZoomControl } from 'react-leaflet';
 import { Col } from '../../../../common/components/elements';
 import { FieldSelectContent, FieldTextContent } from '../../../../common/components/FieldContent';
-import {
-  defaultGeoUrl,
-  defaultMapProperty,
-  defaultWindSpeedProperty,
-} from '../../../../map/constant';
+import { rhLayerUrl, defaultMapProperty, defaultWindSpeedProperty } from '../../../../map/constant';
 import { filterList } from '../../../utils';
 
 import { isEmpty } from '/imports/ui/constants';
@@ -50,7 +46,7 @@ const AddHudDialog = (props) => {
     };
     if (fileAmount) {
       var windSpeed = new L.leafletGeotiff(
-        defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
+        rhLayerUrl.url[Math.floor(Math.random() * rhLayerUrl.url.length)],
         options,
       ).addTo(map);
     }
@@ -79,7 +75,7 @@ const AddHudDialog = (props) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={1} style={{ marginBottom: 12 }}>
+      {/* <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Loại dữ liệu" />
@@ -111,7 +107,7 @@ const AddHudDialog = (props) => {
             disableError
           />
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
@@ -183,7 +179,7 @@ const AddHudDialog = (props) => {
                 borderRadius: 12,
                 background: '#f5f5f5',
                 boxShadow: 'none',
-                width: 400,
+                width: 500,
                 marginTop: 10,
               }}
             >

@@ -13,7 +13,7 @@ import { Map, ZoomControl } from 'react-leaflet';
 import { Col } from '../../../../common/components/elements';
 import { FieldSelectContent, FieldTextContent } from '../../../../common/components/FieldContent';
 import {
-  defaultGeoUrl,
+  pressLayerUrl,
   defaultMapProperty,
   defaultWindSpeedProperty,
 } from '../../../../map/constant';
@@ -50,7 +50,7 @@ const AddPressDialog = (props) => {
     };
     if (fileAmount) {
       var windSpeed = new L.leafletGeotiff(
-        defaultGeoUrl.url[Math.floor(Math.random() * defaultGeoUrl.url.length)],
+        pressLayerUrl.url[Math.floor(Math.random() * pressLayerUrl.url.length)],
         options,
       ).addTo(map);
     }
@@ -79,7 +79,7 @@ const AddPressDialog = (props) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={1} style={{ marginBottom: 12 }}>
+      {/* <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
             <FormattedMessage id="Loại dữ liệu" />
@@ -111,7 +111,7 @@ const AddPressDialog = (props) => {
             disableError
           />
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid container spacing={1} style={{ marginBottom: 12 }}>
         <Grid item xs={3}>
           <Typography style={{ marginTop: 10 }} variant="body2" component="p">
@@ -183,7 +183,7 @@ const AddPressDialog = (props) => {
                 borderRadius: 12,
                 background: '#f5f5f5',
                 boxShadow: 'none',
-                width: 400,
+                width: 500,
                 marginTop: 10,
               }}
             >
