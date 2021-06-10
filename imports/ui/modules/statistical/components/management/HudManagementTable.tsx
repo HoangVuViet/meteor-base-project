@@ -27,7 +27,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ConfirmDialog from '../../../common/components/ConfirmDialog';
 import { Col, Row, snackbarSetting } from '../../../common/components/elements';
 import LoadingButton from '../../../common/components/LoadingButton';
-import { filterList } from '../../utils';
 import AddHudDialog from './create/AddHudDialog';
 import EditHudDialog from './edit/EditHudDialog';
 import { GREY } from '/imports/ui/configs/colors';

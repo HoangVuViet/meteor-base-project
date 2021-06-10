@@ -55,7 +55,7 @@ const EditDataDialog = (props) => {
   React.useEffect(
     () => {
       const temp = {
-        createdAt: moment(rowData?.created || rowData?.createAt, DATE_TIME_FORMAT).format(
+        created: moment(rowData?.created || rowData?.createAt, DATE_TIME_FORMAT).format(
           DATE_FORMAT,
         ),
         dataName: rowData?.bookingCode || rowData?.dataName,
@@ -86,7 +86,7 @@ const EditDataDialog = (props) => {
           }}
         >
           <FieldTextContent
-            name="createdAt"
+            name="created"
             placeholder={intl.formatMessage({
               id: 'searchPlaceholder',
             })}

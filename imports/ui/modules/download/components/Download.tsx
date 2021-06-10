@@ -161,7 +161,7 @@ const Download: React.FC<Props> = (props) => {
             runScript();
             setTimeout(() => {
               setSubmitting(false);
-            }, 60000);
+            }, 15000);
           }}
         >
           <FormattedMessage id="start" />

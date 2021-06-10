@@ -39,6 +39,17 @@ const Legend = (props) => {
       return div;
     };
 
+    const legendHud = L.control({ position: 'bottomright' });
+    legendHud.onAdd = () => {
+      const div = L.DomUtil.create('div');
+      div.innerHTML = getLegend(
+        `Độ ẩm, %`,
+        `<div>0</div><div>10</div><div>20</div><div>40</div><div>60</div><div>80</div><div>100</div>`,
+        `<div class="horizontal-gradient-line" style="background-image: linear-gradient(to right, rgb(0, 115, 255) 0%, rgb(0, 170, 255) 8.35059%, rgb(75, 208, 214) 24.9192%, rgb(141, 231, 199) 41.4879%, rgb(176, 247, 32) 49.7722%, rgb(240, 184, 0) 58.0565%, rgb(251, 85, 21) 74.6251%, rgb(243, 54, 59) 91.1938%, rgb(198, 0, 0) 100% ); " ></div>`,
+      );
+      return div;
+    };
+
     const legendpm25 = L.control({ position: 'bottomright' });
     legendpm25.onAdd = () => {
       const div = L.DomUtil.create('div');
@@ -55,22 +66,32 @@ const Legend = (props) => {
         map.removeControl(legendTemp);
         map.removeControl(legendAtm);
         map.removeControl(legendpm25);
+        map.removeControl(legendHud);
         legendWindSpeed.addTo(map);
       } else if (e.name === 'Áp suất khí quyển(2m)') {
         map.removeControl(legendTemp);
         map.removeControl(legendWindSpeed);
         map.removeControl(legendpm25);
+        map.removeControl(legendHud);
         legendAtm.addTo(map);
       } else if (e.name === 'Nhiệt độ') {
         map.removeControl(legendAtm);
         map.removeControl(legendWindSpeed);
         map.removeControl(legendpm25);
+        map.removeControl(legendHud);
         legendTemp.addTo(map);
+      } else if (e.name === 'Độ ẩm') {
+        map.removeControl(legendAtm);
+        map.removeControl(legendWindSpeed);
+        map.removeControl(legendpm25);
+        map.removeControl(legendTemp);
+        legendHud.addTo(map);
       } else {
         map.removeControl(legendAtm);
         map.removeControl(legendWindSpeed);
         map.removeControl(legendpm25);
         map.removeControl(legendTemp);
+        map.removeControl(legendHud);
       }
     });
   }, []);

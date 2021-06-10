@@ -221,11 +221,11 @@ const LeafletMap = (_props) => {
               <VelocityLayer url={windUrl}></VelocityLayer>
             </LayerGroup>
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Bản đồ nền">
+          {/* <LayersControl.BaseLayer name="Bản đồ nền">
             <LayerGroup>
               <TileLayer url={hereTileUrl('reduced.day')} />
             </LayerGroup>
-          </LayersControl.BaseLayer>
+          </LayersControl.BaseLayer> */}
         </LayersControl>
         <div style={{ minHeight: 28, width: 32 }}>
           <Search

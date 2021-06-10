@@ -27,12 +27,11 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ConfirmDialog from '../../../common/components/ConfirmDialog';
 import { Col, Row, snackbarSetting } from '../../../common/components/elements';
 import LoadingButton from '../../../common/components/LoadingButton';
-import { filterList } from '../../utils';
 import AddDataDialog from './create/AddDataDialog';
 import EditDataDialog from './edit/EditDataDialog';
 import { GREY } from '/imports/ui/configs/colors';
 import { isEmpty, some } from '/imports/ui/constants';
-import { DATE_FORMAT, DATE_TIME_FORMAT, DATE_FORMAT_NEW } from '/imports/ui/models/moment';
+import { DATE_FORMAT, DATE_FORMAT_NEW, DATE_TIME_FORMAT } from '/imports/ui/models/moment';
 
 interface IManagementDataTableProps {
   loading: boolean;
@@ -296,7 +295,7 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
                         id: rowData.id,
                       });
                       enqueueSnackbar(
-                        intl.formatMessage({ id: 'success' }),
+                        intl.formatMessage({ id: 'Chỉnh sửa thành công!' }),
                         snackbarSetting((key) => closeSnackbar(key), {
                           color: 'success',
                         }),
@@ -368,12 +367,12 @@ const ManagementDataTable: React.FunctionComponent<IManagementDataTableProps> = 
                     onClick={() => {
                       handleAddData({
                         ...values,
-                        createAt: moment(new Date()).format(DATE_FORMAT),
+                        created: moment(new Date()).format(DATE_FORMAT),
                         id: new Date().getTime(),
                       });
                       setAddOpen(!addOpen);
                       enqueueSnackbar(
-                        intl.formatMessage({ id: 'success' }),
+                        intl.formatMessage({ id: 'Thêm mới thành công!' }),
                         snackbarSetting((key) => closeSnackbar(key), {
                           color: 'success',
                         }),

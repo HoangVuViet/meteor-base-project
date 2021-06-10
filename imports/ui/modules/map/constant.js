@@ -19,7 +19,7 @@ export const defaultMapProperty = {
   scrollWheelZoom: true,
   zoomControl: false,
   maxZoom: 7,
-  minZoom: 6,
+  minZoom: 5,
   style: { height: 675, width: '100%' }, //660 || 800
 };
 
@@ -138,15 +138,15 @@ export const tempLayerUrl = {
 
 export const pressLayerUrl = {
   url: [
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-01.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-02.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-03.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-04.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-05.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-06.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-07.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-08.tif`,
-    `${baseConfigUrl}/data/pres2m/PRES2M_2020-01-09.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-01.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-02.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-03.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-04.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-05.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-06.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-07.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-08.tif`,
+    `${baseConfigUrl}/data/dpt/DPT_2020-01-09.tif`,
   ],
   time: [
     '01/01/2020',

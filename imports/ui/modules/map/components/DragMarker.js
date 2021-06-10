@@ -114,11 +114,11 @@ const DragMarker = (props) => {
             </Row>
             <Row style={{ marginBottom: 10 }}>
               <Typography variant="caption">
-                <span>Vĩ độ:&nbsp;{props?.markerPosition[0].toFixed(5)}</span>
+                <span>Tọa độ:&nbsp;{props?.markerPosition[0].toFixed(5)}</span>
               </Typography>
               <span>&nbsp;/&nbsp;</span>
               <Typography variant="caption">
-                <span>Kinh độ:&nbsp;{props?.markerPosition[1].toFixed(5)}</span>
+                <span>&nbsp;{props?.markerPosition[1].toFixed(5)}</span>
               </Typography>
             </Row>{' '}
             <Button

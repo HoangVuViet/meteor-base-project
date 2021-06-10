@@ -39,7 +39,6 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
   const [result, setResult] = React.useState<some>({});
 
   const intl = useIntl();
-  console.log('addressP', addressP);
   const CustomToolbar = () => {
     return (
       <GridToolbarContainer>
@@ -435,10 +434,9 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (_props) => {
       </Row>
       <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 5 }}>
         <span>
-          {intl.formatMessage({ id: 'lat' })}:&nbsp;
-          {!isEmpty(result?.position) ? result.position.lat : '-'} /{' '}
-          {intl.formatMessage({ id: 'lon' })}:&nbsp;
-          {!isEmpty(result?.position) ? result.position.long : '-'}
+          {intl.formatMessage({ id: 'Tọa độ' })}:&nbsp;
+          {!isEmpty(result?.position) ? result.position.lat.toFixed(5) : '-'} / &nbsp;
+          {!isEmpty(result?.position) ? result.position.long.toFixed(5) : '-'}
         </span>
       </Typography>
       <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 10 }}>

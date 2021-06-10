@@ -132,10 +132,9 @@ export default function Concentration() {
       </Row>
       <Typography variant="body2" style={{ marginLeft: 12, marginBottom: 5 }}>
         <span>
-          {intl.formatMessage({ id: 'lat' })}:&nbsp;
-          {!isEmpty(result?.position) ? result.position.lat : '-'} /{' '}
-          {intl.formatMessage({ id: 'lon' })}:&nbsp;
-          {!isEmpty(result?.position) ? result.position.long : '-'}
+          {intl.formatMessage({ id: 'Tọa độ' })}:&nbsp;
+          {!isEmpty(result?.position) ? result.position.lat.toFixed(5) : '-'} / &nbsp;
+          {!isEmpty(result?.position) ? result.position.long.toFixed(5) : '-'}
         </span>
       </Typography>
 

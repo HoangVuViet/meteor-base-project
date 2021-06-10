@@ -27,7 +27,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import ConfirmDialog from '../../../common/components/ConfirmDialog';
 import { Col, Row, snackbarSetting } from '../../../common/components/elements';
 import LoadingButton from '../../../common/components/LoadingButton';
-import { filterList } from '../../utils';
 import AddTmpDialog from './create/AddTmpDialog';
 import EditTmpDialog from './edit/EditTmpDialog';
 import { GREY } from '/imports/ui/configs/colors';

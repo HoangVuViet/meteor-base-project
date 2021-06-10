@@ -55,7 +55,7 @@ const _nav = [
       {
         _tag: 'CSidebarNavItem',
         name: 'Gió',
-        to: '/download/Landsat',
+        to: ROUTES.landsatDownload,
       },
       {
         _tag: 'CSidebarNavItem',
